@@ -11,19 +11,13 @@ from patsy.highlevel import dmatrices, dmatrix
 
 cur_dir = os.path.dirname(os.path.realpath(__file__))
 
-feature = 'entropy'
+feature = 'gps_edit_dist'
 
 fp = os.path.join(cur_dir, 'data', 'matrix_data', 'feature_' + feature + '.csv')
 
 df = pandas.read_csv(fp)
 print df
-# print df.shape
-# print df.dtypes
 
-# y1, X = dmatrices('consc ~ entropy', data=df)
-# mod1 = sm.OLS(y1, X)
-# res1 = mod1.fit()
-# print res1.summary()
 
 big_five = ['extra', 'agrbl', 'consc', 'neuro', 'open']
 others = ['assertive', 'activity', 'altruism', 'compliance', 'order', 'discipline', 'anxiety', 'depression', 'aesthetics', 'ideas']

@@ -1,0 +1,485 @@
+    subject_id  edit_dist  extra     agrbl     consc  neuro  open  assertive  \
+0            1  -0.287769  3.125  3.777778  4.444444  2.750   3.9        2.8   
+1            2  -2.218326  2.125  3.000000  4.222222  3.500   3.2        2.0   
+2            3  -1.428282  2.125  3.222222  3.888889  3.375   2.7        2.2   
+3            4   1.161634  2.375  3.111111  2.666667  4.125   2.9        1.8   
+4            5   0.543856  3.125  3.777778  4.444444  2.750   3.3        2.6   
+5            7   1.191335  3.125  4.222222  3.777778    NaN   2.3        3.4   
+6            8  -0.418452  2.625  3.777778  4.222222  3.250   3.3        2.2   
+7            9  -0.388752  2.375  4.555556  2.666667  2.125   3.3        1.8   
+8           10  -0.840205  2.000  1.333333  4.777778  3.375   3.6        1.8   
+9           14  -0.192726  3.250  3.666667       NaN    NaN   3.3        2.6   
+10          15   1.304199  3.250  3.555556  3.111111  2.750   3.0        3.2   
+11          16  -0.875846  1.750  3.333333  3.555556  4.250   3.8        1.0   
+12          17  -0.115503  2.625  3.888889  3.333333  3.125   4.5        2.4   
+13          18   0.573557  2.625  2.222222  3.222222  3.750   2.5        2.6   
+14          19  -0.656059  1.750  3.111111  3.444444  3.625   3.2        1.2   
+15          20  -0.157085  3.875  4.333333  3.333333  2.375   3.6        3.8   
+16          22  -0.881786  3.625  3.444444  4.555556  2.875   3.8        3.0   
+17          23  -1.570847    NaN  3.666667  3.000000  3.750   3.6        NaN   
+18          24   0.454753  3.500  2.666667  2.333333  3.125   3.5        3.4   
+19          27  -0.204606  2.500  3.888889  2.666667  3.125   3.3        2.2   
+20          30   2.415012  4.500  4.111111  4.444444  2.000   3.6        4.4   
+21          32   1.322019  4.250  4.222222  4.333333  1.750   3.7        3.8   
+22          33  -0.133324  2.875  3.333333  1.888889  3.625   4.6        2.6   
+23          35  -0.424393  2.625  3.888889  3.555556  2.625   3.4        2.4   
+24          43   0.781463  2.375  4.111111  4.222222  2.500   3.3        1.8   
+
+    activity  altruism  compliance  order  discipline  anxiety  depression  \
+0        4.0      4.00    3.666667    4.0         4.4     2.00         4.5   
+1        2.5      3.25    2.000000    4.5         3.8     3.75         2.5   
+2        2.0      3.50    3.000000    4.0         3.8     3.50         3.5   
+3        4.0      3.50    2.666667    2.0         2.8     4.50         3.0   
+4        4.0      3.75    4.000000    5.0         4.2     2.75         2.5   
+5        2.5      4.50    4.000000    4.0         3.4     2.00         NaN   
+6        3.0      3.75    3.333333    3.0         4.4     3.25         3.5   
+7        3.5      4.50    5.000000    2.0         2.6     2.50         1.5   
+8        3.0      1.50    1.333333    4.5         4.8     3.25         4.0   
+9        4.0      3.75    3.333333    2.5         NaN      NaN         2.0   
+10       3.0      3.50    4.333333    2.0         3.2     2.75         2.5   
+11       3.0      2.75    3.666667    3.0         3.6     4.25         4.0   
+12       3.0      4.50    2.666667    1.5         3.8     2.75         4.0   
+13       2.5      2.00    2.000000    3.0         3.4     3.25         4.5   
+14       3.0      2.75    3.333333    2.5         3.6     3.75         3.5   
+15       3.5      4.50    4.333333    3.5         3.2     2.50         2.0   
+16       5.0      3.50    3.666667    3.5         4.8     2.75         2.5   
+17       3.5      4.25    3.000000    2.5         2.8     3.50         4.0   
+18       3.5      2.75    2.333333    2.0         2.0     3.50         2.5   
+19       3.0      3.50    4.333333    2.0         3.0     3.25         3.0   
+20       4.5      4.00    4.333333    4.0         4.6     2.25         1.5   
+21       5.0      4.25    4.000000    4.5         4.0     2.00         1.5   
+22       3.0      3.50    3.333333    1.5         1.6     3.50         4.0   
+23       3.5      3.75    4.000000    4.0         3.4     2.50         2.0   
+24       4.0      3.75    4.666667    3.0         4.8     2.25         2.5   
+
+    aesthetics  ideas  
+0     3.333333    4.4  
+1     3.333333    3.2  
+2     2.333333    2.8  
+3     3.666667    2.6  
+4     3.000000    3.6  
+5     1.666667    2.8  
+6     1.666667    4.0  
+7     2.666667    3.6  
+8     3.000000    3.8  
+9     3.000000    3.4  
+10    2.666667    3.0  
+11    3.666667    3.6  
+12    5.000000    4.0  
+13    1.666667    2.8  
+14    3.000000    3.2  
+15    3.333333    3.2  
+16    2.000000    4.6  
+17    3.666667    3.4  
+18    2.666667    3.8  
+19    3.666667    3.2  
+20    3.333333    3.8  
+21    2.666667    4.2  
+22    4.666667    4.4  
+23    2.666667    3.6  
+24    2.333333    3.8  
+#####################################################################################################
+extra
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                  extra   R-squared:                       0.376
+Model:                            OLS   Adj. R-squared:                  0.348
+Method:                 Least Squares   F-statistic:                     13.27
+Date:                Sat, 14 Nov 2015   Prob (F-statistic):            0.00144
+Time:                        19:16:54   Log-Likelihood:                -20.562
+No. Observations:                  24   AIC:                             45.12
+Df Residuals:                      22   BIC:                             47.48
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P>|t|      [95.0% Conf. Int.]
+------------------------------------------------------------------------------
+Intercept      2.8392      0.122     23.359      0.000         2.587     3.091
+edit_dist      0.4441      0.122      3.643      0.001         0.191     0.697
+==============================================================================
+Omnibus:                        0.671   Durbin-Watson:                   1.403
+Prob(Omnibus):                  0.715   Jarque-Bera (JB):                0.716
+Skew:                           0.329   Prob(JB):                        0.699
+Kurtosis:                       2.467   Cond. No.                         1.02
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+#####################################################################################################
+agrbl
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                  agrbl   R-squared:                       0.077
+Model:                            OLS   Adj. R-squared:                  0.037
+Method:                 Least Squares   F-statistic:                     1.921
+Date:                Sat, 14 Nov 2015   Prob (F-statistic):              0.179
+Time:                        19:16:54   Log-Likelihood:                -25.329
+No. Observations:                  25   AIC:                             54.66
+Df Residuals:                      23   BIC:                             57.10
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P>|t|      [95.0% Conf. Int.]
+------------------------------------------------------------------------------
+Intercept      3.5367      0.139     25.429      0.000         3.249     3.824
+edit_dist      0.1878      0.136      1.386      0.179        -0.093     0.468
+==============================================================================
+Omnibus:                       13.020   Durbin-Watson:                   2.526
+Prob(Omnibus):                  0.001   Jarque-Bera (JB):               12.096
+Skew:                          -1.373   Prob(JB):                      0.00236
+Kurtosis:                       5.018   Cond. No.                         1.05
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+#####################################################################################################
+consc
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                  consc   R-squared:                       0.001
+Model:                            OLS   Adj. R-squared:                 -0.045
+Method:                 Least Squares   F-statistic:                   0.01647
+Date:                Sat, 14 Nov 2015   Prob (F-statistic):              0.899
+Time:                        19:16:54   Log-Likelihood:                -27.839
+No. Observations:                  24   AIC:                             59.68
+Df Residuals:                      22   BIC:                             62.03
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P>|t|      [95.0% Conf. Int.]
+------------------------------------------------------------------------------
+Intercept      3.5872      0.165     21.787      0.000         3.246     3.929
+edit_dist     -0.0202      0.157     -0.128      0.899        -0.346     0.306
+==============================================================================
+Omnibus:                        1.478   Durbin-Watson:                   2.247
+Prob(Omnibus):                  0.478   Jarque-Bera (JB):                1.194
+Skew:                          -0.350   Prob(JB):                        0.550
+Kurtosis:                       2.161   Cond. No.                         1.06
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+#####################################################################################################
+neuro
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                  neuro   R-squared:                       0.212
+Model:                            OLS   Adj. R-squared:                  0.174
+Method:                 Least Squares   F-statistic:                     5.649
+Date:                Sat, 14 Nov 2015   Prob (F-statistic):             0.0270
+Time:                        19:16:54   Log-Likelihood:                -19.836
+No. Observations:                  23   AIC:                             43.67
+Df Residuals:                      21   BIC:                             45.94
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P>|t|      [95.0% Conf. Int.]
+------------------------------------------------------------------------------
+Intercept      3.0397      0.126     24.213      0.000         2.779     3.301
+edit_dist     -0.2870      0.121     -2.377      0.027        -0.538    -0.036
+==============================================================================
+Omnibus:                        1.821   Durbin-Watson:                   2.030
+Prob(Omnibus):                  0.402   Jarque-Bera (JB):                0.930
+Skew:                           0.487   Prob(JB):                        0.628
+Kurtosis:                       3.146   Cond. No.                         1.10
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+#####################################################################################################
+open
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                   open   R-squared:                       0.025
+Model:                            OLS   Adj. R-squared:                 -0.017
+Method:                 Least Squares   F-statistic:                    0.5945
+Date:                Sat, 14 Nov 2015   Prob (F-statistic):              0.449
+Time:                        19:16:54   Log-Likelihood:                -18.390
+No. Observations:                  25   AIC:                             40.78
+Df Residuals:                      23   BIC:                             43.22
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P>|t|      [95.0% Conf. Int.]
+------------------------------------------------------------------------------
+Intercept      3.4047      0.105     32.311      0.000         3.187     3.623
+edit_dist     -0.0792      0.103     -0.771      0.449        -0.292     0.133
+==============================================================================
+Omnibus:                        1.515   Durbin-Watson:                   1.705
+Prob(Omnibus):                  0.469   Jarque-Bera (JB):                0.495
+Skew:                           0.267   Prob(JB):                        0.781
+Kurtosis:                       3.435   Cond. No.                         1.05
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+#####################################################################################################
+assertive
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:              assertive   R-squared:                       0.348
+Model:                            OLS   Adj. R-squared:                  0.318
+Method:                 Least Squares   F-statistic:                     11.72
+Date:                Sat, 14 Nov 2015   Prob (F-statistic):            0.00243
+Time:                        19:16:54   Log-Likelihood:                -23.972
+No. Observations:                  24   AIC:                             51.94
+Df Residuals:                      22   BIC:                             54.30
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P>|t|      [95.0% Conf. Int.]
+------------------------------------------------------------------------------
+Intercept      2.5311      0.140     18.067      0.000         2.241     2.822
+edit_dist      0.4811      0.141      3.424      0.002         0.190     0.773
+==============================================================================
+Omnibus:                        0.408   Durbin-Watson:                   1.647
+Prob(Omnibus):                  0.815   Jarque-Bera (JB):                0.454
+Skew:                          -0.268   Prob(JB):                        0.797
+Kurtosis:                       2.591   Cond. No.                         1.02
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+#####################################################################################################
+activity
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:               activity   R-squared:                       0.157
+Model:                            OLS   Adj. R-squared:                  0.121
+Method:                 Least Squares   F-statistic:                     4.289
+Date:                Sat, 14 Nov 2015   Prob (F-statistic):             0.0498
+Time:                        19:16:54   Log-Likelihood:                -25.945
+No. Observations:                  25   AIC:                             55.89
+Df Residuals:                      23   BIC:                             58.33
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P>|t|      [95.0% Conf. Int.]
+------------------------------------------------------------------------------
+Intercept      3.4320      0.143     24.076      0.000         3.137     3.727
+edit_dist      0.2877      0.139      2.071      0.050         0.000     0.575
+==============================================================================
+Omnibus:                        2.277   Durbin-Watson:                   1.784
+Prob(Omnibus):                  0.320   Jarque-Bera (JB):                1.008
+Skew:                           0.417   Prob(JB):                        0.604
+Kurtosis:                       3.521   Cond. No.                         1.05
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+#####################################################################################################
+altruism
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:               altruism   R-squared:                       0.038
+Model:                            OLS   Adj. R-squared:                 -0.003
+Method:                 Least Squares   F-statistic:                    0.9191
+Date:                Sat, 14 Nov 2015   Prob (F-statistic):              0.348
+Time:                        19:16:54   Log-Likelihood:                -27.570
+No. Observations:                  25   AIC:                             59.14
+Df Residuals:                      23   BIC:                             61.58
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P>|t|      [95.0% Conf. Int.]
+------------------------------------------------------------------------------
+Intercept      3.5759      0.152     23.507      0.000         3.261     3.891
+edit_dist      0.1421      0.148      0.959      0.348        -0.165     0.449
+==============================================================================
+Omnibus:                        6.714   Durbin-Watson:                   2.603
+Prob(Omnibus):                  0.035   Jarque-Bera (JB):                4.705
+Skew:                          -0.981   Prob(JB):                       0.0951
+Kurtosis:                       3.819   Cond. No.                         1.05
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+#####################################################################################################
+compliance
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:             compliance   R-squared:                       0.143
+Model:                            OLS   Adj. R-squared:                  0.106
+Method:                 Least Squares   F-statistic:                     3.846
+Date:                Sat, 14 Nov 2015   Prob (F-statistic):             0.0621
+Time:                        19:16:54   Log-Likelihood:                -30.735
+No. Observations:                  25   AIC:                             65.47
+Df Residuals:                      23   BIC:                             67.91
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P>|t|      [95.0% Conf. Int.]
+------------------------------------------------------------------------------
+Intercept      3.4671      0.173     20.081      0.000         3.110     3.824
+edit_dist      0.3299      0.168      1.961      0.062        -0.018     0.678
+==============================================================================
+Omnibus:                        2.001   Durbin-Watson:                   2.256
+Prob(Omnibus):                  0.368   Jarque-Bera (JB):                1.284
+Skew:                          -0.555   Prob(JB):                        0.526
+Kurtosis:                       2.985   Cond. No.                         1.05
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+#####################################################################################################
+order
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                  order   R-squared:                       0.002
+Model:                            OLS   Adj. R-squared:                 -0.041
+Method:                 Least Squares   F-statistic:                   0.04745
+Date:                Sat, 14 Nov 2015   Prob (F-statistic):              0.829
+Time:                        19:16:54   Log-Likelihood:                -36.005
+No. Observations:                  25   AIC:                             76.01
+Df Residuals:                      23   BIC:                             78.45
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P>|t|      [95.0% Conf. Int.]
+------------------------------------------------------------------------------
+Intercept      3.1181      0.213     14.627      0.000         2.677     3.559
+edit_dist     -0.0452      0.208     -0.218      0.829        -0.475     0.384
+==============================================================================
+Omnibus:                        4.325   Durbin-Watson:                   2.114
+Prob(Omnibus):                  0.115   Jarque-Bera (JB):                1.567
+Skew:                           0.081   Prob(JB):                        0.457
+Kurtosis:                       1.784   Cond. No.                         1.05
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+#####################################################################################################
+discipline
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:             discipline   R-squared:                       0.000
+Model:                            OLS   Adj. R-squared:                 -0.045
+Method:                 Least Squares   F-statistic:                   0.01055
+Date:                Sat, 14 Nov 2015   Prob (F-statistic):              0.919
+Time:                        19:16:54   Log-Likelihood:                -29.821
+No. Observations:                  24   AIC:                             63.64
+Df Residuals:                      22   BIC:                             66.00
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P>|t|      [95.0% Conf. Int.]
+------------------------------------------------------------------------------
+Intercept      3.5840      0.179     20.042      0.000         3.213     3.955
+edit_dist      0.0176      0.171      0.103      0.919        -0.337     0.372
+==============================================================================
+Omnibus:                        1.104   Durbin-Watson:                   2.274
+Prob(Omnibus):                  0.576   Jarque-Bera (JB):                0.846
+Skew:                          -0.439   Prob(JB):                        0.655
+Kurtosis:                       2.728   Cond. No.                         1.06
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+#####################################################################################################
+anxiety
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                anxiety   R-squared:                       0.185
+Model:                            OLS   Adj. R-squared:                  0.148
+Method:                 Least Squares   F-statistic:                     4.992
+Date:                Sat, 14 Nov 2015   Prob (F-statistic):             0.0359
+Time:                        19:16:54   Log-Likelihood:                -22.572
+No. Observations:                  24   AIC:                             49.14
+Df Residuals:                      22   BIC:                             51.50
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P>|t|      [95.0% Conf. Int.]
+------------------------------------------------------------------------------
+Intercept      3.0004      0.132     22.694      0.000         2.726     3.275
+edit_dist     -0.2822      0.126     -2.234      0.036        -0.544    -0.020
+==============================================================================
+Omnibus:                        6.568   Durbin-Watson:                   1.931
+Prob(Omnibus):                  0.037   Jarque-Bera (JB):                4.403
+Skew:                           0.874   Prob(JB):                        0.111
+Kurtosis:                       4.162   Cond. No.                         1.06
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+#####################################################################################################
+depression
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:             depression   R-squared:                       0.143
+Model:                            OLS   Adj. R-squared:                  0.104
+Method:                 Least Squares   F-statistic:                     3.658
+Date:                Sat, 14 Nov 2015   Prob (F-statistic):             0.0689
+Time:                        19:16:54   Log-Likelihood:                -30.866
+No. Observations:                  24   AIC:                             65.73
+Df Residuals:                      22   BIC:                             68.09
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P>|t|      [95.0% Conf. Int.]
+------------------------------------------------------------------------------
+Intercept      2.9255      0.187     15.606      0.000         2.537     3.314
+edit_dist     -0.3519      0.184     -1.913      0.069        -0.734     0.030
+==============================================================================
+Omnibus:                        0.912   Durbin-Watson:                   2.205
+Prob(Omnibus):                  0.634   Jarque-Bera (JB):                0.780
+Skew:                           0.127   Prob(JB):                        0.677
+Kurtosis:                       2.154   Cond. No.                         1.10
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+#####################################################################################################
+aesthetics
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:             aesthetics   R-squared:                       0.018
+Model:                            OLS   Adj. R-squared:                 -0.025
+Method:                 Least Squares   F-statistic:                    0.4108
+Date:                Sat, 14 Nov 2015   Prob (F-statistic):              0.528
+Time:                        19:16:54   Log-Likelihood:                -30.264
+No. Observations:                  25   AIC:                             64.53
+Df Residuals:                      23   BIC:                             66.96
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P>|t|      [95.0% Conf. Int.]
+------------------------------------------------------------------------------
+Intercept      2.9822      0.169     17.601      0.000         2.632     3.333
+edit_dist     -0.1058      0.165     -0.641      0.528        -0.447     0.236
+==============================================================================
+Omnibus:                        1.754   Durbin-Watson:                   2.171
+Prob(Omnibus):                  0.416   Jarque-Bera (JB):                0.865
+Skew:                           0.445   Prob(JB):                        0.649
+Kurtosis:                       3.197   Cond. No.                         1.05
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+#####################################################################################################
+ideas
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                  ideas   R-squared:                       0.003
+Model:                            OLS   Adj. R-squared:                 -0.041
+Method:                 Least Squares   F-statistic:                   0.05972
+Date:                Sat, 14 Nov 2015   Prob (F-statistic):              0.809
+Time:                        19:16:54   Log-Likelihood:                -19.640
+No. Observations:                  25   AIC:                             43.28
+Df Residuals:                      23   BIC:                             45.72
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P>|t|      [95.0% Conf. Int.]
+------------------------------------------------------------------------------
+Intercept      3.5509      0.111     32.055      0.000         3.322     3.780
+edit_dist     -0.0264      0.108     -0.244      0.809        -0.250     0.197
+==============================================================================
+Omnibus:                        1.022   Durbin-Watson:                   1.763
+Prob(Omnibus):                  0.600   Jarque-Bera (JB):                0.826
+Skew:                           0.122   Prob(JB):                        0.662
+Kurtosis:                       2.143   Cond. No.                         1.05
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.

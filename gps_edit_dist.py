@@ -9,27 +9,31 @@ import numpy as np
 
 from utilities import edit_dist, get_y, get_all_y
 from utilities import write_feature_to_csv
+from bag_of_words import get_change_date, get_complete_days
 
 cur_dir = os.path.dirname(os.path.realpath(__file__))
 
     
-def get_seq(fp):
-    by_dates = {}
-    
-    fr = open(fp, 'rU') 
-    lines = fr.readlines()
-    for line in lines:
-        #print line
-        atts = line.strip('\n').split(",")
-        dt = atts[1][:9]
+def get_seq(fp, by_complete_dates):
+    if by_complete_dates:
+        by_dates = by_complete_dates
+    else:
+        by_dates = {}
         
-        if dt not in by_dates:
-            by_dates[dt] = []
-            by_dates[dt].append(atts[5])
-        else:
-            by_dates[dt].append(atts[5])
+        fr = open(fp, 'rU') 
+        lines = fr.readlines()
+        for line in lines:
+            #print line
+            atts = line.strip('\n').split(",")
+            dt = atts[1][:9]
             
-    by_dates = sorted(by_dates.items(), key=lambda item: datetime.strptime(item[0], "%d%b%Y"))  
+            if dt not in by_dates:
+                by_dates[dt] = []
+                by_dates[dt].append(atts[5])
+            else:
+                by_dates[dt].append(atts[5])
+            
+        by_dates = sorted(by_dates.items(), key=lambda item: datetime.strptime(item[0], "%d%b%Y"))  
                 
     in_loc_count = []
     for idx, pair in enumerate(by_dates):
@@ -70,32 +74,34 @@ def get_seq(fp):
                 in_loc_count[idx][1].append(items[0])   
     #pprint(in_loc_count)
     
-    #return in_loc_count
+    return in_loc_count
     
-    dt_locs = []
-    for idx, pair in enumerate(in_loc_count):
- 
-        locs = pair[1]
-        locs_merge = []
-        for i, loc in enumerate(locs):
-            if i == 0:
-                locs_merge.append(loc)
-            else:
-                if loc != locs[i-1]:
-                    locs_merge.append(loc)
-        dt_locs.append((pair[0], locs_merge))   
-         
-    #pprint(dt_locs) 
-    return dt_locs
+#     dt_locs = []
+#     for idx, pair in enumerate(in_loc_count):
+#  
+#         locs = pair[1]
+#         locs_merge = []
+#         for i, loc in enumerate(locs):
+#             if i == 0:
+#                 locs_merge.append(loc)
+#             else:
+#                 if loc != locs[i-1]:
+#                     locs_merge.append(loc)
+#         dt_locs.append((pair[0], locs_merge))   
+#          
+#     #pprint(dt_locs) 
+#     return dt_locs
 
-def per_subject(fp):
+def per_subject(fp, sample_days, by_complete_dates):
 
-    locs = get_seq(fp)
+    locs = get_seq(fp, by_complete_dates)
     #pprint(locs)
 
     seqs = []
 
     for dt, entries in locs:
+        if not dt in sample_days:
+            continue
         dt_obj = datetime.strptime(dt, "%d%b%Y")
         weekday = dt_obj.strftime("%A")
         if weekday == 'Saturday' or weekday == 'Sunday':
@@ -107,7 +113,7 @@ def per_subject(fp):
             
     return seqs
 
-def per_subject_by_weekdays(fp):
+def per_subject_by_weekdays(fp, sample_days):
     result = []
     locs = get_seq(fp)
     days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']
@@ -117,6 +123,8 @@ def per_subject_by_weekdays(fp):
         avg_seq_len = 0
     
         for dt, entries in locs:
+            if not dt in sample_days:
+                continue
             dt_obj = datetime.strptime(dt, "%d%b%Y")
             weekday = dt_obj.strftime("%A")
             if weekday == day:
@@ -132,10 +140,10 @@ def per_subject_by_weekdays(fp):
     return result
     
     
-def get_weekday_sum_avg_edit_dist(fp):
+def get_weekday_sum_avg_edit_dist(weekday_seqs):
     #fp = r"C:\Users\Sophie\Smart Phone Project Local\by subjects\wifigps_subject04.csv"
     sum = 0
-    weekday_seqs = per_subject_by_weekdays(fp)
+    
     for pair in weekday_seqs:
         seqs = pair[1]
         n = len(seqs)
@@ -146,32 +154,61 @@ def get_weekday_sum_avg_edit_dist(fp):
             for j in range(i,n):
                 dists[i][j] = edit_dist(seqs[i], seqs[j])
                 avg += dists[i][j]
-         
-        avg /= float(n*(n-1)/2)
+        
+        if n > 1:
+            avg /= float(n*(n-1)/2)
+        
      
         sum += avg
-    #print sum
+    print sum
     return sum
 
-def get_avg_edit_dist(fp):
-    per_subject(fp)
+def get_avg_edit_dist(seqs):
+
+    n = len(seqs)
+         
+    avg = 0
+    dists = np.zeros((n, n))
+    for i in range(n):
+        for j in range(i,n):
+            dists[i][j] = edit_dist(seqs[i], seqs[j])
+            avg += dists[i][j]
+      
+    avg /= float(n*(n-1)/2)
+  
+    return avg
+
 
 def get_feature():
+
     id_feature = {}
     addr_dir = os.path.join(cur_dir, 'data', 'gps_osm')
     for file in os.listdir(addr_dir):
         if not file.endswith('.csv'):
             continue
-        subj = file.split('.')[0][-2:]
-        
-        print subj
-        #subj = str(int(subj))
         fp = os.path.join(addr_dir, file)
+        id = file.split('.')[0][-2:]
         
-        #result = get_avg_edit_dist(fp)       
-        result = get_weekday_sum_avg_edit_dist(fp)
+        change_dt = get_change_date(fp)
+        complete, by_complete_dates = get_complete_days(fp, change_dt)
         
-        id_feature[subj] = result
+        pprint(by_complete_dates)
+        if len(complete) < 30:
+            continue
+        
+        print 
+        print 'subject id: ' + id
+        
+
+        sample_days = complete[:30]
+        
+#         seqs = per_subject_by_weekdays(fp, sample_days)
+#         result = get_weekday_sum_avg_edit_dist(seqs)
+        
+        seqs = per_subject(fp, sample_days, by_complete_dates)
+        result = get_avg_edit_dist(seqs)
+
+        id_feature[id] = result
     return id_feature
 
 def all_subjects_plot():
@@ -215,31 +252,6 @@ def all_subjects_plot():
     
     plt.show()
     
-# def write_edit_dist_to_csv():
-# 
-#     output_fp = os.path.join(cur_dir, 'data', 'matrix_data', 'gps_edit_dist.csv')
-#     fw = open(output_fp, 'a')
-#     labels = ['subject_id', 'edit_dist', 'extra', 'agrbl', 'consc', 'neuro', 'open']
-#     labels.extend(['assertive', 'activity', 'altruism', 'compliance', 'order', 'discipline', 'anxiety', 'depression'])
-#     fw.write(','.join(labels) + '\n')
-#     
-#     id_edit_dist = get_x()
-#     id_all_y = get_all_y()
-#                 
-#     for id in sorted(id_edit_dist):
-# 
-#         if not id in id_all_y:
-#             continue
-#         
-#         line = [id]     
-#         line.append(str(id_edit_dist[id]))
-#           
-#         for value in id_all_y[id]:
-#             line.append(value)
-#           
-#         fw.write(','.join(line) + '\n')
-#         
-#     fw.close()
     
 if __name__ == '__main__':
 #     fp = os.path.join(cur_dir, 'data', 'gps_osm', 'wifigps_addr_04.csv')

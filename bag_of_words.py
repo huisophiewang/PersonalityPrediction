@@ -217,7 +217,7 @@ def get_feature():
         
         change_dt = get_change_date(fp)
         complete, by_complete_dates = get_complete_days(fp, change_dt)
-        if len(complete) < 30:
+        if len(complete) < NUM_DAYS:
             continue
         
         print 
