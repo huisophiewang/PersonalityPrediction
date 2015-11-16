@@ -11,7 +11,7 @@ from patsy.highlevel import dmatrices, dmatrix
 
 cur_dir = os.path.dirname(os.path.realpath(__file__))
 
-feature = 'gps_edit_dist'
+feature = 'edit_dist'
 
 fp = os.path.join(cur_dir, 'data', 'matrix_data', 'feature_' + feature + '.csv')
 

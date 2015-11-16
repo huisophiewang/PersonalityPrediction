@@ -5,10 +5,10 @@ from geopy.geocoders import Nominatim
 geolocator = Nominatim()
 location = geolocator.reverse("43.706625,-72.2890706")
 addr = location.address.encode("ascii", "replace")
-
+ 
 addr = addr.replace(',', ';')
 print addr
-
+ 
 print ','.join(['testing', addr])
 
 # from geopy.geocoders import GoogleV3

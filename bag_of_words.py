@@ -5,12 +5,12 @@ from datetime import datetime
 from pprint import pprint
 import random
 import math
-import matplotlib.pyplot as plt
 
-from bag_of_words_all_locs import id_home
-from bag_of_words_all_locs import all_locs_1, all_locs_2
+
+from bag_of_words_dict import id_home
+from bag_of_words_dict import all_locs_1, all_locs_2
 from utilities import get_y, get_all_y
-from utilities import write_feature_to_csv
+from utilities import write_feature_to_csv, plot_all
 
 cur_dir = os.path.dirname(os.path.realpath(__file__))
 MIN_SAMPLES = 65
@@ -238,46 +238,7 @@ def get_feature():
     
     return id_feature
 
-def all_subjects_plot():
 
-    id_x = get_feature()
-    #pprint(id_x)
-
-    cols = [1, 2, 3, 4, 5, 6, 7, 9, 10, 11, 12, 13]
-    cols = [5, 7]
-    for index, i in enumerate(cols):
-
-        id_y, y_label = get_y(i)    
-    
-        id_values = {}
-        for id in id_x:
-            #print id
-            if id in id_y:
-                id_values[id] = (id_x[id], id_y[id])
-            else:
-                id_values[id] = None
-         
-        x_values = []
-        y_values = []
-        id_values = sorted(id_values.items(), key=lambda x: int(x[0]))   
-         
-    
-        for item in id_values:
-            if item[1]:
-                x_values.append(item[1][0])
-                y_values.append(item[1][1])
-#                 print '---------------------'
-#                 print 'subject id: '+ item[0]
-#                 print 'x: ' + str(item[1][0]) 
-#                 print 'y: ' + str(item[1][1])
-        
-        #plt.subplot(6, 2, index+1)
-        plt.subplot(2, 1, index+1)
-        plt.scatter(x_values,y_values)
-        plt.ylabel(y_label)
-        
-    
-    plt.show()
  
     
 def write_histogram_to_csv():
@@ -337,6 +298,7 @@ if __name__ == '__main__':
     
 
     id_entropy = get_feature()
-    write_feature_to_csv('entropy', id_entropy)
+    #write_feature_to_csv('entropy', id_entropy)
+    plot_all(id_entropy)
 
     

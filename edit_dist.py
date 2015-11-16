@@ -8,9 +8,9 @@ import os
 import matplotlib.pyplot as plt
 import numpy as np
 
-from utilities import edit_dist, get_y, write_feature_to_csv
+from utilities import edit_dist, get_y, write_feature_to_csv, plot_all
 
-DATA_DIR = r'data\by subjects'
+
 cur_dir = os.path.dirname(os.path.realpath(__file__))
 
 off_campus = ['00', '12', '13', '31', '34', '36', '39', '42', '44', '45', '47', '56']
@@ -259,82 +259,19 @@ def get_feature():
         
     return id_feature
         
-                
-def all_subjects_plot():
-    
-    id_y, label = get_y(5)
-
-    id_values = {}
-    for file in os.listdir(DATA_DIR):
-        if not file.endswith('.csv'):
-            continue
-        subj = file.split('.')[0][-2:]
-        
-
-        if int(subj) >= 45:
-            continue
-        
-        if subj in off_campus:
-            continue
-        
-        print subj
-        subj = str(int(subj))
-        fp = os.path.join(DATA_DIR, file)
-        
-        result = get_avg_edit_dist(fp)       
-        #result = per_subject(fp)
-        
-        id_values[subj] = result
- 
-    for id in id_values:
-        #print id
-        if id in id_y:
-            feature = id_values[id]
-            id_values[id] = (feature, id_y[id])
-        else:
-            id_values[id] = None
-     
-    x_values = []
-    y_values = []
-    id_values = sorted(id_values.items(), key=lambda x: int(x[0]))   
-     
-    #pprint(id_values)    
-     
-    for item in id_values:
-        if item[1]:
-            x_values.append(item[1][0])
-            y_values.append(item[1][1])
-            print '---------------------'
-            print 'subject id: '+ item[0]
-            print 'x: ' + str(item[1][0]) 
-            print 'y: ' + str(item[1][1])
-#         if id_values[id]:
-#             x_values.append(id_values[id][0])
-#             y_values.append(id_values[id][1])
-#             print 'subject id: '+ id
-#             print 'x: ' + str(id_values[id][0]) 
-#             print 'y: ' + str(id_values[id][1])            
- 
- 
-     
-    plt.scatter(x_values,y_values)
-    #plt.xlabel('average sequence length')
-    #plt.ylabel('openness')
-    plt.show()
     
 
 
 if __name__ == '__main__':  
-    #all_subjects_edit_dist()
-    #all_subjects_plot()
-    
+
 
 #     fp = r'data\by subjects\wifigps_subject08.csv'
 #     get_avg_edit_dist(fp)
     
 
     id_edit_dist = get_feature()
-    write_feature_to_csv('edit_dist', id_edit_dist)
+    #write_feature_to_csv('edit_dist', id_edit_dist)
+    plot_all(id_edit_dist)
 
     
     
