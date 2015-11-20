@@ -39,28 +39,28 @@ def remove_missing(fp):
     #by_dates = sorted(by_dates.items(), key=lambda item: datetime.strptime(item[0], "%d%b%Y"))
     #pprint(by_dates)
     
-#     dates_complete = set(by_dates.keys())
-#     #print len(dates_complete)
+    dates_complete = set(by_dates.keys())
+    print len(dates_complete)
     
     by_dates_complete = {}
     for dt in by_dates:
-#         if not dt in common_days:
-#             continue
+        if not dt in common_days:
+            continue
 
         seqs = by_dates[dt]
         start_time = seqs[0][1][10:]
         end_time = seqs[-1][1][10:]
         if not start_time.startswith('00') or not end_time.startswith('23'):
-#             print dt
-#             print seqs[0]
-#             print seqs[-1]
+            print dt
+            print seqs[0]
+            print seqs[-1]
             continue
         
         by_dates_complete[dt] = by_dates[dt]
         
     
-    dates_complete = set(by_dates_complete.keys())
-    print len(dates_complete)
+#     dates_complete = set(by_dates_complete.keys())
+#     print len(dates_complete)
     
     return dates_complete
     
@@ -81,23 +81,21 @@ def all_subjects():
         if int(id)>=45:
             continue
         
-        print '============='
         print 'subject id: ' + id
 
         fp = os.path.join(r'data\by_subjects', file)
         dates_complete = remove_missing(fp)
         
-#         if id == '01':
-#             result.update(dates_complete)
-#         else:
-#             result.intersection_update(dates_complete)
-#         print len(result)
-#         print result
+        if id == '01':
+            result.update(dates_complete)
+        else:
+            result.intersection_update(dates_complete)
+        print len(result)
+        print result
     
 if __name__ == '__main__':  
 #     fp = r'data\by subjects\wifigps_subject15.csv'
 #     remove_missing(fp)
     all_subjects()
     
-#     print sorted(common_days)
-#     print len(common_days)
+    #print sorted(common_days)

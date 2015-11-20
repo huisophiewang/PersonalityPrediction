@@ -3,7 +3,6 @@ from pprint import pprint
 import numpy as np
 
 from utilities import get_y, z_score_normalize
-from utilities import id_entropy, id_edit_dist
 
 
 # Euclidean distance of x1 and x2, k dimenstion 
