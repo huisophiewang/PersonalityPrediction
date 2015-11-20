@@ -11,6 +11,7 @@ from bag_of_words_dict import id_home
 from bag_of_words_dict import all_locs_1, all_locs_2
 from utilities import get_y, get_all_y
 from utilities import write_feature_to_csv, plot_all
+from utilities import LABELS
 
 cur_dir = os.path.dirname(os.path.realpath(__file__))
 MIN_SAMPLES = 65
@@ -242,46 +243,51 @@ def get_feature():
  
     
 def write_histogram_to_csv():
-    output_fp = os.path.join(cur_dir, 'data', 'matrix_data', 'gps_features.csv')
-    fw = open(output_fp, 'a')
-    
-    addr_dir = os.path.join(cur_dir, 'data', 'gps_osm')
-    for file in os.listdir(addr_dir):
-        if not file.endswith('.csv'):
-            continue
-        fp = os.path.join(addr_dir, file)
-        id = file.split('.')[0][-2:]
-        
-        change_dt = get_change_date(fp)
-        complete, by_complete_dates = get_complete_days(fp, change_dt)
-        if len(complete) < 30:
-            continue
-        
-        print 
-        print 'subject id: ' + id
-        
-        id_y, label = get_y(5)
-        if not id in id_y:
-            continue
-        
-
-        #sample_days = random.sample(complete, NUM_DAYS)
-        sample_days = complete[:NUM_DAYS]
-
-        loc_freq = get_loc_freq(sample_days, by_complete_dates)
-        
-        loc_freq = merge_homes(loc_freq, id)
-        
-        all_loc_freq = get_all_loc_freq(loc_freq)
-        
-        all_loc_freq = sorted(all_loc_freq.items(), key=lambda item: item[0])
-        
-
-        line = [str(item[1]) for item in all_loc_freq]
-        line.append(str(id_y[id]))
-        fw.write(','.join(line) + '\n')
-        
-    fw.close() 
+    for i in range(1, 16):
+        print i
+        id_y, label = get_y(i)
+        label = LABELS[i-1]
+        print label
+        output_fp = os.path.join(cur_dir, 'data', 'matrix_data', 'for_knn', 'freq_histogram_' + label + '.csv')
+        fw = open(output_fp, 'a')
+          
+        addr_dir = os.path.join(cur_dir, 'data', 'gps_osm')
+        for file in os.listdir(addr_dir):
+            if not file.endswith('.csv'):
+                continue
+            fp = os.path.join(addr_dir, file)
+            id = file.split('.')[0][-2:]
+              
+            change_dt = get_change_date(fp)
+            complete, by_complete_dates = get_complete_days(fp, change_dt)
+            if len(complete) < 30:
+                continue
+              
+            print 
+            print 'subject id: ' + id
+              
+              
+            if not id in id_y:
+                continue
+              
+      
+            #sample_days = random.sample(complete, NUM_DAYS)
+            sample_days = complete[:NUM_DAYS]
+      
+            loc_freq = get_loc_freq(sample_days, by_complete_dates)
+              
+            loc_freq = merge_homes(loc_freq, id)
+              
+            all_loc_freq = get_all_loc_freq(loc_freq)
+              
+            all_loc_freq = sorted(all_loc_freq.items(), key=lambda item: item[0])
+              
+      
+            line = [str(item[1]) for item in all_loc_freq]
+            line.append(str(id_y[id]))
+            fw.write(','.join(line) + '\n')
+              
+        fw.close() 
     
 
 
@@ -297,8 +303,9 @@ if __name__ == '__main__':
     #all_subjects_plot()
     
 
-    id_entropy = get_feature()
+    #id_entropy = get_feature()
     #write_feature_to_csv('entropy', id_entropy)
-    plot_all(id_entropy)
+    #plot_all(id_entropy)
+    write_histogram_to_csv()
 
     

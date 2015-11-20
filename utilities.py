@@ -6,6 +6,8 @@ import matplotlib.pyplot as plt
 
 CUR_DIR = os.path.dirname(os.path.realpath(__file__))
 
+LABELS = ['extra', 'agrbl', 'consc', 'neuro', 'open', 
+          'assertive', 'activity', 'altruism', 'compliance', 'order', 'discipline', 'anxiety', 'depression', 'aesthetics', 'ideas']
 
 def edit_dist(s,t):
     if not s:
@@ -29,6 +31,21 @@ def edit_dist(s,t):
                 d[i, j] = min(d[i-1, j] + 1, d[i, j-1] + 1, d[i-1, j-1] + 1)
     #pprint(d)
     return d[S-1, T-1]
+
+# Euclidean distance of x1 and x2, k dimenstion 
+def distance(x1, x2, k):
+    dist = 0.0
+    for i in range(k):
+        dist += math.pow((x1[i]-x2[i]), 2)
+    dist = math.sqrt(dist)
+    return dist
+
+def KL_divergence(p, q, k):
+    dist = 0.0
+    for i in range(k):
+        if q[i] != 0 and p[i] != 0:
+            dist += p[i] * math.log(p[i]/q[i], 2)
+    return dist
 
 def z_score_normalize(dict):
 

@@ -18,4 +18,3 @@ print ','.join(['testing', addr])
 # print location.address
 
  
-
