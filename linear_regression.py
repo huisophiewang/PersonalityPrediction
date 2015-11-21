@@ -6,39 +6,65 @@ import pandas
 import patsy
 from patsy.highlevel import dmatrices, dmatrix
 
-# by default, not necessary
-#patsy.missing.NAAction(on_NA='drop', NA_types=['None', 'NaN'])
+from utilities import CUR_DIR, LABELS
 
-cur_dir = os.path.dirname(os.path.realpath(__file__))
+def single_vrb(feature):
 
-feature = 'end_time_var'
+    input_fp = os.path.join(CUR_DIR, 'data', 'matrix_data', 'feature_' + feature + '.csv')
+    
+    df = pandas.read_csv(input_fp)
+    print df
 
-fp = os.path.join(cur_dir, 'data', 'matrix_data', 'feature_' + feature + '.csv')
-
-df = pandas.read_csv(fp)
-print df
-
-
-big_five = ['extra', 'agrbl', 'consc', 'neuro', 'open']
-others = ['assertive', 'activity', 'altruism', 'compliance', 'order', 'discipline', 'anxiety', 'depression', 'aesthetics', 'ideas']
-all = big_five + others
-
-for i in range(len(all)):
+    for i in range(len(LABELS)):
+        
+        print "#####################################################################################################"
+        print LABELS[i]
+    
+        y, X = dmatrices('%s ~ %s' % (LABELS[i], feature), data=df)
+        mod = sm.OLS(y, X)
+        res = mod.fit()
+        print res.summary()
+        
+def multi_vrb():
+    input_fp = os.path.join(CUR_DIR, 'data', 'matrix_data', 'all_wifi_features.csv')
+    df = pandas.read_csv(input_fp)
+    print df
+    for i in range(len(LABELS)):
+         
+        print "#####################################################################################################"
+        print LABELS[i]
+     
+        y, X = dmatrices('%s ~ edit_dist + start_time_var + end_time_var' % LABELS[i], data=df)
+        mod = sm.OLS(y, X)
+        res = mod.fit()
+        print res.summary()
+        
+def test_in_multi_vrb():
+    input_fp = os.path.join(CUR_DIR, 'data', 'matrix_data', 'all_wifi_features.csv')
+    df = pandas.read_csv(input_fp)
+    print df
     
     print "#####################################################################################################"
-    print all[i]
-
-    y, X = dmatrices('%s ~ %s' % (all[i], feature), data=df)
+    y_extra, X_extra = dmatrices('extra ~ edit_dist + end_time_var', data=df)
+    mod_extra = sm.OLS(y_extra, X_extra)
+    res_extra = mod_extra.fit()
+    print res_extra.summary()
+    
+    print "#####################################################################################################"
+    y_neuro, X_neuro = dmatrices('neuro ~ edit_dist + end_time_var', data=df)
+    mod_neuro = sm.OLS(y_neuro, X_neuro)
+    res_neuro = mod_neuro.fit()
+    print res_neuro.summary()
+    
+    print "#####################################################################################################"
+    y, X = dmatrices('activity ~ edit_dist + end_time_var', data=df)
     mod = sm.OLS(y, X)
     res = mod.fit()
     print res.summary()
 
-# y2, X = dmatrices('open ~ entropy', data=df)
-# mod2 = sm.OLS(y2, X)
-# res2 = mod2.fit()
-# print res2.summary()
-# 
-# y3, X = dmatrices('activity ~ entropy', data=df)
-# mod3 = sm.OLS(y3, X)
-# res3 = mod3.fit()
-# print res3.summary()
+if __name__ == '__main__':
+#     feature = 'end_time_var'
+#     single_vrb(feature)
+
+    #multi_vrb()
+    test_in_multi_vrb()
