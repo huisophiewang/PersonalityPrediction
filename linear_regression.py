@@ -1,13 +1,71 @@
 import numpy as np
+from numpy.linalg import inv
 
 
-fp = r"data\matrix_data\all_wifi_features.csv"
-x_cols = [1,2,3]
-y_cols = range(4, 19)
+# x_cols = [1,2,3]
+# y_cols = range(4, 19)
+# 
+# 
+# data_x = np.loadtxt(fp, delimiter=",", skiprows = 1, usecols=x_cols)
+# data_y = np.genfromtxt(fp, delimiter=",", skiprows = 1, usecols=y_cols)
 
 
-data_x = np.loadtxt(fp, delimiter=",", skiprows = 1, usecols=x_cols)
-data_y = np.genfromtxt(fp, delimiter=",", skiprows = 1, usecols=y_cols)
-print data_y
+def get_beta(train_data, y_col):
+    train_x = train_data[:, [1,2,3]]
+    train_x = np.insert(train_x, 0, 1, axis=1)
+    train_y = train_data[:, y_col]
+    
+    inverse = inv(np.dot(np.transpose(train_x), train_x))
+    beta = np.dot(inverse, np.dot(np.transpose(train_x), train_y))
+    print beta
+    return beta
+    
+def get_mse(test_data, beta, y_col):
+    test_x = test_data[:, [1,2,3]]
+    test_x = np.insert(test_x, 0, 1, axis=1)
+    test_y = test_data[:, y_col]
+    print test_y
+    
+    predict_y = np.dot(test_x, beta)
+    print predict_y
+    
+    mse = 0.0
+    for i in range(test_data.shape[0]):
+        mse += (predict_y[i] - test_y[i]) * (predict_y[i] - test_y[i])
+        
+    print mse
+    return mse
 
-n = data_x.shape[0]
+if __name__ == '__main__':
+    fp = r"data\matrix_data\all_wifi_features.csv"
+    data = np.genfromtxt(fp, delimiter=",", skiprows = 1)
+    x_cols = [1,2,3]
+    y_col = 10
+    n = data.shape[0]
+    m = data.shape[1]
+    fold = 5
+    test_data = np.empty([n/fold, m])
+    train_data = np.empty([n-n/fold, m])
+    
+    avg_mse = 0.0
+    for j in range(fold):
+        print "fold %d" % j
+        for i, x in enumerate(data):
+            if i%fold == 0:
+                test_data[i/fold] = data[i]
+            else:
+                train_data[(i/fold)*(fold-1)+i%fold-1] = data[i]
+    
+        beta = get_beta(train_data, y_col)
+        mse = get_mse(test_data, beta, y_col)
+        avg_mse += mse
+    avg_mse /= fold
+    print "average mse: " + str(avg_mse)
+    
+    
+    
+    
+
+    
+            
+            
