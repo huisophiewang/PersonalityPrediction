@@ -248,7 +248,7 @@ def write_histogram_to_csv():
         id_y, label = get_y(i)
         label = LABELS[i-1]
         print label
-        output_fp = os.path.join(cur_dir, 'data', 'matrix_data', 'for_knn', 'freq_histogram_' + label + '.csv')
+        output_fp = os.path.join(cur_dir, 'data', 'matrix_data', 'for_knn', 'freq_histogram',  label + '.csv')
         fw = open(output_fp, 'a')
           
         addr_dir = os.path.join(cur_dir, 'data', 'gps_osm')

@@ -3,7 +3,7 @@ from numpy.linalg import inv
 from numpy import nan
 
 from utilities import LABELS
-
+from utilities import replace_nan
 
 # x_cols = [1,2,3]
 # 
@@ -33,23 +33,16 @@ def get_mse(test_data, beta, y_col):
     #print predict_y
     
     mse = 0.0
-    for i in range(test_data.shape[0]):
+    num = test_data.shape[0]
+    for i in range(num):
+        #print test_y[i], predict_y[i]
         mse += (predict_y[i] - test_y[i]) * (predict_y[i] - test_y[i])
         
-    #print mse
+    mse /= num
+    #print "mse: " + str(mse)
     return mse
 
-def replace_nan(data, y_col):
-    y_avg = 0.0
-    count = 0
-    y = data[:, y_col]
-    for i in range(data.shape[0]):
-        if not np.isnan(y[i]):
-            y_avg += y[i]
-            count += 1
 
-    y_avg /= count
-    y[np.isnan(y)] = y_avg
 
     
     
@@ -67,7 +60,7 @@ if __name__ == '__main__':
      
     y_cols = range(4, 19)
     for y_col in y_cols:
-        print '=============================================='
+        print '================================================================'
         print LABELS[y_col-4]
         replace_nan(data, y_col)
          
@@ -75,7 +68,7 @@ if __name__ == '__main__':
         for j in range(fold):
             #print "fold %d" % j
             for i, x in enumerate(data):
-                if i%fold == 0:
+                if i%fold == j:
                     test_data[i/fold] = data[i]
                 else:
                     train_data[(i/fold)*(fold-1)+i%fold-1] = data[i]

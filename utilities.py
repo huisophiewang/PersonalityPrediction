@@ -2,6 +2,7 @@ from pprint import pprint
 import math
 import os
 
+import numpy as np
 import matplotlib.pyplot as plt
 
 CUR_DIR = os.path.dirname(os.path.realpath(__file__))
@@ -190,6 +191,18 @@ def plot_all(id_feature):
         
     
     plt.show()
+    
+def replace_nan(data, y_col):
+    y_avg = 0.0
+    count = 0
+    y = data[:, y_col]
+    for i in range(data.shape[0]):
+        if not np.isnan(y[i]):
+            y_avg += y[i]
+            count += 1
+
+    y_avg /= count
+    y[np.isnan(y)] = y_avg
     
 if __name__ == '__main__':
     k=5
