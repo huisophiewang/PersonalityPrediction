@@ -84,7 +84,7 @@ def write_wifi_features_for_knn():
 if __name__ == '__main__':
 
 
-    #write_all_wifi_features()
-    write_wifi_features_for_knn()
+    write_all_wifi_features()
+    #write_wifi_features_for_knn()
     
     

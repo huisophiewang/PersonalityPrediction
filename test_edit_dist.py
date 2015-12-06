@@ -129,7 +129,7 @@ def get_major_loc(fp):
  
         dt_locs.append((pair[0], locs))    
         #print locs_merge
-    pprint(dt_locs)
+    #pprint(dt_locs)
     return dt_locs
 
 
@@ -139,37 +139,18 @@ def per_subject(fp):
    
 
     locs = get_major_loc(fp)
+    pprint(locs)
 
     seqs = []
     seq_freq = {}
     avg_seq_len = 0
 
     for dt, entries in locs:
-#         dt_locs = [entry[0][3:-1] for entry in entries]
-#         seqs.append(dt_locs)
+        print dt, entries
+        #dt_locs = [entry[0][3:-1] for entry in entries]
         seqs.append(entries)
-        
-        
-#         dt_obj = datetime.strptime(dt, "%d%b%Y")
-#         weekday = dt_obj.strftime("%A")
-#         if weekday != 'Sunday' and weekday != 'Saturday':
-#         #if weekday == day:
-# #             print dt_obj
-# #             pprint(entries)
-#             dt_locs = [entry[0][3:-1] for entry in entries]
-#             
-#             seqs.append(dt_locs)
-#         
-#             avg_seq_len += len(dt_locs)
-# 
-# 
-#     num_patterns =  len(seq_freq)
-#     avg_seq_len /= float(len(locs))
-#     
-#     return num_patterns
-#     #return avg_seq_len
+        #pprint(dt_locs)
     
-    pprint(seqs)
     return seqs
 
 def per_subject_by_weekdays(fp):
@@ -250,11 +231,16 @@ def get_feature():
         if id in off_campus:
             continue
         fp = os.path.join(addr_dir, file)
+        
+#         if not id in ['01']:
+#             continue
+#         print id
 
 #         weekday_seqs = per_subject_by_weekdays(fp)
 #         result = get_weekday_sum_avg_edit_dist(weekday_seqs)
         
         seqs = per_subject(fp)
+        pprint(seqs)
         result = get_avg_edit_dist(seqs)
         
         id_feature[id] = result
