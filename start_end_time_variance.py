@@ -6,50 +6,12 @@ import os
 import matplotlib.pyplot as plt
 
 from utilities import get_y, write_feature_to_csv
+from utilities import WIFI_COMMON_DAYS, WIFI_OFF_CAMPUS, WIFI_ID_HOME
 
 DURATION_CUT = 60*5
 START_TIME_CUT = time.strptime('04:00:00', "%H:%M:%S")
 END_TIME_CUT = time.strptime('15:00:00', "%H:%M:%S")
 
-#off_campus = ['00', '12', '13', '31', '34', '36', '39', '42', '44', '45', '47', '56']
-off_campus = ['00', '12', '13', '31', '34', '36', '39', '42', '44']
-
-
-common_days = ['27MAR2013', '01APR2013', '02APR2013', '03APR2013', '04APR2013', 
-                '05APR2013', '06APR2013', '07APR2013', '08APR2013', '09APR2013', 
-                '10APR2013', '11APR2013', '12APR2013', '13APR2013', '14APR2013', 
-                '15APR2013', '19APR2013', '21APR2013', '22APR2013', '23APR2013']
-
-
-# remove 13, 36 because off campus
-# removed 25, 41 missing whole row in psychology questionnaire data
-id_home = {'01': ['kemeny', 'cutter-north', 'north-main'],
- '02': ['occum'],
- '03': ['north-park'],
- '04': ['ripley'],
- '05': ['massrow'],
- '07': ['east-wheelock'],
- '08': ['fahey-mclane', 'fayerweather'],
- '09': ['north-main'],
- '10': ['woodward'],
- '14': ['wheeler', 'rollins-chapel', 'college-street'],
- '15': ['massrow'],
- '16': ['massrow'],
- '17': ['gile'],
- '18': ['north-main'],
- '19': ['mclaughlin'],
- '20': ['north-park'],
- '22': ['massrow'],
- '23': ['north-park'],
- '24': ['occum'],
- '25': ['fayerweather'],
- '27': ['ripley'],
- '30': ['newhamp'],
- '32': ['massrow', 'parkhurst'],
- '33': ['channing-cox'],
- '35': ['north-park'],
- '41': ['ripley'],
- '43': ['butterfield']}
 
 def get_major_loc(fp):
 
@@ -161,7 +123,7 @@ def get_start_time(in_loc_duration, id):
         for line in seq:
             loc = line[0][3:-1]
             start_time = time.strptime(line[1], "%H:%M:%S")
-            if start_time > START_TIME_CUT and not loc in id_home[id]:
+            if start_time > START_TIME_CUT and not loc in WIFI_ID_HOME[id]:
                 start_times.append(line[1])
                 #print line
                 break
@@ -173,7 +135,7 @@ def get_end_time(in_loc_duration, id):
     end_times = []
     for pair in in_loc_duration:
         dt = pair[0]    
-        if not dt in common_days:
+        if not dt in WIFI_COMMON_DAYS:
             continue
         dt_obj = datetime.strptime(dt, "%d%b%Y")
         if dt_obj.strftime("%A") == 'Sunday' or dt_obj.strftime("%A") == 'Saturday':
@@ -184,12 +146,12 @@ def get_end_time(in_loc_duration, id):
         if not seq:
             continue
         last_loc = seq[-1][0][3:-1]
-        if not last_loc in id_home[id]:
+        if not last_loc in WIFI_ID_HOME[id]:
             continue
         for line in reversed(seq):
             loc = line[0][3:-1]
             end_time = time.strptime(line[2], "%H:%M:%S")
-            if not loc in id_home[id] and end_time > END_TIME_CUT:
+            if not loc in WIFI_ID_HOME[id] and end_time > END_TIME_CUT:
                 end_times.append(line[2])
                 #print line[2]
                 break
@@ -224,7 +186,7 @@ def plot(result):
     id_y, label = get_y(3)
     
     y_values = []
-    for id in id_home:
+    for id in WIFI_ID_HOME:
         #print id
         y_values.append(id_y[str(int(id))])
         
@@ -243,7 +205,7 @@ def get_feature():
         if int(id) >= 45:
             continue
         
-        if id in off_campus:
+        if id in WIFI_OFF_CAMPUS:
             continue
         
         print '======================='

@@ -139,19 +139,51 @@ def per_subject(fp):
    
 
     locs = get_major_loc(fp)
-    pprint(locs)
+    #pprint(locs)
 
     seqs = []
     seq_freq = {}
     avg_seq_len = 0
 
     for dt, entries in locs:
-        print dt, entries
-        #dt_locs = [entry[0][3:-1] for entry in entries]
-        seqs.append(entries)
-        #pprint(dt_locs)
+        #print dt, entries
+        dt_locs = [entry[0][3:-1] for entry in entries]
+        seqs.append(dt_locs)
+        #seqs.append(entries)
     
     return seqs
+
+def get_avg_edit_dist(seqs):
+    n = len(seqs)
+     
+    avg = 0
+    dists = np.zeros((n, n))
+    for i in range(n):
+        for j in range(i,n):
+            dists[i][j] = edit_dist(seqs[i], seqs[j])
+            avg += dists[i][j]
+    
+    #pprint(dists)  
+    avg /= float(n*(n-1)/2)
+    print avg
+    return avg
+
+def get_len_var(seqs):
+    n = len(seqs)
+    
+    mean = 0.0
+    for i in range(n):
+        mean += len(seqs[i])
+    mean /= n
+    
+    var = 0.0
+    for i in range(n):
+        var += (len(seqs[i]) - mean)*(len(seqs[i]) - mean)
+    var /= n
+    
+    print var
+    return var
+        
 
 def per_subject_by_weekdays(fp):
     result = []
@@ -205,18 +237,6 @@ def get_weekday_sum_avg_edit_dist(weekday_seqs):
     print sum
     return sum
 
-def get_avg_edit_dist(seqs):
-    n = len(seqs)
-     
-    avg = 0
-    dists = np.zeros((n, n))
-    for i in range(n):
-        for j in range(i,n):
-            dists[i][j] = edit_dist(seqs[i], seqs[j])
-            avg += dists[i][j]
-      
-    avg /= float(n*(n-1)/2)
-    return avg
 
 def get_feature():
     id_feature = {}
@@ -240,8 +260,9 @@ def get_feature():
 #         result = get_weekday_sum_avg_edit_dist(weekday_seqs)
         
         seqs = per_subject(fp)
-        pprint(seqs)
+
         result = get_avg_edit_dist(seqs)
+        result = get_len_var(seqs)
         
         id_feature[id] = result
         
@@ -258,8 +279,8 @@ if __name__ == '__main__':
     
 
     id_edit_dist = get_feature()
-    write_feature_to_csv('edit_dist', id_edit_dist)
-    plot_all(id_edit_dist)
+    write_feature_to_csv('len_var', id_edit_dist)
+    #plot_all(id_edit_dist)
 
     
     

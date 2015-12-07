@@ -71,7 +71,7 @@ def test_in_multi_vrb():
     plt.show()
 
 if __name__ == '__main__':
-    feature = 'edit_dist'
+    feature = 'len_var'
     single_vrb(feature)
 
     #multi_vrb()

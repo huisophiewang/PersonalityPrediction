@@ -9,16 +9,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 from utilities import edit_dist, get_y, write_feature_to_csv, plot_all
-
-
-cur_dir = os.path.dirname(os.path.realpath(__file__))
-
-off_campus = ['00', '12', '13', '31', '34', '36', '39', '42', '44', '45', '47', '56']
-
-common_days = ['22APR2013', '12APR2013', '13APR2013', '19APR2013', '07APR2013', 
-               '06APR2013', '09APR2013', '08APR2013', '03APR2013', '15APR2013', 
-               '01APR2013', '02APR2013', '14APR2013', '04APR2013', '21APR2013', 
-               '05APR2013', '27MAR2013', '10APR2013', '11APR2013', '23APR2013']
+from utilities import CUR_DIR, WIFI_COMMON_DAYS, WIFI_OFF_CAMPUS
 
 
 def get_major_loc(fp):
@@ -33,7 +24,7 @@ def get_major_loc(fp):
             #print atts
             dt = atts[1][:9]
             
-            if dt not in common_days:
+            if dt not in WIFI_COMMON_DAYS:
                 continue
             
             if dt not in by_dates:
@@ -129,50 +120,23 @@ def get_major_loc(fp):
  
         dt_locs.append((pair[0], locs))    
         #print locs_merge
-    pprint(dt_locs)
+    #pprint(dt_locs)
     return dt_locs
 
 
-
-
-def per_subject(fp):
+def get_seqs(fp):
    
-
     locs = get_major_loc(fp)
-
     seqs = []
-    seq_freq = {}
-    avg_seq_len = 0
 
     for dt, entries in locs:
 #         dt_locs = [entry[0][3:-1] for entry in entries]
 #         seqs.append(dt_locs)
         seqs.append(entries)
         
-        
-#         dt_obj = datetime.strptime(dt, "%d%b%Y")
-#         weekday = dt_obj.strftime("%A")
-#         if weekday != 'Sunday' and weekday != 'Saturday':
-#         #if weekday == day:
-# #             print dt_obj
-# #             pprint(entries)
-#             dt_locs = [entry[0][3:-1] for entry in entries]
-#             
-#             seqs.append(dt_locs)
-#         
-#             avg_seq_len += len(dt_locs)
-# 
-# 
-#     num_patterns =  len(seq_freq)
-#     avg_seq_len /= float(len(locs))
-#     
-#     return num_patterns
-#     #return avg_seq_len
-    
-    pprint(seqs)
     return seqs
 
-def per_subject_by_weekdays(fp):
+def get_seqs_by_weekdays(fp):
     result = []
     dt_locs = get_major_loc(fp)
     days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']
@@ -239,7 +203,7 @@ def get_avg_edit_dist(seqs):
 
 def get_feature():
     id_feature = {}
-    addr_dir = os.path.join(cur_dir, 'data', 'by_subjects')
+    addr_dir = os.path.join(CUR_DIR, 'data', 'by_subjects')
     for file in os.listdir(addr_dir):
         if not file.endswith('.csv'):
             continue
@@ -247,14 +211,14 @@ def get_feature():
         id = file.split('.')[0][-2:]
         if int(id) >= 45:
             continue     
-        if id in off_campus:
+        if id in WIFI_OFF_CAMPUS:
             continue
         fp = os.path.join(addr_dir, file)
 
 #         weekday_seqs = per_subject_by_weekdays(fp)
 #         result = get_weekday_sum_avg_edit_dist(weekday_seqs)
         
-        seqs = per_subject(fp)
+        seqs = get_seqs(fp)
         result = get_avg_edit_dist(seqs)
         
         id_feature[id] = result
