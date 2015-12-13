@@ -43,7 +43,23 @@ def get_mse(test_data, beta, y_col):
     return mse
 
 
+def get_mean_mse(data, col):
+    #print data
+    
+    n = data.shape[0]
 
+    mean = 0.0
+    for i in range(n):
+        mean += data[i][col]
+    mean /= n
+    #print mean
+    
+    mse = 0.0
+    for i in range(n):
+        mse += (data[i][col] - mean)*(data[i][col] - mean)
+    mse /= n
+    print "mean mse: " + str(mse)
+    return mse
     
     
     
@@ -78,6 +94,12 @@ if __name__ == '__main__':
             avg_mse += mse
         avg_mse /= fold
         print "average mse: " + str(avg_mse)
+        
+        mean_mse = get_mean_mse(data, y_col)
+        
+        diff = mean_mse - avg_mse
+        
+        print "diff: " + str(diff)
     
     
     

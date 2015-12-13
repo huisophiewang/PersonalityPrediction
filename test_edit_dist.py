@@ -147,9 +147,9 @@ def per_subject(fp):
 
     for dt, entries in locs:
         #print dt, entries
-#         dt_locs = [entry[0][3:-1] for entry in entries]
-#         seqs.append(dt_locs)
-        seqs.append(entries)
+        dt_locs = [entry[0][3:-1] for entry in entries]
+        seqs.append(dt_locs)
+        #seqs.append(entries)
     
     return seqs
 
@@ -273,7 +273,7 @@ if __name__ == '__main__':
     
 
     id_edit_dist = get_feature()
-    #write_feature_to_csv('test', id_edit_dist)
+    write_feature_to_csv('edit_dist', id_edit_dist)
     #plot_all(id_edit_dist)
 
     

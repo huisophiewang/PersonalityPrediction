@@ -17,7 +17,7 @@ from utilities import get_wifi_seqs
 
 def get_seqs_by_weekdays(fp):
     result = []
-    dt_locs = get_wifi_seqs(fp, 60*10, 30)
+    dt_locs = get_wifi_seqs(fp, 60*10, 20)
     days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']
     for day in days:
         #print day
@@ -95,7 +95,7 @@ def get_feature():
         print '----------'
         print 'id: ' + id
         
-        seqs = get_wifi_seqs(fp, 60*10, 30)
+        seqs = get_wifi_seqs(fp, 60*10, 20)
         print seqs
         print len(seqs)
         result = get_avg_edit_dist(seqs)

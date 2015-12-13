@@ -51,7 +51,7 @@ def knn(train_data, test_data, k):
     return mse
 
     
-def get_mse_using_mean(data):
+def get_mean_mse(data):
     #print data
     
     n = data.shape[0]
@@ -68,7 +68,9 @@ def get_mse_using_mean(data):
         
     #print mse
     mse /= n
-    print mse
+
+    print "mean mse: " + str(mse)
+    return mse
         
 
     
@@ -111,6 +113,12 @@ if __name__ == '__main__':
         best = k_mse[0]
         print "best k: " + str(best[0])
         print "average mse: " + str(best[1])
+        
+        mean_mse = get_mean_mse(data)
+        
+        diff = mean_mse - avg_mse
+        
+        print "diff: " + str(diff)
 
             
 
