@@ -1,0 +1,54 @@
+#####################################################################################################
+compliance
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:             compliance   R-squared:                       0.200
+Model:                            OLS   Adj. R-squared:                  0.165
+Method:                 Least Squares   F-statistic:                     5.748
+Date:                Sat, 12 Dec 2015   Prob (F-statistic):             0.0250
+Time:                        19:37:54   Log-Likelihood:                -29.879
+No. Observations:                  25   AIC:                             63.76
+Df Residuals:                      23   BIC:                             66.20
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+=======================================================================================
+                          coef    std err          t      P>|t|      [95.0% Conf. Int.]
+---------------------------------------------------------------------------------------
+Intercept               3.4991      0.168     20.853      0.000         3.152     3.846
+Q("dartmouth_hall")     0.4677      0.195      2.397      0.025         0.064     0.871
+==============================================================================
+Omnibus:                        1.839   Durbin-Watson:                   1.561
+Prob(Omnibus):                  0.399   Jarque-Bera (JB):                1.346
+Skew:                          -0.561   Prob(JB):                        0.510
+Kurtosis:                       2.815   Cond. No.                         1.21
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+#####################################################################################################
+order
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                  order   R-squared:                       0.170
+Model:                            OLS   Adj. R-squared:                  0.134
+Method:                 Least Squares   F-statistic:                     4.711
+Date:                Sat, 12 Dec 2015   Prob (F-statistic):             0.0405
+Time:                        19:37:54   Log-Likelihood:                -33.702
+No. Observations:                  25   AIC:                             71.40
+Df Residuals:                      23   BIC:                             73.84
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+=======================================================================================
+                          coef    std err          t      P>|t|      [95.0% Conf. Int.]
+---------------------------------------------------------------------------------------
+Intercept               3.0717      0.196     15.711      0.000         2.667     3.476
+Q("dartmouth_hall")    -0.4933      0.227     -2.170      0.041        -0.963    -0.023
+==============================================================================
+Omnibus:                        1.091   Durbin-Watson:                   2.095
+Prob(Omnibus):                  0.580   Jarque-Bera (JB):                0.892
+Skew:                          -0.187   Prob(JB):                        0.640
+Kurtosis:                       2.154   Cond. No.                         1.21
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.

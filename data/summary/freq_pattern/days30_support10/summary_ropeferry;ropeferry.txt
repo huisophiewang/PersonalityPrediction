@@ -1,0 +1,27 @@
+#####################################################################################################
+open
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                   open   R-squared:                       0.181
+Model:                            OLS   Adj. R-squared:                  0.146
+Method:                 Least Squares   F-statistic:                     5.096
+Date:                Sat, 12 Dec 2015   Prob (F-statistic):             0.0338
+Time:                        19:38:00   Log-Likelihood:                -16.207
+No. Observations:                  25   AIC:                             36.41
+Df Residuals:                      23   BIC:                             38.85
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+============================================================================================
+                               coef    std err          t      P>|t|      [95.0% Conf. Int.]
+--------------------------------------------------------------------------------------------
+Intercept                    3.4116      0.096     35.355      0.000         3.212     3.611
+Q("ropeferry;ropeferry")    -0.2100      0.093     -2.257      0.034        -0.402    -0.018
+==============================================================================
+Omnibus:                        3.329   Durbin-Watson:                   1.802
+Prob(Omnibus):                  0.189   Jarque-Bera (JB):                1.718
+Skew:                           0.511   Prob(JB):                        0.423
+Kurtosis:                       3.778   Cond. No.                         1.04
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.

@@ -7,6 +7,8 @@ from utilities import get_y, z_score_normalize, replace_nan
 from utilities import LABELS, CUR_DIR
 from utilities import distance, edit_dist, KL_divergence
 
+def RBF_weight(x1, x2):
+    pass
 
 def knn(train_data, test_data, k):
     # num of training instances

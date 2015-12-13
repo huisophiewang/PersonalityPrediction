@@ -1,0 +1,27 @@
+#####################################################################################################
+depression
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:             depression   R-squared:                       0.165
+Model:                            OLS   Adj. R-squared:                  0.127
+Method:                 Least Squares   F-statistic:                     4.337
+Date:                Sat, 12 Dec 2015   Prob (F-statistic):             0.0491
+Time:                        19:37:57   Log-Likelihood:                -30.552
+No. Observations:                  24   AIC:                             65.10
+Df Residuals:                      22   BIC:                             67.46
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+===========================================================================================
+                              coef    std err          t      P>|t|      [95.0% Conf. Int.]
+-------------------------------------------------------------------------------------------
+Intercept                   2.9841      0.185     16.159      0.000         2.601     3.367
+Q("hopkins;53_commons")    -0.3690      0.177     -2.083      0.049        -0.737    -0.002
+==============================================================================
+Omnibus:                        3.692   Durbin-Watson:                   2.128
+Prob(Omnibus):                  0.158   Jarque-Bera (JB):                1.557
+Skew:                          -0.212   Prob(JB):                        0.459
+Kurtosis:                       1.826   Cond. No.                         1.08
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.

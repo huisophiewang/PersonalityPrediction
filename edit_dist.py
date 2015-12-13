@@ -1,144 +1,23 @@
 import csv
 import copy
-from datetime import datetime, date, time, timedelta
 from pprint import pprint
 from collections import OrderedDict
 import os
+from datetime import datetime
 
 import matplotlib.pyplot as plt
 import numpy as np
 
 from utilities import edit_dist, get_y, write_feature_to_csv, plot_all
 from utilities import CUR_DIR, WIFI_COMMON_DAYS, WIFI_OFF_CAMPUS
+from utilities import get_wifi_seqs
 
+  
 
-def get_major_loc(fp):
-
-    lines = []
-     
-    by_dates = {}
-    with open(fp, 'rU') as fr:
-        lines = fr.readlines()
-        for line in lines:
-            atts = line.strip('\n').split(",")
-            #print atts
-            dt = atts[1][:9]
-            
-            if dt not in WIFI_COMMON_DAYS:
-                continue
-            
-            if dt not in by_dates:
-                by_dates[dt] = []
-                by_dates[dt].append(atts)
-            else:
-                by_dates[dt].append(atts)
-    
-    #pprint(by_dates)
-    by_dates = sorted(by_dates.items(), key=lambda item: datetime.strptime(item[0], "%d%b%Y"))
-    #print len(by_dates)
-     
-    in_loc = []
-    for idx, pair in enumerate(by_dates):
-        in_loc.append((pair[0], []))
-        for entry in pair[1]:
-            if entry[4].startswith('in'):
-                in_loc[idx][1].append(entry)
-    #pprint(in_loc)        
-     
-    in_loc_duration = []
-    for idx, pair in enumerate(in_loc):
-        #by_dates[idx] = (pair[0], [])
-        in_loc_duration.append((pair[0], []))
-        entries = pair[1]
-        for i, entry in enumerate(entries):
-            if i==0:
-                m_entry = copy.deepcopy(entry)
-                m_entry.append(i)
-                in_loc_duration[idx][1].append(m_entry)
-            else:
-                loc = entry[4][3:-1]
-                loc_prev = entries[i-1][4][3:-1]
-                if loc != loc_prev:
-                    m_entry = copy.deepcopy(entry)
-                    m_entry.append(i)
-                    in_loc_duration[idx][1].append(m_entry)            
-    #pprint(in_loc_duration) 
-     
-    for idx, pair in enumerate(in_loc_duration):
-        entries = pair[1]
-        for i, entry in enumerate(entries):
-            if i==len(entries)-1:
-                end_index = len(in_loc[idx][1])-1
-            else:
-                end_index = entries[i+1][5]-1
-            entry.append(end_index)
-    #pprint(in_loc_duration)
-     
-      
-    for idx, pair in enumerate(in_loc_duration):
-           
-        in_loc_duration[idx] = (pair[0], [])
-        entries = pair[1]
-        for i, entry in enumerate(entries):
-            time_start = in_loc[idx][1][entry[5]][1]
-            time_end = in_loc[idx][1][entry[6]][1]
-            duration = datetime.strptime(time_end, "%d%b%Y:%H:%M:%S") - datetime.strptime(time_start, "%d%b%Y:%H:%M:%S")
-            duration = duration.seconds
-            if duration > 60*10:
-                m_entry = []
-                m_entry.append(entry[4])
-                m_entry.append(time_start[-8:])
-                m_entry.append(time_end[-8:])
-                m_entry.append(duration)
-                in_loc_duration[idx][1].append(m_entry)     
-    #pprint(in_loc_duration)
-    
-#     # merge
-#     dt_locs = []
-#     for idx, pair in enumerate(in_loc_duration):
-#         #print pair[0]
-#         entries = pair[1]
-#         locs = [entry[0][3:-1] for entry in entries]
-#         #print locs
-#         locs_merge = []
-#         for i, loc in enumerate(locs):
-#             if i == 0:
-#                 locs_merge.append(loc)
-#             else:
-#                 if loc != locs[i-1]:
-#                     locs_merge.append(loc)
-#         dt_locs.append((pair[0], locs_merge))    
-#         #print locs_merge
-#     return dt_locs
-
-    dt_locs = []
-    for idx, pair in enumerate(in_loc_duration):
-        #print pair[0]
-        entries = pair[1]
-        locs = [entry[0][3:-1] for entry in entries]
-        #print locs
- 
-        dt_locs.append((pair[0], locs))    
-        #print locs_merge
-    #pprint(dt_locs)
-    return dt_locs
-
-
-def get_seqs(fp):
-   
-    locs = get_major_loc(fp)
-    seqs = []
-
-    for dt, entries in locs:
-#         dt_locs = [entry[0][3:-1] for entry in entries]
-#         seqs.append(dt_locs)
-        seqs.append(entries)
-        
-    return seqs
 
 def get_seqs_by_weekdays(fp):
     result = []
-    dt_locs = get_major_loc(fp)
+    dt_locs = get_wifi_seqs(fp, 60*10, 30)
     days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']
     for day in days:
         #print day
@@ -163,8 +42,7 @@ def get_seqs_by_weekdays(fp):
         print pair[0]
         for entry in pair[1]:
             print entry
-
-        
+ 
     return result
     
 def get_weekday_sum_avg_edit_dist(weekday_seqs):
@@ -214,11 +92,12 @@ def get_feature():
         if id in WIFI_OFF_CAMPUS:
             continue
         fp = os.path.join(addr_dir, file)
-
-#         weekday_seqs = per_subject_by_weekdays(fp)
-#         result = get_weekday_sum_avg_edit_dist(weekday_seqs)
+        print '----------'
+        print 'id: ' + id
         
-        seqs = get_seqs(fp)
+        seqs = get_wifi_seqs(fp, 60*10, 30)
+        print seqs
+        print len(seqs)
         result = get_avg_edit_dist(seqs)
         
         id_feature[id] = result
@@ -237,7 +116,7 @@ if __name__ == '__main__':
 
     id_edit_dist = get_feature()
     write_feature_to_csv('edit_dist', id_edit_dist)
-    plot_all(id_edit_dist)
+    #plot_all(id_edit_dist)
 
     
     

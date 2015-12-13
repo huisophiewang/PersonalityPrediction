@@ -1,0 +1,108 @@
+#####################################################################################################
+agrbl
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                  agrbl   R-squared:                       0.239
+Model:                            OLS   Adj. R-squared:                  0.206
+Method:                 Least Squares   F-statistic:                     7.218
+Date:                Sat, 12 Dec 2015   Prob (F-statistic):             0.0132
+Time:                        19:39:26   Log-Likelihood:                -22.920
+No. Observations:                  25   AIC:                             49.84
+Df Residuals:                      23   BIC:                             52.28
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+===========================================================================================
+                              coef    std err          t      P>|t|      [95.0% Conf. Int.]
+-------------------------------------------------------------------------------------------
+Intercept                   3.5379      0.126     28.024      0.000         3.277     3.799
+Q("kemeny;baker-berry")    -0.3278      0.122     -2.687      0.013        -0.580    -0.075
+==============================================================================
+Omnibus:                        0.346   Durbin-Watson:                   1.699
+Prob(Omnibus):                  0.841   Jarque-Bera (JB):                0.448
+Skew:                          -0.237   Prob(JB):                        0.799
+Kurtosis:                       2.547   Cond. No.                         1.04
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+#####################################################################################################
+consc
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                  consc   R-squared:                       0.164
+Model:                            OLS   Adj. R-squared:                  0.126
+Method:                 Least Squares   F-statistic:                     4.318
+Date:                Sat, 12 Dec 2015   Prob (F-statistic):             0.0496
+Time:                        19:39:26   Log-Likelihood:                -25.697
+No. Observations:                  24   AIC:                             55.39
+Df Residuals:                      22   BIC:                             57.75
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+===========================================================================================
+                              coef    std err          t      P>|t|      [95.0% Conf. Int.]
+-------------------------------------------------------------------------------------------
+Intercept                   3.5753      0.151     23.735      0.000         3.263     3.888
+Q("kemeny;baker-berry")     0.2970      0.143      2.078      0.050         0.001     0.593
+==============================================================================
+Omnibus:                        0.755   Durbin-Watson:                   1.853
+Prob(Omnibus):                  0.686   Jarque-Bera (JB):                0.786
+Skew:                          -0.344   Prob(JB):                        0.675
+Kurtosis:                       2.441   Cond. No.                         1.07
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+#####################################################################################################
+altruism
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:               altruism   R-squared:                       0.192
+Model:                            OLS   Adj. R-squared:                  0.157
+Method:                 Least Squares   F-statistic:                     5.478
+Date:                Sat, 12 Dec 2015   Prob (F-statistic):             0.0283
+Time:                        19:39:26   Log-Likelihood:                -25.389
+No. Observations:                  25   AIC:                             54.78
+Df Residuals:                      23   BIC:                             57.22
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+===========================================================================================
+                              coef    std err          t      P>|t|      [95.0% Conf. Int.]
+-------------------------------------------------------------------------------------------
+Intercept                   3.5786      0.139     25.681      0.000         3.290     3.867
+Q("kemeny;baker-berry")    -0.3152      0.135     -2.341      0.028        -0.594    -0.037
+==============================================================================
+Omnibus:                        1.290   Durbin-Watson:                   2.119
+Prob(Omnibus):                  0.525   Jarque-Bera (JB):                0.975
+Skew:                          -0.468   Prob(JB):                        0.614
+Kurtosis:                       2.757   Cond. No.                         1.04
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+#####################################################################################################
+compliance
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:             compliance   R-squared:                       0.171
+Model:                            OLS   Adj. R-squared:                  0.135
+Method:                 Least Squares   F-statistic:                     4.753
+Date:                Sat, 12 Dec 2015   Prob (F-statistic):             0.0397
+Time:                        19:39:26   Log-Likelihood:                -30.319
+No. Observations:                  25   AIC:                             64.64
+Df Residuals:                      23   BIC:                             67.08
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+===========================================================================================
+                              coef    std err          t      P>|t|      [95.0% Conf. Int.]
+-------------------------------------------------------------------------------------------
+Intercept                   3.4631      0.170     20.404      0.000         3.112     3.814
+Q("kemeny;baker-berry")    -0.3576      0.164     -2.180      0.040        -0.697    -0.018
+==============================================================================
+Omnibus:                        1.454   Durbin-Watson:                   1.379
+Prob(Omnibus):                  0.483   Jarque-Bera (JB):                1.170
+Skew:                          -0.326   Prob(JB):                        0.557
+Kurtosis:                       2.164   Cond. No.                         1.04
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.

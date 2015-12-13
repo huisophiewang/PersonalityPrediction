@@ -5,6 +5,7 @@ import statsmodels.api as sm
 import numpy as np
 import pandas
 import patsy
+from patsy.builtins import Q
 from patsy.highlevel import dmatrices, dmatrix
 
 from utilities import CUR_DIR, LABELS
@@ -25,7 +26,8 @@ def single_vrb(feature):
         mod = sm.OLS(y, X)
         res = mod.fit()
         print res.summary()
-        
+
+                   
 def multi_vrb():
     input_fp = os.path.join(CUR_DIR, 'data', 'matrix_data', 'all_wifi_features.csv')
     df = pandas.read_csv(input_fp)
@@ -40,39 +42,45 @@ def multi_vrb():
         res = mod.fit()
         print res.summary()
         
-def test_in_multi_vrb():
-    input_fp = os.path.join(CUR_DIR, 'data', 'matrix_data', 'all_wifi_features.csv')
+        
+def write_single_vrb_to_txt(input_fp, output_fp, feature):    
     df = pandas.read_csv(input_fp)
-    print df
-    
-#     print "#####################################################################################################"
-#     y_extra, X_extra = dmatrices('extra ~ edit_dist + end_time_var', data=df)
-#     mod_extra = sm.OLS(y_extra, X_extra)
-#     res_extra = mod_extra.fit()
-#     print res_extra.summary()
-#     
-#     print "#####################################################################################################"
-#     y_neuro, X_neuro = dmatrices('neuro ~ edit_dist + end_time_var', data=df)
-#     mod_neuro = sm.OLS(y_neuro, X_neuro)
-#     res_neuro = mod_neuro.fit()
-#     print res_neuro.summary()
-    
-    print "#####################################################################################################"
-    y, X = dmatrices('activity ~ edit_dist + end_time_var', data=df)
-    mod = sm.OLS(y, X)
-    res = mod.fit()
-    #res.predict()
-    print res.summary()
-    #print res.resid()
-    
-    #fig = plt.figure(figsize=(12,8))
-    fig = sm.graphics.plot_regress_exog(res, "end_time_var")
-    
-    plt.show()
+
+    for i in range(len(LABELS)):
+
+        y, X = dmatrices('%s ~ Q("%s")' % (LABELS[i], feature), data=df)
+        mod = sm.OLS(y, X)
+        res = mod.fit()
+
+        if res.pvalues[1] <= 0.05:
+            fw = open(output_fp, 'a')
+            fw.write("#####################################################################################################\n")
+            fw.write(LABELS[i] + '\n')
+            sum = str(res.summary())
+            fw.write(sum + '\n')
+            fw.close()
+            
+def freq_pattern():
+    input_dir = os.path.join(CUR_DIR, 'data', 'matrix_data', 'freq_pattern')
+    output_dir = output_fp = os.path.join(CUR_DIR, 'data', 'summary', 'freq_pattern')
+    for file in os.listdir(input_dir):
+        if not file.startswith("feature_"):
+            continue
+         
+        #file = 'feature_baker-berry.csv'
+        input_fp = os.path.join(input_dir, file)    
+        feature = file[8:-4]
+        print feature
+        output_fp = os.path.join(output_dir, 'summary_' + feature + '.txt')
+        write_single_vrb_to_txt(input_fp, output_fp, feature)
+        
 
 if __name__ == '__main__':
-    feature = 'len_var'
+    feature = 'edit_dist'
     single_vrb(feature)
 
     #multi_vrb()
     #test_in_multi_vrb()
+    
+
+    

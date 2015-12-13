@@ -1,6 +1,8 @@
 from pprint import pprint
 import math
 import os
+from datetime import datetime
+import copy
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -230,9 +232,11 @@ def get_all_y():
             
     return personality
 
-def write_feature_to_csv(feature_name, id_feature):
-
-    output_fp = os.path.join(CUR_DIR, 'data', 'matrix_data', 'feature_' + feature_name+'.csv')
+def write_feature_to_csv(feature_name, id_feature, folder=''):
+    if folder:
+        output_fp = os.path.join(CUR_DIR, 'data', 'matrix_data', folder, 'feature_' + feature_name+'.csv')
+    else:
+        output_fp = os.path.join(CUR_DIR, 'data', 'matrix_data', 'feature_' + feature_name+'.csv')
     fw = open(output_fp, 'a')
     labels = ['subject_id', feature_name, 'extra', 'agrbl', 'consc', 'neuro', 'open']
     labels.extend(['assertive', 'activity', 'altruism', 'compliance', 'order', 'discipline', 'anxiety', 'depression', 'aesthetics', 'ideas'])
@@ -304,6 +308,118 @@ def replace_nan(data, y_col):
 
     y_avg /= count
     y[np.isnan(y)] = y_avg
+    
+def get_wifi_seqs(fp, duration_cut, days_limit=20):
+
+     
+    by_dates = {}
+    with open(fp, 'rU') as fr:
+        lines = fr.readlines()
+        for line in lines:
+            atts = line.strip('\n').split(",")
+            #print atts
+            dt = atts[1][:9]
+            
+            if days_limit == 20 and dt not in WIFI_COMMON_DAYS:
+                continue
+            
+            if dt not in by_dates:
+                by_dates[dt] = []
+                by_dates[dt].append(atts)
+            else:
+                by_dates[dt].append(atts)
+
+    
+    #pprint(by_dates)
+    by_dates = sorted(by_dates.items(), key=lambda item: datetime.strptime(item[0], "%d%b%Y"))
+    #print len(by_dates)
+     
+    in_loc = []
+    count_days = 0
+    for idx, pair in enumerate(by_dates):
+        count_days += 1
+        if count_days > days_limit:
+            continue
+        in_loc.append((pair[0], []))
+        for entry in pair[1]:
+            if entry[4].startswith('in'):
+                in_loc[idx][1].append(entry)
+    #pprint(in_loc)        
+     
+    in_loc_duration = []
+    for idx, pair in enumerate(in_loc):
+        #by_dates[idx] = (pair[0], [])
+        in_loc_duration.append((pair[0], []))
+        entries = pair[1]
+        for i, entry in enumerate(entries):
+            if i==0:
+                m_entry = copy.deepcopy(entry)
+                m_entry.append(i)
+                in_loc_duration[idx][1].append(m_entry)
+            else:
+                loc = entry[4][3:-1]
+                loc_prev = entries[i-1][4][3:-1]
+                if loc != loc_prev:
+                    m_entry = copy.deepcopy(entry)
+                    m_entry.append(i)
+                    in_loc_duration[idx][1].append(m_entry)            
+    #pprint(in_loc_duration) 
+     
+    for idx, pair in enumerate(in_loc_duration):
+        entries = pair[1]
+        for i, entry in enumerate(entries):
+            if i==len(entries)-1:
+                end_index = len(in_loc[idx][1])-1
+            else:
+                end_index = entries[i+1][5]-1
+            entry.append(end_index)
+    #pprint(in_loc_duration)
+     
+      
+    for idx, pair in enumerate(in_loc_duration):
+           
+        in_loc_duration[idx] = (pair[0], [])
+        entries = pair[1]
+        for i, entry in enumerate(entries):
+            time_start = in_loc[idx][1][entry[5]][1]
+            time_end = in_loc[idx][1][entry[6]][1]
+            duration = datetime.strptime(time_end, "%d%b%Y:%H:%M:%S") - datetime.strptime(time_start, "%d%b%Y:%H:%M:%S")
+            duration = duration.seconds
+            if duration > duration_cut:
+                m_entry = []
+                m_entry.append(entry[4])
+                m_entry.append(time_start[-8:])
+                m_entry.append(time_end[-8:])
+                m_entry.append(duration)
+                in_loc_duration[idx][1].append(m_entry)   
+                
+    #     # merge
+#     dt_locs = []
+#     for idx, pair in enumerate(in_loc_duration):
+#         #print pair[0]
+#         entries = pair[1]
+#         locs = [entry[0][3:-1] for entry in entries]
+#         #print locs
+#         locs_merge = []
+#         for i, loc in enumerate(locs):
+#             if i == 0:
+#                 locs_merge.append(loc)
+#             else:
+#                 if loc != locs[i-1]:
+#                     locs_merge.append(loc)
+#         dt_locs.append((pair[0], locs_merge))    
+#         #print locs_merge
+#     return dt_locs
+                
+
+    seqs = []
+    for idx, pair in enumerate(in_loc_duration):
+        #print pair[0]
+        entries = pair[1]
+        locs = [entry[0][3:-1] for entry in entries]
+        seqs.append(locs)
+
+    return seqs
     
 if __name__ == '__main__':
     k=5

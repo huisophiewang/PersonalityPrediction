@@ -147,14 +147,15 @@ def per_subject(fp):
 
     for dt, entries in locs:
         #print dt, entries
-        dt_locs = [entry[0][3:-1] for entry in entries]
-        seqs.append(dt_locs)
-        #seqs.append(entries)
+#         dt_locs = [entry[0][3:-1] for entry in entries]
+#         seqs.append(dt_locs)
+        seqs.append(entries)
     
     return seqs
 
 def get_avg_edit_dist(seqs):
     n = len(seqs)
+    pprint(seqs)
      
     avg = 0
     dists = np.zeros((n, n))
@@ -165,7 +166,7 @@ def get_avg_edit_dist(seqs):
     
     #pprint(dists)  
     avg /= float(n*(n-1)/2)
-    print avg
+    #print avg
     return avg
 
 def get_len_var(seqs):
@@ -252,17 +253,10 @@ def get_feature():
             continue
         fp = os.path.join(addr_dir, file)
         
-#         if not id in ['01']:
-#             continue
-#         print id
-
-#         weekday_seqs = per_subject_by_weekdays(fp)
-#         result = get_weekday_sum_avg_edit_dist(weekday_seqs)
-        
         seqs = per_subject(fp)
 
         result = get_avg_edit_dist(seqs)
-        result = get_len_var(seqs)
+        #result = get_len_var(seqs)
         
         id_feature[id] = result
         
@@ -279,7 +273,7 @@ if __name__ == '__main__':
     
 
     id_edit_dist = get_feature()
-    write_feature_to_csv('len_var', id_edit_dist)
+    #write_feature_to_csv('test', id_edit_dist)
     #plot_all(id_edit_dist)
 
     

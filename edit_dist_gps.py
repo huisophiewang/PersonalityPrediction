@@ -109,59 +109,11 @@ def per_subject(fp, sample_days, by_complete_dates):
         seqs.append(entries)
     #result.append((day, seqs))
         
-    pprint(seqs)
+    #pprint(seqs)
             
     return seqs
 
-def per_subject_by_weekdays(fp, sample_days):
-    result = []
-    locs = get_seq(fp)
-    days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']
-    for day in days:
-        seqs = []
-        seq_freq = {}
-        avg_seq_len = 0
-    
-        for dt, entries in locs:
-            if not dt in sample_days:
-                continue
-            dt_obj = datetime.strptime(dt, "%d%b%Y")
-            weekday = dt_obj.strftime("%A")
-            if weekday == day:
 
-                seqs.append(entries)
-        result.append((day, seqs))
-        
-    for pair in result:
-        print pair[0]
-        for entry in pair[1]:
-            print entry
-            
-    return result
-    
-    
-def get_weekday_sum_avg_edit_dist(weekday_seqs):
-    #fp = r"C:\Users\Sophie\Smart Phone Project Local\by subjects\wifigps_subject04.csv"
-    sum = 0
-    
-    for pair in weekday_seqs:
-        seqs = pair[1]
-        n = len(seqs)
-        
-        avg = 0
-        dists = np.zeros((n, n))
-        for i in range(n):
-            for j in range(i,n):
-                dists[i][j] = edit_dist(seqs[i], seqs[j])
-                avg += dists[i][j]
-        
-        if n > 1:
-            avg /= float(n*(n-1)/2)
-        
-     
-        sum += avg
-    print sum
-    return sum
 
 def get_avg_edit_dist(seqs):
 
@@ -171,7 +123,10 @@ def get_avg_edit_dist(seqs):
     dists = np.zeros((n, n))
     for i in range(n):
         for j in range(i,n):
+            print '========'
             dists[i][j] = edit_dist(seqs[i], seqs[j])
+            print seqs[i]
+            print seqs[j]
             avg += dists[i][j]
       
     avg /= float(n*(n-1)/2)
@@ -192,7 +147,7 @@ def get_feature():
         change_dt = get_change_date(fp)
         complete, by_complete_dates = get_complete_days(fp, change_dt)
         
-        pprint(by_complete_dates)
+        #pprint(by_complete_dates)
         if len(complete) < 30:
             continue
         
@@ -206,51 +161,13 @@ def get_feature():
 #         result = get_weekday_sum_avg_edit_dist(seqs)
         
         seqs = per_subject(fp, sample_days, by_complete_dates)
+        #pprint(seqs)
         result = get_avg_edit_dist(seqs)
 
         id_feature[id] = result
     return id_feature
 
-def all_subjects_plot():
 
-    id_x = get_feature()
-    #pprint(id_x)
-
-    cols = [1, 2, 3, 4, 5, 6, 7, 9, 10, 11, 12, 13]
-    #cols = [5, 7]
-    for index, i in enumerate(cols):
-
-        id_y, y_label = get_y(i)    
-    
-        id_values = {}
-        for id in id_x:
-            #print id
-            if id in id_y:
-                id_values[id] = (id_x[id], id_y[id])
-            else:
-                id_values[id] = None
-         
-        x_values = []
-        y_values = []
-        id_values = sorted(id_values.items(), key=lambda x: int(x[0]))   
-         
-    
-        for item in id_values:
-            if item[1]:
-                x_values.append(item[1][0])
-                y_values.append(item[1][1])
-#                 print '---------------------'
-#                 print 'subject id: '+ item[0]
-#                 print 'x: ' + str(item[1][0]) 
-#                 print 'y: ' + str(item[1][1])
-        
-        plt.subplot(6, 2, index+1)
-        #plt.subplot(2, 1, index+1)
-        plt.scatter(x_values,y_values)
-        plt.ylabel(y_label)
-        
-    
-    plt.show()
     
     
 if __name__ == '__main__':

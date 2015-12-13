@@ -1,0 +1,81 @@
+#####################################################################################################
+agrbl
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                  agrbl   R-squared:                       0.392
+Model:                            OLS   Adj. R-squared:                  0.365
+Method:                 Least Squares   F-statistic:                     14.82
+Date:                Sat, 12 Dec 2015   Prob (F-statistic):           0.000816
+Time:                        19:05:47   Log-Likelihood:                -20.114
+No. Observations:                  25   AIC:                             44.23
+Df Residuals:                      23   BIC:                             46.67
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+===========================================================================================================
+                                              coef    std err          t      P>|t|      [95.0% Conf. Int.]
+-----------------------------------------------------------------------------------------------------------
+Intercept                                   3.5362      0.113     31.344      0.000         3.303     3.770
+Q("lsb;baker-berry;kemeny;baker-berry")    -0.4187      0.109     -3.850      0.001        -0.644    -0.194
+==============================================================================
+Omnibus:                        2.166   Durbin-Watson:                   1.817
+Prob(Omnibus):                  0.339   Jarque-Bera (JB):                1.264
+Skew:                          -0.547   Prob(JB):                        0.532
+Kurtosis:                       3.122   Cond. No.                         1.04
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+#####################################################################################################
+altruism
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:               altruism   R-squared:                       0.307
+Model:                            OLS   Adj. R-squared:                  0.277
+Method:                 Least Squares   F-statistic:                     10.21
+Date:                Sat, 12 Dec 2015   Prob (F-statistic):            0.00403
+Time:                        19:05:47   Log-Likelihood:                -23.468
+No. Observations:                  25   AIC:                             50.94
+Df Residuals:                      23   BIC:                             53.37
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+===========================================================================================================
+                                              coef    std err          t      P>|t|      [95.0% Conf. Int.]
+-----------------------------------------------------------------------------------------------------------
+Intercept                                   3.5769      0.129     27.724      0.000         3.310     3.844
+Q("lsb;baker-berry;kemeny;baker-berry")    -0.3973      0.124     -3.195      0.004        -0.655    -0.140
+==============================================================================
+Omnibus:                        3.305   Durbin-Watson:                   2.331
+Prob(Omnibus):                  0.192   Jarque-Bera (JB):                2.008
+Skew:                          -0.678   Prob(JB):                        0.366
+Kurtosis:                       3.302   Cond. No.                         1.04
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+#####################################################################################################
+compliance
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:             compliance   R-squared:                       0.213
+Model:                            OLS   Adj. R-squared:                  0.178
+Method:                 Least Squares   F-statistic:                     6.211
+Date:                Sat, 12 Dec 2015   Prob (F-statistic):             0.0203
+Time:                        19:05:47   Log-Likelihood:                -29.679
+No. Observations:                  25   AIC:                             63.36
+Df Residuals:                      23   BIC:                             65.80
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+===========================================================================================================
+                                              coef    std err          t      P>|t|      [95.0% Conf. Int.]
+-----------------------------------------------------------------------------------------------------------
+Intercept                                   3.4602      0.165     20.920      0.000         3.118     3.802
+Q("lsb;baker-berry;kemeny;baker-berry")    -0.3973      0.159     -2.492      0.020        -0.727    -0.068
+==============================================================================
+Omnibus:                        0.683   Durbin-Watson:                   1.530
+Prob(Omnibus):                  0.711   Jarque-Bera (JB):                0.751
+Skew:                          -0.284   Prob(JB):                        0.687
+Kurtosis:                       2.369   Cond. No.                         1.04
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.

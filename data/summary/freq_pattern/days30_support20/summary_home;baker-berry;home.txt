@@ -1,0 +1,27 @@
+#####################################################################################################
+activity
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:               activity   R-squared:                       0.180
+Model:                            OLS   Adj. R-squared:                  0.145
+Method:                 Least Squares   F-statistic:                     5.058
+Date:                Sat, 12 Dec 2015   Prob (F-statistic):             0.0344
+Time:                        19:39:24   Log-Likelihood:                -25.597
+No. Observations:                  25   AIC:                             55.19
+Df Residuals:                      23   BIC:                             57.63
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+==============================================================================================
+                                 coef    std err          t      P>|t|      [95.0% Conf. Int.]
+----------------------------------------------------------------------------------------------
+Intercept                      3.4078      0.141     24.243      0.000         3.117     3.699
+Q("home;baker-berry;home")     0.3077      0.137      2.249      0.034         0.025     0.591
+==============================================================================
+Omnibus:                        2.290   Durbin-Watson:                   1.533
+Prob(Omnibus):                  0.318   Jarque-Bera (JB):                1.627
+Skew:                           0.622   Prob(JB):                        0.443
+Kurtosis:                       2.891   Cond. No.                         1.05
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
