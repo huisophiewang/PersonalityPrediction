@@ -8,7 +8,7 @@ from utilities import get_wifi_seqs, write_feature_to_csv
 
 MIN_SUPPORT = 10
 CUT_TO_LEVEL = 10
-DURATION_CUT = 60*10
+DURATION_CUT = 60*5
 NUM_DAYS = 20
 
 def replace_home(seqs, id):
@@ -47,7 +47,6 @@ def gsp(seqs, level, flist, freq_pat):
         n = len(flist)
         for i in range(n):
             for j in range(n):
-                #print flist[i], flist[j]
                 if flist[i][1:] == flist[j][:-1]:
                     cad = []
                     cad.extend(flist[i])
@@ -98,38 +97,52 @@ if __name__ == '__main__':
         fp = os.path.join(input_dir, file)
         
         ids.append(id)
+        print id
         
         seqs = get_wifi_seqs(fp, DURATION_CUT, NUM_DAYS)
+        for seq in seqs:
+            print seq
+            
         replace_home(seqs, id)
         seqs_by_subject.append(seqs)
         all_seqs.extend(seqs)
-        
-
-    freq_pat = []
-    gsp(all_seqs, 1, [], freq_pat)
-    pprint(freq_pat)
-    print len(freq_pat)
-    
-    n = len(ids)
-    m = len(freq_pat)
-    count = np.zeros((n, m))
     
 
-    
-    for i in range(n):
-        for seq in seqs_by_subject[i]:
-            for j, (pat,f) in enumerate(freq_pat):
-                if pat in ','.join(seq):
-                    count[i, j] += 1
-         
-    print count  
 
-    for j, (pat,f) in enumerate(freq_pat):
-        id_feature = {}
-        feature = count[:, j]
-        #print feature
-        for i, id in enumerate(ids):
-            id_feature[id] = feature[i]
-        feature_name = pat.replace(',',';')
-        write_feature_to_csv(feature_name, id_feature, 'freq_pattern')
+#     freq_pat = []
+#     gsp(all_seqs, 1, [], freq_pat)
+#     #pprint(freq_pat)
+#     print len(freq_pat)
+#     for i, p in enumerate(freq_pat):
+#         print i, p
+#     
+#     
+#     n = len(ids)
+#     m = len(freq_pat)
+#     count = np.zeros((n, m))
+#     
+# 
+#     
+#     for i in range(n):
+#         for seq in seqs_by_subject[i]:
+#             if i == 1:
+#                 print ','.join(seq)
+#             for j, (pat,f) in enumerate(freq_pat):
+#                 if pat in ','.join(seq):
+#                     count[i, j] += 1
+#          
+#     print count  
+#     print count[1]
+#     print count[1][32]
+#     print count[1][25]
+#     print count[1][30]
+
+#     for j, (pat,f) in enumerate(freq_pat):
+#         id_feature = {}
+#         feature = count[:, j]
+#         #print feature
+#         for i, id in enumerate(ids):
+#             id_feature[id] = feature[i]
+#         feature_name = pat.replace(',',';')
+#         write_feature_to_csv(feature_name, id_feature, 'freq_pattern')
         
