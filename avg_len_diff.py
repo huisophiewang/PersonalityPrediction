@@ -273,7 +273,7 @@ if __name__ == '__main__':
     
 
     id_edit_dist = get_feature()
-    write_feature_to_csv('test_avg_len_diff', id_edit_dist)
+    write_feature_to_csv('avg_len_diff', id_edit_dist)
     #plot_all(id_edit_dist)
 
     

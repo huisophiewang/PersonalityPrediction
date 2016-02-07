@@ -96,8 +96,8 @@ def get_feature():
         print 'id: ' + id
         
         seqs = get_wifi_seqs(fp, 60*10, 20)
-        print seqs
-        print len(seqs)
+        #print seqs
+        #print len(seqs)
         result = get_avg_edit_dist(seqs)
         
         id_feature[id] = result

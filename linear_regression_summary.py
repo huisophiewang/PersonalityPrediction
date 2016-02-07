@@ -76,11 +76,11 @@ def freq_pattern():
         
 
 if __name__ == '__main__':
-    feature = 'edit_dist'
-    single_vrb(feature)
+    #feature = 'edit_dist'
+    #single_vrb(feature)
 
-    #multi_vrb()
-    #test_in_multi_vrb()
+    multi_vrb()
+
     
 
     
