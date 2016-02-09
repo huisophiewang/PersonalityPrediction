@@ -1,11 +1,14 @@
 import math
+import os
 import numpy as np
 from numpy.linalg import inv
 
 from utilities import LABELS
 from utilities import replace_nan
+from test.test_math import acc_check
 
-
+# ignore overflow error
+np.seterr(over='ignore')
 
 def sigmoid(x, beta):
     z = np.dot(x, beta)[0]
@@ -14,11 +17,12 @@ def sigmoid(x, beta):
 
 
 
-def train(train_data, iterations=3):
+def train(train_data, iterations=100):
     n = train_data.shape[0]
     
     train_x = train_data[:, :-1]
     train_x = np.insert(train_x, 0, 1, axis=1)
+    
     train_y = np.array([train_data[:, -1]]).transpose() # numpy 1d array transpose, use [[]]
     prob_y = np.zeros((n, 1))
     
@@ -26,52 +30,96 @@ def train(train_data, iterations=3):
     beta = np.zeros((p, 1))
     
 
-    lik = 0.0
-    prev_lik = 0.0
+    prev_lik = float("-inf")
     # Newton Ralphon update (matrix form) 
     # http://sites.stat.psu.edu/~jiali/course/stat597e/notes2/logit.pdf
     for k in range(iterations):
-        print '----------'
-        print k
+        #print '==========='
+        #print "iteration %d: " % k
  
         # w - diagonal matrix of weights 
         w = np.zeros((n, n))
         for i in range(n):
             prob_y[i] = sigmoid(train_x[i], beta)
             w[i,i] = prob_y[i]*(1-prob_y[i])
-        print prob_y
-        print w
      
         # Hessian Matrix  
         h = np.dot(np.transpose(train_x), np.dot(w, train_x))      
         #h -= 0.0001*np.identity(p)
-        print h
+        #print h
              
         # update beta
         delta = np.dot(np.transpose(train_x), (train_y-prob_y))
         beta += np.dot(inv(h), delta)
-        print beta
+        #print beta
         
         # log likelihood
+        lik = 0.0
         for i in range(n):
             z = np.dot(train_x[i], beta)[0]
-            lik += (train_y[i][0]*z - math.log(1 + math.exp(z)))     
-        print lik
+            #print z
+            lik += train_y[i][0]*z - np.log(1 + np.exp(z))     
+        #print lik
         
-#         print lik - prev_lik
-#         if lik - prev_lik < 0.000001:
-#             break
-#         else:
-#             prev_lik = lik
+        if lik - prev_lik < 0.000001:
+            break
+
+        prev_lik = lik
+        
+    return beta
     
+def get_accuracy(test_data, beta):   
+    n = test_data.shape[0]
+    test_x = test_data[:, :-1]
+    test_x = np.insert(test_x, 0, 1, axis=1)  
+    test_y = np.array([test_data[:, -1]]).transpose()   
+    
+    count = 0.0
+    for i in range(n):
+        p = sigmoid(test_x[i], beta)
+        #print p
+        if p >= 0.5:
+            predict = 1.0
+        else:
+            predict = 0.0
+        #print predict
+        if predict == test_y[i][0]:
+            count += 1
         
-        
-        
+    acc = count / n
+    return acc
+
+
 if __name__ == '__main__':
-    fp = r"data\matrix_data\logit\test.csv"
-    data = np.genfromtxt(fp, delimiter=",", dtype=float)
-    print data.shape
-    train(data)
+    for label in LABELS:
+        print '========='
+        print label
+
+        fp = r"data\matrix_data\logit\wifi_features_%s.csv" % label
+        data = np.genfromtxt(fp, delimiter=",", dtype=float)
+        
+        n = data.shape[0]
+        m = data.shape[1]
+        fold = 5
+        test_data = np.empty([n/fold, m])
+        train_data = np.empty([n-n/fold, m])
+        
+        
+        avg_acc = 0.0
+        for j in range(fold):
+            #print "fold %d" % j
+            for i, x in enumerate(data):
+                if i%fold == j:
+                    test_data[i/fold] = data[i]
+                else:
+                    train_data[(i/fold)*(fold-1)+i%fold-1] = data[i]
+            #print test_data
+            beta = train(train_data)
+            acc = get_accuracy(test_data, beta)
+            #print "accuracy is: " + str(acc)
+            avg_acc += acc
+        avg_acc /= fold
+        print "average accuracy is: " + str(avg_acc)
     
     
     
