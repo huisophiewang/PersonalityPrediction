@@ -25,12 +25,14 @@ def read_feature(feature):
         #feature_value.append(atts[1])
     return id_feature
 
-def write_all_wifi_features():
-    output_fp = os.path.join(cur_dir, 'data', 'matrix_data', 'all_wifi_features.csv')
+def write_all_wifi_features(features, raw=True):
+    if raw:
+        output_fp = os.path.join(cur_dir, 'data', 'matrix_data', 'all_wifi_features_raw.csv')
+    else:
+        output_fp = os.path.join(cur_dir, 'data', 'matrix_data', 'all_wifi_features.csv')
     fw = open(output_fp, 'a')
     
     all_features = {}
-    features = ['edit_dist', 'start_time_var', 'end_time_var']
     for feature in features:
         id_feature = read_feature(feature)
         all_features[feature] = id_feature
@@ -83,8 +85,9 @@ def write_wifi_features_for_knn():
     
 if __name__ == '__main__':
 
-
-    write_all_wifi_features()
+    features = ['edit_dist', 'len_diff', 'start_time_var', 'end_time_var']
+    #features = ['raw_edit_dist', 'raw_len_diff', 'raw_start_time_var', 'raw_end_time_var']
+    write_all_wifi_features(features, False)
     #write_wifi_features_for_knn()
     
     

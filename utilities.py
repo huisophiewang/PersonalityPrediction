@@ -232,6 +232,7 @@ def get_all_y():
             
     return personality
 
+## write normalized feature
 def write_feature_to_csv(feature_name, id_feature, folder=''):
     if folder:
         output_fp = os.path.join(CUR_DIR, 'data', 'matrix_data', folder, 'feature_' + feature_name+'.csv')
@@ -245,6 +246,36 @@ def write_feature_to_csv(feature_name, id_feature, folder=''):
     
     id_all_y = get_all_y()
     id_feature = z_score_normalize(id_feature)
+                
+    for id in sorted(id_feature):
+
+        if not id in id_all_y:
+            continue
+        
+        line = [id]     
+        line.append(str(id_feature[id]))
+          
+        for value in id_all_y[id]:
+            line.append(value)
+          
+        fw.write(','.join(line) + '\n')
+        
+    fw.close()
+
+## write unnormalized feature  
+def write_raw_feature_to_csv(feature_name, id_feature, folder=''):
+    if folder:
+        output_fp = os.path.join(CUR_DIR, 'data', 'matrix_data', folder, 'feature_raw_' + feature_name+'.csv')
+    else:
+        output_fp = os.path.join(CUR_DIR, 'data', 'matrix_data', 'feature_raw_' + feature_name+'.csv')
+    fw = open(output_fp, 'a')
+    labels = ['subject_id', feature_name, 'extra', 'agrbl', 'consc', 'neuro', 'open']
+    labels.extend(['assertive', 'activity', 'altruism', 'compliance', 'order', 'discipline', 'anxiety', 'depression', 'aesthetics', 'ideas'])
+    fw.write(','.join(labels) + '\n')
+    
+    
+    id_all_y = get_all_y()
+    #id_feature = z_score_normalize(id_feature)
                 
     for id in sorted(id_feature):
 

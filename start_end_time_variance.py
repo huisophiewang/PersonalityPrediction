@@ -5,7 +5,7 @@ import copy
 import os
 import matplotlib.pyplot as plt
 
-from utilities import get_y, write_feature_to_csv
+from utilities import get_y, write_feature_to_csv, write_raw_feature_to_csv
 from utilities import WIFI_COMMON_DAYS, WIFI_OFF_CAMPUS, WIFI_ID_HOME
 
 DURATION_CUT = 60*5
@@ -239,5 +239,6 @@ if __name__ == "__main__":
     
     id_start_time_var, id_end_time_var = get_feature()
     #plot(result)
-    write_feature_to_csv('end_time_var', id_end_time_var)
+    #write_feature_to_csv('end_time_var', id_end_time_var)
+    write_raw_feature_to_csv('start_time_var', id_start_time_var)
     

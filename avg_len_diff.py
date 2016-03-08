@@ -8,7 +8,7 @@ import os
 #import matplotlib.pyplot as plt
 import numpy as np
 
-from utilities import edit_dist, get_y, write_feature_to_csv, plot_all
+from utilities import edit_dist, get_y, write_feature_to_csv, write_raw_feature_to_csv
 
 
 cur_dir = os.path.dirname(os.path.realpath(__file__))
@@ -273,8 +273,8 @@ if __name__ == '__main__':
     
 
     id_edit_dist = get_feature()
-    write_feature_to_csv('avg_len_diff', id_edit_dist)
-    #plot_all(id_edit_dist)
+    write_feature_to_csv('len_diff', id_edit_dist)
+    #write_raw_feature_to_csv('len_diff', id_edit_dist)
 
     
     

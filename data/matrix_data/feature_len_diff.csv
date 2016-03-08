@@ -1,4 +1,4 @@
-subject_id,edit_dist,extra,agrbl,consc,neuro,open,assertive,activity,altruism,compliance,order,discipline,anxiety,depression,aesthetics,ideas
+subject_id,len_diff,extra,agrbl,consc,neuro,open,assertive,activity,altruism,compliance,order,discipline,anxiety,depression,aesthetics,ideas
 01,-0.287768531197,3.125,3.777777778,4.444444444,2.75,3.9,2.8,4,4,3.666666667,4,4.4,2,4.5,3.333333333,4.4
 02,-2.21832576457,2.125,3,4.222222222,3.5,3.2,2,2.5,3.25,2,4.5,3.8,3.75,2.5,3.333333333,3.2
 03,-1.42828234291,2.125,3.222222222,3.888888889,3.375,2.7,2.2,2,3.5,3,4,3.8,3.5,3.5,2.333333333,2.8
