@@ -25,7 +25,7 @@ def read_feature(feature):
         #feature_value.append(atts[1])
     return id_feature
 
-def write_all_wifi_features(features, raw=True):
+def write_all_wifi_features(features, raw=False):
     if raw:
         output_fp = os.path.join(cur_dir, 'data', 'matrix_data', 'all_wifi_features_raw.csv')
     else:
