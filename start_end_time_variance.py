@@ -240,5 +240,5 @@ if __name__ == "__main__":
     id_start_time_var, id_end_time_var = get_feature()
     #plot(result)
     #write_feature_to_csv('end_time_var', id_end_time_var)
-    write_raw_feature_to_csv('start_time_var', id_start_time_var)
+    #write_raw_feature_to_csv('start_time_var', id_start_time_var)
     

@@ -7,9 +7,9 @@ from utilities import CUR_DIR, WIFI_OFF_CAMPUS, WIFI_ID_HOME, WIFI_ALL_LOCS
 from utilities import get_wifi_seqs, write_feature_to_csv
 
 MIN_SUPPORT = 10
-CUT_TO_LEVEL = 10
-DURATION_CUT = 60*5
+DURATION_CUT = 60*10
 NUM_DAYS = 20
+CUT_TO_LEVEL = 10
 
 def replace_home(seqs, id):
     for i, seq in enumerate(seqs):
@@ -100,8 +100,8 @@ if __name__ == '__main__':
         print id
         
         seqs = get_wifi_seqs(fp, DURATION_CUT, NUM_DAYS)
-        for seq in seqs:
-            print seq
+#         for seq in seqs:
+#             print seq
             
         replace_home(seqs, id)
         seqs_by_subject.append(seqs)
@@ -109,40 +109,42 @@ if __name__ == '__main__':
     
 
 
-#     freq_pat = []
-#     gsp(all_seqs, 1, [], freq_pat)
-#     #pprint(freq_pat)
-#     print len(freq_pat)
-#     for i, p in enumerate(freq_pat):
-#         print i, p
-#     
-#     
-#     n = len(ids)
-#     m = len(freq_pat)
-#     count = np.zeros((n, m))
-#     
-# 
-#     
-#     for i in range(n):
-#         for seq in seqs_by_subject[i]:
-#             if i == 1:
-#                 print ','.join(seq)
-#             for j, (pat,f) in enumerate(freq_pat):
-#                 if pat in ','.join(seq):
-#                     count[i, j] += 1
-#          
-#     print count  
-#     print count[1]
-#     print count[1][32]
-#     print count[1][25]
-#     print count[1][30]
+    freq_pat = []
+    gsp(all_seqs, 1, [], freq_pat)
+    #pprint(freq_pat)
+    print len(freq_pat)
+    for i, p in enumerate(freq_pat):
+        print i, p
+     
+    ## n x m matrix, n subjects, m frequent patterns
+    n = len(ids)
+    m = len(freq_pat)
+    count = np.zeros((n, m))
+     
+ 
+    for i in range(n):
+        for seq in seqs_by_subject[i]:
+            # print subject i daily sequences
+            if i == 1:
+                print ','.join(seq)
+                
+            for j, (pat,f) in enumerate(freq_pat):
+                if pat in ','.join(seq):
+                    count[i, j] += 1
+          
+    print count  
+    
+    print n, m
+    print count[1]  
+    print count[:, 0:7]
 
-#     for j, (pat,f) in enumerate(freq_pat):
-#         id_feature = {}
-#         feature = count[:, j]
-#         #print feature
-#         for i, id in enumerate(ids):
-#             id_feature[id] = feature[i]
-#         feature_name = pat.replace(',',';')
-#         write_feature_to_csv(feature_name, id_feature, 'freq_pattern')
+    ## write the first 7 frequent patterns to csv
+    for j, (pat,f) in enumerate(freq_pat[:7]):
+        id_feature = {}
+        feature = count[:, j]
+        #print feature
+        for i, id in enumerate(ids):
+            id_feature[id] = feature[i]
+        feature_name = "fp_" + pat.replace(',',';')
+        write_feature_to_csv(feature_name, id_feature)
         
