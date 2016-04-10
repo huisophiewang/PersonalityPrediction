@@ -78,7 +78,7 @@ if __name__ == '__main__':
     #write_feature_to_csv('avg_len', id_avg_len)
     
 
-    #id_num_patterns = get_feature(get_num_patterns)
+    id_num_patterns = get_feature(get_num_patterns)
     #write_feature_to_csv('num_patterns', id_num_patterns)
     
     #id_len_var = get_feature(get_len_var)
