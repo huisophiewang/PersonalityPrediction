@@ -1,0 +1,27 @@
+#####################################################################################################
+extra
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                  extra   R-squared:                       0.183
+Model:                            OLS   Adj. R-squared:                  0.146
+Method:                 Least Squares   F-statistic:                     4.920
+Date:                Mon, 11 Apr 2016   Prob (F-statistic):             0.0372
+Time:                        11:26:54   Log-Likelihood:                -23.804
+No. Observations:                  24   AIC:                             51.61
+Df Residuals:                      22   BIC:                             53.96
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+===========================================================================================
+                              coef    std err          t      P>|t|      [95.0% Conf. Int.]
+-------------------------------------------------------------------------------------------
+Intercept                   2.8401      0.139     20.410      0.000         2.551     3.129
+Q("home;home;home;lsb")     0.2920      0.132      2.218      0.037         0.019     0.565
+==============================================================================
+Omnibus:                        3.189   Durbin-Watson:                   1.920
+Prob(Omnibus):                  0.203   Jarque-Bera (JB):                1.888
+Skew:                           0.671   Prob(JB):                        0.389
+Kurtosis:                       3.294   Cond. No.                         1.06
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.

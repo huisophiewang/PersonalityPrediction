@@ -1,0 +1,29 @@
+#####################################################################################################
+activity
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:               activity   R-squared:                      -0.000
+Model:                            OLS   Adj. R-squared:                 -0.000
+Method:                 Least Squares   F-statistic:                      -inf
+Date:                Mon, 11 Apr 2016   Prob (F-statistic):                nan
+Time:                        11:26:58   Log-Likelihood:                -28.082
+No. Observations:                  25   AIC:                             58.16
+Df Residuals:                      24   BIC:                             59.38
+Df Model:                           0                                         
+Covariance Type:            nonrobust                                         
+======================================================================================
+                         coef    std err          t      P>|t|      [95.0% Conf. Int.]
+--------------------------------------------------------------------------------------
+Intercept              3.2933      0.146     22.518      0.000         2.991     3.595
+Q("lodge;hopkins")    -0.6459      0.029    -22.518      0.000        -0.705    -0.587
+==============================================================================
+Omnibus:                        1.041   Durbin-Watson:                   1.734
+Prob(Omnibus):                  0.594   Jarque-Bera (JB):                0.819
+Skew:                           0.421   Prob(JB):                        0.664
+Kurtosis:                       2.722   Cond. No.                     3.82e+16
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+[2] The smallest eigenvalue is 1.78e-32. This might indicate that there are
+strong multicollinearity problems or that the design matrix is singular.

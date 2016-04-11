@@ -1,0 +1,27 @@
+#####################################################################################################
+anxiety
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                anxiety   R-squared:                       0.188
+Model:                            OLS   Adj. R-squared:                  0.151
+Method:                 Least Squares   F-statistic:                     5.102
+Date:                Mon, 11 Apr 2016   Prob (F-statistic):             0.0342
+Time:                        11:27:21   Log-Likelihood:                -22.523
+No. Observations:                  24   AIC:                             49.05
+Df Residuals:                      22   BIC:                             51.40
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+============================================================================================
+                               coef    std err          t      P>|t|      [95.0% Conf. Int.]
+--------------------------------------------------------------------------------------------
+Intercept                    3.0019      0.132     22.755      0.000         2.728     3.275
+Q("home;home;home;home")    -0.2932      0.130     -2.259      0.034        -0.562    -0.024
+==============================================================================
+Omnibus:                        0.479   Durbin-Watson:                   1.985
+Prob(Omnibus):                  0.787   Jarque-Bera (JB):                0.522
+Skew:                           0.289   Prob(JB):                        0.770
+Kurtosis:                       2.567   Cond. No.                         1.03
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.

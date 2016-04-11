@@ -43,26 +43,31 @@ def multi_vrb():
         print res.summary()
         
         
-def write_single_vrb_to_txt(input_fp, output_fp, feature):    
+def write_single_vrb_to_txt(input_fp, output_dir, feature):    
     df = pandas.read_csv(input_fp)
 
     for i in range(len(LABELS)):
-
-        y, X = dmatrices('%s ~ Q("%s")' % (LABELS[i], feature), data=df)
+        #response = 'activity'
+        response = LABELS[i]
+        y, X = dmatrices('%s ~ Q("%s")' % (response, feature), data=df)
         mod = sm.OLS(y, X)
         res = mod.fit()
-
+    
         if res.pvalues[1] <= 0.05:
-            fw = open(output_fp, 'a')
+            output_folder = os.path.join(output_dir, response)
+            if not os.path.exists(output_folder):
+                os.makedirs(output_folder)
+            fw = open(os.path.join(output_folder, 'summary_' + feature + '.txt'), 'a')
             fw.write("#####################################################################################################\n")
-            fw.write(LABELS[i] + '\n')
+            fw.write(response + '\n')
             sum = str(res.summary())
             fw.write(sum + '\n')
             fw.close()
             
 def freq_pattern():
-    input_dir = os.path.join(CUR_DIR, 'data', 'matrix_data', 'freq_pattern')
-    output_dir = output_fp = os.path.join(CUR_DIR, 'data', 'summary', 'freq_pattern')
+    folder = 'days30_support20'
+    input_dir = os.path.join(CUR_DIR, 'data', 'matrix_data', 'freq_pattern', folder)
+    output_dir = output_fp = os.path.join(CUR_DIR, 'data', 'summary', 'feature selection', folder)
     for file in os.listdir(input_dir):
         if not file.startswith("feature_"):
             continue
@@ -71,15 +76,16 @@ def freq_pattern():
         input_fp = os.path.join(input_dir, file)    
         feature = file[8:-4]
         print feature
-        output_fp = os.path.join(output_dir, 'summary_' + feature + '.txt')
-        write_single_vrb_to_txt(input_fp, output_fp, feature)
+        write_single_vrb_to_txt(input_fp, output_dir, feature)
         
 
 if __name__ == '__main__':
     #feature = 'edit_dist'
     #single_vrb(feature)
 
-    multi_vrb()
+    #multi_vrb()
+    
+    freq_pattern()
 
     
 

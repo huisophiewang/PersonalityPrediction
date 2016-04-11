@@ -1,0 +1,27 @@
+#####################################################################################################
+activity
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:               activity   R-squared:                       0.222
+Model:                            OLS   Adj. R-squared:                  0.188
+Method:                 Least Squares   F-statistic:                     6.561
+Date:                Mon, 11 Apr 2016   Prob (F-statistic):             0.0175
+Time:                        11:26:54   Log-Likelihood:                -24.945
+No. Observations:                  25   AIC:                             53.89
+Df Residuals:                      23   BIC:                             56.33
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+===========================================================================================
+                              coef    std err          t      P>|t|      [95.0% Conf. Int.]
+-------------------------------------------------------------------------------------------
+Intercept                   3.4134      0.137     24.938      0.000         3.130     3.697
+Q("home;home;home;lsb")     0.3381      0.132      2.561      0.017         0.065     0.611
+==============================================================================
+Omnibus:                        1.701   Durbin-Watson:                   1.860
+Prob(Omnibus):                  0.427   Jarque-Bera (JB):                0.794
+Skew:                           0.421   Prob(JB):                        0.672
+Kurtosis:                       3.229   Cond. No.                         1.04
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.

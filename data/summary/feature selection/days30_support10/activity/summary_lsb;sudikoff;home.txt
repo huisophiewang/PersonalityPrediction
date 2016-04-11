@@ -1,0 +1,27 @@
+#####################################################################################################
+activity
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:               activity   R-squared:                       0.182
+Model:                            OLS   Adj. R-squared:                  0.146
+Method:                 Least Squares   F-statistic:                     5.107
+Date:                Mon, 11 Apr 2016   Prob (F-statistic):             0.0336
+Time:                        11:26:59   Log-Likelihood:                -25.576
+No. Observations:                  25   AIC:                             55.15
+Df Residuals:                      23   BIC:                             57.59
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+==========================================================================================
+                             coef    std err          t      P>|t|      [95.0% Conf. Int.]
+------------------------------------------------------------------------------------------
+Intercept                  3.4322      0.140     24.438      0.000         3.142     3.723
+Q("lsb;sudikoff;home")    -0.3082      0.136     -2.260      0.034        -0.590    -0.026
+==============================================================================
+Omnibus:                        1.256   Durbin-Watson:                   2.133
+Prob(Omnibus):                  0.534   Jarque-Bera (JB):                1.139
+Skew:                           0.465   Prob(JB):                        0.566
+Kurtosis:                       2.523   Cond. No.                         1.05
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.

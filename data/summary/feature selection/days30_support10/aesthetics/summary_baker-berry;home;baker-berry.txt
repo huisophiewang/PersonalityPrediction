@@ -1,0 +1,27 @@
+#####################################################################################################
+aesthetics
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:             aesthetics   R-squared:                       0.229
+Model:                            OLS   Adj. R-squared:                  0.196
+Method:                 Least Squares   F-statistic:                     6.846
+Date:                Mon, 11 Apr 2016   Prob (F-statistic):             0.0154
+Time:                        11:26:51   Log-Likelihood:                -27.228
+No. Observations:                  25   AIC:                             58.46
+Df Residuals:                      23   BIC:                             60.89
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+=====================================================================================================
+                                        coef    std err          t      P>|t|      [95.0% Conf. Int.]
+-----------------------------------------------------------------------------------------------------
+Intercept                             2.9918      0.150     19.952      0.000         2.682     3.302
+Q("baker-berry;home;baker-berry")     0.3838      0.147      2.616      0.015         0.080     0.687
+==============================================================================
+Omnibus:                        1.090   Durbin-Watson:                   2.005
+Prob(Omnibus):                  0.580   Jarque-Bera (JB):                0.593
+Skew:                           0.377   Prob(JB):                        0.743
+Kurtosis:                       2.974   Cond. No.                         1.03
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.

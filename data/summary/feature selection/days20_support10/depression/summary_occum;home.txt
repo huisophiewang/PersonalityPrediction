@@ -1,0 +1,27 @@
+#####################################################################################################
+depression
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:             depression   R-squared:                       0.279
+Model:                            OLS   Adj. R-squared:                  0.246
+Method:                 Least Squares   F-statistic:                     8.498
+Date:                Mon, 11 Apr 2016   Prob (F-statistic):            0.00802
+Time:                        11:26:05   Log-Likelihood:                -28.792
+No. Observations:                  24   AIC:                             61.58
+Df Residuals:                      22   BIC:                             63.94
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+===================================================================================
+                      coef    std err          t      P>|t|      [95.0% Conf. Int.]
+-----------------------------------------------------------------------------------
+Intercept           2.9704      0.171     17.343      0.000         2.615     3.326
+Q("occum;home")    -0.4789      0.164     -2.915      0.008        -0.820    -0.138
+==============================================================================
+Omnibus:                        7.066   Durbin-Watson:                   1.922
+Prob(Omnibus):                  0.029   Jarque-Bera (JB):                1.897
+Skew:                          -0.056   Prob(JB):                        0.387
+Kurtosis:                       1.627   Cond. No.                         1.05
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.

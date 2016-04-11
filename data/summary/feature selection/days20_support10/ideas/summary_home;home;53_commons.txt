@@ -1,0 +1,27 @@
+#####################################################################################################
+ideas
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                  ideas   R-squared:                       0.168
+Model:                            OLS   Adj. R-squared:                  0.132
+Method:                 Least Squares   F-statistic:                     4.653
+Date:                Mon, 11 Apr 2016   Prob (F-statistic):             0.0417
+Time:                        11:26:01   Log-Likelihood:                -17.369
+No. Observations:                  25   AIC:                             38.74
+Df Residuals:                      23   BIC:                             41.18
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+=============================================================================================
+                                coef    std err          t      P>|t|      [95.0% Conf. Int.]
+---------------------------------------------------------------------------------------------
+Intercept                     3.5426      0.101     35.018      0.000         3.333     3.752
+Q("home;home;53_commons")     0.2124      0.098      2.157      0.042         0.009     0.416
+==============================================================================
+Omnibus:                        1.843   Durbin-Watson:                   2.044
+Prob(Omnibus):                  0.398   Jarque-Bera (JB):                1.238
+Skew:                           0.543   Prob(JB):                        0.538
+Kurtosis:                       2.915   Cond. No.                         1.05
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.

@@ -1,0 +1,27 @@
+#####################################################################################################
+ideas
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                  ideas   R-squared:                       0.170
+Model:                            OLS   Adj. R-squared:                  0.134
+Method:                 Least Squares   F-statistic:                     4.698
+Date:                Mon, 11 Apr 2016   Prob (F-statistic):             0.0408
+Time:                        11:27:21   Log-Likelihood:                -17.349
+No. Observations:                  25   AIC:                             38.70
+Df Residuals:                      23   BIC:                             41.14
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+=======================================================================================
+                          coef    std err          t      P>|t|      [95.0% Conf. Int.]
+---------------------------------------------------------------------------------------
+Intercept               3.5454      0.101     35.090      0.000         3.336     3.754
+Q("home;home;home")     0.2120      0.098      2.167      0.041         0.010     0.414
+==============================================================================
+Omnibus:                        1.014   Durbin-Watson:                   1.968
+Prob(Omnibus):                  0.602   Jarque-Bera (JB):                0.474
+Skew:                           0.337   Prob(JB):                        0.789
+Kurtosis:                       3.035   Cond. No.                         1.05
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.

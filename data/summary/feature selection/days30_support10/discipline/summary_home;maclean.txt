@@ -1,0 +1,27 @@
+#####################################################################################################
+discipline
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:             discipline   R-squared:                       0.219
+Model:                            OLS   Adj. R-squared:                  0.184
+Method:                 Least Squares   F-statistic:                     6.182
+Date:                Mon, 11 Apr 2016   Prob (F-statistic):             0.0210
+Time:                        11:26:55   Log-Likelihood:                -26.855
+No. Observations:                  24   AIC:                             57.71
+Df Residuals:                      22   BIC:                             60.07
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+=====================================================================================
+                        coef    std err          t      P>|t|      [95.0% Conf. Int.]
+-------------------------------------------------------------------------------------
+Intercept             3.5978      0.158     22.763      0.000         3.270     3.926
+Q("home;maclean")    -0.3725      0.150     -2.486      0.021        -0.683    -0.062
+==============================================================================
+Omnibus:                        0.001   Durbin-Watson:                   2.030
+Prob(Omnibus):                  0.999   Jarque-Bera (JB):                0.136
+Skew:                           0.004   Prob(JB):                        0.934
+Kurtosis:                       2.631   Cond. No.                         1.07
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.

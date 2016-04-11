@@ -1,0 +1,27 @@
+#####################################################################################################
+open
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                   open   R-squared:                       0.256
+Model:                            OLS   Adj. R-squared:                  0.223
+Method:                 Least Squares   F-statistic:                     7.902
+Date:                Mon, 11 Apr 2016   Prob (F-statistic):            0.00991
+Time:                        11:26:59   Log-Likelihood:                -15.017
+No. Observations:                  25   AIC:                             34.03
+Df Residuals:                      23   BIC:                             36.47
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+=========================================================================================
+                            coef    std err          t      P>|t|      [95.0% Conf. Int.]
+-----------------------------------------------------------------------------------------
+Intercept                 3.4139      0.092     37.100      0.000         3.224     3.604
+Q("lsb;sport-venues")    -0.2497      0.089     -2.811      0.010        -0.433    -0.066
+==============================================================================
+Omnibus:                        4.094   Durbin-Watson:                   1.841
+Prob(Omnibus):                  0.129   Jarque-Bera (JB):                2.423
+Skew:                           0.447   Prob(JB):                        0.298
+Kurtosis:                       4.235   Cond. No.                         1.04
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.

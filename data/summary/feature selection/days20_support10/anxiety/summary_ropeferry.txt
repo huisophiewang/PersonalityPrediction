@@ -1,0 +1,27 @@
+#####################################################################################################
+anxiety
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                anxiety   R-squared:                       0.184
+Model:                            OLS   Adj. R-squared:                  0.147
+Method:                 Least Squares   F-statistic:                     4.959
+Date:                Mon, 11 Apr 2016   Prob (F-statistic):             0.0365
+Time:                        11:26:05   Log-Likelihood:                -22.587
+No. Observations:                  24   AIC:                             49.17
+Df Residuals:                      22   BIC:                             51.53
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+==================================================================================
+                     coef    std err          t      P>|t|      [95.0% Conf. Int.]
+----------------------------------------------------------------------------------
+Intercept          3.0221      0.132     22.840      0.000         2.748     3.297
+Q("ropeferry")    -0.2795      0.126     -2.227      0.037        -0.540    -0.019
+==============================================================================
+Omnibus:                        1.010   Durbin-Watson:                   2.082
+Prob(Omnibus):                  0.603   Jarque-Bera (JB):                0.971
+Skew:                           0.344   Prob(JB):                        0.615
+Kurtosis:                       2.295   Cond. No.                         1.07
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.

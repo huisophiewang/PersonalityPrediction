@@ -1,0 +1,27 @@
+#####################################################################################################
+agrbl
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                  agrbl   R-squared:                       0.342
+Model:                            OLS   Adj. R-squared:                  0.314
+Method:                 Least Squares   F-statistic:                     11.98
+Date:                Mon, 11 Apr 2016   Prob (F-statistic):            0.00212
+Time:                        11:26:00   Log-Likelihood:                -21.092
+No. Observations:                  25   AIC:                             46.18
+Df Residuals:                      23   BIC:                             48.62
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+=========================================================================================================
+                                            coef    std err          t      P>|t|      [95.0% Conf. Int.]
+---------------------------------------------------------------------------------------------------------
+Intercept                                 3.5372      0.117     30.149      0.000         3.295     3.780
+Q("home;baker-berry;lsb;baker-berry")    -0.3917      0.113     -3.461      0.002        -0.626    -0.158
+==============================================================================
+Omnibus:                        1.402   Durbin-Watson:                   1.997
+Prob(Omnibus):                  0.496   Jarque-Bera (JB):                0.758
+Skew:                          -0.426   Prob(JB):                        0.685
+Kurtosis:                       3.040   Cond. No.                         1.04
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.

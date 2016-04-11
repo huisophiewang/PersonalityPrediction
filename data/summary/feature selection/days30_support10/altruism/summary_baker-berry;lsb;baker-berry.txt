@@ -1,0 +1,27 @@
+#####################################################################################################
+altruism
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:               altruism   R-squared:                       0.299
+Model:                            OLS   Adj. R-squared:                  0.268
+Method:                 Least Squares   F-statistic:                     9.799
+Date:                Mon, 11 Apr 2016   Prob (F-statistic):            0.00470
+Time:                        11:26:51   Log-Likelihood:                -23.623
+No. Observations:                  25   AIC:                             51.25
+Df Residuals:                      23   BIC:                             53.68
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+====================================================================================================
+                                       coef    std err          t      P>|t|      [95.0% Conf. Int.]
+----------------------------------------------------------------------------------------------------
+Intercept                            3.5742      0.130     27.535      0.000         3.306     3.843
+Q("baker-berry;lsb;baker-berry")    -0.3916      0.125     -3.130      0.005        -0.650    -0.133
+==============================================================================
+Omnibus:                        3.848   Durbin-Watson:                   2.405
+Prob(Omnibus):                  0.146   Jarque-Bera (JB):                2.389
+Skew:                          -0.732   Prob(JB):                        0.303
+Kurtosis:                       3.386   Cond. No.                         1.04
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.

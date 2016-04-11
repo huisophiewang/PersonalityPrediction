@@ -1,0 +1,27 @@
+#####################################################################################################
+activity
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:               activity   R-squared:                       0.203
+Model:                            OLS   Adj. R-squared:                  0.168
+Method:                 Least Squares   F-statistic:                     5.857
+Date:                Mon, 11 Apr 2016   Prob (F-statistic):             0.0238
+Time:                        11:26:00   Log-Likelihood:                -25.246
+No. Observations:                  25   AIC:                             54.49
+Df Residuals:                      23   BIC:                             56.93
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+=================================================================================================
+                                    coef    std err          t      P>|t|      [95.0% Conf. Int.]
+-------------------------------------------------------------------------------------------------
+Intercept                         3.4043      0.139     24.551      0.000         3.117     3.691
+Q("home;53_commons;sudikoff")     0.3273      0.135      2.420      0.024         0.048     0.607
+==============================================================================
+Omnibus:                        0.104   Durbin-Watson:                   1.848
+Prob(Omnibus):                  0.949   Jarque-Bera (JB):                0.324
+Skew:                           0.051   Prob(JB):                        0.851
+Kurtosis:                       2.452   Cond. No.                         1.05
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.

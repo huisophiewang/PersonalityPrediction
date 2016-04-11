@@ -1,0 +1,27 @@
+#####################################################################################################
+agrbl
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                  agrbl   R-squared:                       0.212
+Model:                            OLS   Adj. R-squared:                  0.177
+Method:                 Least Squares   F-statistic:                     6.176
+Date:                Mon, 11 Apr 2016   Prob (F-statistic):             0.0207
+Time:                        11:27:39   Log-Likelihood:                -23.359
+No. Observations:                  25   AIC:                             50.72
+Df Residuals:                      23   BIC:                             53.15
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+========================================================================================
+                           coef    std err          t      P>|t|      [95.0% Conf. Int.]
+----------------------------------------------------------------------------------------
+Intercept                3.5305      0.128     27.488      0.000         3.265     3.796
+Q("lsb;baker-berry")    -0.3079      0.124     -2.485      0.021        -0.564    -0.052
+==============================================================================
+Omnibus:                        0.083   Durbin-Watson:                   2.070
+Prob(Omnibus):                  0.959   Jarque-Bera (JB):                0.100
+Skew:                          -0.086   Prob(JB):                        0.951
+Kurtosis:                       2.744   Cond. No.                         1.04
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.

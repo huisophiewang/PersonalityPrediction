@@ -1,0 +1,27 @@
+#####################################################################################################
+anxiety
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                anxiety   R-squared:                       0.202
+Model:                            OLS   Adj. R-squared:                  0.166
+Method:                 Least Squares   F-statistic:                     5.576
+Date:                Mon, 11 Apr 2016   Prob (F-statistic):             0.0275
+Time:                        11:26:58   Log-Likelihood:                -22.315
+No. Observations:                  24   AIC:                             48.63
+Df Residuals:                      22   BIC:                             50.99
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+=============================================================================================
+                                coef    std err          t      P>|t|      [95.0% Conf. Int.]
+---------------------------------------------------------------------------------------------
+Intercept                     3.0084      0.131     23.013      0.000         2.737     3.279
+Q("lsb;baker-berry;home")     0.2993      0.127      2.361      0.027         0.036     0.562
+==============================================================================
+Omnibus:                        8.344   Durbin-Watson:                   2.024
+Prob(Omnibus):                  0.015   Jarque-Bera (JB):                2.056
+Skew:                           0.103   Prob(JB):                        0.358
+Kurtosis:                       1.581   Cond. No.                         1.03
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
