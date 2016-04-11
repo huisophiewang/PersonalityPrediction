@@ -139,12 +139,12 @@ if __name__ == '__main__':
     print count[:, 0:7]
 
     ## write the first 7 frequent patterns to csv
-    for j, (pat,f) in enumerate(freq_pat[:7]):
+    for j, (pat,f) in enumerate(freq_pat[:2]):
         id_feature = {}
         feature = count[:, j]
         #print feature
         for i, id in enumerate(ids):
             id_feature[id] = feature[i]
-        feature_name = "fp_" + pat.replace(',',';')
+        feature_name = "fp_test_" + pat.replace(',',';')
         write_feature_to_csv(feature_name, id_feature)
         
