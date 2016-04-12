@@ -33,8 +33,8 @@ def get_major_loc(fp):
             #print atts
             dt = atts[1][:9]
             
-            if dt not in common_days:
-                continue
+#             if dt not in common_days:
+#                 continue
             
             if dt not in by_dates:
                 by_dates[dt] = []
@@ -249,8 +249,8 @@ def get_feature():
         id = file.split('.')[0][-2:]
         if int(id) >= 45:
             continue     
-        if id in off_campus:
-            continue
+#         if id in off_campus:
+#             continue
         fp = os.path.join(addr_dir, file)
         
         seqs = per_subject(fp)
@@ -273,7 +273,7 @@ if __name__ == '__main__':
     
 
     id_edit_dist = get_feature()
-    write_feature_to_csv('len_diff_test_test', id_edit_dist)
+    write_feature_to_csv('len_diff', id_edit_dist)
     #write_raw_feature_to_csv('len_diff', id_edit_dist)
 
     

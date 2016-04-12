@@ -89,16 +89,18 @@ def get_feature():
         id = file.split('.')[0][-2:]
         if int(id) >= 45:
             continue     
-        if id in WIFI_OFF_CAMPUS:
-            continue
+#         if id in WIFI_OFF_CAMPUS:
+#             continue
         fp = os.path.join(addr_dir, file)
         print '----------'
         print 'id: ' + id
         
-        seqs = get_wifi_seqs(fp, 60*10, 20)
+        #seqs = get_wifi_seqs(fp, 60*10, 20)
+        seqs = get_wifi_seqs(fp, 60*5, 30)
         #print seqs
         #print len(seqs)
         result = get_avg_edit_dist(seqs)
+        print result
         
         id_feature[id] = result
         

@@ -215,7 +215,7 @@ def get_y_category(col):
 
 def get_all_y():
     personality = {}
-    fr = open(r'data\FiveFactors.csv', 'rU')
+    fr = open(r'data\questionnaire\FiveFactors.csv', 'rU')
     fr.readline()
     lines = fr.readlines()
     for line in lines:

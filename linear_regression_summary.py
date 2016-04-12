@@ -80,12 +80,12 @@ def freq_pattern():
         
 
 if __name__ == '__main__':
-    #feature = 'edit_dist'
-    #single_vrb(feature)
+    feature = 'len_diff'
+    single_vrb(feature)
 
     #multi_vrb()
     
-    freq_pattern()
+    #freq_pattern()
 
     
 
