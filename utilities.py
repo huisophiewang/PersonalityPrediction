@@ -21,33 +21,33 @@ WIFI_COMMON_DAYS = ['22APR2013', '12APR2013', '13APR2013', '19APR2013', '07APR20
 
 # remove 13, 36 because off campus
 # removed 25, 41 missing whole row in psychology questionnaire data
-WIFI_ID_HOME = {'01': ['kemeny', 'cutter-north', 'north-main'],
- '02': ['occum'],
- '03': ['north-park'],
- '04': ['ripley'],
- '05': ['massrow'],
- '07': ['east-wheelock'],
- '08': ['fahey-mclane', 'fayerweather'],
- '09': ['north-main'],
- '10': ['woodward'],
- '14': ['wheeler', 'rollins-chapel', 'college-street'],
+WIFI_ID_HOME = {'01': ['kemeny', 'cutter-north', 'north-main'], # Phi Tau frat
+ '02': ['occum'],  # Epsilon Kappa Theta soro
+ '03': ['north-park'], # graduate
+ '04': ['ripley'],  # north park
+ '05': ['massrow'],  # school house
+ '07': ['east-wheelock'], 
+ '08': ['fahey-mclane', 'fayerweather'], # west
+ '09': ['north-main'],  # Alpha Theta frat
+ '10': ['woodward'],  # north park
+ '14': ['wheeler', 'rollins-chapel', 'college-street'],  # first year house communities
  '15': ['massrow'],
  '16': ['massrow'],
- '17': ['gile'],
- '18': ['north-main'],
- '19': ['mclaughlin'],
+ '17': ['gile'],  # Allen
+ '18': ['north-main'],  # Alpha Theta frat
+ '19': ['mclaughlin'],  # living learning communities
  '20': ['north-park'],
  '22': ['massrow'],
  '23': ['north-park'],
  '24': ['occum'],
  '25': ['fayerweather'],
  '27': ['ripley'],
- '30': ['newhamp'],
+ '30': ['newhamp'],  # South
  '32': ['massrow', 'parkhurst'],
- '33': ['channing-cox'],
+ '33': ['channing-cox'],  # senior apartments
  '35': ['north-park'],
  '41': ['ripley'],
- '43': ['butterfield']}
+ '43': ['butterfield']} # West
 
 WIFI_ALL_LOCS = ['53_commons',
     '7-lebanon',

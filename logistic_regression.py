@@ -2,10 +2,17 @@ import math
 import os
 import numpy as np
 from numpy.linalg import inv
+import statsmodels.api as sm
+import pandas
+from patsy.highlevel import dmatrices, dmatrix
+
 
 from utilities import LABELS
 from utilities import replace_nan
-from test.test_math import acc_check
+
+from sklearn import datasets
+from sklearn import svm
+
 
 # ignore overflow error
 np.seterr(over='ignore')
@@ -77,49 +84,71 @@ def get_accuracy(test_data, beta):
     count = 0.0
     for i in range(n):
         p = sigmoid(test_x[i], beta)
+        #print test_x[i]
         #print p
+        print test_y[i][0]
         if p >= 0.5:
             predict = 1.0
         else:
             predict = 0.0
-        #print predict
+        print predict
         if predict == test_y[i][0]:
             count += 1
         
     acc = count / n
     return acc
 
+def my_logit(label):
+
+    fp = r"data\matrix_data\logit\wifi_features_%s.csv" % label
+    data = np.genfromtxt(fp, delimiter=",", dtype=float)
+    print data.shape
+    
+    n = data.shape[0]
+    m = data.shape[1]
+    #fold = 5
+    fold = 25
+    test_data = np.empty([n/fold, m])
+    train_data = np.empty([n-n/fold, m])
+    
+    
+    avg_acc = 0.0
+    for j in range(fold):
+        print '============'
+        print "fold %d" % j
+        for i, x in enumerate(data):
+            if i%fold == j:
+                test_data[i/fold] = data[i]
+            else:
+                train_data[(i/fold)*(fold-1)+i%fold-1] = data[i]
+        print test_data
+        beta = train(train_data)
+        print beta
+        acc = get_accuracy(test_data, beta)
+        print "accuracy is: " + str(acc)
+        avg_acc += acc
+    avg_acc /= fold
+    print "average accuracy is: " + str(avg_acc)
+        
+def logit():
+    fp = r"data\matrix_data\logit\wifi_features_extra.csv"
+    df = pandas.read_csv(fp)
+    y, X = dmatrices('extra ~ len_var + end_time_var + fq_home', data=df)
+    mod = sm.Logit(y, X)
+    res = mod.fit()
+    print res.summary()
+    
+
+    
 
 if __name__ == '__main__':
-    for label in LABELS:
-        print '========='
-        print label
+    my_logit("extra")
+    
+    #logit()
+    
 
-        fp = r"data\matrix_data\logit\wifi_features_%s.csv" % label
-        data = np.genfromtxt(fp, delimiter=",", dtype=float)
-        
-        n = data.shape[0]
-        m = data.shape[1]
-        fold = 5
-        test_data = np.empty([n/fold, m])
-        train_data = np.empty([n-n/fold, m])
-        
-        
-        avg_acc = 0.0
-        for j in range(fold):
-            #print "fold %d" % j
-            for i, x in enumerate(data):
-                if i%fold == j:
-                    test_data[i/fold] = data[i]
-                else:
-                    train_data[(i/fold)*(fold-1)+i%fold-1] = data[i]
-            #print test_data
-            beta = train(train_data)
-            acc = get_accuracy(test_data, beta)
-            #print "accuracy is: " + str(acc)
-            avg_acc += acc
-        avg_acc /= fold
-        print "average accuracy is: " + str(avg_acc)
+    
+
     
     
     
