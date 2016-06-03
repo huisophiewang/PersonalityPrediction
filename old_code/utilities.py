@@ -362,6 +362,7 @@ def get_wifi_seqs(fp, duration_cut, days_limit=20):
 
     
     #pprint(by_dates)
+    # contain both wifi and gps entries
     by_dates = sorted(by_dates.items(), key=lambda item: datetime.strptime(item[0], "%d%b%Y"))
     #print len(by_dates)
      
@@ -375,7 +376,7 @@ def get_wifi_seqs(fp, duration_cut, days_limit=20):
         for entry in pair[1]:
             if entry[4].startswith('in'):
                 in_loc[idx][1].append(entry)
-    #pprint(in_loc)        
+    pprint(in_loc)        
      
     in_loc_duration = []
     for idx, pair in enumerate(in_loc):
