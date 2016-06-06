@@ -1,0 +1,54 @@
+#####################################################################################################
+consc
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                  consc   R-squared:                       0.206
+Model:                            OLS   Adj. R-squared:                  0.170
+Method:                 Least Squares   F-statistic:                     5.717
+Date:                Sat, 12 Dec 2015   Prob (F-statistic):             0.0258
+Time:                        19:05:43   Log-Likelihood:                -25.076
+No. Observations:                  24   AIC:                             54.15
+Df Residuals:                      22   BIC:                             56.51
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+===========================================================================================
+                              coef    std err          t      P>|t|      [95.0% Conf. Int.]
+-------------------------------------------------------------------------------------------
+Intercept                   3.5787      0.147     24.393      0.000         3.274     3.883
+Q("baker-berry;kemeny")     0.3322      0.139      2.391      0.026         0.044     0.620
+==============================================================================
+Omnibus:                        0.614   Durbin-Watson:                   1.949
+Prob(Omnibus):                  0.736   Jarque-Bera (JB):                0.677
+Skew:                          -0.311   Prob(JB):                        0.713
+Kurtosis:                       2.462   Cond. No.                         1.06
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+#####################################################################################################
+discipline
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:             discipline   R-squared:                       0.207
+Model:                            OLS   Adj. R-squared:                  0.171
+Method:                 Least Squares   F-statistic:                     5.729
+Date:                Sat, 12 Dec 2015   Prob (F-statistic):             0.0257
+Time:                        19:05:43   Log-Likelihood:                -27.050
+No. Observations:                  24   AIC:                             58.10
+Df Residuals:                      22   BIC:                             60.46
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+===========================================================================================
+                              coef    std err          t      P>|t|      [95.0% Conf. Int.]
+-------------------------------------------------------------------------------------------
+Intercept                   3.5732      0.159     22.433      0.000         3.243     3.904
+Q("baker-berry;kemeny")     0.3611      0.151      2.393      0.026         0.048     0.674
+==============================================================================
+Omnibus:                        1.811   Durbin-Watson:                   1.975
+Prob(Omnibus):                  0.404   Jarque-Bera (JB):                0.774
+Skew:                          -0.409   Prob(JB):                        0.679
+Kurtosis:                       3.326   Cond. No.                         1.06
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.

@@ -1,0 +1,27 @@
+#####################################################################################################
+discipline
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:             discipline   R-squared:                       0.221
+Model:                            OLS   Adj. R-squared:                  0.185
+Method:                 Least Squares   F-statistic:                     6.233
+Date:                Mon, 11 Apr 2016   Prob (F-statistic):             0.0205
+Time:                        11:26:59   Log-Likelihood:                -26.833
+No. Observations:                  24   AIC:                             57.67
+Df Residuals:                      22   BIC:                             60.02
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+=========================================================================================
+                            coef    std err          t      P>|t|      [95.0% Conf. Int.]
+-----------------------------------------------------------------------------------------
+Intercept                 3.5941      0.158     22.767      0.000         3.267     3.922
+Q("maclean;cummings")    -0.3727      0.149     -2.497      0.021        -0.682    -0.063
+==============================================================================
+Omnibus:                        0.116   Durbin-Watson:                   2.236
+Prob(Omnibus):                  0.944   Jarque-Bera (JB):                0.291
+Skew:                          -0.129   Prob(JB):                        0.864
+Kurtosis:                       2.526   Cond. No.                         1.06
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.

@@ -1,0 +1,27 @@
+#####################################################################################################
+agrbl
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                  agrbl   R-squared:                       0.378
+Model:                            OLS   Adj. R-squared:                  0.351
+Method:                 Least Squares   F-statistic:                     13.96
+Date:                Mon, 11 Apr 2016   Prob (F-statistic):            0.00108
+Time:                        11:26:51   Log-Likelihood:                -20.401
+No. Observations:                  25   AIC:                             44.80
+Df Residuals:                      23   BIC:                             47.24
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+====================================================================================================
+                                       coef    std err          t      P>|t|      [95.0% Conf. Int.]
+----------------------------------------------------------------------------------------------------
+Intercept                            3.5333      0.114     30.964      0.000         3.297     3.769
+Q("baker-berry;lsb;baker-berry")    -0.4109      0.110     -3.737      0.001        -0.638    -0.183
+==============================================================================
+Omnibus:                        2.411   Durbin-Watson:                   1.950
+Prob(Omnibus):                  0.300   Jarque-Bera (JB):                1.390
+Skew:                          -0.570   Prob(JB):                        0.499
+Kurtosis:                       3.186   Cond. No.                         1.04
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.

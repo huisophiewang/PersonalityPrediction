@@ -1,0 +1,27 @@
+#####################################################################################################
+extra
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                  extra   R-squared:                       0.211
+Model:                            OLS   Adj. R-squared:                  0.175
+Method:                 Least Squares   F-statistic:                     5.887
+Date:                Mon, 11 Apr 2016   Prob (F-statistic):             0.0239
+Time:                        11:26:03   Log-Likelihood:                -23.380
+No. Observations:                  24   AIC:                             50.76
+Df Residuals:                      22   BIC:                             53.12
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+================================================================================================
+                                   coef    std err          t      P>|t|      [95.0% Conf. Int.]
+------------------------------------------------------------------------------------------------
+Intercept                        2.8384      0.137     20.760      0.000         2.555     3.122
+Q("hopkins;lsb;baker-berry")     0.3140      0.129      2.426      0.024         0.046     0.582
+==============================================================================
+Omnibus:                        1.129   Durbin-Watson:                   1.706
+Prob(Omnibus):                  0.569   Jarque-Bera (JB):                0.988
+Skew:                           0.452   Prob(JB):                        0.610
+Kurtosis:                       2.585   Cond. No.                         1.07
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.

@@ -1,0 +1,27 @@
+#####################################################################################################
+compliance
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:             compliance   R-squared:                       0.166
+Model:                            OLS   Adj. R-squared:                  0.129
+Method:                 Least Squares   F-statistic:                     4.565
+Date:                Mon, 11 Apr 2016   Prob (F-statistic):             0.0435
+Time:                        11:26:52   Log-Likelihood:                -30.404
+No. Observations:                  25   AIC:                             64.81
+Df Residuals:                      23   BIC:                             67.25
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+============================================================================================
+                               coef    std err          t      P>|t|      [95.0% Conf. Int.]
+--------------------------------------------------------------------------------------------
+Intercept                    3.5166      0.173     20.350      0.000         3.159     3.874
+Q("dartmouth_hall;home")     0.4991      0.234      2.137      0.044         0.016     0.982
+==============================================================================
+Omnibus:                        1.708   Durbin-Watson:                   1.637
+Prob(Omnibus):                  0.426   Jarque-Bera (JB):                1.402
+Skew:                          -0.553   Prob(JB):                        0.496
+Kurtosis:                       2.652   Cond. No.                         1.42
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.

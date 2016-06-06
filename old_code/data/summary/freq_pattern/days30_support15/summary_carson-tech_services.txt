@@ -1,0 +1,27 @@
+#####################################################################################################
+altruism
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:               altruism   R-squared:                       0.164
+Model:                            OLS   Adj. R-squared:                  0.127
+Method:                 Least Squares   F-statistic:                     4.497
+Date:                Sat, 12 Dec 2015   Prob (F-statistic):             0.0449
+Time:                        19:35:11   Log-Likelihood:                -25.827
+No. Observations:                  25   AIC:                             55.65
+Df Residuals:                      23   BIC:                             58.09
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+=============================================================================================
+                                coef    std err          t      P>|t|      [95.0% Conf. Int.]
+---------------------------------------------------------------------------------------------
+Intercept                     3.5792      0.142     25.236      0.000         3.286     3.873
+Q("carson-tech_services")    -0.2911      0.137     -2.121      0.045        -0.575    -0.007
+==============================================================================
+Omnibus:                       11.625   Durbin-Watson:                   2.933
+Prob(Omnibus):                  0.003   Jarque-Bera (JB):               10.587
+Skew:                          -1.192   Prob(JB):                      0.00502
+Kurtosis:                       5.118   Cond. No.                         1.05
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.

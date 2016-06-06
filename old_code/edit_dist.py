@@ -81,7 +81,7 @@ def get_avg_edit_dist(seqs):
 
 def get_feature():
     id_feature = {}
-    addr_dir = os.path.join(CUR_DIR, 'data', 'by_subjects')
+    addr_dir = r'C:\Users\Sophie\workspace\Personality\old_code\data\by_subjects'
     for file in os.listdir(addr_dir):
         if not file.endswith('.csv'):
             continue

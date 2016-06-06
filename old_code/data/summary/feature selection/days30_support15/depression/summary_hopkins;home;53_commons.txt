@@ -1,0 +1,27 @@
+#####################################################################################################
+depression
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:             depression   R-squared:                       0.200
+Model:                            OLS   Adj. R-squared:                  0.163
+Method:                 Least Squares   F-statistic:                     5.484
+Date:                Mon, 11 Apr 2016   Prob (F-statistic):             0.0287
+Time:                        11:27:23   Log-Likelihood:                -30.040
+No. Observations:                  24   AIC:                             64.08
+Df Residuals:                      22   BIC:                             66.44
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+================================================================================================
+                                   coef    std err          t      P>|t|      [95.0% Conf. Int.]
+------------------------------------------------------------------------------------------------
+Intercept                        2.9692      0.180     16.457      0.000         2.595     3.343
+Q("hopkins;home;53_commons")    -0.4041      0.173     -2.342      0.029        -0.762    -0.046
+==============================================================================
+Omnibus:                        1.760   Durbin-Watson:                   2.261
+Prob(Omnibus):                  0.415   Jarque-Bera (JB):                1.028
+Skew:                           0.076   Prob(JB):                        0.598
+Kurtosis:                       1.998   Cond. No.                         1.05
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.

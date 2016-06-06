@@ -376,7 +376,7 @@ def get_wifi_seqs(fp, duration_cut, days_limit=20):
         for entry in pair[1]:
             if entry[4].startswith('in'):
                 in_loc[idx][1].append(entry)
-    pprint(in_loc)        
+        
      
     in_loc_duration = []
     for idx, pair in enumerate(in_loc):
@@ -415,7 +415,9 @@ def get_wifi_seqs(fp, duration_cut, days_limit=20):
         for i, entry in enumerate(entries):
             time_start = in_loc[idx][1][entry[5]][1]
             time_end = in_loc[idx][1][entry[6]][1]
+            print datetime.strptime(time_end, "%d%b%Y:%H:%M:%S")
             duration = datetime.strptime(time_end, "%d%b%Y:%H:%M:%S") - datetime.strptime(time_start, "%d%b%Y:%H:%M:%S")
+            print duration
             duration = duration.seconds
             if duration > duration_cut:
                 m_entry = []
@@ -424,7 +426,8 @@ def get_wifi_seqs(fp, duration_cut, days_limit=20):
                 m_entry.append(time_end[-8:])
                 m_entry.append(duration)
                 in_loc_duration[idx][1].append(m_entry)   
-                
+    #pprint(in_loc_duration)   
+            
     #     # merge
 #     dt_locs = []
 #     for idx, pair in enumerate(in_loc_duration):
@@ -450,13 +453,11 @@ def get_wifi_seqs(fp, duration_cut, days_limit=20):
         entries = pair[1]
         locs = [entry[0][3:-1] for entry in entries]
         seqs.append(locs)
-
+    
+    #pprint(seqs)
     return seqs
     
-if __name__ == '__main__':
-    k=5
-    for i in range(k):
-        get_y_category(i+1)
+
     
     
     

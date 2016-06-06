@@ -1,0 +1,27 @@
+#####################################################################################################
+altruism
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:               altruism   R-squared:                       0.227
+Model:                            OLS   Adj. R-squared:                  0.194
+Method:                 Least Squares   F-statistic:                     6.761
+Date:                Mon, 11 Apr 2016   Prob (F-statistic):             0.0160
+Time:                        11:26:03   Log-Likelihood:                -24.838
+No. Observations:                  25   AIC:                             53.68
+Df Residuals:                      23   BIC:                             56.11
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+===========================================================================================
+                              coef    std err          t      P>|t|      [95.0% Conf. Int.]
+-------------------------------------------------------------------------------------------
+Intercept                   3.5793      0.136     26.258      0.000         3.297     3.861
+Q("kemeny;baker-berry")    -0.3425      0.132     -2.600      0.016        -0.615    -0.070
+==============================================================================
+Omnibus:                        1.696   Durbin-Watson:                   2.109
+Prob(Omnibus):                  0.428   Jarque-Bera (JB):                1.120
+Skew:                          -0.517   Prob(JB):                        0.571
+Kurtosis:                       2.916   Cond. No.                         1.04
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.

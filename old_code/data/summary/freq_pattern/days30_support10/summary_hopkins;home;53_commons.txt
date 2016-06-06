@@ -1,0 +1,108 @@
+#####################################################################################################
+extra
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                  extra   R-squared:                       0.169
+Model:                            OLS   Adj. R-squared:                  0.131
+Method:                 Least Squares   F-statistic:                     4.476
+Date:                Sat, 12 Dec 2015   Prob (F-statistic):             0.0459
+Time:                        19:37:57   Log-Likelihood:                -24.003
+No. Observations:                  24   AIC:                             52.01
+Df Residuals:                      22   BIC:                             54.36
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+================================================================================================
+                                   coef    std err          t      P>|t|      [95.0% Conf. Int.]
+------------------------------------------------------------------------------------------------
+Intercept                        2.8298      0.141     20.134      0.000         2.538     3.121
+Q("hopkins;home;53_commons")     0.2850      0.135      2.116      0.046         0.006     0.564
+==============================================================================
+Omnibus:                        0.398   Durbin-Watson:                   1.631
+Prob(Omnibus):                  0.820   Jarque-Bera (JB):                0.545
+Skew:                           0.178   Prob(JB):                        0.762
+Kurtosis:                       2.354   Cond. No.                         1.08
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+#####################################################################################################
+neuro
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                  neuro   R-squared:                       0.263
+Model:                            OLS   Adj. R-squared:                  0.228
+Method:                 Least Squares   F-statistic:                     7.486
+Date:                Sat, 12 Dec 2015   Prob (F-statistic):             0.0124
+Time:                        19:37:57   Log-Likelihood:                -19.069
+No. Observations:                  23   AIC:                             42.14
+Df Residuals:                      21   BIC:                             44.41
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+================================================================================================
+                                   coef    std err          t      P>|t|      [95.0% Conf. Int.]
+------------------------------------------------------------------------------------------------
+Intercept                        3.0681      0.121     25.359      0.000         2.817     3.320
+Q("hopkins;home;53_commons")    -0.3111      0.114     -2.736      0.012        -0.547    -0.075
+==============================================================================
+Omnibus:                        0.199   Durbin-Watson:                   2.573
+Prob(Omnibus):                  0.905   Jarque-Bera (JB):                0.379
+Skew:                          -0.159   Prob(JB):                        0.828
+Kurtosis:                       2.457   Cond. No.                         1.06
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+#####################################################################################################
+anxiety
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                anxiety   R-squared:                       0.186
+Model:                            OLS   Adj. R-squared:                  0.149
+Method:                 Least Squares   F-statistic:                     5.017
+Date:                Sat, 12 Dec 2015   Prob (F-statistic):             0.0355
+Time:                        19:37:57   Log-Likelihood:                -22.561
+No. Observations:                  24   AIC:                             49.12
+Df Residuals:                      22   BIC:                             51.48
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+================================================================================================
+                                   coef    std err          t      P>|t|      [95.0% Conf. Int.]
+------------------------------------------------------------------------------------------------
+Intercept                        3.0180      0.132     22.844      0.000         2.744     3.292
+Q("hopkins;home;53_commons")    -0.2831      0.126     -2.240      0.036        -0.545    -0.021
+==============================================================================
+Omnibus:                        1.029   Durbin-Watson:                   2.350
+Prob(Omnibus):                  0.598   Jarque-Bera (JB):                0.984
+Skew:                           0.349   Prob(JB):                        0.611
+Kurtosis:                       2.295   Cond. No.                         1.05
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+#####################################################################################################
+depression
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:             depression   R-squared:                       0.200
+Model:                            OLS   Adj. R-squared:                  0.163
+Method:                 Least Squares   F-statistic:                     5.484
+Date:                Sat, 12 Dec 2015   Prob (F-statistic):             0.0287
+Time:                        19:37:57   Log-Likelihood:                -30.040
+No. Observations:                  24   AIC:                             64.08
+Df Residuals:                      22   BIC:                             66.44
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+================================================================================================
+                                   coef    std err          t      P>|t|      [95.0% Conf. Int.]
+------------------------------------------------------------------------------------------------
+Intercept                        2.9692      0.180     16.457      0.000         2.595     3.343
+Q("hopkins;home;53_commons")    -0.4041      0.173     -2.342      0.029        -0.762    -0.046
+==============================================================================
+Omnibus:                        1.760   Durbin-Watson:                   2.261
+Prob(Omnibus):                  0.415   Jarque-Bera (JB):                1.028
+Skew:                           0.076   Prob(JB):                        0.598
+Kurtosis:                       1.998   Cond. No.                         1.05
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.

@@ -1,0 +1,27 @@
+#####################################################################################################
+activity
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:               activity   R-squared:                       0.201
+Model:                            OLS   Adj. R-squared:                  0.166
+Method:                 Least Squares   F-statistic:                     5.775
+Date:                Mon, 11 Apr 2016   Prob (F-statistic):             0.0247
+Time:                        11:27:37   Log-Likelihood:                -25.282
+No. Observations:                  25   AIC:                             54.56
+Df Residuals:                      23   BIC:                             57.00
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+=======================================================================================
+                          coef    std err          t      P>|t|      [95.0% Conf. Int.]
+---------------------------------------------------------------------------------------
+Intercept               3.4099      0.139     24.573      0.000         3.123     3.697
+Q("home;home;home")     0.3229      0.134      2.403      0.025         0.045     0.601
+==============================================================================
+Omnibus:                        3.411   Durbin-Watson:                   1.444
+Prob(Omnibus):                  0.182   Jarque-Bera (JB):                2.047
+Skew:                           0.678   Prob(JB):                        0.359
+Kurtosis:                       3.352   Cond. No.                         1.05
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.

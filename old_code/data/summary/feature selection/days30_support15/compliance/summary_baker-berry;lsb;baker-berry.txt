@@ -1,0 +1,27 @@
+#####################################################################################################
+compliance
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:             compliance   R-squared:                       0.207
+Model:                            OLS   Adj. R-squared:                  0.172
+Method:                 Least Squares   F-statistic:                     5.991
+Date:                Mon, 11 Apr 2016   Prob (F-statistic):             0.0224
+Time:                        11:27:20   Log-Likelihood:                -29.774
+No. Observations:                  25   AIC:                             63.55
+Df Residuals:                      23   BIC:                             65.99
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+====================================================================================================
+                                       coef    std err          t      P>|t|      [95.0% Conf. Int.]
+----------------------------------------------------------------------------------------------------
+Intercept                            3.4576      0.166     20.827      0.000         3.114     3.801
+Q("baker-berry;lsb;baker-berry")    -0.3916      0.160     -2.448      0.022        -0.723    -0.061
+==============================================================================
+Omnibus:                        0.513   Durbin-Watson:                   1.568
+Prob(Omnibus):                  0.774   Jarque-Bera (JB):                0.600
+Skew:                          -0.281   Prob(JB):                        0.741
+Kurtosis:                       2.489   Cond. No.                         1.04
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.

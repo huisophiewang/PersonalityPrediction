@@ -1,0 +1,27 @@
+#####################################################################################################
+altruism
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:               altruism   R-squared:                       0.323
+Model:                            OLS   Adj. R-squared:                  0.294
+Method:                 Least Squares   F-statistic:                     10.98
+Date:                Mon, 11 Apr 2016   Prob (F-statistic):            0.00303
+Time:                        11:26:51   Log-Likelihood:                -23.182
+No. Observations:                  25   AIC:                             50.36
+Df Residuals:                      23   BIC:                             52.80
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+=======================================================================================================================
+                                                          coef    std err          t      P>|t|      [95.0% Conf. Int.]
+-----------------------------------------------------------------------------------------------------------------------
+Intercept                                               3.5764      0.128     28.041      0.000         3.313     3.840
+Q("baker-berry;lsb;baker-berry;kemeny;baker-berry")    -0.4072      0.123     -3.313      0.003        -0.661    -0.153
+==============================================================================
+Omnibus:                        3.596   Durbin-Watson:                   2.349
+Prob(Omnibus):                  0.166   Jarque-Bera (JB):                2.161
+Skew:                          -0.692   Prob(JB):                        0.339
+Kurtosis:                       3.397   Cond. No.                         1.04
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.

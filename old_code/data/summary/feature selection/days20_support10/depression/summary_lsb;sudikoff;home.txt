@@ -1,0 +1,27 @@
+#####################################################################################################
+depression
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:             depression   R-squared:                       0.209
+Model:                            OLS   Adj. R-squared:                  0.173
+Method:                 Least Squares   F-statistic:                     5.822
+Date:                Mon, 11 Apr 2016   Prob (F-statistic):             0.0246
+Time:                        11:26:04   Log-Likelihood:                -29.894
+No. Observations:                  24   AIC:                             63.79
+Df Residuals:                      22   BIC:                             66.14
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+==========================================================================================
+                             coef    std err          t      P>|t|      [95.0% Conf. Int.]
+------------------------------------------------------------------------------------------
+Intercept                  2.9335      0.180     16.337      0.000         2.561     3.306
+Q("lsb;sudikoff;home")     0.4138      0.172      2.413      0.025         0.058     0.770
+==============================================================================
+Omnibus:                        1.275   Durbin-Watson:                   2.462
+Prob(Omnibus):                  0.529   Jarque-Bera (JB):                1.069
+Skew:                           0.314   Prob(JB):                        0.586
+Kurtosis:                       2.178   Cond. No.                         1.08
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.

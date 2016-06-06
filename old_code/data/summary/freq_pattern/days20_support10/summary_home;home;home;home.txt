@@ -1,0 +1,54 @@
+#####################################################################################################
+activity
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:               activity   R-squared:                       0.203
+Model:                            OLS   Adj. R-squared:                  0.169
+Method:                 Least Squares   F-statistic:                     5.866
+Date:                Sat, 12 Dec 2015   Prob (F-statistic):             0.0237
+Time:                        19:05:45   Log-Likelihood:                -25.243
+No. Observations:                  25   AIC:                             54.49
+Df Residuals:                      23   BIC:                             56.92
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+============================================================================================
+                               coef    std err          t      P>|t|      [95.0% Conf. Int.]
+--------------------------------------------------------------------------------------------
+Intercept                    3.4111      0.139     24.622      0.000         3.124     3.698
+Q("home;home;home;home")     0.3243      0.134      2.422      0.024         0.047     0.601
+==============================================================================
+Omnibus:                        2.201   Durbin-Watson:                   1.535
+Prob(Omnibus):                  0.333   Jarque-Bera (JB):                1.210
+Skew:                           0.530   Prob(JB):                        0.546
+Kurtosis:                       3.199   Cond. No.                         1.04
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+#####################################################################################################
+anxiety
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                anxiety   R-squared:                       0.196
+Model:                            OLS   Adj. R-squared:                  0.159
+Method:                 Least Squares   F-statistic:                     5.353
+Date:                Sat, 12 Dec 2015   Prob (F-statistic):             0.0304
+Time:                        19:05:45   Log-Likelihood:                -22.413
+No. Observations:                  24   AIC:                             48.83
+Df Residuals:                      22   BIC:                             51.18
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+============================================================================================
+                               coef    std err          t      P>|t|      [95.0% Conf. Int.]
+--------------------------------------------------------------------------------------------
+Intercept                    2.9956      0.131     22.795      0.000         2.723     3.268
+Q("home;home;home;home")    -0.3081      0.133     -2.314      0.030        -0.584    -0.032
+==============================================================================
+Omnibus:                        0.497   Durbin-Watson:                   1.988
+Prob(Omnibus):                  0.780   Jarque-Bera (JB):                0.503
+Skew:                           0.296   Prob(JB):                        0.778
+Kurtosis:                       2.610   Cond. No.                         1.05
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.

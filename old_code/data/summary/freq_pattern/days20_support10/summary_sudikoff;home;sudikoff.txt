@@ -1,0 +1,81 @@
+#####################################################################################################
+open
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                   open   R-squared:                       0.165
+Model:                            OLS   Adj. R-squared:                  0.129
+Method:                 Least Squares   F-statistic:                     4.545
+Date:                Sat, 12 Dec 2015   Prob (F-statistic):             0.0439
+Time:                        19:05:49   Log-Likelihood:                -16.454
+No. Observations:                  25   AIC:                             36.91
+Df Residuals:                      23   BIC:                             39.35
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+===============================================================================================
+                                  coef    std err          t      P>|t|      [95.0% Conf. Int.]
+-----------------------------------------------------------------------------------------------
+Intercept                       3.4016      0.097     34.893      0.000         3.200     3.603
+Q("sudikoff;home;sudikoff")     0.2012      0.094      2.132      0.044         0.006     0.396
+==============================================================================
+Omnibus:                        3.323   Durbin-Watson:                   1.553
+Prob(Omnibus):                  0.190   Jarque-Bera (JB):                2.004
+Skew:                           0.014   Prob(JB):                        0.367
+Kurtosis:                       4.387   Cond. No.                         1.05
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+#####################################################################################################
+order
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                  order   R-squared:                       0.159
+Model:                            OLS   Adj. R-squared:                  0.122
+Method:                 Least Squares   F-statistic:                     4.350
+Date:                Sat, 12 Dec 2015   Prob (F-statistic):             0.0483
+Time:                        19:05:49   Log-Likelihood:                -33.866
+No. Observations:                  25   AIC:                             71.73
+Df Residuals:                      23   BIC:                             74.17
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+===============================================================================================
+                                  coef    std err          t      P>|t|      [95.0% Conf. Int.]
+-----------------------------------------------------------------------------------------------
+Intercept                       3.1325      0.196     16.013      0.000         2.728     3.537
+Q("sudikoff;home;sudikoff")    -0.3949      0.189     -2.086      0.048        -0.787    -0.003
+==============================================================================
+Omnibus:                        1.950   Durbin-Watson:                   2.386
+Prob(Omnibus):                  0.377   Jarque-Bera (JB):                1.146
+Skew:                          -0.167   Prob(JB):                        0.564
+Kurtosis:                       2.006   Cond. No.                         1.05
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+#####################################################################################################
+aesthetics
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:             aesthetics   R-squared:                       0.233
+Model:                            OLS   Adj. R-squared:                  0.199
+Method:                 Least Squares   F-statistic:                     6.968
+Date:                Sat, 12 Dec 2015   Prob (F-statistic):             0.0146
+Time:                        19:05:49   Log-Likelihood:                -27.177
+No. Observations:                  25   AIC:                             58.35
+Df Residuals:                      23   BIC:                             60.79
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+===============================================================================================
+                                  coef    std err          t      P>|t|      [95.0% Conf. Int.]
+-----------------------------------------------------------------------------------------------
+Intercept                       2.9745      0.150     19.870      0.000         2.665     3.284
+Q("sudikoff;home;sudikoff")     0.3825      0.145      2.640      0.015         0.083     0.682
+==============================================================================
+Omnibus:                        1.058   Durbin-Watson:                   2.159
+Prob(Omnibus):                  0.589   Jarque-Bera (JB):                0.187
+Skew:                           0.057   Prob(JB):                        0.911
+Kurtosis:                       3.408   Cond. No.                         1.05
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.

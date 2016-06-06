@@ -1,0 +1,54 @@
+#####################################################################################################
+activity
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:               activity   R-squared:                       0.188
+Model:                            OLS   Adj. R-squared:                  0.153
+Method:                 Least Squares   F-statistic:                     5.321
+Date:                Sat, 12 Dec 2015   Prob (F-statistic):             0.0304
+Time:                        19:37:58   Log-Likelihood:                -25.481
+No. Observations:                  25   AIC:                             54.96
+Df Residuals:                      23   BIC:                             57.40
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P>|t|      [95.0% Conf. Int.]
+------------------------------------------------------------------------------
+Intercept      3.4151      0.140     24.424      0.000         3.126     3.704
+Q("lord")      0.3108      0.135      2.307      0.030         0.032     0.590
+==============================================================================
+Omnibus:                        0.966   Durbin-Watson:                   1.739
+Prob(Omnibus):                  0.617   Jarque-Bera (JB):                0.503
+Skew:                           0.347   Prob(JB):                        0.778
+Kurtosis:                       2.972   Cond. No.                         1.04
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+#####################################################################################################
+ideas
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                  ideas   R-squared:                       0.162
+Model:                            OLS   Adj. R-squared:                  0.126
+Method:                 Least Squares   F-statistic:                     4.446
+Date:                Sat, 12 Dec 2015   Prob (F-statistic):             0.0461
+Time:                        19:37:58   Log-Likelihood:                -17.463
+No. Observations:                  25   AIC:                             38.93
+Df Residuals:                      23   BIC:                             41.36
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P>|t|      [95.0% Conf. Int.]
+------------------------------------------------------------------------------
+Intercept      3.5488      0.101     34.975      0.000         3.339     3.759
+Q("lord")      0.2062      0.098      2.109      0.046         0.004     0.408
+==============================================================================
+Omnibus:                        0.452   Durbin-Watson:                   1.559
+Prob(Omnibus):                  0.798   Jarque-Bera (JB):                0.558
+Skew:                           0.008   Prob(JB):                        0.757
+Kurtosis:                       2.269   Cond. No.                         1.04
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.

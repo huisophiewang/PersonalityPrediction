@@ -1,0 +1,27 @@
+#####################################################################################################
+compliance
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:             compliance   R-squared:                       0.287
+Model:                            OLS   Adj. R-squared:                  0.256
+Method:                 Least Squares   F-statistic:                     9.247
+Date:                Mon, 11 Apr 2016   Prob (F-statistic):            0.00580
+Time:                        11:27:01   Log-Likelihood:                -28.443
+No. Observations:                  25   AIC:                             60.89
+Df Residuals:                      23   BIC:                             63.32
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+======================================================================================
+                         coef    std err          t      P>|t|      [95.0% Conf. Int.]
+--------------------------------------------------------------------------------------
+Intercept              3.4965      0.158     22.124      0.000         3.170     3.823
+Q("sudikoff;home")    -0.4861      0.160     -3.041      0.006        -0.817    -0.155
+==============================================================================
+Omnibus:                        4.445   Durbin-Watson:                   2.291
+Prob(Omnibus):                  0.108   Jarque-Bera (JB):                2.811
+Skew:                          -0.783   Prob(JB):                        0.245
+Kurtosis:                       3.497   Cond. No.                         1.10
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.

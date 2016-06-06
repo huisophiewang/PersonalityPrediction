@@ -1,0 +1,27 @@
+#####################################################################################################
+discipline
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:             discipline   R-squared:                       0.218
+Model:                            OLS   Adj. R-squared:                  0.183
+Method:                 Least Squares   F-statistic:                     6.151
+Date:                Mon, 11 Apr 2016   Prob (F-statistic):             0.0213
+Time:                        11:25:59   Log-Likelihood:                -26.868
+No. Observations:                  24   AIC:                             57.74
+Df Residuals:                      22   BIC:                             60.09
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+===========================================================================================
+                              coef    std err          t      P>|t|      [95.0% Conf. Int.]
+-------------------------------------------------------------------------------------------
+Intercept                   3.5613      0.158     22.499      0.000         3.233     3.890
+Q("53_commons;hopkins")     0.3748      0.151      2.480      0.021         0.061     0.688
+==============================================================================
+Omnibus:                        0.859   Durbin-Watson:                   2.477
+Prob(Omnibus):                  0.651   Jarque-Bera (JB):                0.328
+Skew:                          -0.285   Prob(JB):                        0.849
+Kurtosis:                       3.055   Cond. No.                         1.08
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.

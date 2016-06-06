@@ -1,0 +1,27 @@
+#####################################################################################################
+ideas
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                  ideas   R-squared:                       0.178
+Model:                            OLS   Adj. R-squared:                  0.142
+Method:                 Least Squares   F-statistic:                     4.986
+Date:                Mon, 11 Apr 2016   Prob (F-statistic):             0.0356
+Time:                        11:26:56   Log-Likelihood:                -17.220
+No. Observations:                  25   AIC:                             38.44
+Df Residuals:                      23   BIC:                             40.88
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+===========================================================================================
+                              coef    std err          t      P>|t|      [95.0% Conf. Int.]
+-------------------------------------------------------------------------------------------
+Intercept                   3.5564      0.100     35.391      0.000         3.349     3.764
+Q("home;thayer_secure")    -0.2164      0.097     -2.233      0.036        -0.417    -0.016
+==============================================================================
+Omnibus:                        0.187   Durbin-Watson:                   2.033
+Prob(Omnibus):                  0.911   Jarque-Bera (JB):                0.377
+Skew:                           0.137   Prob(JB):                        0.828
+Kurtosis:                       2.464   Cond. No.                         1.04
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.

@@ -1,0 +1,54 @@
+#####################################################################################################
+activity
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:               activity   R-squared:                       0.398
+Model:                            OLS   Adj. R-squared:                  0.372
+Method:                 Least Squares   F-statistic:                     15.21
+Date:                Sat, 12 Dec 2015   Prob (F-statistic):           0.000722
+Time:                        19:05:43   Log-Likelihood:                -21.739
+No. Observations:                  25   AIC:                             47.48
+Df Residuals:                      23   BIC:                             49.92
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+===================================================================================
+                      coef    std err          t      P>|t|      [95.0% Conf. Int.]
+-----------------------------------------------------------------------------------
+Intercept           3.3737      0.121     27.892      0.000         3.124     3.624
+Q("53_commons")     0.4806      0.123      3.899      0.001         0.226     0.736
+==============================================================================
+Omnibus:                        2.895   Durbin-Watson:                   1.753
+Prob(Omnibus):                  0.235   Jarque-Bera (JB):                1.327
+Skew:                          -0.115   Prob(JB):                        0.515
+Kurtosis:                       1.895   Cond. No.                         1.11
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+#####################################################################################################
+depression
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:             depression   R-squared:                       0.173
+Model:                            OLS   Adj. R-squared:                  0.135
+Method:                 Least Squares   F-statistic:                     4.587
+Date:                Sat, 12 Dec 2015   Prob (F-statistic):             0.0435
+Time:                        19:05:43   Log-Likelihood:                -30.438
+No. Observations:                  24   AIC:                             64.88
+Df Residuals:                      22   BIC:                             67.23
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+===================================================================================
+                      coef    std err          t      P>|t|      [95.0% Conf. Int.]
+-----------------------------------------------------------------------------------
+Intercept           2.9959      0.184     16.263      0.000         2.614     3.378
+Q("53_commons")    -0.3940      0.184     -2.142      0.044        -0.776    -0.013
+==============================================================================
+Omnibus:                        1.580   Durbin-Watson:                   2.033
+Prob(Omnibus):                  0.454   Jarque-Bera (JB):                0.997
+Skew:                           0.118   Prob(JB):                        0.607
+Kurtosis:                       2.030   Cond. No.                         1.10
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.

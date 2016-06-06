@@ -1,0 +1,27 @@
+#####################################################################################################
+activity
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:               activity   R-squared:                       0.214
+Model:                            OLS   Adj. R-squared:                  0.180
+Method:                 Least Squares   F-statistic:                     6.256
+Date:                Mon, 11 Apr 2016   Prob (F-statistic):             0.0199
+Time:                        11:26:50   Log-Likelihood:                -25.075
+No. Observations:                  25   AIC:                             54.15
+Df Residuals:                      23   BIC:                             56.59
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+================================================================================================
+                                   coef    std err          t      P>|t|      [95.0% Conf. Int.]
+------------------------------------------------------------------------------------------------
+Intercept                        3.4089      0.138     24.768      0.000         3.124     3.694
+Q("53_commons;hopkins;home")     0.3334      0.133      2.501      0.020         0.058     0.609
+==============================================================================
+Omnibus:                        2.054   Durbin-Watson:                   1.622
+Prob(Omnibus):                  0.358   Jarque-Bera (JB):                1.169
+Skew:                           0.526   Prob(JB):                        0.558
+Kurtosis:                       3.127   Cond. No.                         1.05
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.

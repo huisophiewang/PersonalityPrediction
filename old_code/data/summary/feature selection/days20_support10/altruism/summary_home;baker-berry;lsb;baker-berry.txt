@@ -1,0 +1,27 @@
+#####################################################################################################
+altruism
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:               altruism   R-squared:                       0.262
+Model:                            OLS   Adj. R-squared:                  0.230
+Method:                 Least Squares   F-statistic:                     8.166
+Date:                Mon, 11 Apr 2016   Prob (F-statistic):            0.00891
+Time:                        11:26:00   Log-Likelihood:                -24.262
+No. Observations:                  25   AIC:                             52.52
+Df Residuals:                      23   BIC:                             54.96
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+=========================================================================================================
+                                            coef    std err          t      P>|t|      [95.0% Conf. Int.]
+---------------------------------------------------------------------------------------------------------
+Intercept                                 3.5778      0.133     26.863      0.000         3.302     3.853
+Q("home;baker-berry;lsb;baker-berry")    -0.3672      0.128     -2.858      0.009        -0.633    -0.101
+==============================================================================
+Omnibus:                        2.361   Durbin-Watson:                   2.427
+Prob(Omnibus):                  0.307   Jarque-Bera (JB):                1.422
+Skew:                          -0.581   Prob(JB):                        0.491
+Kurtosis:                       3.120   Cond. No.                         1.04
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.

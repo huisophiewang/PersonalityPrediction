@@ -1,0 +1,27 @@
+#####################################################################################################
+aesthetics
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:             aesthetics   R-squared:                       0.160
+Model:                            OLS   Adj. R-squared:                  0.123
+Method:                 Least Squares   F-statistic:                     4.380
+Date:                Mon, 11 Apr 2016   Prob (F-statistic):             0.0476
+Time:                        11:26:05   Log-Likelihood:                -28.306
+No. Observations:                  25   AIC:                             60.61
+Df Residuals:                      23   BIC:                             63.05
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+=========================================================================================
+                            coef    std err          t      P>|t|      [95.0% Conf. Int.]
+-----------------------------------------------------------------------------------------
+Intercept                 2.9812      0.157     19.042      0.000         2.657     3.305
+Q("maclean;cummings")     0.3158      0.151      2.093      0.048         0.004     0.628
+==============================================================================
+Omnibus:                        2.276   Durbin-Watson:                   2.101
+Prob(Omnibus):                  0.320   Jarque-Bera (JB):                0.958
+Skew:                           0.363   Prob(JB):                        0.619
+Kurtosis:                       3.627   Cond. No.                         1.04
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.

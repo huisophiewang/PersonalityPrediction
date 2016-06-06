@@ -1,0 +1,81 @@
+#####################################################################################################
+agrbl
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                  agrbl   R-squared:                       0.283
+Model:                            OLS   Adj. R-squared:                  0.252
+Method:                 Least Squares   F-statistic:                     9.096
+Date:                Sat, 12 Dec 2015   Prob (F-statistic):            0.00615
+Time:                        19:05:47   Log-Likelihood:                -22.166
+No. Observations:                  25   AIC:                             48.33
+Df Residuals:                      23   BIC:                             50.77
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+===========================================================================================
+                              coef    std err          t      P>|t|      [95.0% Conf. Int.]
+-------------------------------------------------------------------------------------------
+Intercept                   3.5386      0.122     28.888      0.000         3.285     3.792
+Q("kemeny;baker-berry")    -0.3570      0.118     -3.016      0.006        -0.602    -0.112
+==============================================================================
+Omnibus:                        0.399   Durbin-Watson:                   1.648
+Prob(Omnibus):                  0.819   Jarque-Bera (JB):                0.419
+Skew:                          -0.260   Prob(JB):                        0.811
+Kurtosis:                       2.639   Cond. No.                         1.04
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+#####################################################################################################
+altruism
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:               altruism   R-squared:                       0.227
+Model:                            OLS   Adj. R-squared:                  0.194
+Method:                 Least Squares   F-statistic:                     6.761
+Date:                Sat, 12 Dec 2015   Prob (F-statistic):             0.0160
+Time:                        19:05:47   Log-Likelihood:                -24.838
+No. Observations:                  25   AIC:                             53.68
+Df Residuals:                      23   BIC:                             56.11
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+===========================================================================================
+                              coef    std err          t      P>|t|      [95.0% Conf. Int.]
+-------------------------------------------------------------------------------------------
+Intercept                   3.5793      0.136     26.258      0.000         3.297     3.861
+Q("kemeny;baker-berry")    -0.3425      0.132     -2.600      0.016        -0.615    -0.070
+==============================================================================
+Omnibus:                        1.696   Durbin-Watson:                   2.109
+Prob(Omnibus):                  0.428   Jarque-Bera (JB):                1.120
+Skew:                          -0.517   Prob(JB):                        0.571
+Kurtosis:                       2.916   Cond. No.                         1.04
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+#####################################################################################################
+compliance
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:             compliance   R-squared:                       0.192
+Model:                            OLS   Adj. R-squared:                  0.156
+Method:                 Least Squares   F-statistic:                     5.451
+Date:                Sat, 12 Dec 2015   Prob (F-statistic):             0.0286
+Time:                        19:05:47   Log-Likelihood:                -30.009
+No. Observations:                  25   AIC:                             64.02
+Df Residuals:                      23   BIC:                             66.46
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+===========================================================================================
+                              coef    std err          t      P>|t|      [95.0% Conf. Int.]
+-------------------------------------------------------------------------------------------
+Intercept                   3.4636      0.168     20.662      0.000         3.117     3.810
+Q("kemeny;baker-berry")    -0.3782      0.162     -2.335      0.029        -0.713    -0.043
+==============================================================================
+Omnibus:                        1.171   Durbin-Watson:                   1.354
+Prob(Omnibus):                  0.557   Jarque-Bera (JB):                1.059
+Skew:                          -0.336   Prob(JB):                        0.589
+Kurtosis:                       2.248   Cond. No.                         1.04
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.

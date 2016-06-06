@@ -1,0 +1,27 @@
+#####################################################################################################
+open
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                   open   R-squared:                       0.196
+Model:                            OLS   Adj. R-squared:                  0.161
+Method:                 Least Squares   F-statistic:                     5.592
+Date:                Mon, 11 Apr 2016   Prob (F-statistic):             0.0269
+Time:                        11:27:00   Log-Likelihood:                -15.988
+No. Observations:                  25   AIC:                             35.98
+Df Residuals:                      23   BIC:                             38.41
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+======================================================================================================
+                                         coef    std err          t      P>|t|      [95.0% Conf. Int.]
+------------------------------------------------------------------------------------------------------
+Intercept                              3.4114      0.096     35.665      0.000         3.214     3.609
+Q("ropeferry;ropeferry;ropeferry")    -0.2180      0.092     -2.365      0.027        -0.409    -0.027
+==============================================================================
+Omnibus:                        3.567   Durbin-Watson:                   1.811
+Prob(Omnibus):                  0.168   Jarque-Bera (JB):                1.893
+Skew:                           0.510   Prob(JB):                        0.388
+Kurtosis:                       3.881   Cond. No.                         1.04
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.

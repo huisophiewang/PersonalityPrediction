@@ -1,0 +1,29 @@
+#####################################################################################################
+compliance
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:             compliance   R-squared:                       0.000
+Model:                            OLS   Adj. R-squared:                  0.000
+Method:                 Least Squares   F-statistic:                       nan
+Date:                Mon, 11 Apr 2016   Prob (F-statistic):                nan
+Time:                        11:26:58   Log-Likelihood:                -32.667
+No. Observations:                  25   AIC:                             67.33
+Df Residuals:                      24   BIC:                             68.55
+Df Model:                           0                                         
+Covariance Type:            nonrobust                                         
+======================================================================================
+                         coef    std err          t      P>|t|      [95.0% Conf. Int.]
+--------------------------------------------------------------------------------------
+Intercept              3.3254      0.176     18.927      0.000         2.963     3.688
+Q("lodge;hopkins")    -0.6522      0.034    -18.927      0.000        -0.723    -0.581
+==============================================================================
+Omnibus:                        1.538   Durbin-Watson:                   1.941
+Prob(Omnibus):                  0.463   Jarque-Bera (JB):                1.273
+Skew:                          -0.523   Prob(JB):                        0.529
+Kurtosis:                       2.644   Cond. No.                     3.82e+16
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+[2] The smallest eigenvalue is 1.78e-32. This might indicate that there are
+strong multicollinearity problems or that the design matrix is singular.

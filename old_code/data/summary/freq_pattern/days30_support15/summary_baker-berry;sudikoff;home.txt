@@ -1,0 +1,27 @@
+#####################################################################################################
+compliance
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:             compliance   R-squared:                       0.159
+Model:                            OLS   Adj. R-squared:                  0.123
+Method:                 Least Squares   F-statistic:                     4.356
+Date:                Sat, 12 Dec 2015   Prob (F-statistic):             0.0481
+Time:                        19:35:11   Log-Likelihood:                -30.499
+No. Observations:                  25   AIC:                             65.00
+Df Residuals:                      23   BIC:                             67.44
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+==================================================================================================
+                                     coef    std err          t      P>|t|      [95.0% Conf. Int.]
+--------------------------------------------------------------------------------------------------
+Intercept                          3.4570      0.171     20.228      0.000         3.103     3.811
+Q("baker-berry;sudikoff;home")    -0.3448      0.165     -2.087      0.048        -0.687    -0.003
+==============================================================================
+Omnibus:                        1.941   Durbin-Watson:                   1.721
+Prob(Omnibus):                  0.379   Jarque-Bera (JB):                1.409
+Skew:                          -0.369   Prob(JB):                        0.494
+Kurtosis:                       2.101   Cond. No.                         1.04
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.

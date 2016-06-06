@@ -1,0 +1,27 @@
+#####################################################################################################
+agrbl
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                  agrbl   R-squared:                       0.417
+Model:                            OLS   Adj. R-squared:                  0.392
+Method:                 Least Squares   F-statistic:                     16.47
+Date:                Mon, 11 Apr 2016   Prob (F-statistic):           0.000486
+Time:                        11:26:51   Log-Likelihood:                -19.580
+No. Observations:                  25   AIC:                             43.16
+Df Residuals:                      23   BIC:                             45.60
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+===========================================================================================================
+                                              coef    std err          t      P>|t|      [95.0% Conf. Int.]
+-----------------------------------------------------------------------------------------------------------
+Intercept                                   3.5357      0.110     32.018      0.000         3.307     3.764
+Q("baker-berry;lsb;baker-berry;kemeny")    -0.4319      0.106     -4.059      0.000        -0.652    -0.212
+==============================================================================
+Omnibus:                        2.825   Durbin-Watson:                   1.849
+Prob(Omnibus):                  0.243   Jarque-Bera (JB):                1.661
+Skew:                          -0.619   Prob(JB):                        0.436
+Kurtosis:                       3.251   Cond. No.                         1.04
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.

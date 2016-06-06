@@ -1,0 +1,29 @@
+#####################################################################################################
+extra
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                  extra   R-squared:                       0.000
+Model:                            OLS   Adj. R-squared:                  0.000
+Method:                 Least Squares   F-statistic:                       inf
+Date:                Mon, 11 Apr 2016   Prob (F-statistic):                nan
+Time:                        11:26:58   Log-Likelihood:                -26.226
+No. Observations:                  24   AIC:                             54.45
+Df Residuals:                      23   BIC:                             55.63
+Df Model:                           0                                         
+Covariance Type:            nonrobust                                         
+======================================================================================
+                         coef    std err          t      P>|t|      [95.0% Conf. Int.]
+--------------------------------------------------------------------------------------
+Intercept              2.7434      0.145     18.933      0.000         2.444     3.043
+Q("lodge;hopkins")    -0.5380      0.028    -18.933      0.000        -0.597    -0.479
+==============================================================================
+Omnibus:                        1.562   Durbin-Watson:                   1.528
+Prob(Omnibus):                  0.458   Jarque-Bera (JB):                1.281
+Skew:                           0.536   Prob(JB):                        0.527
+Kurtosis:                       2.637   Cond. No.                     1.91e+16
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+[2] The smallest eigenvalue is 6.82e-32. This might indicate that there are
+strong multicollinearity problems or that the design matrix is singular.

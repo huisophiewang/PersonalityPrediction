@@ -1,0 +1,27 @@
+#####################################################################################################
+aesthetics
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:             aesthetics   R-squared:                       0.183
+Model:                            OLS   Adj. R-squared:                  0.147
+Method:                 Least Squares   F-statistic:                     5.135
+Date:                Mon, 11 Apr 2016   Prob (F-statistic):             0.0332
+Time:                        11:27:01   Log-Likelihood:                -27.966
+No. Observations:                  25   AIC:                             59.93
+Df Residuals:                      23   BIC:                             62.37
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+===============================================================================================
+                                  coef    std err          t      P>|t|      [95.0% Conf. Int.]
+-----------------------------------------------------------------------------------------------
+Intercept                       2.9752      0.155     19.256      0.000         2.656     3.295
+Q("sudikoff;home;sudikoff")     0.3392      0.150      2.266      0.033         0.030     0.649
+==============================================================================
+Omnibus:                        0.926   Durbin-Watson:                   2.233
+Prob(Omnibus):                  0.629   Jarque-Bera (JB):                0.137
+Skew:                          -0.058   Prob(JB):                        0.934
+Kurtosis:                       3.343   Cond. No.                         1.05
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
