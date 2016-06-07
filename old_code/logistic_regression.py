@@ -133,7 +133,7 @@ def my_logit(label):
 def logit():
     fp = r"data\matrix_data\logit\wifi_features_extra.csv"
     df = pandas.read_csv(fp)
-    y, X = dmatrices('extra ~ len_var + end_time_var + fq_home', data=df)
+    y, X = dmatrices('extra ~ wifi_features + end_time_var + fq_home', data=df)
     mod = sm.Logit(y, X)
     res = mod.fit()
     print res.summary()

@@ -1,5 +1,5 @@
 
-
+from util import traits
     
 to_scale = {"Disagree strongly": 1,
             "Disagree a little": 2,
@@ -8,8 +8,6 @@ to_scale = {"Disagree strongly": 1,
             "Agree strongly": 5}
 
 reverse = [6, 21, 31, 2, 12, 27, 37, 8, 18, 23, 43, 9, 24, 34, 35, 41]
-
-traits = ['extra', 'agrbl', 'consc', 'neuro', 'openn']
 
 idx = {'extra':[1, 6, 11, 16, 21, 26, 31, 36],
      'agrbl' : [2, 7, 12, 17, 22, 27, 32, 37, 42],

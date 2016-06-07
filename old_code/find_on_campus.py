@@ -2,7 +2,7 @@ from datetime import datetime, date, time, timedelta
 from pprint import pprint
 import os
 
-DATA_DIR = r'data\by subjects'
+dir = r'C:\Users\Sophie\workspace\Personality\old_code\data\by_subjects'
 
 off_campus = ['00', '12', '13', '31', '34', '36', '39', '42', '44', '45', '47', '56']
 
@@ -80,14 +80,14 @@ def gps(fp, id):
         print 'on campus'
     
 def gps_all():
-    for file in os.listdir(DATA_DIR):
+    for file in os.listdir(dir):
         if not file.endswith('.csv'):
             continue
         id = file.split('.')[0][-2:]
         print
         print 'subject id: ' + id
         
-        fp = os.path.join(DATA_DIR, file)
+        fp = os.path.join(dir, file)
         gps(fp, id)
 
 if __name__ == "__main__":
@@ -100,7 +100,7 @@ if __name__ == "__main__":
     gps_all()
     
     pprint(subj_home)
-    print len(subj_home)
+    #print len(subj_home)
 
 
        

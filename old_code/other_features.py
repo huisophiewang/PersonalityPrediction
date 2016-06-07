@@ -82,7 +82,7 @@ if __name__ == '__main__':
     #write_feature_to_csv('num_patterns', id_num_patterns)
     
     #id_len_var = get_feature(get_len_var)
-    #write_feature_to_csv('len_var', id_len_var)
+    #write_feature_to_csv('wifi_features', id_len_var)
     
     id_home_freq = get_feature(get_home_freq)
 

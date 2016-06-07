@@ -85,7 +85,7 @@ def write_wifi_features_for_knn():
     
 if __name__ == '__main__':
 
-    features = ['edit_dist', 'len_diff', 'len_var', 'avg_len', 'num_patterns', 'start_time_var', 'end_time_var',
+    features = ['edit_dist', 'len_diff', 'wifi_features', 'avg_len', 'num_patterns', 'start_time_var', 'end_time_var',
                 'fp_home', 'fp_lsb', 'fp_hopkins', 'fp_sudikoff', 'fp_53_commons', 'fp_baker-berry', 'fp_sport-venues']
     #features = ['raw_edit_dist', 'raw_len_diff', 'raw_start_time_var', 'raw_end_time_var']
     write_all_wifi_features(features, False)
