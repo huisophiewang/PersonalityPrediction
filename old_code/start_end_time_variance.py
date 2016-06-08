@@ -155,6 +155,7 @@ def get_end_time(in_loc_duration, id):
                 end_times.append(line[2])
                 #print line[2]
                 break
+    print len(end_times)
     return end_times       
 
 def calc_time_var(times):  
@@ -214,7 +215,7 @@ def get_feature():
         fp = os.path.join(r'data\by_subjects', file)
         
         in_loc_duration = get_major_loc(fp)
-        pprint(in_loc_duration)
+        #pprint(in_loc_duration)
   
         start_times = get_start_time(in_loc_duration, id)
         start_var = calc_time_var(start_times)
@@ -224,7 +225,7 @@ def get_feature():
         end_var = calc_time_var(end_times)
         end_time_var[id] = end_var
   
-
+    #pprint(start_time_var)
     pprint(end_time_var)
     return start_time_var, end_time_var
 
@@ -239,6 +240,6 @@ if __name__ == "__main__":
     
     id_start_time_var, id_end_time_var = get_feature()
     #plot(result)
-    #write_feature_to_csv('end_time_var', id_end_time_var)
+    #write_feature_to_csv('end_time_var_test', id_end_time_var)
     #write_raw_feature_to_csv('start_time_var', id_start_time_var)
     

@@ -1,24 +1,117 @@
 import time
-from wifi import get_in_loc_duration
-from util import id_home, start_time_cut
+import os
+import random
+from wifi_prep import get_in_loc_duration
+from util import CUR_DIR, id_home, start_time_cut, end_time_cut, remove_subjects, write_feature_to_csv
 import pprint
-pp = pprint.PrettyPrinter(width=200)
+pp = pprint.PrettyPrinter(width=100)
+wifi_dir = os.path.join(CUR_DIR, 'dataset', 'sensing', 'wifi_location')
 
 def get_start_var(in_loc_duration, id):
+    # randomly choose 20 days
+    
     start_times = []
     for pair in in_loc_duration:
         seq = pair[1]
-        pp.pprint(seq)
+        #pp.pprint(seq)
         for line in seq:
             loc = line[0][3:-1]
             start_time = time.strptime(line[1], "%H:%M:%S")
+            # the first loc after 4:00 am that is not home
             if start_time > start_time_cut and not loc in id_home[id]:
                 start_times.append(line[1])
-                print line[1]
+                #print line[1]
                 break
+    #print len(start_times)
+    #samples = random.sample(start_times, 20)
+    samples = start_times
+    return get_time_var(samples)
 
-    return start_times
+def get_end_var(in_loc_duration, id):
+    end_times = []
 
-fp = r'C:\Users\Sophie\workspace\Personality\dataset\sensing\wifi_location\wifi_location_u01.csv'
-in_loc_duration = get_in_loc_duration(fp, duration_cut=60*5, sample_days=20, weekday_only=True)
-get_start_var(in_loc_duration, '01')
+    for pair in in_loc_duration:
+        dt = pair[0]    
+#         if not dt in WIFI_COMMON_DAYS:
+#             continue
+        
+        seq = pair[1]
+        if id in ['50', '25']:
+            pp.pprint(seq)
+            
+        if not seq:
+            continue
+        last_loc = seq[-1][0][3:-1]
+        if not last_loc in id_home[id]:
+            continue
+        for line in reversed(seq):
+            loc = line[0][3:-1]
+            end_time = time.strptime(line[2], "%H:%M:%S")
+            # the last loc after 3:00 pm that is not home
+            if end_time > end_time_cut and not loc in id_home[id]:
+                end_times.append(line[2])
+                print line[2]
+                break
+    print len(end_times)
+    
+    ### random select the same number of days for each subject
+    #samples = random.sample(end_times, 20)
+    samples = end_times
+    return get_time_var(samples)      
+
+def get_time_var(times):  
+    #print times
+
+    avg = 0.0
+    minutes = []
+    for t in times:  
+        items = t.split(':')
+        #m = int(items[0])*60 + int(items[1]) + float(items[2])/60
+        m = int(items[0])*3600 + int(items[1])*60 + int(items[2])
+        minutes.append(m)
+        avg += m
+    avg /= len(times)
+    
+    var = 0.0
+    for m in minutes:
+        var += (m - avg) * (m - avg)
+    var /= len(times)
+    
+    #print round(avg), round(var)
+
+    return var
+
+def get_feature(func):
+    id_feature = {}
+
+    for file in os.listdir(wifi_dir):
+        if not file.endswith('.csv') or file.endswith('datetime.csv'):
+            continue
+        
+        id = file.split('.')[0][-2:]
+        if id in remove_subjects:
+            continue
+        
+        print '----------'
+        print 'id: ' + id
+    
+        fp = os.path.join(wifi_dir, file)
+        in_loc_duration = get_in_loc_duration(fp, duration_cut=60*5, weekday_only=True)
+        pp.pprint(in_loc_duration)
+
+        result = func(in_loc_duration, id)
+        #print result
+        
+        id_feature[id] = result
+        
+    return id_feature
+
+if __name__ == '__main__':
+#     id_feature = get_feature(get_start_var)
+#     write_feature_to_csv(id_feature, 'start_time_var')
+    
+    id_feature = get_feature(get_end_var)
+    pp.pprint(id_feature)
+    #write_feature_to_csv(id_feature, 'end_time_var_test')
+    
+    

@@ -362,7 +362,7 @@ def get_wifi_seqs(fp, duration_cut, days_limit=20):
 
     
     #pprint(by_dates)
-    # contain both wifi and gps entries
+    # contain both wifi_prep and gps entries
     by_dates = sorted(by_dates.items(), key=lambda item: datetime.strptime(item[0], "%d%b%Y"))
     #print len(by_dates)
      

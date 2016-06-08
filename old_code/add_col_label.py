@@ -11,7 +11,7 @@ for file in os.listdir(input_dir):
     id = file.split('.')[0][-2:]
     fr = open(os.path.join(input_dir, file), 'rU')
     fw = open(os.path.join(output_dir, file), 'a')
-    fw.write(r"id,time,latitude,longitude,wifi,addr" + '\n')
+    fw.write(r"id,time,latitude,longitude,wifi_prep,addr" + '\n')
     lines = fr.readlines()
     for line in lines:
         fw.write(line)

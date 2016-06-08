@@ -9,7 +9,7 @@ pp = pprint.PrettyPrinter(width=200)
 wifi_dir = os.path.join(CUR_DIR, 'dataset', 'sensing', 'wifi_location')
 dir = r'C:\Users\Sophie\workspace\Personality\dataset\sensing'
 
-def get_in_loc_duration(fp, duration_cut, sample_days, weekday_only):
+def get_in_loc_duration(fp, duration_cut):
     fr = open(fp, 'rU') 
     fr.readline()
     lines = fr.readlines()
@@ -21,11 +21,12 @@ def get_in_loc_duration(fp, duration_cut, sample_days, weekday_only):
         if not items[1].startswith('in'):
             continue
         dt = datetime.fromtimestamp(int(items[0])).strftime('%Y-%m-%d %H:%M:%S')
-        date = dt[:10]     
-        date_obj = datetime.strptime(date, "%Y-%m-%d")
-        weekday = date_obj.strftime("%A")         
-        if weekday_only and weekday in ['Saturday', 'Sunday']:
-            continue 
+        date = dt[:10]    
+         
+#         date_obj = datetime.strptime(date, "%Y-%m-%d")
+#         weekday = date_obj.strftime("%A")         
+#         if weekday in ['Saturday', 'Sunday']:
+#             continue 
          
         if date not in by_dates:
             by_dates[date] = []
@@ -88,11 +89,24 @@ def get_in_loc_duration(fp, duration_cut, sample_days, weekday_only):
         
 def get_seqs(fp, duration_cut=60*5, sample_days=20, weekday_only=True):
 
-    in_loc_duration = get_in_loc_duration(fp, duration_cut, sample_days, weekday_only)
-
-    ### sample same number of days for each subject    
+    in_loc_duration = get_in_loc_duration(fp, duration_cut)
+    
+    ### remove weekends
+    in_loc_duration_weekdays = []
+    for pair in in_loc_duration:   
+        date_obj = datetime.strptime(pair[0], "%Y-%m-%d")
+        weekday = date_obj.strftime("%A")         
+        if weekday_only and weekday in ['Saturday', 'Sunday']:
+            continue 
+        in_loc_duration_weekdays.append((pair[0], pair[1]))
+    
+      
     seqs = []
-    samples = random.sample(in_loc_duration, sample_days)
+    ### randomly choose the same number of days for each subject  
+    #samples = random.sample(in_loc_duration_weekdays, sample_days)
+    ### choose the first 20 days
+    samples = in_loc_duration_weekdays[:20]
+    print len(samples)
     for pair in samples:
         locs = [entry[0][3:-1] for entry in pair[1]]
         seqs.append(locs)  

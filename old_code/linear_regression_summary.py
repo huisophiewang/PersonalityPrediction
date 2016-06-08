@@ -80,7 +80,7 @@ def freq_pattern():
         
 
 if __name__ == '__main__':
-    feature = 'len_diff'
+    feature = 'end_time_var_test'
     single_vrb(feature)
 
     #multi_vrb()

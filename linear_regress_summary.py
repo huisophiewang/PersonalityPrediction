@@ -36,5 +36,10 @@ def single_vrb(feature):
 
         
 if __name__ == '__main__':
-    feature = 'wifi_features'
+    feature = 'len_var_test'
+    #feature = 'start_time_var'
+    #feature = 'end_time_var_test'
     single_vrb(feature)
+    
+    
+    

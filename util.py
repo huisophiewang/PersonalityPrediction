@@ -5,16 +5,25 @@ import time
 CUR_DIR = os.path.dirname(os.path.realpath(__file__))
 traits = ['extra', 'agrbl', 'consc', 'neuro', 'openn']
 
-off_campus = ['00', '12', '13', '31', '34', '36', '39', '42', '44', '45', '47', '51', '56']
+# is 51 off-campus?
+off_campus = ['00', '12', '13', '31', '34', '36', '39', '42', '44', '45', '47', '56']
 # has less than 20 days: 39
 # has less than 30 days: 24, 34, 50
 # outliers for feature wifi_features: 49, 52
 remove_subjects = off_campus
-#remove_subjects = set(off_campus).union(set(['39', '49', '52']))
+# need to remove for len_var to work
+remove_subjects = set(off_campus).union(set(['39', '49', '52', '46']))
+# need to remove for end_time_var to work
+#remove_subjects = set(off_campus).union(set(['39', '49', '52', '25', '50']))
+#remove_subjects = set(off_campus).union(set(['46', '47', '49', '50', '51', '52', '53', '54', '56', '57', '58', '59']))
+
 
 start_time_cut = time.strptime('04:00:00', "%H:%M:%S")
+
+# TODO: try to start from 4:00 am the next day, check locs in reverse order, use the first time loc appears
 end_time_cut = time.strptime('15:00:00', "%H:%M:%S")
 
+# TODO: home should be more accurate, try to do it again
 id_home = {'01': ['kemeny', 'cutter-north', 'north-main'], # Phi Tau frat
  '02': ['occum'],  # Epsilon Kappa Theta soro
  '03': ['north-park'], # graduate
