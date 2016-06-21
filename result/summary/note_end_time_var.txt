@@ -1,9 +1,10 @@
 end_time_var:
-(start from 4:00am the next day, reverse order, 
+variance of the time the user comes back home in the evening
+start from 4:00am the next day, reverse order, 
 check each location, find the first non-home, 
-use its following home start time)
-(only weekdays)
-(34 users)
+use its following home start time as end_time
+only weekdays
+34 users
 
 
 extra + 

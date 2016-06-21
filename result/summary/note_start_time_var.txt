@@ -1,12 +1,9 @@
 start_time_var:
-(start from 4:00am today, check each location in order,
+variance of the time the user leaves home in the morning
+start from 4:00am today, check each location in order,
 use the start time of the first loc that is not home)
-(consider weekdays only has better results)
-(34 users, who live on campus,
-remove outliers such as 46, 49, 52, will have better result,
-but even if not, result is good enough)
-
-
+consider weekdays only has better results
+34 users, who live on campus
 
 
 

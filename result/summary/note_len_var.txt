@@ -1,10 +1,9 @@
 len_var:
-(only consider loc stayed for at least 5 min,
+variance of sequence length
+only consider locatioin stayed for at least 5 min,
 weekday only, choose the first 20 days, 
-merge loc using threshold 7,
-need to remove outlier id='46')
-
-
+merge loc using threshold 7, because of to wifi inaccuracy
+33 users, need to remove outlier id='46'
 
 
 extra +
