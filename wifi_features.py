@@ -4,7 +4,7 @@ import pprint
 pp = pprint.PrettyPrinter(width=200)
 
 from util import CUR_DIR, remove_subjects, write_feature_to_csv
-from wifi_prep import get_seqs, get_in_loc_duration
+from wifi_prep import get_seqs
 wifi_dir = os.path.join(CUR_DIR, 'dataset', 'sensing', 'wifi_location')
 
 def get_len_var(seqs):
@@ -37,9 +37,8 @@ def get_feature():
         
         print '----------'
         print 'id: ' + id
-    
-        fp = os.path.join(wifi_dir, file)
-        seqs = get_seqs(fp)
+
+        seqs = get_seqs(id)
         #print seqs
         #print len(seqs)
         result = get_len_var(seqs)
@@ -53,6 +52,6 @@ def get_feature():
 if __name__ == '__main__':  
     id_feature = get_feature()
     pp.pprint(id_feature)
-    write_feature_to_csv(id_feature, 'len_var_test')
+    write_feature_to_csv(id_feature, 'len_var')
     
     

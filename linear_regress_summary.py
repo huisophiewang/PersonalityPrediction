@@ -27,19 +27,34 @@ def single_vrb(feature):
         print res.summary()
         
         
-    m_data = df.as_matrix()
-    x = m_data[:,1]
-    y = m_data[:,2]
-    plt.plot(x, y, 'ro')
-    plt.show()
-        
 
         
+def plot_feature(feature):
+    input_fp = os.path.join(CUR_DIR, 'result', 'feature', feature + '.csv')
+    df = pandas.read_csv(input_fp)
+    m_data = df.as_matrix()
+
+    x = m_data[:,1]
+
+    f, axarr = plt.subplots(5, sharex=True)
+    
+    for i in range(5):
+        y = m_data[:,i+2]
+        #print len(y[start:cut])
+        #x = range(1, cut+1)
+#         plt.subplot(27, 1, i)
+#         plt.plot(x, y[start:cut])
+        axarr[i].plot(x, y, 'ro')
+
+    plt.show()
+    
+         
 if __name__ == '__main__':
-    feature = 'len_var_test'
-    #feature = 'start_time_var'
-    #feature = 'end_time_var_test'
+    feature = 'len_var'
+    feature = 'start_time_var'
+    feature = 'end_time_var'
     single_vrb(feature)
+    plot_feature(feature)
     
     
     

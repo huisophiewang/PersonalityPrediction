@@ -9,7 +9,8 @@ pp = pprint.PrettyPrinter(width=200)
 wifi_dir = os.path.join(CUR_DIR, 'dataset', 'sensing', 'wifi_location')
 dir = r'C:\Users\Sophie\workspace\Personality\dataset\sensing'
 
-def get_in_loc_duration(fp, duration_cut):
+def get_in_loc_duration(id, duration_cut=60*5):
+    fp = os.path.join(wifi_dir, r'wifi_location_u%s.csv' % id)
     fr = open(fp, 'rU') 
     fr.readline()
     lines = fr.readlines()
@@ -22,11 +23,6 @@ def get_in_loc_duration(fp, duration_cut):
             continue
         dt = datetime.fromtimestamp(int(items[0])).strftime('%Y-%m-%d %H:%M:%S')
         date = dt[:10]    
-         
-#         date_obj = datetime.strptime(date, "%Y-%m-%d")
-#         weekday = date_obj.strftime("%A")         
-#         if weekday in ['Saturday', 'Sunday']:
-#             continue 
          
         if date not in by_dates:
             by_dates[date] = []
@@ -86,14 +82,55 @@ def get_in_loc_duration(fp, duration_cut):
     #pp.pprint(in_loc_duration) 
     #print len(in_loc_duration)
     return in_loc_duration
-        
-def get_seqs(fp, duration_cut=60*5, sample_days=20, weekday_only=True):
 
-    in_loc_duration = get_in_loc_duration(fp, duration_cut)
+def merge(in_loc_duration, threshold = 7):
+    in_loc_duration_merge = []
+    for pair in in_loc_duration:  
+        seq = pair[1]
+        
+        ## for each loc in seq, count contains the number of previous locs that are the same as the current one
+        count = [0] * len(seq)
+        for i, loc in enumerate(seq):
+            if i == 0:
+                continue
+            if seq[i][0] == seq[i-1][0]:
+                count[i] = count[i-1] + 1
+        #print count
+        
+        merged_seq = []
+        for i, m in enumerate(count):
+            ## keep these locations if count is under threshold
+            if m < threshold-1:
+                merged_seq.append(seq[i])
+            ## 
+            elif m == threshold-1:
+                for j in range(threshold-1):
+                    merged_seq.pop()
+                merged_start_time = seq[i-threshold+1][:2]
+                merged_seq.append(merged_start_time)
+            ## the 
+            elif i==len(count)-1 or count[i+1]==0:
+                merge_end_time = seq[i][2]
+                duration =  datetime.strptime(merge_end_time, "%H:%M:%S") - datetime.strptime(merged_seq[-1][1], "%H:%M:%S")
+                duration = duration.seconds
+                merged_seq[-1].append(merge_end_time)
+                merged_seq[-1].append(duration)
+                
+        #pp.pprint(merged_seq)  
+        in_loc_duration_merge.append((pair[0], merged_seq))   
+    return in_loc_duration_merge   
+                
+        
+def get_seqs(id, duration_cut=60*5, sample_days=20, weekday_only=True):
+
+    in_loc_duration = get_in_loc_duration(id, duration_cut)
+    #pp.pprint(in_loc_duration)
+    in_loc_duration_merge = merge(in_loc_duration)
+    #pp.pprint(in_loc_duration_merge)
     
     ### remove weekends
     in_loc_duration_weekdays = []
-    for pair in in_loc_duration:   
+    for pair in in_loc_duration_merge:   
         date_obj = datetime.strptime(pair[0], "%Y-%m-%d")
         weekday = date_obj.strftime("%A")         
         if weekday_only and weekday in ['Saturday', 'Sunday']:
@@ -106,12 +143,11 @@ def get_seqs(fp, duration_cut=60*5, sample_days=20, weekday_only=True):
     #samples = random.sample(in_loc_duration_weekdays, sample_days)
     ### choose the first 20 days
     samples = in_loc_duration_weekdays[:20]
-    print len(samples)
+    #print len(samples)
     for pair in samples:
         locs = [entry[0][3:-1] for entry in pair[1]]
         seqs.append(locs)  
-        print pair[0] + ' ' +  ', '.join(locs)
-    #pp.pprint(seqs)
+        #print pair[0] + ' ' +  ', '.join(locs)
     
     return seqs
 
@@ -124,13 +160,17 @@ def get_all_subjects_seqs():
             continue
         print '----------'
         print 'id: ' + id
-     
-        fp = os.path.join(wifi_dir, file)
-        get_seqs(fp, 60*5)
+            
+        get_seqs(id, 60*5)
 
 def to_datetime(folder, id):
-    input_fp = os.path.join(dir, folder, '%s_u%2d.csv' % (folder, id))  
-    output_fp = os.path.join(dir, folder, '%s_u%2d_datetime.csv' % (folder, id))
+    input_fp = os.path.join(dir, folder, '%s_u%02d.csv' % (folder, id))  
+    output_fp = os.path.join(dir, folder, '%s_u%02d_datetime.csv' % (folder, id))
+    
+    if not os.path.exists(input_fp) or os.path.exists(output_fp):
+        return
+    
+    print output_fp
     
     fr = open(input_fp, 'rU') 
     fw = open(output_fp, 'a')
@@ -142,7 +182,7 @@ def to_datetime(folder, id):
         items = line.rstrip(',\n').split(",")
         dt = datetime.fromtimestamp(int(items[0])).strftime('%Y-%m-%d-%H:%M:%S')
         outline = [dt]
-        
+         
         outline.extend(items[1:])
         #print outline
         fw.write(','.join(outline) + '\n')
@@ -152,10 +192,14 @@ def to_datetime(folder, id):
 
     
 if __name__ == '__main__':  
-    get_all_subjects_seqs()
+    #get_all_subjects_seqs()
     
-#     for id in [46, 47, 49, 50, 51, 52, 53, 54, 56, 57, 58, 59]:
-#         to_datetime('gps', id)
+#     for id in range(46):
+#         to_datetime('wifi_location', id)
+        
+    result = get_in_loc_duration('07')
+    #pp.pprint(result)
+    pp.pprint(merge(result))
     
     #print random.sample([1,4,5,6,7],2)
 

@@ -1,7 +1,6 @@
 import os
-
-dir = r'C:\Users\Sophie\workspace\Personality\dataset\sensing\gps'
-
+import pprint
+pp = pprint.PrettyPrinter(width=200)
 
 def from_gps(fp, id):
     
@@ -48,7 +47,8 @@ def from_gps(fp, id):
 #         subj_home[id] = [gps_loc[gps]]
 #         print 'on campus'
 
-if __name__ == "__main__":
+def from_gps_all():
+    dir = r'C:\Users\Sophie\workspace\Personality\dataset\sensing\gps'
     for file in os.listdir(dir):
         if not file.endswith('.csv') or file.endswith('datetime.csv'):
             continue
@@ -58,3 +58,41 @@ if __name__ == "__main__":
         
         fp = os.path.join(dir, file)
         from_gps(fp, id)
+        
+def from_wifi(fp, id):
+    loc_dates = {}
+    fr = open(fp, 'rU')
+    for line in fr.readlines():
+        line = line.rstrip(',\n')
+        items = line.split(",")
+        if items[0][-8:-6] == '04':
+            if id == '23':
+                print line
+            if items[1].startswith("near"):
+                continue
+            loc = items[1][3:-1]
+            if not loc in loc_dates:
+                loc_dates[loc] = set()
+            loc_dates[loc].add(items[0][:10])
+    
+    #loc_freq_sorted = sorted(loc_freq.items(), key=lambda item: item[1], reverse=True)
+    for loc in loc_dates:
+        print "%s: %d" % (loc, len(loc_dates[loc]))
+
+            
+    
+def from_wifi_all():
+    dir = r'C:\Users\Sophie\workspace\Personality\dataset\sensing\wifi_location'
+    for file in os.listdir(dir):
+        if not file.endswith('datetime.csv'):
+            continue
+        id = file.split('.')[0][-11:-9]
+        print '----------'
+        print 'u%s' % id
+        
+        fp = os.path.join(dir, file)
+        from_wifi(fp, id)
+    
+if __name__ == "__main__":
+    #from_gps_all()
+    from_wifi_all()
