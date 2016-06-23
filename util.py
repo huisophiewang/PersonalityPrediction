@@ -9,7 +9,7 @@ traits = ['extra', 'agrbl', 'consc', 'neuro', 'openn']
 off_campus = ['00', '12', '13', '31', '34', '36', '39', '42', '44', '45', '47', '51', '56']
 
 remove_subjects = off_campus
-# need to remove outlier for len_var to work
+# need to remove outlier for feature_len_var to work
 remove_subjects = set(off_campus).union(set(['46']))
 
 

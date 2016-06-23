@@ -16,10 +16,10 @@ idx = {'extra':[1, 6, 11, 16, 21, 26, 31, 36],
      'openn' : [5, 10, 15, 20, 25, 30, 35, 40, 41, 44]}
 
 
-fr = open(r'data\dataset\survey\BigFive.csv', 'rU')
+fr = open(r'dataset\survey\BigFive.csv', 'rU')
 cols = fr.readline()
 
-fw = open(r'data\dataset\survey\BigFivePost.csv', 'a')
+fw = open(r'dataset\survey\BigFivePost.csv', 'a')
 outlabels = ['uid']
 outlabels.extend(traits)
 fw.write(','.join(outlabels) + '\n')

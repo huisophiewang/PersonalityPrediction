@@ -180,7 +180,9 @@ def to_datetime(folder, id):
         if line == '\n':
             continue
         items = line.rstrip(',\n').split(",")
+        #print items
         dt = datetime.fromtimestamp(int(items[0])).strftime('%Y-%m-%d-%H:%M:%S')
+        #dt_end = datetime.fromtimestamp(int(items[1])).strftime('%Y-%m-%d-%H:%M:%S')
         outline = [dt]
          
         outline.extend(items[1:])
@@ -194,14 +196,13 @@ def to_datetime(folder, id):
 if __name__ == '__main__':  
     #get_all_subjects_seqs()
     
-#     for id in range(46):
-#         to_datetime('wifi_location', id)
+    for id in range(60):
+        to_datetime('audio', id)
         
-    result = get_in_loc_duration('07')
-    #pp.pprint(result)
-    pp.pprint(merge(result))
-    
-    #print random.sample([1,4,5,6,7],2)
+#     result = get_in_loc_duration('01')
+#     pp.pprint(result)
+    #pp.pprint(merge(result))
+
 
 
         

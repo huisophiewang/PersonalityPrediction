@@ -4,7 +4,7 @@ import pprint
 pp = pprint.PrettyPrinter(width=200)
 
 from util import CUR_DIR, remove_subjects, write_feature_to_csv
-from wifi_prep import get_seqs
+from prep_wifi_loc import get_seqs
 wifi_dir = os.path.join(CUR_DIR, 'dataset', 'sensing', 'wifi_location')
 
 def get_len_var(seqs):

@@ -3,7 +3,7 @@ import os
 import random
 import copy
 from datetime import datetime
-from wifi_prep import get_in_loc_duration
+from prep_wifi_loc import get_in_loc_duration
 from util import CUR_DIR, id_home, remove_subjects, write_feature_to_csv
 import pprint
 pp = pprint.PrettyPrinter(width=100)
