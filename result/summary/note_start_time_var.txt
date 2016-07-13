@@ -7,7 +7,7 @@ consider weekdays only has better results
 
 
 
-consc +
+consc -
                             OLS Regression Results                            
 ==============================================================================
 Dep. Variable:                  consc   R-squared:                       0.151

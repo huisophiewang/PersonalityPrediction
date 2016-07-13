@@ -162,6 +162,15 @@ def get_all_subjects_seqs():
         print 'id: ' + id
             
         get_seqs(id, 60*5)
+        
+def get_weekday_seqs(id):
+    in_loc_duration = get_in_loc_duration(id)
+    for pair in in_loc_duration:   
+        date_obj = datetime.strptime(pair[0], "%Y-%m-%d")
+        weekday = date_obj.strftime("%A")   
+        if weekday in ['Monday', 'Wednesday', 'Friday']:
+            print weekday  
+            pp.pprint(pair[1])
 
 def to_datetime(folder, id):
     input_fp = os.path.join(dir, folder, '%s_u%02d.csv' % (folder, id))  
@@ -196,12 +205,13 @@ def to_datetime(folder, id):
 if __name__ == '__main__':  
     #get_all_subjects_seqs()
     
-    for id in range(60):
-        to_datetime('audio', id)
+#     for id in range(60):
+#         to_datetime('audio', id)
         
 #     result = get_in_loc_duration('01')
 #     pp.pprint(result)
-    #pp.pprint(merge(result))
+
+    get_weekday_seqs('01')
 
 
 

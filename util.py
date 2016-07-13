@@ -1,6 +1,7 @@
 import os
 import math
 import time
+import pprint
 
 CUR_DIR = os.path.dirname(os.path.realpath(__file__))
 traits = ['extra', 'agrbl', 'consc', 'neuro', 'openn']
@@ -11,8 +12,6 @@ off_campus = ['00', '12', '13', '31', '34', '36', '39', '42', '44', '45', '47', 
 remove_subjects = off_campus
 # need to remove outlier for feature_len_var to work
 remove_subjects = set(off_campus).union(set(['46']))
-
-
 
 
 id_home = {'01': ['kemeny', 'cutter-north'], # Phi Tau frat
@@ -69,9 +68,9 @@ def get_y():
         id_y[id] = value            
     return id_y
 
-def z_score_normalize(dict):
+def z_score_normalize(dic):
 
-    values = dict.values()
+    values = dic.values()
     n = len(values)
     mean = sum(values)/float(n)
     #print mean
@@ -82,13 +81,12 @@ def z_score_normalize(dict):
     variance /= float(n)
     variance = math.sqrt(variance - mean*mean)
     
-    for key in dict:
-        dict[key] = (dict[key] - mean) / variance
-        
-    return dict
+    for key in dic:
+        dic[key] = (dic[key] - mean) / variance 
+    return dic
 
 ## write normalized feature
-def write_feature_to_csv(id_feature, feature_name):
+def write_feature_to_csv(id_feature, feature_name, normalize=True):
 
     output_fp = os.path.join(CUR_DIR, 'result', 'feature', feature_name+'.csv')
     fw = open(output_fp, 'a')
@@ -96,20 +94,51 @@ def write_feature_to_csv(id_feature, feature_name):
     labels.extend(traits) 
     fw.write(','.join(labels) + '\n')
     
-    id_y = get_y()
-    id_feature = z_score_normalize(id_feature)
-                
+    if normalize:
+        id_feature = z_score_normalize(id_feature)
+    id_y = get_y()             
     for id in sorted(id_feature):
-
+        if not id in id_y:
+            continue       
+        line = [id]   
+        line.append("{0:.3f}".format(id_feature[id]))    
+        line.extend(id_y[id])         
+        fw.write(','.join(line) + '\n')     
+    fw.close()
+    
+def write_multi_features_to_csv(id_features, feature_names, normalize=True):
+    
+    output_fp = os.path.join(CUR_DIR, 'result', 'feature', '-'.join(feature_names)+'.csv')
+    fw = open(output_fp, 'a')
+    labels = ['uid']
+    labels.extend(feature_names)       
+    labels.extend(traits) 
+    fw.write(','.join(labels) + '\n')
+    
+    features = []
+    for i in range(len(feature_names)):
+        id_feature = {k:v[i] for k, v in id_features.iteritems()}
+        if normalize:
+            id_feature = z_score_normalize(id_feature)
+        features.append(id_feature)
+        
+    id_y = get_y()  
+    for id in sorted(id_features.keys()):
         if not id in id_y:
             continue
-        
         line = [id]   
-        line.append("{0:.3f}".format(id_feature[id]))
-          
-        for value in id_y[id]:
-            line.append(value)
-          
-        fw.write(','.join(line) + '\n')
-        
+        for i in range(len(feature_names)):
+            line.append("{0:.3f}".format(features[i][id]))        
+        line.extend(id_y[id])      
+        fw.write(','.join(line) + '\n')     
     fw.close()
+        
+if __name__ == '__main__':
+    id_features = {'01':(1,2,3), '02':(4,5,6)}
+    write_multi_features_to_csv(id_features, ['a', 'b', 'c'], False)
+    
+
+            
+    
+        
+    
