@@ -7,7 +7,7 @@ import copy
 from util import CUR_DIR, remove_subjects
 pp = pprint.PrettyPrinter(width=200)
 wifi_dir = os.path.join(CUR_DIR, 'dataset', 'sensing', 'wifi_location')
-dir = r'C:\Users\Sophie\workspace\Personality\dataset\sensing'
+
 
 def get_in_loc_duration(id, duration_cut=60*5):
     fp = os.path.join(wifi_dir, r'wifi_location_u%s.csv' % id)
@@ -172,41 +172,10 @@ def get_weekday_seqs(id):
             print weekday  
             pp.pprint(pair[1])
 
-def to_datetime(folder, id):
-    input_fp = os.path.join(dir, folder, '%s_u%02d.csv' % (folder, id))  
-    output_fp = os.path.join(dir, folder, '%s_u%02d_datetime.csv' % (folder, id))
-    
-    if not os.path.exists(input_fp) or os.path.exists(output_fp):
-        return
-    
-    print output_fp
-    
-    fr = open(input_fp, 'rU') 
-    fw = open(output_fp, 'a')
-    fr.readline()
-    lines = fr.readlines()
-    for line in lines:
-        if line == '\n':
-            continue
-        items = line.rstrip(',\n').split(",")
-        #print items
-        dt = datetime.fromtimestamp(int(items[0])).strftime('%Y-%m-%d-%H:%M:%S')
-        #dt_end = datetime.fromtimestamp(int(items[1])).strftime('%Y-%m-%d-%H:%M:%S')
-        outline = [dt]
-         
-        outline.extend(items[1:])
-        #print outline
-        fw.write(','.join(outline) + '\n')
-    fw.close()
-    
-    
 
     
 if __name__ == '__main__':  
     #get_all_subjects_seqs()
-    
-#     for id in range(60):
-#         to_datetime('audio', id)
         
 #     result = get_in_loc_duration('01')
 #     pp.pprint(result)

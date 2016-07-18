@@ -42,7 +42,35 @@ def get_late_var(result):
     
     return var
 
-
+def get_class_schedule(id):
+    fr = open(r'dataset\education\class.csv', 'rU')
+    lines = fr.readlines()
+    for line in lines:
+        items = line.rstrip().split(',') 
+        if len(items) <= 1:
+            continue    
+        # found id line
+        if id == items[0][1:]:
+            schedule = {}
+            for item in items[1:]:
+                if item in class_info:
+                    info = class_info[item]
+                    loc = info['location']
+                    periods = info['periods']
+                    # organize by weekday
+                    for period in periods:
+                        wkd = to_weekday[period['day']]
+                        if not wkd in schedule:
+                            schedule[wkd] = []
+                        start = period['start']
+                        end = period['end']
+                        schedule[wkd].append((loc, start, end))
+            # sort by start time
+            for wkd in schedule:
+                schedule[wkd].sort(key=lambda tup:tup[1])
+            #pp.pprint(schedule)
+            return schedule  
+        
 def get_feature():
     id_feature = {}
     fr = open(r'dataset\education\class.csv', 'rU')

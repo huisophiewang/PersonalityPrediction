@@ -21,14 +21,16 @@ def single_vrb(feature):
         res = mod.fit()
         print res.summary()
         
-def multi_vrb():
-    input_fp = os.path.join(CUR_DIR, 'result', 'feature', 'early-late-absent.csv')
+def multi_vrb(feature_names, trait):
+    file_name = '-'.join(feature_names) + '.csv'
+    input_fp = os.path.join(CUR_DIR, 'result', 'feature', file_name)
     df = pandas.read_csv(input_fp)
     print df
-    for i in range(len(traits)):
+    
+    for feature in feature_names:
         print "#####################################################################################################"
-        print traits[i]
-        y, X = dmatrices('%s ~ early + absent' % traits[i], data=df)
+        print feature
+        y, X = dmatrices('%s ~ %s' % (trait, feature), data=df)
         mod = sm.OLS(y, X)
         res = mod.fit()
         print res.summary()
@@ -49,19 +51,16 @@ def plot_feature(feature):
 
     plt.show()
 
-def plot_multi_feature():    
-    input_fp = os.path.join(CUR_DIR, 'result', 'feature', 'early-late-absent.csv')
+def plot_multi_feature(feature_names, trait):    
+    file_name = '-'.join(feature_names) + '.csv'
+    input_fp = os.path.join(CUR_DIR, 'result', 'feature', file_name)
     df = pandas.read_csv(input_fp)
-    m_data = df.as_matrix()
 
-    x = m_data[:,3]
-
-    f, axarr = plt.subplots(5, sharex=True)
-    
-    for i in range(5):
-        y = m_data[:,i+4]
+    y = df[trait]
+    f, axarr = plt.subplots(len(feature_names), sharex=True)
+    for i, feature in enumerate(feature_names):
+        x = df[feature]
         axarr[i].plot(x, y, 'ro')
-
     plt.show()
            
 if __name__ == '__main__':
@@ -69,13 +68,15 @@ if __name__ == '__main__':
 #     feature = 'start_time_var'
 #     feature = 'end_time_var'
 #     feature = 'conver_dur'
-    feature = 'late_avg'
-    feature = 'late_var'
-    single_vrb(feature)
-    plot_feature(feature)
+#     feature = 'late_avg'
+#     feature = 'late_var'
+#     single_vrb(feature)
+#     plot_feature(feature)
     
-    #multi_vrb()
-    #plot_multi_feature()
+    features = ['days', 'views', 'contributions', 'questions', 'notes', 'answers']
+    trait = 'consc'
+    multi_vrb(features, trait)
+    plot_multi_feature(features, trait)
     
 
     

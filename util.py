@@ -2,6 +2,7 @@ import os
 import math
 import time
 import pprint
+from datetime import datetime
 
 CUR_DIR = os.path.dirname(os.path.realpath(__file__))
 traits = ['extra', 'agrbl', 'consc', 'neuro', 'openn']
@@ -132,10 +133,41 @@ def write_multi_features_to_csv(id_features, feature_names, normalize=True):
         line.extend(id_y[id])      
         fw.write(','.join(line) + '\n')     
     fw.close()
+    
+def to_datetime(folder, filename, id):
+    dir = r'C:\Users\Sophie\workspace\Personality\dataset\sensing'
+    input_fp = os.path.join(dir, folder, '%s_u%02d.csv' % (filename, id))  
+    output_fp = os.path.join(dir, folder, '%s_u%02d_datetime.csv' % (filename, id))
+    
+    if not os.path.exists(input_fp) or os.path.exists(output_fp):
+        return
+    
+    print output_fp
+    
+    fr = open(input_fp, 'rU') 
+    fw = open(output_fp, 'a')
+    fr.readline()
+    lines = fr.readlines()
+    for line in lines:
+        if line == '\n':
+            continue
+        items = line.rstrip(',\n').split(",")
+        #print items
+        dt = datetime.fromtimestamp(int(items[0])).strftime('%Y-%m-%d-%H:%M:%S')
+        #dt_end = datetime.fromtimestamp(int(items[1])).strftime('%Y-%m-%d-%H:%M:%S')
+        outline = [dt]
+         
+        outline.extend(items[1:])
+        #print outline
+        fw.write(','.join(outline) + '\n')
+    fw.close()
         
 if __name__ == '__main__':
-    id_features = {'01':(1,2,3), '02':(4,5,6)}
-    write_multi_features_to_csv(id_features, ['a', 'b', 'c'], False)
+#     id_features = {'01':(1,2,3), '02':(4,5,6)}
+#     write_multi_features_to_csv(id_features, ['a', 'b', 'c'], False)
+
+    for id in range(60):
+        to_datetime('bluetooth', 'bt', id)
     
 
             
