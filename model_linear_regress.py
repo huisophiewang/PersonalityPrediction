@@ -14,7 +14,7 @@ def single_vrb(feature):
     df = pandas.read_csv(input_fp)
     print df
     for i in range(len(traits)):
-        print "#####################################################################################################"
+        print "#####################################################################################"
         print traits[i]
         y, X = dmatrices('%s ~ %s' % (traits[i], feature), data=df)
         mod = sm.OLS(y, X)
@@ -28,7 +28,7 @@ def multi_vrb(feature_names, trait):
     print df
     
     for feature in feature_names:
-        print "#####################################################################################################"
+        print "#####################################################################################"
         print feature
         y, X = dmatrices('%s ~ %s' % (trait, feature), data=df)
         mod = sm.OLS(y, X)
@@ -88,9 +88,10 @@ if __name__ == '__main__':
     feature = 'conver_dur'
     feature = 'conver_freq'
     feature = 'late_var'
+    feature = 'grade'
 
-    #single_vrb(feature)
-    #plot_feature(feature)
+    single_vrb(feature)
+    plot_feature(feature)
     
 #     features = ['early', 'late', 'absent']
 #     trait = 'extra'
@@ -102,10 +103,10 @@ if __name__ == '__main__':
 #     multi_vrb(features, trait)
 #     plot_multi_feature(features, trait)
 
-    features = ['breakfast', 'lunch', 'supper', 'snack']
-    trait = 'extra'
-    multi_vrb(features, trait)
-    plot_multi_feature(features, trait)
+#     features = ['breakfast', 'lunch', 'supper', 'snack']
+#     trait = 'extra'
+#     multi_vrb(features, trait)
+#     plot_multi_feature(features, trait)
 
 #     features = ['breakfast_var', 'lunch_var', 'supper_var', 'snack_var']
 #     trait = 'consc'
