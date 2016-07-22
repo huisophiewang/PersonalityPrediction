@@ -1,0 +1,31 @@
+#####################################################################################
+
+feature:
+breakfast rate:
+the percentage of breakfast among all meals
+
+#####################################################################################
+
+extra -
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                  extra   R-squared:                       0.114
+Model:                            OLS   Adj. R-squared:                  0.077
+Method:                 Least Squares   F-statistic:                     3.088
+Date:                Thu, 21 Jul 2016   Prob (F-statistic):             0.0916
+Time:                        11:46:32   Log-Likelihood:                -26.034
+No. Observations:                  26   AIC:                             56.07
+Df Residuals:                      24   BIC:                             58.58
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P>|t|      [95.0% Conf. Int.]
+------------------------------------------------------------------------------
+Intercept      3.1872      0.216     14.735      0.000         2.741     3.634
+breakfast     -3.0590      1.741     -1.757      0.092        -6.652     0.534
+==============================================================================
+Omnibus:                        0.674   Durbin-Watson:                   1.966
+Prob(Omnibus):                  0.714   Jarque-Bera (JB):                0.555
+Skew:                           0.330   Prob(JB):                        0.757
+Kurtosis:                       2.722   Cond. No.                         13.1
+==============================================================================

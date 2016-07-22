@@ -4,7 +4,7 @@ import random
 import copy
 from datetime import datetime
 from prep_wifi_loc import get_in_loc_duration
-from util import CUR_DIR, id_home, remove_subjects, write_feature_to_csv
+from util import CUR_DIR, id_home, remove_subjects, write_feature_to_csv, get_time_var
 import pprint
 pp = pprint.PrettyPrinter(width=100)
 wifi_dir = os.path.join(CUR_DIR, 'dataset', 'sensing', 'wifi_location')
@@ -31,7 +31,7 @@ def get_start_var(in_loc_duration, id):
     #print len(start_times)
     #samples = random.sample(start_times, 20)
     samples = start_times
-    return get_var(samples)
+    return get_time_var(samples)
 
 def get_end_var_old(in_loc_duration, id):
     end_times = []
@@ -57,7 +57,7 @@ def get_end_var_old(in_loc_duration, id):
                 break
             
     samples = end_times
-    return get_var(samples)
+    return get_time_var(samples)
     
 def get_end_var(in_loc_duration, id):
     end_times = []
@@ -97,29 +97,11 @@ def get_end_var(in_loc_duration, id):
    
     samples = end_times
     print len(samples)
-    return get_var(samples)
+    return get_time_var(samples)
     
      
 
-def get_var(times):  
 
-    avg = 0.0
-    secs = []
-    for t in times:  
-        items = t.split(':')
-        sec = int(items[0])*3600 + int(items[1])*60 + int(items[2])
-        #sec = sec/60
-        secs.append(sec)
-        avg += sec
-    avg /= len(times)
-    
-    var = 0.0
-    for sec in secs:
-        var += (sec - avg) * (sec - avg)
-    
-    var /= len(times)
-
-    return var
 
 def get_feature(func):
     id_feature = {}

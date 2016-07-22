@@ -40,15 +40,12 @@ def plot_feature(feature):
     input_fp = os.path.join(CUR_DIR, 'result', 'feature', feature + '.csv')
     df = pandas.read_csv(input_fp)
     m_data = df.as_matrix()
-
     x = m_data[:,1]
 
     f, axarr = plt.subplots(5, sharex=True)
-    
     for i in range(5):
         y = m_data[:,i+2]
         axarr[i].plot(x, y, 'ro')
-
     plt.show()
 
 def plot_multi_feature(feature_names, trait):    
@@ -62,21 +59,58 @@ def plot_multi_feature(feature_names, trait):
         x = df[feature]
         axarr[i].plot(x, y, 'ro')
     plt.show()
+    
+def plot_y():
+    fr = open(r'dataset\survey\BigFivePre.csv', 'rU')
+    fr.readline()
+    
+    all_y = [[],[],[],[],[]]
+    for line in fr.readlines():
+        items = line.strip('\n').split(",")
+        for idx, item in enumerate(items[1:]):
+            #print idx, item
+            all_y[idx].append(float(item))
+     
+    f, axarr = plt.subplots(5, sharex=True)
+    for i in range(5):
+        y = all_y[i]
+        axarr[i].set_ylabel(traits[i])
+        axarr[i].hist(y)
+    plt.show()
+        
            
 if __name__ == '__main__':
-#     feature = 'feature_len_var'
-#     feature = 'start_time_var'
-#     feature = 'end_time_var'
-#     feature = 'conver_dur'
-#     feature = 'late_avg'
-#     feature = 'late_var'
-#     single_vrb(feature)
-#     plot_feature(feature)
+    #plot_y()
     
-    features = ['days', 'views', 'contributions', 'questions', 'notes', 'answers']
-    trait = 'consc'
+    feature = 'len_var'
+    feature = 'start_time_var'
+    feature = 'end_time_var'
+    feature = 'conver_dur'
+    feature = 'conver_freq'
+    feature = 'late_var'
+
+    #single_vrb(feature)
+    #plot_feature(feature)
+    
+#     features = ['early', 'late', 'absent']
+#     trait = 'extra'
+#     multi_vrb(features, trait)
+#     plot_multi_feature(features, trait)
+    
+#     features = ['days', 'views', 'contributions', 'questions', 'notes', 'answers']
+#     trait = 'openn'
+#     multi_vrb(features, trait)
+#     plot_multi_feature(features, trait)
+
+    features = ['breakfast', 'lunch', 'supper', 'snack']
+    trait = 'extra'
     multi_vrb(features, trait)
     plot_multi_feature(features, trait)
+
+#     features = ['breakfast_var', 'lunch_var', 'supper_var', 'snack_var']
+#     trait = 'consc'
+#     multi_vrb(features, trait)
+#     plot_multi_feature(features, trait)
     
 
     

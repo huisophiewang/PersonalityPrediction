@@ -161,6 +161,31 @@ def to_datetime(folder, filename, id):
         #print outline
         fw.write(','.join(outline) + '\n')
     fw.close()
+    
+def get_entropy(item_freq):
+    entropy = 0.0
+    total = sum(item_freq.values())
+    for item in item_freq:
+        if item_freq[item]:
+            p = item_freq[item]/float(total)
+            entropy += (-p) * math.log(p, 2)       
+    return entropy
+
+def get_time_var(times):  
+    avg = 0.0
+    secs = []
+    for t in times:  
+        items = t.split(':')
+        sec = int(items[0])*3600 + int(items[1])*60 + int(items[2])
+        secs.append(sec)
+        avg += sec
+    avg /= len(times)
+    
+    var = 0.0
+    for sec in secs:
+        var += (sec - avg) * (sec - avg)
+    var /= len(times)
+    return var
         
 if __name__ == '__main__':
 #     id_features = {'01':(1,2,3), '02':(4,5,6)}
