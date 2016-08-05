@@ -1,0 +1,41 @@
+[1] "start_time_var"
+
+Call:
+lm(formula = Y ~ X[, i])
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-16.0740  -3.6316   0.0372   5.9636  16.0233 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)   45.603      1.271  35.873   <2e-16 ***
+X[, i]        -2.418      1.277  -1.894   0.0676 .  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 7.273 on 31 degrees of freedom
+  (27 observations deleted due to missingness)
+Multiple R-squared:  0.1037,	Adjusted R-squared:  0.07482 
+F-statistic: 3.588 on 1 and 31 DF,  p-value: 0.06757
+
+[1] "end_time_var"
+
+Call:
+lm(formula = Y ~ X[, i])
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-17.915  -4.225   2.028   4.302  12.802 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)   45.922      1.251   36.72   <2e-16 ***
+X[, i]         2.558      1.207    2.12   0.0421 *  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 7.179 on 31 degrees of freedom
+  (27 observations deleted due to missingness)
+Multiple R-squared:  0.1266,	Adjusted R-squared:  0.09843 
+F-statistic: 4.493 on 1 and 31 DF,  p-value: 0.04213

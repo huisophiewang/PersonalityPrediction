@@ -56,7 +56,7 @@ id_home = {'01': ['kemeny', 'cutter-north'], # Phi Tau frat
 
 
 
-def get_y():
+def get_trait_scores():
     id_y = {}
     fp = os.path.join(CUR_DIR, 'dataset', 'survey', 'BigFivePre.csv')
     fr = open(fp, 'rU')
@@ -68,6 +68,18 @@ def get_y():
         value = items[1:]
         id_y[id] = value            
     return id_y
+
+def get_other_scores(file_path):
+    id_z = {}
+    fr = open(file_path, 'rU')
+    fr.readline()
+    lines = fr.readlines()
+    for line in lines:
+        items = line.strip('\n').split(",")
+        id = items[0][1:]
+        value = items[1:]
+        id_z[id] = value     
+    return id_z
 
 def z_score_normalize(dic):
 
@@ -97,7 +109,7 @@ def write_feature_to_csv(id_feature, feature_name, normalize=True):
     
     if normalize:
         id_feature = z_score_normalize(id_feature)
-    id_y = get_y()             
+    id_y = get_trait_scores()             
     for id in sorted(id_feature):
         if not id in id_y:
             continue       
@@ -123,7 +135,7 @@ def write_multi_features_to_csv(id_features, feature_names, normalize=True):
             id_feature = z_score_normalize(id_feature)
         features.append(id_feature)
         
-    id_y = get_y()  
+    id_y = get_trait_scores()  
     for id in sorted(id_features.keys()):
         if not id in id_y:
             continue

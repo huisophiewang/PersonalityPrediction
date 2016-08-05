@@ -3,24 +3,25 @@
 
 
 extra ~
-    len_var
-    end_time_var
-    absent_rate
-    early_rate
-    late_var
-    breakfast_rate
+    len_var +
+    end_time_var +
+    absent_rate +
+    early_rate -
+    late_var +
+    breakfast_rate -
 
 
     
 consc ~
-    start_time_var
-    piazza_days
-    piazza_questions
+    start_time_var -
+    piazza_days +
+    piazza_questions +
     
 
 
 
 neuro ~
-    len_var 
-    end_time_var
-    piazza_views
+    len_var -
+    end_time_var -
+    piazza_views +
+

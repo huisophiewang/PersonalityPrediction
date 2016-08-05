@@ -1,0 +1,106 @@
+Pearson correlation:
+(> 0.4)
+
+len_var:
+    end_time_var 0.42
+    contributions -0.41
+    answers -0.48
+    
+start_time_var:
+    early -0.49
+    absent 0.44
+    supper 0.52
+    
+end_time_var:
+    len_var 0.42
+    late_var 0.50
+    breakfast -0.42
+
+early:
+    start_time_var -0.49
+    late -0.77
+    absent -0.67
+    breakfast 0.50
+    
+late:
+    early -0.77
+    
+absent:
+    start_time_var 0.44
+    early -0.67
+    answers -0.50
+    breakfast -0.42
+    lunch 0.41
+    
+late_var:
+    end_time_var 0.50
+    
+days:
+    views 0.66
+    answers 0.49
+    
+views:
+    days 0.66
+    
+contributions:
+    len_var -0.41
+    questions 0.83
+    answers 0.67
+    
+questions:
+    contributions 0.83
+    answers 0.45
+    
+answers:
+    len_var -0.48
+    absent -0.50
+    days 0.49
+    contributions 0.67
+    questions 0.45
+    
+breakfast:
+    end_time_var -0.42
+    early 0.50
+    absent -0.42
+    
+lunch:
+    absent 0.41
+    snack -0.81
+    
+supper:
+    start_time_var 0.52
+    snack -0.66
+    
+snack:
+    lunch -0.81
+    supper -0.66
+    
+    
+=============================
+correlations high to low:
+
+questions ~ contributions 0.83
+snack ~ lunch -0.81
+early ~ late -0.77
+contributions ~ answers 0.67
+early ~ absent -0.67
+supper ~ snack -0.66
+days ~ views 0.66
+start_time_var ~ supper 0.52
+end_time_var ~ late_var 0.50
+absent ~ answers -0.50
+early ~ breakfast 0.50
+start_time_var ~ early -0.49
+days ~ answers 0.49
+len_var ~ answers -0.48
+answers ~ questions 0.45
+start_time_var ~ absent 0.44
+len_var ~ end_time_var 0.42
+end_time_var ~ breakfast -0.42
+breakfast ~ absent -0.42
+len_var ~ contributioins -0.41
+absent ~ lunch 0.41
+
+
+    
+    

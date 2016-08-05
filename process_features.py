@@ -1,4 +1,4 @@
-
+from util import traits, get_trait_scores, get_other_scores
 def read_feature(feature_name):
     file = r'result\feature\%s.csv' % feature_name
     fr = open(file, 'rU')
@@ -22,6 +22,8 @@ def combine(feature_names):
             labels.extend(feature_name.split('-'))
         else:
             labels.append(feature_name)
+    labels.extend(traits)
+    labels.extend(['depress', 'pcs', 'mcs'])
     fw.write(','.join(labels) + '\n')  
     
     ids = ['%02d' % i for i in range(60)]
@@ -37,11 +39,30 @@ def combine(feature_names):
                     all_features[id].extend(['NA'] * num)
                 else:
                     all_features[id].append('NA')
-                
+    
+    id_y = get_trait_scores()  
+    id_depress = get_other_scores(r'dataset\survey\PHQ-9Pre.csv')  
+    id_health = get_other_scores(r'dataset\survey\vr_12Pre.csv')
+    
     for id in ids:
         line = [id]
         line.extend(all_features[id])
-        #print line
+        
+        if id in id_y:
+            line.extend(id_y[id])
+        else:
+            line.extend(['NA'] * 5)
+            
+        if id in id_depress:
+            line.extend(id_depress[id])
+        else:
+            line.extend(['NA'])
+            
+        if id in id_health:
+            line.extend(id_health[id])
+        else:
+            line.extend(['NA'] * 2)
+        
         fw.write(','.join(line) + '\n') 
     fw.close()
         

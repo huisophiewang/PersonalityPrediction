@@ -77,10 +77,30 @@ def plot_y():
         axarr[i].set_ylabel(traits[i])
         axarr[i].hist(y)
     plt.show()
-        
+    
+def plot_other(file_path):
+    fr = open(file_path, 'rU')
+    cols = fr.readline()
+    m = len(cols.split(',')) - 1
+    
+    all = []
+    for i in range(m):
+        all.append([])
+
+    for line in fr.readlines():
+        items = line.strip('\n').split(",")
+        for idx, item in enumerate(items[1:]):
+            all[idx].append(float(item))
+
+    f, axarr = plt.subplots(m, sharex=True)
+    for i in range(m):
+        y = all[i]
+        axarr[i].hist(y)
+    plt.show()       
            
 if __name__ == '__main__':
     #plot_y()
+    plot_other(r'dataset\survey\vr_12Pre.csv')
     
     feature = 'len_var'
     feature = 'start_time_var'
@@ -90,8 +110,8 @@ if __name__ == '__main__':
     feature = 'late_var'
     feature = 'grade'
 
-    single_vrb(feature)
-    plot_feature(feature)
+    #single_vrb(feature)
+    #plot_feature(feature)
     
 #     features = ['early', 'late', 'absent']
 #     trait = 'extra'

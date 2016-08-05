@@ -1,0 +1,123 @@
+=====================================================================
+extra ~
+
+> m1 <- lm(Y ~ X[,2] + X[,15] + X[,8])
+> print(summary(m1))
+
+Call:
+lm(formula = Y ~ X[, 2] + X[, 15] + X[, 8])
+2: len_var
+15: breakfast_rate
+8: late_var
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.66672 -0.36442  0.01057  0.23179  0.72186 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  3.13916    0.15557  20.178 9.12e-15 ***
+X[, 2]       0.37366    0.09287   4.024 0.000666 ***
+X[, 15]     -3.27098    1.35564  -2.413 0.025546 *  
+X[, 8]       0.24792    0.09133   2.715 0.013345 *  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.4555 on 20 degrees of freedom
+  (36 observations deleted due to missingness)
+Multiple R-squared:  0.6726,	Adjusted R-squared:  0.6235 
+F-statistic: 13.69 on 3 and 20 DF,  p-value: 4.39e-05
+
+---------------------------------------
+
+> m2 <- lm(Y ~ X[,2] + X[,7] + X[,8] + X[,4])
+> print(summary(m2))
+
+Call:
+lm(formula = Y ~ X[, 2] + X[, 7] + X[, 8] + X[, 4])
+2: len_var
+7: absent_rate
+8: late_var
+4: end_time_var
+
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.78048 -0.36034 -0.03343  0.25927  1.30955 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  2.26721    0.18969  11.952 2.72e-12 ***
+X[, 2]       0.26647    0.10530   2.531  0.01753 *  
+X[, 7]       2.46592    0.69118   3.568  0.00137 ** 
+X[, 8]       0.24504    0.08775   2.792  0.00950 ** 
+X[, 4]       0.21285    0.10392   2.048  0.05038 .  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.504 on 27 degrees of freedom
+  (28 observations deleted due to missingness)
+Multiple R-squared:  0.6141,	Adjusted R-squared:  0.5569 
+F-statistic: 10.74 on 4 and 27 DF,  p-value: 2.431e-05
+
+
+
+=====================================================================
+consc ~
+
+> Y <- X[,21]
+> m1 <- lm(Y ~ X[,12] + X[,3])
+> print(summary(m1))
+
+Call:
+lm(formula = Y ~ X[, 12] + X[, 3])
+
+12: questions
+3: start_time_var
+
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-1.14626 -0.32725  0.00088  0.47592  1.15967 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)   3.4268     0.1130  30.318   <2e-16 ***
+X[, 12]       0.2148     0.1089   1.973   0.0575 .  
+X[, 3]       -0.2407     0.1156  -2.083   0.0456 *  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.6549 on 31 degrees of freedom
+  (26 observations deleted due to missingness)
+Multiple R-squared:  0.2458,	Adjusted R-squared:  0.1971 
+F-statistic: 5.051 on 2 and 31 DF,  p-value: 0.01262
+
+
+=====================================================================
+neuro ~
+
+> Y <- X[,22]
+> m1 <- lm(Y ~ X[,4])
+> print(summary(m1))
+
+Call:
+lm(formula = Y ~ X[, 4])
+4: end_time_var
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-1.1396 -0.4771 -0.1403  0.5610  1.1209 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)   3.0460     0.1088  28.006  < 2e-16 ***
+X[, 4]       -0.3205     0.1062  -3.018  0.00496 ** 
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.634 on 32 degrees of freedom
+  (26 observations deleted due to missingness)
+Multiple R-squared:  0.2216,	Adjusted R-squared:  0.1973 
+F-statistic: 9.109 on 1 and 32 DF,  p-value: 0.00496
+
