@@ -1,0 +1,28 @@
+#####################################################################################
+feature:
+reply_count: 5 questions were asked on the subject's opinion of Dimensions protest, 
+how many questions he replied
+
+extra -
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                  extra   R-squared:                       0.068
+Model:                            OLS   Adj. R-squared:                  0.048
+Method:                 Least Squares   F-statistic:                     3.295
+Date:                Fri, 05 Aug 2016   Prob (F-statistic):             0.0762
+Time:                        15:50:08   Log-Likelihood:                -51.292
+No. Observations:                  47   AIC:                             106.6
+Df Residuals:                      45   BIC:                             110.3
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P>|t|      [95.0% Conf. Int.]
+------------------------------------------------------------------------------
+Intercept      3.2586      0.184     17.679      0.000         2.887     3.630
+dim_count     -0.1151      0.063     -1.815      0.076        -0.243     0.013
+==============================================================================
+Omnibus:                        0.209   Durbin-Watson:                   1.385
+Prob(Omnibus):                  0.901   Jarque-Bera (JB):                0.357
+Skew:                           0.135   Prob(JB):                        0.836
+Kurtosis:                       2.669   Cond. No.                         5.39
+==============================================================================

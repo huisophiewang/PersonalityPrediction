@@ -21,7 +21,7 @@ def single_vrb(feature):
         res = mod.fit()
         print res.summary()
         
-def multi_vrb(feature_names, trait):
+def multi_feature_single_trait(feature_names, trait):
     file_name = '-'.join(feature_names) + '.csv'
     input_fp = os.path.join(CUR_DIR, 'result', 'feature', file_name)
     df = pandas.read_csv(input_fp)
@@ -35,6 +35,7 @@ def multi_vrb(feature_names, trait):
         res = mod.fit()
         print res.summary()
 
+#def single_feature_multi_trait(feature):
         
 def plot_feature(feature):
     input_fp = os.path.join(CUR_DIR, 'result', 'feature', feature + '.csv')
@@ -100,7 +101,7 @@ def plot_other(file_path):
            
 if __name__ == '__main__':
     #plot_y()
-    plot_other(r'dataset\survey\vr_12Pre.csv')
+    #plot_other(r'dataset\survey\vr_12Pre.csv')
     
     feature = 'len_var'
     feature = 'start_time_var'
@@ -109,9 +110,13 @@ if __name__ == '__main__':
     feature = 'conver_freq'
     feature = 'late_var'
     feature = 'grade'
+    feature = 'reply_count'
+    feature = 'q1'
+    feature = 'q2'
+    #feature = 'q3'
 
-    #single_vrb(feature)
-    #plot_feature(feature)
+    single_vrb(feature)
+    plot_feature(feature)
     
 #     features = ['early', 'late', 'absent']
 #     trait = 'extra'
