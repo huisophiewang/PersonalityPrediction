@@ -100,7 +100,7 @@ def plot_other(file_path):
     plt.show()       
            
 if __name__ == '__main__':
-    #plot_y()
+    plot_y()
     #plot_other(r'dataset\survey\vr_12Pre.csv')
     
     feature = 'len_var'
@@ -115,8 +115,8 @@ if __name__ == '__main__':
     feature = 'q2'
     #feature = 'q3'
 
-    single_vrb(feature)
-    plot_feature(feature)
+    #single_vrb(feature)
+    #plot_feature(feature)
     
 #     features = ['early', 'late', 'absent']
 #     trait = 'extra'

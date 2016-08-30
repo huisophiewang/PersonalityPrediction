@@ -9,6 +9,10 @@ to_weekday = {1:'Monday', 2:'Tuesday', 3:'Wednesday', 4:'Thursday', 5:'Friday'}
 class_info_file = open(r'dataset\education\class_info.json')
 class_info = json.load(class_info_file)
 
+###########################
+# missing: 00, 36, 39, 56
+# ourlier for late_time_var (come to class too early): 13, 34, 35, 51, 
+
 def get_ratio(result):
     num_pos, num_neg, num_na = 0, 0, 0
     for item in result:
@@ -81,11 +85,11 @@ def get_feature():
             continue    
         id = items[0][1:]
      
-        if id in ['13', '51', '34', '35']:
-            continue
+#         if id in ['13', '51', '34', '35']:
+#             continue
         
         print '=============='
-        print id
+        print "id: " + id
         schedule = {}
         for item in items[1:]:
             if item in class_info:
@@ -118,3 +122,4 @@ if __name__ == '__main__':
     
     id_feature = get_feature()
     write_feature_to_csv(id_feature, 'late_var')
+    #write_feature_to_csv(id_feature, 'late_time_var', False)

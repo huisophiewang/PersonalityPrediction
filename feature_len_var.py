@@ -7,6 +7,10 @@ from util import CUR_DIR, remove_subjects, write_feature_to_csv
 from prep_wifi_loc import get_seqs
 wifi_dir = os.path.join(CUR_DIR, 'dataset', 'sensing', 'wifi_location')
 
+#############################
+# outlier (off-campus): '00', '12', '13', '31', '34', '36', '39', '42', '44', '45', '47', '51', '56'
+# outlier: 46
+
 def get_len_var(seqs):
     n = len(seqs)
     
@@ -50,8 +54,10 @@ def get_feature():
 
 
 if __name__ == '__main__':  
-    id_feature = get_feature()
-    pp.pprint(id_feature)
-    write_feature_to_csv(id_feature, 'len_var')
+#     id_feature = get_feature()
+#     pp.pprint(id_feature)
+#     write_feature_to_csv(id_feature, 'len_var')
+
+    pp.pprint(get_seqs('46'))
     
     
