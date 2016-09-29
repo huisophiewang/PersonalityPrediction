@@ -3,14 +3,14 @@ import pprint
 pp = pprint.PrettyPrinter(width=100)
 
 from prep_class_schedule import get_late_time
-from util import write_feature_to_csv, write_multi_features_to_csv
+from util import write_feature_to_csv, write_multi_features_to_csv, fill_miss_values
 
 to_weekday = {1:'Monday', 2:'Tuesday', 3:'Wednesday', 4:'Thursday', 5:'Friday'}
 class_info_file = open(r'dataset\education\class_info.json')
 class_info = json.load(class_info_file)
 
 ###########################
-# missing: 00, 36, 39, 56
+# missing: 00, 36, 39, 56 (probably dropped the course)
 # ourlier for late_time_var (come to class too early): 13, 34, 35, 51, 
 
 def get_ratio(result):
@@ -36,13 +36,15 @@ def get_late_var(result):
         if item != 'NA':
             avg += item
             count += 1
-    avg /= count
+    if count > 0:
+        avg /= count
     
     var = 0.0
     for item in result:
         if item != 'NA':
             var += (item - avg) * (item - avg)
-    var /= count
+    if count > 0:
+        var /= count
     
     return var
 
@@ -81,9 +83,11 @@ def get_feature():
     lines = fr.readlines()
     for line in lines:
         items = line.rstrip().split(',') 
-        if len(items) <= 1:
-            continue    
+ 
         id = items[0][1:]
+        
+        if id in ['00', '36', '39', '56']:
+            continue
      
 #         if id in ['13', '51', '34', '35']:
 #             continue
@@ -107,9 +111,10 @@ def get_feature():
         # sort by start time
         for wkd in schedule:
             schedule[wkd].sort(key=lambda tup:tup[1])
-        pp.pprint(schedule)  
+        #pp.pprint(schedule)  
         
         result = get_late_time(id, schedule)
+        
         #feature = get_ratio(result)
         feature = get_late_var(result)
         
@@ -117,9 +122,11 @@ def get_feature():
     return id_feature
         
 if __name__ == '__main__':
-    #id_features = get_feature()
-    #write_multi_features_to_csv(id_features, ['early', 'late', 'absent'], False)
+    id_features = get_feature()
+    #fill_miss_values(id_features, 3, ['00', '36', '39', '56'])
+    #write_multi_features_to_csv(id_features, ['early', 'late', 'absent'])
     
-    id_feature = get_feature()
-    write_feature_to_csv(id_feature, 'late_var')
-    #write_feature_to_csv(id_feature, 'late_time_var', False)
+#     id_feature = get_feature()
+#     write_feature_to_csv(id_feature, 'late_var')
+    fill_miss_values(id_features, 1, ['00', '36', '39', '56'])
+    write_feature_to_csv(id_features, 'late_time_var')

@@ -26,8 +26,8 @@ def get_late_time(id, schedule):
         seq = pair[1]
         date_obj = datetime.strptime(pair[0], "%Y-%m-%d")
         weekday = date_obj.strftime("%A")
-        print '-----------'
-        print weekday  
+        #print '-----------'
+        #print weekday  
         daily_result = []
         for idx, schedule_info in enumerate(schedule[weekday]):
             #print schedule_info
@@ -46,7 +46,7 @@ def get_late_time(id, schedule):
                     break
             if len(daily_result) != idx+1:
                 daily_result.append('NA')  
-        print daily_result   
+        #print daily_result   
         result.extend(daily_result)
         #print
         #pp.pprint(seq)

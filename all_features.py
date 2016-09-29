@@ -73,7 +73,7 @@ def combine(feature_names):
         
 if __name__ == '__main__':
     fnames = ['len_var', 'start_time_var', 'end_time_var']
-    fnames.extend(['early-late-absent', 'late_var'])
+    fnames.extend(['early-late-absent', 'late_time_var'])
     fnames.append('days-views-contributions-questions-notes-answers')
     #fnames.append('breakfast-lunch-supper-snack')
     combine(fnames)

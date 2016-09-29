@@ -3,7 +3,7 @@ import os
 import pprint 
 pp = pprint.PrettyPrinter(width=200)
 
-from util import CUR_DIR, remove_subjects, write_feature_to_csv
+from util import CUR_DIR, remove_subjects, off_campus, write_feature_to_csv
 from prep_wifi_loc import get_seqs
 wifi_dir = os.path.join(CUR_DIR, 'dataset', 'sensing', 'wifi_location')
 
@@ -36,9 +36,10 @@ def get_feature():
             continue
         
         id = file.split('.')[0][-2:]
-        if id in remove_subjects:
-            continue
         
+#         if id in remove_subjects:
+#             continue
+    
         print '----------'
         print 'id: ' + id
 
@@ -54,10 +55,12 @@ def get_feature():
 
 
 if __name__ == '__main__':  
-#     id_feature = get_feature()
-#     pp.pprint(id_feature)
-#     write_feature_to_csv(id_feature, 'len_var')
+    id_feature = get_feature()
+    #pp.pprint(id_feature)
+    #write_feature_to_csv(id_feature, 'len_var', False)
 
-    pp.pprint(get_seqs('46'))
+    #pp.pprint(get_seqs('46'))
+    
+    write_feature_to_csv(id_feature, 'len_var')
     
     

@@ -100,7 +100,7 @@ def plot_other(file_path):
     plt.show()       
            
 if __name__ == '__main__':
-    plot_y()
+    #plot_y()
     #plot_other(r'dataset\survey\vr_12Pre.csv')
     
     feature = 'len_var'
@@ -113,19 +113,31 @@ if __name__ == '__main__':
     feature = 'reply_count'
     feature = 'q1'
     feature = 'q2'
-    #feature = 'q3'
+    feature = 'q3'
 
-    #single_vrb(feature)
-    #plot_feature(feature)
+    feature = 'len_var_offcampus'
+    feature = 'start_time_var_offcampus'
+    feature = 'end_time_var_offcampus'
+    feature = 'start_time_var_all'
+    feature = 'end_time_var_all'
+    feature = 'len_var_all'
+    
+    feature = 'late_time_var'
+    single_vrb(feature)
+    plot_feature(feature)
     
 #     features = ['early', 'late', 'absent']
+#     for idx, feature in enumerate(features):
+#         features[idx] = feature + '_all'
 #     trait = 'extra'
-#     multi_vrb(features, trait)
+#     multi_feature_single_trait(features, trait)
 #     plot_multi_feature(features, trait)
     
 #     features = ['days', 'views', 'contributions', 'questions', 'notes', 'answers']
+#     for idx, feature in enumerate(features):
+#         features[idx] = feature + '_all'
 #     trait = 'openn'
-#     multi_vrb(features, trait)
+#     multi_feature_single_trait(features, trait)
 #     plot_multi_feature(features, trait)
 
 #     features = ['breakfast', 'lunch', 'supper', 'snack']

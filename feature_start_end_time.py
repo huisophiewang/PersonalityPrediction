@@ -4,12 +4,12 @@ import random
 import copy
 from datetime import datetime
 from prep_wifi_loc import get_in_loc_duration
-from util import CUR_DIR, id_home, remove_subjects, write_feature_to_csv, get_time_var
+from util import CUR_DIR, id_home, remove_subjects, off_campus, write_feature_to_csv, get_time_var
 import pprint
 pp = pprint.PrettyPrinter(width=100)
 wifi_dir = os.path.join(CUR_DIR, 'dataset', 'sensing', 'wifi_location')
 
-def get_start_var(in_loc_duration, id):
+def get_start_var_oncampus(in_loc_duration, id):
     # randomly choose 20 days
     
     start_times = []
@@ -33,33 +33,26 @@ def get_start_var(in_loc_duration, id):
     samples = start_times
     return get_time_var(samples)
 
-def get_end_var_old(in_loc_duration, id):
-    end_times = []
-
+def get_start_var_offcampus(in_loc_duration, id):
+    start_times = []
     for pair in in_loc_duration:
         dt = pair[0]    
         weekday = datetime.strptime(dt, "%Y-%m-%d").strftime("%A")         
         if weekday in ['Saturday', 'Sunday']:
-            continue       
-        seq = pair[1]        
-        if not seq:
-            continue
-        last_loc = seq[-1][0][3:-1]
-        if not last_loc in id_home[id]:
-            continue
-        for line in reversed(seq):
-            loc = line[0][3:-1]
-            end_time = time.strptime(line[2], "%H:%M:%S")
-            # the last loc after 3:00 pm that is not home
-            if end_time > time.strptime('15:00:00', "%H:%M:%S") and not loc in id_home[id]:
-                end_times.append(line[2])
-                #print line[2]
-                break
-            
-    samples = end_times
+            continue 
+        seq = pair[1]
+        #pp.pprint(seq)
+        first_loc = seq[0]
+        start_time = first_loc[1]
+        #print start_time
+        start_times.append(start_time)
+    #print len(start_times)
+    #samples = random.sample(start_times, 20)
+    samples = start_times
     return get_time_var(samples)
+
     
-def get_end_var(in_loc_duration, id):
+def get_end_var_oncampus(in_loc_duration, id):
     end_times = []
     for idx, pair in enumerate(in_loc_duration): 
         # don't consider last day
@@ -96,12 +89,40 @@ def get_end_var(in_loc_duration, id):
                 break
    
     samples = end_times
-    print len(samples)
+    #print len(samples)
     return get_time_var(samples)
     
      
-
-
+def get_end_var_offcampus(in_loc_duration, id):
+    end_times = []
+    for idx, pair in enumerate(in_loc_duration): 
+        # don't consider last day
+        if idx == len(in_loc_duration) - 1:
+            continue
+        td, td_seq = in_loc_duration[idx]
+        tmr, tmr_seq = in_loc_duration[idx+1]
+        td_obj = datetime.strptime(td, "%Y-%m-%d")
+        tmr_obj = datetime.strptime(tmr, "%Y-%m-%d")
+        weekday = td_obj.strftime("%A")         
+        if weekday in ['Saturday', 'Sunday']:
+            continue 
+        duration = tmr_obj - td_obj
+        # extend seq to before 4:00 am the next day
+        seq_extend = copy.deepcopy(td_seq)
+        if duration.days == 1:
+            for line in tmr_seq:
+                loc_start_time = time.strptime(line[1], "%H:%M:%S")
+                if loc_start_time < time.strptime('04:00:00', "%H:%M:%S"):
+                    seq_extend.append(line)
+        
+        last_loc = seq_extend[-1]
+        #print last_loc
+        end_time = last_loc[2]
+        end_times.append(end_time)
+    #print len(start_times)
+    #samples = random.sample(start_times, 20)
+    samples = end_times
+    return get_time_var(samples)
 
 def get_feature(func):
     id_feature = {}
@@ -111,7 +132,10 @@ def get_feature(func):
             continue
         
         id = file.split('.')[0][-2:]
-        if id in remove_subjects:
+#         if id in remove_subjects:
+#             continue
+        
+        if not id in off_campus:
             continue
         
         print '===================='
@@ -125,17 +149,76 @@ def get_feature(func):
         
     return id_feature
 
+
+def get_feature_start_var():
+    id_feature = {}
+
+    for file in os.listdir(wifi_dir):
+        if not file.endswith('.csv') or file.endswith('datetime.csv'):
+            continue
+        
+        id = file.split('.')[0][-2:]
+
+        print '===================='
+        print 'id: ' + id
+    
+        in_loc_duration = get_in_loc_duration(id, duration_cut=60*5)
+        
+        if id in off_campus:
+            result = get_start_var_offcampus(in_loc_duration, id)
+        else:
+            result = get_start_var_offcampus(in_loc_duration, id)
+            
+        id_feature[id] = result
+        
+    return id_feature
+
+def get_feature_end_var():
+    id_feature = {}
+
+    for file in os.listdir(wifi_dir):
+        if not file.endswith('.csv') or file.endswith('datetime.csv'):
+            continue
+        
+        id = file.split('.')[0][-2:]
+
+        print '===================='
+        print 'id: ' + id
+    
+        in_loc_duration = get_in_loc_duration(id, duration_cut=60*5)
+        
+        if id in off_campus:
+            result = get_end_var_offcampus(in_loc_duration, id)
+        else:
+            result = get_end_var_offcampus(in_loc_duration, id)
+            
+        id_feature[id] = result
+        
+    return id_feature
+
 if __name__ == '__main__':
 #     id_feature = get_feature(get_start_var)
 #     write_feature_to_csv(id_feature, 'start_time_var')
     
-    id_feature = get_feature(get_end_var)
-    write_feature_to_csv(id_feature, 'end_time_var')
+#     id_feature = get_feature(get_start_var_offcampus)
+#     write_feature_to_csv(id_feature, 'start_time_var_offcampus')
+    
+#     id_feature = get_feature(get_end_var)
+#     write_feature_to_csv(id_feature, 'end_time_var')
+    
+#     id_feature = get_feature(get_end_var_offcampus)
+#     write_feature_to_csv(id_feature, 'end_time_var_offcampus')
+    
     
 #     id = '01'
 #     in_loc_duration = get_in_loc_duration(id)
 #     get_end_time_test(in_loc_duration, id)
 
+    id_feature = get_feature_start_var()
+    write_feature_to_csv(id_feature, 'start_time_var')
+    
+#     id_feature = get_feature_end_var()
+#     write_feature_to_csv(id_feature, 'end_time_var')
 
     
     

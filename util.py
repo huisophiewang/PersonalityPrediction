@@ -3,6 +3,9 @@ import math
 import time
 import pprint
 from datetime import datetime
+from collections import OrderedDict
+import pprint
+pp = pprint.PrettyPrinter(width=100)
 
 CUR_DIR = os.path.dirname(os.path.realpath(__file__))
 traits = ['extra', 'agrbl', 'consc', 'neuro', 'openn']
@@ -96,6 +99,7 @@ def z_score_normalize(dic):
     
     for key in dic:
         dic[key] = (dic[key] - mean) / variance 
+
     return dic
 
 ## write normalized feature
@@ -120,7 +124,7 @@ def write_feature_to_csv(id_feature, feature_name, normalize=True):
     fw.close()
     
 def write_multi_features_to_csv(id_features, feature_names, normalize=True):
-    
+
     output_fp = os.path.join(CUR_DIR, 'result', 'feature', '-'.join(feature_names)+'.csv')
     fw = open(output_fp, 'a')
     labels = ['uid']
@@ -134,7 +138,8 @@ def write_multi_features_to_csv(id_features, feature_names, normalize=True):
         if normalize:
             id_feature = z_score_normalize(id_feature)
         features.append(id_feature)
-        
+
+    
     id_y = get_trait_scores()  
     for id in sorted(id_features.keys()):
         if not id in id_y:
@@ -198,15 +203,41 @@ def get_time_var(times):
         var += (sec - avg) * (sec - avg)
     var /= len(times)
     return var
+
+def fill_miss_values(id_features, num_features, miss_ids):
+    if num_features > 1:
+        avgs = [0] * num_features
+        for id in id_features:
+            values = id_features[id]
+            for i, avg in enumerate(avgs):
+                avgs[i] += values[i]
+        for i, avg in enumerate(avgs):
+            avgs[i] = avg/float(len(id_features))
+        for id in miss_ids:
+            id_features[id] = tuple(avgs)
+    elif num_features == 1:
+        avg = 0
+        for id in id_features:
+            avg += id_features[id]
+        avg /= float(len(id_features))
+        for id in miss_ids:
+            id_features[id] = avg        
+    pp.pprint(id_features)
+    return OrderedDict(sorted(id_features.items(), key=lambda t: t[0]))
+    
         
 if __name__ == '__main__':
 #     id_features = {'01':(1,2,3), '02':(4,5,6)}
 #     write_multi_features_to_csv(id_features, ['a', 'b', 'c'], False)
 
-    for id in range(60):
-        to_datetime('bluetooth', 'bt', id)
+#     for id in range(60):
+#         to_datetime('bluetooth', 'bt', id)
+    id_features = {'00': (1,2), '01': (3,2)}
+    fill_miss_values(id_features, 2, ['03', '04'])
+    
     
 
+    
             
     
         

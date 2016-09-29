@@ -15,8 +15,8 @@ def get_features():
     for line in lines:
         items = line.rstrip().split(',') 
         id = items[0][1:]
-        if id in ['00', '13']:
-            continue
+#         if id in ['00', '13']:
+#             continue
         id_feature[id] = [int(x) for x in items[1:]]
     pp.pprint(id_feature)
     return id_feature
@@ -25,3 +25,4 @@ def get_features():
 if __name__ == '__main__':
     id_features = get_features()
     write_multi_features_to_csv(id_features, ['days', 'views', 'contributions', 'questions', 'notes', 'answers'])
+    
