@@ -27,6 +27,7 @@ def lasso():
         X_train_trans = sfm.transform(X_train)
         n_features = X_train_trans.shape[1]
     print n_features
+    # features selected: len_var, start_time_var, absent
     print X_train_trans
     
     regr = linear_model.LinearRegression()

@@ -1,0 +1,11 @@
+Frequent pattern mining
+
+random forest
+kNN with Gaussian kernel
+regression, mse, larger than using the mean, why not just the mean?
+KL divergence?
+
+How to compare different algorithm?
+50 data, split into train and test
+or cross validation
+what if we want to tune parameters?
