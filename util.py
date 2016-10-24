@@ -8,17 +8,12 @@ import pprint
 pp = pprint.PrettyPrinter(width=100)
 
 CUR_DIR = os.path.dirname(os.path.realpath(__file__))
-traits = ['extra', 'agrbl', 'consc', 'neuro', 'openn']
-
-
-off_campus = ['00', '12', '13', '31', '34', '36', '39', '42', '44', '45', '47', '51', '56']
-
-remove_subjects = off_campus
+TRAITS = ['extra', 'agrbl', 'consc', 'neuro', 'openn']
+OFF_CAMPUS = ['00', '12', '13', '31', '34', '36', '39', '42', '44', '45', '47', '51', '56']
 # need to remove outlier for feature_len_var to work
-remove_subjects = set(off_campus).union(set(['46']))
+REMOVE_SUBJECTS = set(OFF_CAMPUS).union(set(['46']))
 
-
-id_home = {'01': ['kemeny', 'cutter-north'], # Phi Tau frat
+ID_HOME = {'01': ['kemeny', 'cutter-north'], # Phi Tau frat
  '02': ['occum'],  # Epsilon Kappa Theta soro
  '03': ['north-park'], # graduate
  '04': ['ripley'],  # north park

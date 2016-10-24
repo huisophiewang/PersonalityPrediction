@@ -65,9 +65,10 @@ def from_wifi(fp, id):
     for line in fr.readlines():
         line = line.rstrip(',\n')
         items = line.split(",")
+        # 4 am?
         if items[0][-8:-6] == '04':
-            if id == '23':
-                print line
+#             if id == '23':
+#                 print line
             if items[1].startswith("near"):
                 continue
             loc = items[1][3:-1]

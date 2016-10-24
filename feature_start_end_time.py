@@ -4,7 +4,8 @@ import random
 import copy
 from datetime import datetime
 from prep_wifi_loc import get_in_loc_duration
-from util import CUR_DIR, id_home, remove_subjects, off_campus, write_feature_to_csv, get_time_var
+from util import CUR_DIR, ID_HOME, REMOVE_SUBJECTS, OFF_CAMPUS
+from util import write_feature_to_csv, get_time_var
 import pprint
 pp = pprint.PrettyPrinter(width=100)
 wifi_dir = os.path.join(CUR_DIR, 'dataset', 'sensing', 'wifi_location')
@@ -24,7 +25,7 @@ def get_start_var_oncampus(in_loc_duration, id):
             loc = line[0][3:-1]
             loc_start_time = time.strptime(line[1], "%H:%M:%S")
             # the first loc after 4:00 am that is not home
-            if loc_start_time > time.strptime('04:00:00', "%H:%M:%S") and not loc in id_home[id]:
+            if loc_start_time > time.strptime('04:00:00', "%H:%M:%S") and not loc in ID_HOME[id]:
                 start_times.append(line[1])
                 #print line[1]
                 break
@@ -77,7 +78,7 @@ def get_end_var_oncampus(in_loc_duration, id):
         seq_extend_reverse = list(reversed(seq_extend))
         for i, line in enumerate(seq_extend_reverse):
             loc = line[0][3:-1]
-            if i > 0 and not loc in id_home[id]:
+            if i > 0 and not loc in ID_HOME[id]:
                 end_time = seq_extend_reverse[i-1][1]
                 
 #                 items = end_time.split(':')
@@ -132,10 +133,10 @@ def get_feature(func):
             continue
         
         id = file.split('.')[0][-2:]
-#         if id in remove_subjects:
+#         if id in REMOVE_SUBJECTS:
 #             continue
         
-        if not id in off_campus:
+        if not id in OFF_CAMPUS:
             continue
         
         print '===================='
@@ -164,7 +165,7 @@ def get_feature_start_var():
     
         in_loc_duration = get_in_loc_duration(id, duration_cut=60*5)
         
-        if id in off_campus:
+        if id in OFF_CAMPUS:
             result = get_start_var_offcampus(in_loc_duration, id)
         else:
             result = get_start_var_offcampus(in_loc_duration, id)
@@ -187,7 +188,7 @@ def get_feature_end_var():
     
         in_loc_duration = get_in_loc_duration(id, duration_cut=60*5)
         
-        if id in off_campus:
+        if id in OFF_CAMPUS:
             result = get_end_var_offcampus(in_loc_duration, id)
         else:
             result = get_end_var_offcampus(in_loc_duration, id)

@@ -3,9 +3,10 @@ import operator
 from pprint import pprint
 import numpy as np
 
-from utilities import CUR_DIR, WIFI_OFF_CAMPUS, WIFI_ID_HOME, WIFI_ALL_LOCS
-from utilities import get_wifi_seqs, write_feature_to_csv
-
+from util import CUR_DIR, OFF_CAMPUS, ID_HOME
+from util import write_feature_to_csv
+from prep_wifi_loc import get_seqs
+wifi_dir = os.path.join(CUR_DIR, 'dataset', 'sensing', 'wifi_location')
 MIN_SUPPORT = 10
 DURATION_CUT = 60*10
 NUM_DAYS = 20
@@ -14,7 +15,7 @@ CUT_TO_LEVEL = 10
 def replace_home(seqs, id):
     for i, seq in enumerate(seqs):
         for j, loc in enumerate(seq):
-            if loc in WIFI_ID_HOME[id]:
+            if loc in ID_HOME[id]:
                 seqs[i][j] = 'home'
 
 def get_all_locs(seqs):
@@ -78,21 +79,18 @@ def gsp(seqs, level, flist, freq_pat):
     
     gsp(seqs, level+1, flist, freq_pat)
 
-
-
-if __name__ == '__main__':
+def get_freq_pat():
     all_locs = set()
     all_seqs = []
     seqs_by_subject = []
     ids = []
-    input_dir = os.path.join(CUR_DIR, 'data', 'by_subjects')
-    for file in os.listdir(input_dir):
-        if not file.endswith('.csv'):
-            continue    
+
+    for file in os.listdir(wifi_dir):
+        if not file.endswith('.csv') or file.endswith('datetime.csv'):
+            continue        
         id = file.split('.')[0][-2:]
-        if int(id) >= 45:
-            continue     
-        if id in WIFI_OFF_CAMPUS:
+   
+        if id in OFF_CAMPUS:
             continue
         fp = os.path.join(input_dir, file)
         
@@ -147,4 +145,7 @@ if __name__ == '__main__':
             id_feature[id] = feature[i]
         feature_name = "fp_test_" + pat.replace(',',';')
         write_feature_to_csv(feature_name, id_feature)
+
+if __name__ == '__main__':
+
         
