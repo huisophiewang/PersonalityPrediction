@@ -106,11 +106,14 @@ def get_freq_pat():
         all_seqs.extend(seqs)
     
 
-
+    ### run GSP algorithm to get freq pattern
     freq_pat = []
     gsp(all_seqs, 1, [], freq_pat)
     #pprint(freq_pat)
     print len(freq_pat)
+    
+    
+    ### 
     for i, p in enumerate(freq_pat):
         print i, p
      
