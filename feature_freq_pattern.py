@@ -7,10 +7,28 @@ from util import CUR_DIR, OFF_CAMPUS, ID_HOME
 from util import write_feature_to_csv
 from prep_wifi_loc import get_seqs
 wifi_dir = os.path.join(CUR_DIR, 'dataset', 'sensing', 'wifi_location')
-MIN_SUPPORT = 10
-DURATION_CUT = 60*10
-NUM_DAYS = 20
-CUT_TO_LEVEL = 10
+
+
+
+
+##########################################################################
+# frequent itemset/pattern mining 
+# algorithms: Apriori
+#             FP-growth
+# reference reading: Data Mining Concepts and Techniques 3rd ed, Chapter 6
+# note: it's based on sets, item order doesn't matter
+#       in Aproiori, items are sorted to avoid duplicates
+
+##########################################################################
+# frequent sequential pattern mining
+# algorithms: GSP
+#             PrefixSpan
+# reference paper: GSP: http://rakesh.agrawal-family.com/papers/edbt96seq.pdf
+#                  PrefixSpan https://static.aminer.org/pdf/PDF/000/300/860/prefixspan_mining_sequential_patterns_by_prefix_projected_growth.pdf
+# note: definition of subsequence, e.g. a,c,d is a subsequence of a,b,c,d
+#       GSP is based on Aproiori
+
+
 
 def replace_home(seqs, id):
     for i, seq in enumerate(seqs):
@@ -23,61 +41,7 @@ def get_all_locs(seqs):
         for loc in seq:
             all_locs.add(loc)
             
-def gsp(seqs, level, flist, freq_pat):
-    
-#     print '========'
-#     print "level: %d" % level
 
-    if level > CUT_TO_LEVEL:
-        return freq_pat
-    
-    if level == 1:
-        fdict = {}
-        for seq in seqs:
-            #print seq
-            for loc in WIFI_ALL_LOCS:
-                if loc in seq:
-                    if loc in fdict:
-                        fdict[loc] += 1
-                    else:
-                        fdict[loc] = 1 
-
-    else:
-        
-        clist = []
-        n = len(flist)
-        for i in range(n):
-            for j in range(n):
-                if flist[i][1:] == flist[j][:-1]:
-                    cad = []
-                    cad.extend(flist[i])
-                    cad.append(flist[j][-1])
-                    clist.append(cad)
-        
-        # todo: prune before scan all seqs
-        fdict = {}
-        for seq in seqs:
-            for cad in clist:
-                if ','.join(cad) in ','.join(seq):
-                    cad_str = ','.join(cad)
-                    if cad_str in fdict:
-                        fdict[cad_str] += 1
-                    else:
-                        fdict[cad_str] = 1
-    fdict = sorted(fdict.items(), key=operator.itemgetter(1), reverse=True)
-    #pprint(fdict) 
-    
-    flist = []              
-    for cad_str, freq in fdict:
-        if freq >= MIN_SUPPORT:
-            freq_pat.append((cad_str, freq))
-            if level == 1:
-                flist.append([cad_str])
-            else:
-                flist.append(cad_str.split(','))                
-    #pprint(freq_pat)
-    
-    gsp(seqs, level+1, flist, freq_pat)
 
 def get_freq_pat():
     all_locs = set()
@@ -148,7 +112,75 @@ def get_freq_pat():
             id_feature[id] = feature[i]
         feature_name = "fp_test_" + pat.replace(',',';')
         write_feature_to_csv(feature_name, id_feature)
+        
+def gsp(seqs, level, flist, min_support):
+    if level == 1:
+        fdict = {}
+        for seq in seqs:
+            for loc in seq:
+                if not loc in fdict:
+                    fdict[loc] = 1
+                else:
+                    fdict[loc] += 1 
+    else:
+        # generate all candidates of length level from length (level-1)
+        clist = []
+        n = len(flist)
+        for i in range(n):
+            for j in range(n):
+                if flist[i][1:] == flist[j][:-1]:
+                    clist.append(flist[i] + flist[j][-1:])           
+        # count the frequency of those candidates
+        fdict = {}
+        for seq in seqs:
+            for cad in clist:
+                # here we use contiguous subsequence
+                # since it makes more sense for daily location sequence
+                cad_str = ','.join(cad)
+                if cad_str in ','.join(seq):
+                    if not cad_str in fdict:
+                        fdict[cad_str] = 1
+                    else:
+                        fdict[cad_str] += 1                
+    # sort by frequency                   
+    fdict = sorted(fdict.items(), key=lambda x: x[1], reverse=True)
+    #pprint(fdict) 
+    
+    # select those candidates with frequency larger than min_support
+    flist = []              
+    for cad_str, freq in fdict:
+        if freq >= min_support:
+            flist.append(cad_str.split(','))     
+    return flist
+    
+def gsp_test():
+    s1 = ['a', 'b', 'd']
+    s2 = ['a', 'b', 'c', 'd']
+    s3 = ['b', 'c', 'a', 'f']
+    s4 = ['a', 'c', 'e', 'c', 'b']
+    s5 = ['a']
+    seqs = [s1, s2, s3, s4, s5]
+    
+    level = 1
+    last_freq = []
+    all_freq_pat = []
+    while level <= 3:
+        freq = gsp( seqs, level, last_freq, min_support=1)
+        all_freq_pat.extend(freq)
+        last_freq = freq
+        level += 1
+    pprint(all_freq_pat)
 
+      
 if __name__ == '__main__':
+    
+#     seqs = get_seqs('01')
+#     pprint(seqs)
+    gsp_test()
+
+
+    
+
+    
 
         

@@ -4,7 +4,7 @@ from datetime import datetime
 import pprint 
 import copy
 
-from util import CUR_DIR, remove_subjects
+from util import CUR_DIR, REMOVE_SUBJECTS
 pp = pprint.PrettyPrinter(width=200)
 wifi_dir = os.path.join(CUR_DIR, 'dataset', 'sensing', 'wifi_location')
 
@@ -156,7 +156,7 @@ def get_all_subjects_seqs():
         if not file.endswith('.csv') or file.endswith('datetime.csv'):
             continue        
         id = file.split('.')[0][-2:]
-        if id in remove_subjects:
+        if id in REMOVE_SUBJECTS:
             continue
         print '----------'
         print 'id: ' + id
@@ -180,9 +180,9 @@ if __name__ == '__main__':
 #     result = get_in_loc_duration('01')
 #     pp.pprint(result)
 
-    get_weekday_seqs('01')
+    #get_weekday_seqs('01')
+    get_seqs('01')
 
 
 
-        
         
