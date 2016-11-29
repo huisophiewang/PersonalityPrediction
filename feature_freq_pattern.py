@@ -164,19 +164,68 @@ def gsp_test():
     level = 1
     last_freq = []
     all_freq_pat = []
-    while level <= 3:
-        freq = gsp( seqs, level, last_freq, min_support=1)
+    max_pattern_len = 3
+    while level <= max_pattern_len:
+        freq = gsp(seqs, level, last_freq, min_support=1)
         all_freq_pat.extend(freq)
         last_freq = freq
         level += 1
     pprint(all_freq_pat)
 
-      
+def get_freq_pattern():
+    ### get seqs 
+    ids = []
+    all_seqs = []  # all seqs of all subjects
+    seqs_by_subject = [] # n subjects, length n 
+    for file in os.listdir(wifi_dir):
+        if not file.endswith('.csv') or file.endswith('datetime.csv'):
+            continue
+        id = file.split('.')[0][-2:]
+        ids.append(id)
+        seqs = get_seqs(id)
+        all_seqs.extend(seqs)
+        seqs_by_subject.append(seqs)
+    
+    ### get freq_patterns from all_seqs
+    freq_patterns = []
+    level = 1
+    max_pattern_len = 3
+    prev_level_freq = []
+    while level <= max_pattern_len:
+        freq = gsp(all_seqs, level, prev_level_freq, min_support=20)
+        freq_patterns.extend(freq)
+        prev_level_freq = freq
+        level += 1
+    pprint(freq_patterns)
+    print len(freq_patterns)
+    
+    ### compute frequency of freq_patterns for each subject
+    n = len(ids) # n subjects
+    m = len(freq_patterns) # m frequent patterns
+    count = np.zeros((n, m)) # n x m matrix
+    for i in range(n):
+        for seq in seqs_by_subject[i]:
+            for j, pat in enumerate(freq_patterns):
+                if ','.join(pat) in ','.join(seq):
+                    count[i, j] += 1
+    print count[:, :3] 
+    ### use frequency as feature, write to csv
+#     for j, pat in enumerate(freq_patterns[:5]):
+#         id_feature = {}
+#         feature = count[:, j]
+#         print feature
+#         for i, id in enumerate(ids):
+#             id_feature[id] = feature[i]
+#         feature_name = "fp_" + pat.replace(',',';')
+#         write_feature_to_csv(feature_name, id_feature)
+    
 if __name__ == '__main__':
     
-#     seqs = get_seqs('01')
-#     pprint(seqs)
-    gsp_test()
+    #seqs = get_seqs('01')
+    #pprint(seqs)
+
+    #gsp_test()
+    get_freq_pattern()
 
 
     

@@ -98,12 +98,14 @@ def z_score_normalize(dic):
     return dic
 
 ## write normalized feature
-def write_feature_to_csv(id_feature, feature_name, normalize=True):
-
-    output_fp = os.path.join(CUR_DIR, 'result', 'feature', feature_name+'.csv')
+def write_feature_to_csv(id_feature, feature_name, normalize=True, subfolder=''):
+    if subfolder:
+        output_fp = os.path.join(CUR_DIR, 'result', 'feature', subfolder, feature_name+'.csv')
+    else:
+        output_fp = os.path.join(CUR_DIR, 'result', 'feature', feature_name+'.csv')
     fw = open(output_fp, 'a')
     labels = ['uid', feature_name]
-    labels.extend(traits) 
+    labels.extend(TRAITS) 
     fw.write(','.join(labels) + '\n')
     
     if normalize:
@@ -118,13 +120,15 @@ def write_feature_to_csv(id_feature, feature_name, normalize=True):
         fw.write(','.join(line) + '\n')     
     fw.close()
     
-def write_multi_features_to_csv(id_features, feature_names, normalize=True):
-
-    output_fp = os.path.join(CUR_DIR, 'result', 'feature', '-'.join(feature_names)+'.csv')
+def write_multi_features_to_csv(id_features, feature_names, normalize=True, subfolder=''):
+    if subfolder:
+        output_fp = os.path.join(CUR_DIR, 'result', 'feature', subfolder, '-'.join(feature_names)+'.csv')
+    else:
+        output_fp = os.path.join(CUR_DIR, 'result', 'feature', '-'.join(feature_names)+'.csv')
     fw = open(output_fp, 'a')
     labels = ['uid']
     labels.extend(feature_names)       
-    labels.extend(traits) 
+    labels.extend(TRAITS) 
     fw.write(','.join(labels) + '\n')
     
     features = []

@@ -1,4 +1,4 @@
-from util import traits, get_trait_scores, get_other_scores
+from util import TRAITS, get_trait_scores, get_other_scores
 def read_feature(feature_name):
     file = r'result\feature\%s.csv' % feature_name
     fr = open(file, 'rU')
@@ -22,7 +22,7 @@ def combine(feature_names):
             labels.extend(feature_name.split('-'))
         else:
             labels.append(feature_name)
-    labels.extend(traits)
+    labels.extend(TRAITS)
     #labels.extend(['depress', 'pcs', 'mcs'])
     fw.write(','.join(labels) + '\n')  
     
