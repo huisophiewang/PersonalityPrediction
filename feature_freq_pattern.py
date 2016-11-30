@@ -189,7 +189,7 @@ def get_freq_pattern():
     ### get freq_patterns from all_seqs
     freq_patterns = []
     level = 1
-    max_pattern_len = 3
+    max_pattern_len = 5
     prev_level_freq = []
     while level <= max_pattern_len:
         freq = gsp(all_seqs, level, prev_level_freq, min_support=20)
@@ -208,16 +208,17 @@ def get_freq_pattern():
             for j, pat in enumerate(freq_patterns):
                 if ','.join(pat) in ','.join(seq):
                     count[i, j] += 1
-    print count[:, :3] 
+    #print count[:,100]
+
     ### use frequency as feature, write to csv
-#     for j, pat in enumerate(freq_patterns[:5]):
-#         id_feature = {}
-#         feature = count[:, j]
-#         print feature
-#         for i, id in enumerate(ids):
-#             id_feature[id] = feature[i]
-#         feature_name = "fp_" + pat.replace(',',';')
-#         write_feature_to_csv(feature_name, id_feature)
+    for j, pat in enumerate(freq_patterns):
+        id_feature = {}
+        feature = count[:, j]
+        #print feature
+        for i, id in enumerate(ids):
+            id_feature[id] = feature[i]
+        feature_name = "fp_" + ';'.join(pat)
+        write_feature_to_csv(id_feature, feature_name, 'freq_pat', False)
     
 if __name__ == '__main__':
     

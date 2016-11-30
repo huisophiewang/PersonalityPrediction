@@ -1,0 +1,27 @@
+#####################################################################################################
+agrbl
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                  agrbl   R-squared:                       0.322
+Model:                            OLS   Adj. R-squared:                  0.307
+Method:                 Least Squares   F-statistic:                     21.34
+Date:                Tue, 29 Nov 2016   Prob (F-statistic):           3.22e-05
+Time:                        13:02:58   Log-Likelihood:                -32.805
+No. Observations:                  47   AIC:                             69.61
+Df Residuals:                      45   BIC:                             73.31
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+=======================================================================================================
+                                          coef    std err          t      P>|t|      [95.0% Conf. Int.]
+-------------------------------------------------------------------------------------------------------
+Intercept                               3.7050      0.075     49.679      0.000         3.555     3.855
+Q("fp_baker-berry;lsb;baker-berry")    -0.1409      0.031     -4.620      0.000        -0.202    -0.079
+==============================================================================
+Omnibus:                        3.376   Durbin-Watson:                   1.942
+Prob(Omnibus):                  0.185   Jarque-Bera (JB):                2.430
+Skew:                          -0.533   Prob(JB):                        0.297
+Kurtosis:                       3.323   Cond. No.                         2.54
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.

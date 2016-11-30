@@ -1,0 +1,27 @@
+#####################################################################################################
+agrbl
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                  agrbl   R-squared:                       0.212
+Model:                            OLS   Adj. R-squared:                  0.194
+Method:                 Least Squares   F-statistic:                     12.09
+Date:                Tue, 29 Nov 2016   Prob (F-statistic):            0.00114
+Time:                        13:02:58   Log-Likelihood:                -36.337
+No. Observations:                  47   AIC:                             76.67
+Df Residuals:                      45   BIC:                             80.37
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+==========================================================================================================
+                                             coef    std err          t      P>|t|      [95.0% Conf. Int.]
+----------------------------------------------------------------------------------------------------------
+Intercept                                  3.7008      0.081     45.574      0.000         3.537     3.864
+Q("fp_baker-berry;kemeny;baker-berry")    -0.1502      0.043     -3.476      0.001        -0.237    -0.063
+==============================================================================
+Omnibus:                        1.402   Durbin-Watson:                   1.964
+Prob(Omnibus):                  0.496   Jarque-Bera (JB):                0.758
+Skew:                          -0.288   Prob(JB):                        0.685
+Kurtosis:                       3.233   Cond. No.                         2.01
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.

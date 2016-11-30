@@ -98,7 +98,7 @@ def z_score_normalize(dic):
     return dic
 
 ## write normalized feature
-def write_feature_to_csv(id_feature, feature_name, normalize=True, subfolder=''):
+def write_feature_to_csv(id_feature, feature_name, subfolder='', normalize=True):
     if subfolder:
         output_fp = os.path.join(CUR_DIR, 'result', 'feature', subfolder, feature_name+'.csv')
     else:
@@ -120,7 +120,7 @@ def write_feature_to_csv(id_feature, feature_name, normalize=True, subfolder='')
         fw.write(','.join(line) + '\n')     
     fw.close()
     
-def write_multi_features_to_csv(id_features, feature_names, normalize=True, subfolder=''):
+def write_multi_features_to_csv(id_features, feature_names, subfolder='', normalize=True):
     if subfolder:
         output_fp = os.path.join(CUR_DIR, 'result', 'feature', subfolder, '-'.join(feature_names)+'.csv')
     else:

@@ -1,0 +1,27 @@
+#####################################################################################################
+extra
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                  extra   R-squared:                       0.060
+Model:                            OLS   Adj. R-squared:                  0.039
+Method:                 Least Squares   F-statistic:                     2.871
+Date:                Tue, 29 Nov 2016   Prob (F-statistic):             0.0971
+Time:                        14:18:56   Log-Likelihood:                -51.499
+No. Observations:                  47   AIC:                             107.0
+Df Residuals:                      45   BIC:                             110.7
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+===============================================================================================
+                                  coef    std err          t      P>|t|      [95.0% Conf. Int.]
+-----------------------------------------------------------------------------------------------
+Intercept                       2.8427      0.137     20.694      0.000         2.566     3.119
+Q("fp_53_commons;sudikoff")     0.1410      0.083      1.694      0.097        -0.027     0.309
+==============================================================================
+Omnibus:                        2.472   Durbin-Watson:                   1.366
+Prob(Omnibus):                  0.291   Jarque-Bera (JB):                1.396
+Skew:                           0.024   Prob(JB):                        0.498
+Kurtosis:                       2.157   Cond. No.                         2.47
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.

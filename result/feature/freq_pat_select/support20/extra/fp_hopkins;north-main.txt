@@ -1,0 +1,27 @@
+#####################################################################################################
+extra
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                  extra   R-squared:                       0.061
+Model:                            OLS   Adj. R-squared:                  0.041
+Method:                 Least Squares   F-statistic:                     2.945
+Date:                Tue, 29 Nov 2016   Prob (F-statistic):             0.0930
+Time:                        13:02:58   Log-Likelihood:                -51.462
+No. Observations:                  47   AIC:                             106.9
+Df Residuals:                      45   BIC:                             110.6
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+==============================================================================================
+                                 coef    std err          t      P>|t|      [95.0% Conf. Int.]
+----------------------------------------------------------------------------------------------
+Intercept                      3.0527      0.114     26.669      0.000         2.822     3.283
+Q("fp_hopkins;north-main")    -0.0886      0.052     -1.716      0.093        -0.193     0.015
+==============================================================================
+Omnibus:                        0.355   Durbin-Watson:                   1.703
+Prob(Omnibus):                  0.837   Jarque-Bera (JB):                0.522
+Skew:                          -0.023   Prob(JB):                        0.770
+Kurtosis:                       2.486   Cond. No.                         2.42
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.

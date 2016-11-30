@@ -1,0 +1,27 @@
+#####################################################################################################
+neuro
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                  neuro   R-squared:                       0.147
+Model:                            OLS   Adj. R-squared:                  0.128
+Method:                 Least Squares   F-statistic:                     7.742
+Date:                Tue, 29 Nov 2016   Prob (F-statistic):            0.00786
+Time:                        14:18:57   Log-Likelihood:                -44.199
+No. Observations:                  47   AIC:                             92.40
+Df Residuals:                      45   BIC:                             96.10
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+==========================================================================================================
+                                             coef    std err          t      P>|t|      [95.0% Conf. Int.]
+----------------------------------------------------------------------------------------------------------
+Intercept                                  2.8590      0.098     29.232      0.000         2.662     3.056
+Q("fp_north-park;sudikoff;north-park")     0.1236      0.044      2.782      0.008         0.034     0.213
+==============================================================================
+Omnibus:                        0.789   Durbin-Watson:                   2.083
+Prob(Omnibus):                  0.674   Jarque-Bera (JB):                0.874
+Skew:                           0.215   Prob(JB):                        0.646
+Kurtosis:                       2.489   Cond. No.                         2.40
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.

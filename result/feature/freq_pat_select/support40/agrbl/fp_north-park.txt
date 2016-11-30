@@ -1,0 +1,27 @@
+#####################################################################################################
+agrbl
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                  agrbl   R-squared:                       0.062
+Model:                            OLS   Adj. R-squared:                  0.041
+Method:                 Least Squares   F-statistic:                     2.969
+Date:                Tue, 29 Nov 2016   Prob (F-statistic):             0.0917
+Time:                        14:20:38   Log-Likelihood:                -40.426
+No. Observations:                  47   AIC:                             84.85
+Df Residuals:                      45   BIC:                             88.55
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+======================================================================================
+                         coef    std err          t      P>|t|      [95.0% Conf. Int.]
+--------------------------------------------------------------------------------------
+Intercept              3.5395      0.098     35.978      0.000         3.341     3.738
+Q("fp_north-park")     0.0216      0.013      1.723      0.092        -0.004     0.047
+==============================================================================
+Omnibus:                       20.440   Durbin-Watson:                   2.125
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):               32.264
+Skew:                          -1.331   Prob(JB):                     9.86e-08
+Kurtosis:                       6.064   Cond. No.                         9.09
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.

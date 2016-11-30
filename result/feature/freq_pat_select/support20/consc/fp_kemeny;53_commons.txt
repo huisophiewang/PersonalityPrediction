@@ -1,0 +1,27 @@
+#####################################################################################################
+consc
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                  consc   R-squared:                       0.067
+Model:                            OLS   Adj. R-squared:                  0.047
+Method:                 Least Squares   F-statistic:                     3.251
+Date:                Tue, 29 Nov 2016   Prob (F-statistic):             0.0781
+Time:                        13:02:58   Log-Likelihood:                -45.778
+No. Observations:                  47   AIC:                             95.56
+Df Residuals:                      45   BIC:                             99.26
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+=============================================================================================
+                                coef    std err          t      P>|t|      [95.0% Conf. Int.]
+---------------------------------------------------------------------------------------------
+Intercept                     3.3501      0.100     33.406      0.000         3.148     3.552
+Q("fp_kemeny;53_commons")     0.1292      0.072      1.803      0.078        -0.015     0.274
+==============================================================================
+Omnibus:                        0.068   Durbin-Watson:                   2.279
+Prob(Omnibus):                  0.966   Jarque-Bera (JB):                0.232
+Skew:                          -0.071   Prob(JB):                        0.890
+Kurtosis:                       2.686   Cond. No.                         1.59
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.

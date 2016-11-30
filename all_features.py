@@ -1,7 +1,8 @@
-from util import TRAITS, get_trait_scores, get_other_scores
-def read_feature(feature_name):
-    file = r'result\feature\%s.csv' % feature_name
-    fr = open(file, 'rU')
+import os
+from util import TRAITS, get_trait_scores
+
+def read_feature(fp):
+    fr = open(fp, 'rU')
     fr.readline()
     id_feature = {}
     for line in fr.readlines():
@@ -33,7 +34,8 @@ def combine(feature_names):
     ids = sorted(id_y.keys())
     all_features = {id:[] for id in ids}
     for feature_name in feature_names:
-        id_feature = read_feature(feature_name)
+        fp = r'result\feature\%s.csv' % feature_name
+        id_feature = read_feature(fp)
         for id in all_features:
             if id in id_feature:
                 all_features[id].extend(id_feature[id])
@@ -43,9 +45,6 @@ def combine(feature_names):
                     all_features[id].extend(['NA'] * num)
                 else:
                     all_features[id].append('NA')
-    
-    
-    
     
     for id in ids:
         line = [id]
@@ -69,6 +68,38 @@ def combine(feature_names):
         fw.write(','.join(line) + '\n') 
     fw.close()
         
+def combine_freq_patterns(trait):
+    output_fp = r'result\feature\freq_pat_%s.csv' % trait
+    input_dir = r'result\feature\freq_pat_select\support40\%s' % trait
+    labels = ['uid']
+    id_y = get_trait_scores() 
+    ids = sorted(id_y.keys())
+    id_all_features = {id:[] for id in ids}
+    for file_name in os.listdir(input_dir):
+        feature = file_name[:-4]
+        print feature
+        labels.append(feature)
+        fp = r'result\feature\freq_pat\support40\%s.csv' % feature
+        id_feature = read_feature(fp)
+        #print id_feature
+        for id in id_all_features:
+            if id in id_feature:
+                id_all_features[id].extend(id_feature[id])
+        #print id_all_features
+    fw = open(output_fp, 'a')
+    labels.append(trait)
+    fw.write(','.join(labels) + '\n')  
+    trait_idx = TRAITS.index('extra')
+    for id in ids:
+        line = [id]
+        line.extend(id_all_features[id])
+        line.append(id_y[id][trait_idx])
+        fw.write(','.join(line) + '\n') 
+    fw.close()
+    
+        
+        
+
         
         
 if __name__ == '__main__':
@@ -76,7 +107,10 @@ if __name__ == '__main__':
     fnames.extend(['early-late-absent', 'late_time_var'])
     fnames.append('days-views-contributions-questions-notes-answers')
     #fnames.append('breakfast-lunch-supper-snack')
-    combine(fnames)
+    #combine(fnames)
+    
+    combine_freq_patterns('extra')
+ 
     
 
 

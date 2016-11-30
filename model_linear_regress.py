@@ -7,16 +7,16 @@ import patsy
 from patsy.builtins import Q
 from patsy.highlevel import dmatrices, dmatrix
 
-from util import CUR_DIR, traits
+from util import CUR_DIR, TRAITS
 
 def single_vrb(feature):
     input_fp = os.path.join(CUR_DIR, 'result', 'feature', feature + '.csv')
     df = pandas.read_csv(input_fp)
     print df
-    for i in range(len(traits)):
+    for i in range(len(TRAITS)):
         print "#####################################################################################"
-        print traits[i]
-        y, X = dmatrices('%s ~ %s' % (traits[i], feature), data=df)
+        print TRAITS[i]
+        y, X = dmatrices('%s ~ %s' % (TRAITS[i], feature), data=df)
         mod = sm.OLS(y, X)
         res = mod.fit()
         print res.summary()
@@ -34,8 +34,8 @@ def multi_feature_single_trait(feature_names, trait):
         mod = sm.OLS(y, X)
         res = mod.fit()
         print res.summary()
+ 
 
-#def single_feature_multi_trait(feature):
         
 def plot_feature(feature):
     input_fp = os.path.join(CUR_DIR, 'result', 'feature', feature + '.csv')
@@ -75,7 +75,7 @@ def plot_y():
     f, axarr = plt.subplots(5, sharex=True)
     for i in range(5):
         y = all_y[i]
-        axarr[i].set_ylabel(traits[i])
+        axarr[i].set_ylabel(TRAITS[i])
         axarr[i].hist(y)
     plt.show()
     
@@ -123,8 +123,8 @@ if __name__ == '__main__':
     feature = 'len_var_all'
     
     feature = 'late_time_var'
-    single_vrb(feature)
-    plot_feature(feature)
+    #single_vrb(feature)
+    #plot_feature(feature)
     
 #     features = ['early', 'late', 'absent']
 #     for idx, feature in enumerate(features):
@@ -149,6 +149,8 @@ if __name__ == '__main__':
 #     trait = 'consc'
 #     multi_vrb(features, trait)
 #     plot_multi_feature(features, trait)
+
+    
     
 
     
