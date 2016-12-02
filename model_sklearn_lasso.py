@@ -44,7 +44,12 @@ def lasso(fp, ycol):
         print("Test MSE: %.2f" % mse)
     
     
-
+def lasso_test(fp, ycol):
+    data = np.genfromtxt(fp, delimiter=",", dtype=float, skip_header=1)
+    # if random_state not specified, each run gives different result
+    X_train, X_test, y_train, y_test = train_test_split(data[:,1:ycol], data[:,ycol], test_size=0.1, random_state=0)
+    clf = linear_model.LassoCV()
+    clf.fit(X_train, y_train)
 
     
 
