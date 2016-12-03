@@ -3,7 +3,7 @@ import operator
 from pprint import pprint
 import numpy as np
 
-from util import CUR_DIR, OFF_CAMPUS, ID_HOME
+from util import CUR_DIR, OFF_CAMPUS, ID_HOME, WIFI_ALL_LOCS
 from util import write_feature_to_csv
 from prep_wifi_loc import get_seqs
 wifi_dir = os.path.join(CUR_DIR, 'dataset', 'sensing', 'wifi_location')
@@ -28,100 +28,18 @@ wifi_dir = os.path.join(CUR_DIR, 'dataset', 'sensing', 'wifi_location')
 # note: definition of subsequence, e.g. a,c,d is a subsequence of a,b,c,d
 #       GSP is based on Aproiori
 
-
-
-def replace_home(seqs, id):
-    for i, seq in enumerate(seqs):
-        for j, loc in enumerate(seq):
-            if loc in ID_HOME[id]:
-                seqs[i][j] = 'home'
-
-def get_all_locs(seqs):
-    for seq in seqs:
-        for loc in seq:
-            all_locs.add(loc)
-            
-
-
-def get_freq_pat():
-    all_locs = set()
-    all_seqs = []
-    seqs_by_subject = []
-    ids = []
-
-    for file in os.listdir(wifi_dir):
-        if not file.endswith('.csv') or file.endswith('datetime.csv'):
-            continue        
-        id = file.split('.')[0][-2:]
-   
-        if id in OFF_CAMPUS:
-            continue
-        fp = os.path.join(input_dir, file)
-        
-        ids.append(id)
-        print id
-        
-        seqs = get_wifi_seqs(fp, DURATION_CUT, NUM_DAYS)
-#         for seq in seqs:
-#             print seq
-            
-        replace_home(seqs, id)
-        seqs_by_subject.append(seqs)
-        all_seqs.extend(seqs)
-    
-
-    ### run GSP algorithm to get freq pattern
-    freq_pat = []
-    gsp(all_seqs, 1, [], freq_pat)
-    #pprint(freq_pat)
-    print len(freq_pat)
-    
-    
-    ### 
-    for i, p in enumerate(freq_pat):
-        print i, p
-     
-    ## n x m matrix, n subjects, m frequent patterns
-    n = len(ids)
-    m = len(freq_pat)
-    count = np.zeros((n, m))
-     
- 
-    for i in range(n):
-        for seq in seqs_by_subject[i]:
-            # print subject i daily sequences
-            if i == 1:
-                print ','.join(seq)
-                
-            for j, (pat,f) in enumerate(freq_pat):
-                if pat in ','.join(seq):
-                    count[i, j] += 1
-          
-    print count  
-    
-    print n, m
-    print count[1]  
-    print count[:, 0:7]
-
-    ## write the first 7 frequent patterns to csv
-    for j, (pat,f) in enumerate(freq_pat[:2]):
-        id_feature = {}
-        feature = count[:, j]
-        #print feature
-        for i, id in enumerate(ids):
-            id_feature[id] = feature[i]
-        feature_name = "fp_test_" + pat.replace(',',';')
-        write_feature_to_csv(feature_name, id_feature)
         
 def gsp(seqs, level, flist, min_support):
+    #print '------------------level=%d------------------' % level
     if level == 1:
         fdict = {}
         for seq in seqs:
-            for loc in seq:
-                if not loc in fdict:
-                    fdict[loc] = 1
-                else:
-                    fdict[loc] += 1 
+            for loc in WIFI_ALL_LOCS:
+                if loc in ','.join(seq):
+                    if not loc in fdict:
+                        fdict[loc] = 1
+                    else:
+                        fdict[loc] += 1 
     else:
         # generate all candidates of length level from length (level-1)
         clist = []
@@ -172,7 +90,7 @@ def gsp_test():
         level += 1
     pprint(all_freq_pat)
 
-def get_freq_pattern():
+def get_freq_pattern(min_support):
     ### get seqs 
     ids = []
     all_seqs = []  # all seqs of all subjects
@@ -192,13 +110,13 @@ def get_freq_pattern():
     max_pattern_len = 5
     prev_level_freq = []
     while level <= max_pattern_len:
-        freq = gsp(all_seqs, level, prev_level_freq, min_support=20)
+        freq = gsp(all_seqs, level, prev_level_freq, min_support)
         freq_patterns.extend(freq)
         prev_level_freq = freq
         level += 1
     pprint(freq_patterns)
     print len(freq_patterns)
-    
+     
     ### compute frequency of freq_patterns for each subject
     n = len(ids) # n subjects
     m = len(freq_patterns) # m frequent patterns
@@ -206,9 +124,10 @@ def get_freq_pattern():
     for i in range(n):
         for seq in seqs_by_subject[i]:
             for j, pat in enumerate(freq_patterns):
-                if ','.join(pat) in ','.join(seq):
+                pat_str = ','.join(pat)
+                if pat_str in ','.join(seq):
                     count[i, j] += 1
-    #print count[:,100]
+    print np.sum(count, axis=0)
 
     ### use frequency as feature, write to csv
     for j, pat in enumerate(freq_patterns):
@@ -218,7 +137,7 @@ def get_freq_pattern():
         for i, id in enumerate(ids):
             id_feature[id] = feature[i]
         feature_name = "fp_" + ';'.join(pat)
-        write_feature_to_csv(id_feature, feature_name, 'freq_pat', False)
+        write_feature_to_csv(id_feature, feature_name, os.path.join('freq_pat', 'support%d' % min_support), False)
     
 if __name__ == '__main__':
     
@@ -226,7 +145,7 @@ if __name__ == '__main__':
     #pprint(seqs)
 
     #gsp_test()
-    get_freq_pattern()
+    get_freq_pattern(min_support=20)
 
 
     

@@ -172,16 +172,27 @@ def get_weekday_seqs(id):
             print weekday  
             pp.pprint(pair[1])
 
-
+def get_all_wifi_locs():
+    all_locs = set()
+    for file in os.listdir(wifi_dir):
+        if not file.endswith('.csv') or file.endswith('datetime.csv'):
+            continue
+        id = file.split('.')[0][-2:]
+        seqs = get_seqs(id)
+        for seq in seqs:
+            for loc in seq:
+                all_locs.add(loc)
     
-if __name__ == '__main__':  
-    #get_all_subjects_seqs()
-        
+    for loc in sorted(all_locs):
+        print "'" + loc + "'" + ','
+    
+if __name__ == '__main__':          
 #     result = get_in_loc_duration('01')
 #     pp.pprint(result)
 
     #get_weekday_seqs('01')
-    get_seqs('01')
+    #get_seqs('01')
+    get_all_wifi_locs()
 
 
 
