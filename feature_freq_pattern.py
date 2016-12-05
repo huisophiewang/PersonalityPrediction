@@ -62,7 +62,7 @@ def gsp(seqs, level, flist, min_support):
                         fdict[cad_str] += 1                
     # sort by frequency                   
     fdict = sorted(fdict.items(), key=lambda x: x[1], reverse=True)
-    #pprint(fdict) 
+    pprint(fdict) 
     
     # select those candidates with frequency larger than min_support
     flist = []              

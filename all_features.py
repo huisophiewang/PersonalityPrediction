@@ -69,7 +69,7 @@ def combine(feature_names):
     fw.close()
         
 def combine_freq_patterns(support, trait='extra'):
-    output_fp = os.path.join('result', 'feature', 'all_freq_pat_%d.csv' % support)
+    output_fp = os.path.join('result', 'feature', 'all_freq_pat_support%d.csv' % support)
     #input_dir = r'result\feature\freq_pat_select\support%s\%s' % (support, trait)
     input_dir = os.path.join('result', 'feature', 'freq_pat', 'support%d' % support)
     labels = ['uid']
@@ -77,6 +77,8 @@ def combine_freq_patterns(support, trait='extra'):
     ids = sorted(id_y.keys())
     id_all_features = {id:[] for id in ids}
     for filename in os.listdir(input_dir):
+        if not '.csv' in filename:
+            continue
         feature = filename[:-4]
         print feature
         labels.append(feature)
@@ -110,7 +112,7 @@ if __name__ == '__main__':
     #fnames.append('breakfast-lunch-supper-snack')
     #combine(fnames)
     
-    combine_freq_patterns(30)
+    combine_freq_patterns(80)
  
     
 

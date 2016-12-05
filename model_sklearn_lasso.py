@@ -1,3 +1,4 @@
+import os
 import numpy as np
 from sklearn import datasets
 from sklearn import linear_model
@@ -57,7 +58,7 @@ def lasso_test(fp, ycol):
 if __name__ == '__main__':
     iris = datasets.load_iris()
     boston = datasets.load_boston()
-    
-    #lasso(r'result\feature\all_features.csv', 14)
-    lasso(r'result\feature\freq_pat_extra.csv', 8)
+
+    lasso(os.path.join('result', 'feature', 'all_features.csv'), 14)
+    #lasso(r'result\feature\freq_pat_extra.csv', 8)
     
