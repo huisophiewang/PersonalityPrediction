@@ -5,8 +5,8 @@ agrbl
 Dep. Variable:                  agrbl   R-squared:                       0.131
 Model:                            OLS   Adj. R-squared:                  0.111
 Method:                 Least Squares   F-statistic:                     6.770
-Date:                Tue, 29 Nov 2016   Prob (F-statistic):             0.0125
-Time:                        14:20:38   Log-Likelihood:                -38.634
+Date:                Tue, 06 Dec 2016   Prob (F-statistic):             0.0125
+Time:                        14:00:51   Log-Likelihood:                -38.634
 No. Observations:                  47   AIC:                             81.27
 Df Residuals:                      45   BIC:                             84.97
 Df Model:                           1                                         

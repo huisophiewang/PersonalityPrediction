@@ -5,8 +5,8 @@ openn
 Dep. Variable:                  openn   R-squared:                       0.105
 Model:                            OLS   Adj. R-squared:                  0.085
 Method:                 Least Squares   F-statistic:                     5.296
-Date:                Tue, 29 Nov 2016   Prob (F-statistic):             0.0261
-Time:                        14:20:38   Log-Likelihood:                -31.940
+Date:                Tue, 06 Dec 2016   Prob (F-statistic):             0.0261
+Time:                        14:00:51   Log-Likelihood:                -31.940
 No. Observations:                  47   AIC:                             67.88
 Df Residuals:                      45   BIC:                             71.58
 Df Model:                           1                                         

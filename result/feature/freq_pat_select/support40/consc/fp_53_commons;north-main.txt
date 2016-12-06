@@ -5,8 +5,8 @@ consc
 Dep. Variable:                  consc   R-squared:                       0.096
 Model:                            OLS   Adj. R-squared:                  0.076
 Method:                 Least Squares   F-statistic:                     4.798
-Date:                Tue, 29 Nov 2016   Prob (F-statistic):             0.0337
-Time:                        14:20:37   Log-Likelihood:                -45.036
+Date:                Tue, 06 Dec 2016   Prob (F-statistic):             0.0337
+Time:                        14:00:51   Log-Likelihood:                -45.036
 No. Observations:                  47   AIC:                             94.07
 Df Residuals:                      45   BIC:                             97.77
 Df Model:                           1                                         

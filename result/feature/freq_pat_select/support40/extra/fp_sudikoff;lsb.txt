@@ -5,8 +5,8 @@ extra
 Dep. Variable:                  extra   R-squared:                       0.065
 Model:                            OLS   Adj. R-squared:                  0.045
 Method:                 Least Squares   F-statistic:                     3.147
-Date:                Tue, 29 Nov 2016   Prob (F-statistic):             0.0829
-Time:                        14:20:38   Log-Likelihood:                -51.364
+Date:                Tue, 06 Dec 2016   Prob (F-statistic):             0.0829
+Time:                        14:00:52   Log-Likelihood:                -51.364
 No. Observations:                  47   AIC:                             106.7
 Df Residuals:                      45   BIC:                             110.4
 Df Model:                           1                                         
