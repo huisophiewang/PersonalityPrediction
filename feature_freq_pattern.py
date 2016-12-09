@@ -1,6 +1,7 @@
 import os
 import operator
-from pprint import pprint
+import pprint
+pp = pprint.PrettyPrinter(width=200)
 import numpy as np
 
 from util import CUR_DIR, OFF_CAMPUS, ID_HOME, WIFI_ALL_LOCS

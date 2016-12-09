@@ -56,6 +56,7 @@ def lambda_cv(x_train, y_train, fold, regularizer):
             hd_idx = np.arange(k, len(x_train), fold)
             x_hd, y_hd = x_train[hd_idx], y_train[hd_idx]
             x_tt, y_tt = np.delete(x_train, hd_idx, axis=0), np.delete(y_train, hd_idx, axis=0)
+            print y_tt
             mse = linear_regression(x_tt, y_tt, x_hd, y_hd, lam, regularizer)
             fold_errs.append(mse)
         lam_errs.append(np.mean(fold_errs))
@@ -93,11 +94,8 @@ def plot_mse(lam_range, hd_mse, fold):
     #plt.plot(np.log10(lam_range), tt_mse, color = 'blue')
     plt.show()       
     
-def test_mean(fp): 
-    #data = np.genfromtxt(fp, delimiter=",", dtype=float)
-    data = np.genfromtxt(fp, delimiter=",", dtype=float, skip_header=1)
-    #print data
-    y = data[:,-1]
+def test_mean(y): 
+    # 0.5573
     y_mean = np.mean(y)
     mse = 0.0
     for yi in y:
@@ -114,13 +112,13 @@ if __name__ == '__main__':
     fp = os.path.join('result', 'feature', 'all_features_extra.csv')
     
     data = np.genfromtxt(fp, delimiter=",", dtype=float, skip_header=1)
-#     x = data[:,1:-1]
+    x = data[:,1:-1]
     y = data[:,-1:]    
     #x = np.genfromtxt('pca95_all_freq_pat_support40.csv', delimiter=",", dtype=float)
-    x = np.genfromtxt('pca95_all_features_extra.csv', delimiter=",", dtype=float)
-    test_mse_cv(x, y, fold=10, regularizer='L1')
+    #x = np.genfromtxt('pca95_all_features_extra.csv', delimiter=",", dtype=float)
+    #test_mse_cv(x, y, fold=10, regularizer='L1')
     
-    #test_mean(fp)
+    #test_mean(y)
     
     
 
