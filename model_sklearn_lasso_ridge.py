@@ -100,8 +100,8 @@ def test_mean(y):
     mse = 0.0
     for yi in y:
         mse += (yi-y_mean)*(yi-y_mean)
-    print mse
-    print len(y)
+    #print mse
+    #print len(y)
     print mse/len(y)
     
 
@@ -119,6 +119,14 @@ if __name__ == '__main__':
     #test_mse_cv(x, y, fold=10, regularizer='L1')
     
     #test_mean(y)
+    y_scale = y/5.0
+    #y_scale = y / 4.0 - 0.25
+    #print np.max(y)
+    #print np.min(y)
+    #y_scale = (y - np.min(y))/(np.max(y)-np.min(y))
+    print y_scale
+    print len(y_scale)
+    test_mean(y_scale)
     
     
 
