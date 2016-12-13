@@ -19,7 +19,6 @@ nested n fold: 0.6098
 combined_all_extra.csv
 nested 10 fold: 0.5696
 nested n fold: 0.5475
-
 '''
 
 
