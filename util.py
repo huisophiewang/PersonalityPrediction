@@ -1,11 +1,10 @@
 import os
 import math
 import time
-import pprint
+from pprint import pprint
 from datetime import datetime
 from collections import OrderedDict
-import pprint
-pp = pprint.PrettyPrinter(width=100)
+
 
 CUR_DIR = os.path.dirname(os.path.realpath(__file__))
 TRAITS = ['extra', 'agrbl', 'consc', 'neuro', 'openn']
@@ -131,7 +130,16 @@ WIFI_ALL_LOCS = ['53_commons',
     'whittemore',
     'woodward']
 
-WIFI_LOC_TYPE = {'53_commons':'dinning',
+WIFI_LOC_TYPES = ['academic', 
+                  'athletic', 
+                  'residential', 
+                  'library', 
+                  'dining', 
+                  'fraternity', 
+                  'arts', 
+                  'unknown']
+
+WIFI_LOC_TYPE_DICT = {'53_commons':'dining',
     '7-lebanon':'academic',
     'HanoverInn':'dining',
     'Tuck_hall':'academic',
@@ -139,7 +147,7 @@ WIFI_LOC_TYPE = {'53_commons':'dinning',
     'batrlett':'academic',
     'blunt_alumni_center':'academic',
     'brown_hall':'residential',
-    'burke':'acadmic',
+    'burke':'academic',
     'butterfield':'residential',
     'byrnehall':'dining',
     'carpenterhall':'academic',
@@ -161,10 +169,10 @@ WIFI_LOC_TYPE = {'53_commons':'dinning',
     'french':'residential',
     'gile':'residential',
     'hallgarten':'unknown',
-    'hanoverpsych':'dinning',
+    'hanoverpsych':'dining',
     'hillcrest':'unknown',
     'hitchcock':'residential',
-    'hopkins':'library',
+    'hopkins':'arts',
     'isr_wireless':'residential',
     'kemeny':'fraternity',
     'library-default-services': 'unknown',
@@ -178,7 +186,7 @@ WIFI_LOC_TYPE = {'53_commons':'dinning',
     'mclaughlin':'residential',
     'mcnutt':'academic',
     'moore':'academic',
-    'murdough':'dinning',
+    'murdough':'dining',
     'newhamp':'residential',
     'north-main':'fraternity',
     'north-park':'residential',
@@ -211,7 +219,7 @@ WIFI_LOC_TYPE = {'53_commons':'dinning',
     'whittemore':'residential',
     'woodward':'residential'}
 
-def get_trait_scores():
+def get_trait_scores(trait='all'):
     id_y = {}
     fp = os.path.join(CUR_DIR, 'dataset', 'survey', 'BigFivePre.csv')
     fr = open(fp, 'rU')
@@ -220,7 +228,11 @@ def get_trait_scores():
     for line in lines:
         items = line.strip('\n').split(",")
         id = items[0][1:]
-        value = items[1:]
+        if trait == 'all':
+            value = items[1:]
+        else:
+            idx = TRAITS.index(trait)
+            value = items[idx+1]
         id_y[id] = value            
     return id_y
 
@@ -378,7 +390,7 @@ def fill_miss_values(id_features, num_features, miss_ids):
         avg /= float(len(id_features))
         for id in miss_ids:
             id_features[id] = avg        
-    pp.pprint(id_features)
+    pprint(id_features)
     return OrderedDict(sorted(id_features.items(), key=lambda t: t[0]))
     
         
@@ -388,8 +400,9 @@ if __name__ == '__main__':
 
 #     for id in range(60):
 #         to_datetime('bluetooth', 'bt', id)
-    id_features = {'00': (1,2), '01': (3,2)}
-    fill_miss_values(id_features, 2, ['03', '04'])
+    #id_features = {'00': (1,2), '01': (3,2)}
+    #fill_miss_values(id_features, 2, ['03', '04'])
+    pprint(get_trait_scores('extra'))
     
     
 

@@ -10,8 +10,8 @@ from patsy.highlevel import dmatrices, dmatrix
 from util import CUR_DIR, TRAITS
 
 def freq_pat_selection():
-    input_dir = os.path.join(CUR_DIR, 'result', 'feature', 'freq_pat', 'support40')
-    output_dir = os.path.join(CUR_DIR, 'result', 'feature', 'freq_pat_select', 'support40')
+    input_dir = os.path.join(CUR_DIR, 'result', 'feature', 'freq_pat', 'normalized', 'support40')
+    output_dir = os.path.join(CUR_DIR, 'result', 'feature', 'freq_pat_select', 'normalized', 'support40')
     for file in os.listdir(input_dir):
         input_fp = os.path.join(input_dir, file)    
         feature = file[:-4]

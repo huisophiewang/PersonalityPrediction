@@ -1,0 +1,27 @@
+#####################################################################################################
+extra
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                  extra   R-squared:                       0.087
+Model:                            OLS   Adj. R-squared:                  0.066
+Method:                 Least Squares   F-statistic:                     4.267
+Date:                Tue, 13 Dec 2016   Prob (F-statistic):             0.0446
+Time:                        11:04:34   Log-Likelihood:                -50.823
+No. Observations:                  47   AIC:                             105.6
+Df Residuals:                      45   BIC:                             109.3
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+==========================================================================================
+                             coef    std err          t      P>|t|      [95.0% Conf. Int.]
+------------------------------------------------------------------------------------------
+Intercept                  2.9898      0.106     28.107      0.000         2.776     3.204
+Q("fp_north-main;lsb")    -0.2157      0.104     -2.066      0.045        -0.426    -0.005
+==============================================================================
+Omnibus:                        0.483   Durbin-Watson:                   1.627
+Prob(Omnibus):                  0.785   Jarque-Bera (JB):                0.605
+Skew:                           0.023   Prob(JB):                        0.739
+Kurtosis:                       2.446   Cond. No.                         1.02
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.

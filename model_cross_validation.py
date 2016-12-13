@@ -2,6 +2,16 @@ import os
 import numpy as np
 from sklearn import linear_model
 from pprint import pprint
+from model_sklearn_lasso import lasso
+
+'''
+mean_as_prediction:
+10 fold: 0.5637
+n fold: 0.5818
+
+n-fold: 0.5818 vs. 0.4160
+10-fold: 0.5637 vs. 0.3648
+'''
 
 def linear_reg(x_train, y_train, x_test, y_test):
     x_train = np.c_[np.ones(len(x_train)), x_train]
@@ -26,25 +36,39 @@ def cv(x, y, fold):
         hd_idx = np.arange(k, len(x), fold)
         x_test, y_test = x[hd_idx], y[hd_idx]
         x_train, y_train = np.delete(x, hd_idx, axis=0), np.delete(y, hd_idx, axis=0)
-        #fold2 = len(x_train)
-        #fold2=10
-        #best_lam = lambda_cv(x_train, y_train, fold2, regularizer)
-        #test_mse = linear_regression(x_train, y_train, x_test, y_test, best_lam, regularizer)
-        test_mse = linear_reg(x_train, y_train, x_test, y_test)
+        #lasso(x_train, y_train)
+        #test_mse = linear_reg(x_train, y_train, x_test, y_test)
+        test_mse = mean_as_prediction(y_test, np.mean(y_train))
         test_mses.append(test_mse)   
     pprint(test_mses)
     avg_test_mse = np.mean(test_mses)
     print "average test mse: %f" % avg_test_mse
+       
+def mean_as_prediction(y, y_mean): 
+    mse = 0.0
+    for yi in y:
+        mse += (yi-y_mean)*(yi-y_mean)
+    #print mse
+    #print len(y)
+    mse /= len(y)
+    return mse
+
+
     
 if __name__ == '__main__':
-    fp = os.path.join('result', 'feature', 'all_features_extra.csv') 
+    fp = os.path.join('result', 'feature', 'all_heuristic_features_extra.csv') 
     #fp = os.path.join('result', 'feature', 'all_freq_pat_support40.csv')
+    #fp = os.path.join('result', 'feature', 'all_freq_pat_support40_norm.csv')
+    #fp = os.path.join('result', 'feature', 'combined_all_extra.csv')
     data = np.genfromtxt(fp, delimiter=",", dtype=float, skip_header=1)
-    x = data[:,[1,2,6]]
+    x = data[:,1:-1]
+    #x = data[:,[1,2,6]]
     #x = data[:,[3,44]]
-    #print x
+    #x = data[:,[3, 4, 49]]
+    #x = data[:,[1, 2, 6, 10]]
     y = data[:,-1] 
-    cv(x, y, fold=10)
+    #y = y/5.0
+    cv(x, y, fold=len(x))
     
 #     model = linear_model.Lasso(alpha=0.01)
 #     model.fit(x, y)

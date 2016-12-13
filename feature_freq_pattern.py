@@ -4,7 +4,7 @@ import pprint
 pp = pprint.PrettyPrinter(width=200)
 import numpy as np
 
-from util import CUR_DIR, OFF_CAMPUS, ID_HOME, WIFI_ALL_LOCS
+from util import CUR_DIR, OFF_CAMPUS, ID_HOME, WIFI_ALL_LOCS, WIFI_LOC_TYPES, WIFI_LOC_TYPE_DICT
 from util import write_feature_to_csv
 from prep_wifi_loc import get_seqs
 wifi_dir = os.path.join(CUR_DIR, 'dataset', 'sensing', 'wifi_location')
@@ -30,17 +30,25 @@ wifi_dir = os.path.join(CUR_DIR, 'dataset', 'sensing', 'wifi_location')
 #       GSP is based on Aproiori
 
         
-def gsp(seqs, level, flist, min_support):
+def gsp(seqs, level, flist, min_support, typed):
     #print '------------------level=%d------------------' % level
     if level == 1:
         fdict = {}
         for seq in seqs:
-            for loc in WIFI_ALL_LOCS:
-                if loc in ','.join(seq):
-                    if not loc in fdict:
-                        fdict[loc] = 1
-                    else:
-                        fdict[loc] += 1 
+            if typed:            
+                for loc in WIFI_LOC_TYPES:
+                    if loc in ','.join(seq):
+                        if not loc in fdict:
+                            fdict[loc] = 1
+                        else:
+                            fdict[loc] += 1 
+            else:
+                for loc in WIFI_ALL_LOCS:
+                    if loc in ','.join(seq):
+                        if not loc in fdict:
+                            fdict[loc] = 1
+                        else:
+                            fdict[loc] += 1                 
     else:
         # generate all candidates of length level from length (level-1)
         clist = []
@@ -63,7 +71,7 @@ def gsp(seqs, level, flist, min_support):
                         fdict[cad_str] += 1                
     # sort by frequency                   
     fdict = sorted(fdict.items(), key=lambda x: x[1], reverse=True)
-    pprint(fdict) 
+    pp.pprint(fdict) 
     
     # select those candidates with frequency larger than min_support
     flist = []              
@@ -90,8 +98,15 @@ def gsp_test():
         last_freq = freq
         level += 1
     pprint(all_freq_pat)
+    
+def to_loc_type(seqs):
+    result = []
+    for seq in seqs:
+        result.append([WIFI_LOC_TYPE_DICT[loc] for loc in seq])
+    #pp.pprint(result)
+    return result       
 
-def get_freq_pattern(min_support):
+def get_freq_pattern(min_support, typed, normalize):
     ### get seqs 
     ids = []
     all_seqs = []  # all seqs of all subjects
@@ -102,20 +117,26 @@ def get_freq_pattern(min_support):
         id = file.split('.')[0][-2:]
         ids.append(id)
         seqs = get_seqs(id)
-        all_seqs.extend(seqs)
-        seqs_by_subject.append(seqs)
+        if typed:
+            type_seqs = to_loc_type(seqs)
+            all_seqs.extend(type_seqs)
+            seqs_by_subject.append(type_seqs)
+        else:
+            all_seqs.extend(seqs)
+            seqs_by_subject.append(seqs)
+            
     
     ### get freq_patterns from all_seqs
     freq_patterns = []
     level = 1
-    max_pattern_len = 5
+    max_pattern_len = 6
     prev_level_freq = []
     while level <= max_pattern_len:
-        freq = gsp(all_seqs, level, prev_level_freq, min_support)
+        freq = gsp(all_seqs, level, prev_level_freq, min_support, typed)
         freq_patterns.extend(freq)
         prev_level_freq = freq
         level += 1
-    pprint(freq_patterns)
+    pp.pprint(freq_patterns)
     print len(freq_patterns)
      
     ### compute frequency of freq_patterns for each subject
@@ -138,15 +159,23 @@ def get_freq_pattern(min_support):
         for i, id in enumerate(ids):
             id_feature[id] = feature[i]
         feature_name = "fp_" + ';'.join(pat)
-        write_feature_to_csv(id_feature, feature_name, os.path.join('freq_pat', 'support%d' % min_support), False)
+        if typed:
+            write_feature_to_csv(id_feature, feature_name, os.path.join('freq_pat', 'typed', 'support%d' % min_support), False)
+        elif normalize:
+            write_feature_to_csv(id_feature, feature_name, os.path.join('freq_pat', 'normalized', 'support%d' % min_support), True)
+        else:
+            write_feature_to_csv(id_feature, feature_name, os.path.join('freq_pat', 'support%d' % min_support), False)
+            
     
 if __name__ == '__main__':
     
     #seqs = get_seqs('01')
-    #pprint(seqs)
+    #pp.pprint(seqs)
+    #to_loc_type(seqs)
 
     #gsp_test()
-    get_freq_pattern(min_support=20)
+    get_freq_pattern(min_support=40, typed=False, normalize=True)
+
 
 
     

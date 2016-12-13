@@ -1,0 +1,27 @@
+#####################################################################################################
+neuro
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                  neuro   R-squared:                       0.065
+Model:                            OLS   Adj. R-squared:                  0.044
+Method:                 Least Squares   F-statistic:                     3.131
+Date:                Tue, 13 Dec 2016   Prob (F-statistic):             0.0836
+Time:                        11:04:34   Log-Likelihood:                -46.349
+No. Observations:                  47   AIC:                             96.70
+Df Residuals:                      45   BIC:                             100.4
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+=================================================================================
+                    coef    std err          t      P>|t|      [95.0% Conf. Int.]
+---------------------------------------------------------------------------------
+Intercept         2.9379      0.097     30.324      0.000         2.743     3.133
+Q("fp_moore")    -0.1825      0.103     -1.769      0.084        -0.390     0.025
+==============================================================================
+Omnibus:                        0.569   Durbin-Watson:                   1.975
+Prob(Omnibus):                  0.752   Jarque-Bera (JB):                0.699
+Skew:                           0.169   Prob(JB):                        0.705
+Kurtosis:                       2.508   Cond. No.                         1.09
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.

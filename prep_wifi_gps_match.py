@@ -18,5 +18,5 @@ def get_loc_gps(loc):
 if __name__ == '__main__':
 #     for loc in WIFI_ALL_LOCS:
 #         print '-------'
-    loc = 'occum'
+    loc = 'hopkins'
     get_loc_gps(loc)
