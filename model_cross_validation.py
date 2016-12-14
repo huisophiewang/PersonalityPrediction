@@ -5,12 +5,13 @@ from pprint import pprint
 from model_sklearn_lasso import lasso
 
 '''
-mean_as_prediction:
+baseline - mean_as_prediction:
+MSE:
 10 fold: 0.5637
 n fold: 0.5818
-
-n-fold: 0.5818 vs. 0.4160
-10-fold: 0.5637 vs. 0.3648
+MAE:
+10 fold: 0.6212
+n fold: 0.6292
 '''
 
 def linear_reg(x_train, y_train, x_test, y_test):
@@ -37,21 +38,22 @@ def cv(x, y, fold):
         x_test, y_test = x[hd_idx], y[hd_idx]
         x_train, y_train = np.delete(x, hd_idx, axis=0), np.delete(y, hd_idx, axis=0)
         #lasso(x_train, y_train)
-        #test_mse = linear_reg(x_train, y_train, x_test, y_test)
-        test_mse = mean_as_prediction(y_test, np.mean(y_train))
+        test_mse = linear_reg(x_train, y_train, x_test, y_test)
+        #test_mse = mean_as_prediction(y_test, np.mean(y_train), 'mae')
         test_mses.append(test_mse)   
     pprint(test_mses)
     avg_test_mse = np.mean(test_mses)
     print "average test mse: %f" % avg_test_mse
        
-def mean_as_prediction(y, y_mean): 
-    mse = 0.0
-    for yi in y:
-        mse += (yi-y_mean)*(yi-y_mean)
-    #print mse
-    #print len(y)
-    mse /= len(y)
-    return mse
+def mean_as_prediction(y, y_mean, err_type): 
+    err = 0.0
+    if err_type == 'mse':
+        err = np.mean((y - y_mean)**2)
+    elif err_type == 'mae':
+        err = np.mean(np.fabs(y - y_mean))
+        
+    print err
+    return err
 
 
     

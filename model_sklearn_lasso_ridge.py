@@ -3,14 +3,25 @@ import numpy as np
 from sklearn import linear_model
 import matplotlib.pyplot as plt
 from pprint import pprint
+
 '''
-all_features_extra.csv
-nested 10 fold: 0.5831
-nested n fold: 0.4485
+baseline - mean_as_prediction:
+MSE:
+10 fold: 0.5637
+n fold: 0.5818
+MAE:
+10 fold: 0.6212
+n fold: 0.6292
+
+-------------------
+MSE:
 
 all_heuristic_features_extra.csv
 nested 10 fold: 0.5831
 nested n fold: 0.4583
+all_heuristic_features_extra.csv [1,2,6]
+nested 10 fold: 0.5873
+nested n fold: 0.4179
 
 all_freq_pat_support40_norm.csv
 nested 10 fold: 0.5640
@@ -19,6 +30,23 @@ nested n fold: 0.6098
 combined_all_extra.csv
 nested 10 fold: 0.5696
 nested n fold: 0.5475
+-------------------
+MAE:
+
+all_heuristic_features_extra.csv
+nested 10 fold: 0.6321
+nested n fold: 0.5631
+all_heuristic_features_extra.csv [1,2,6]
+nested 10 fold: 0.6331
+nested n fold: 0.4978
+
+all_freq_pat_support40_norm.csv
+nested 10 fold: 0.6199
+nested n fold: 0.6685
+
+combined_all_extra.csv
+nested 10 fold: 0.6279
+nested n fold: 0.5752
 '''
 
 
@@ -34,7 +62,7 @@ def normalize_col(arr):
     return result, means, stds
 
 
-def linear_regression(x_tt, y_tt, x_hd, y_hd, lam, regularizer):
+def linear_regression(x_tt, y_tt, x_hd, y_hd, lam, regularizer, err_type):
     #normalize x
     x_tt_norm, means, stds = normalize_col(x_tt)
     if regularizer == 'L1':
@@ -50,16 +78,19 @@ def linear_regression(x_tt, y_tt, x_hd, y_hd, lam, regularizer):
     y_predict = np.dot(x_hd_norm, clf.coef_.T) + np.mean(y_tt)
     #print y_predict
     #y_predict = clf.predict(x_hd_norm) + np.mean(y_tt) # equal as above
-    mse = np.mean((y_predict - y_hd) ** 2)
+    if err_type == 'mse':
+        err = np.mean((y_predict - y_hd) ** 2)
+    elif err_type == 'mae':
+        err = np.mean(np.fabs(y_predict - y_hd))
     #print("Mean squared error: %f" % mse)
-    return mse
+    return err
         
                
-def lambda_cv(x_train, y_train, fold, regularizer):
+def lambda_cv(x_train, y_train, fold, regularizer, err_type):
     lam_range = [1.0]
     #lam_range = [0.15]
     if regularizer == 'L1':
-        lam_range = np.arange(0.01, 1.0, 0.01)
+        lam_range = np.arange(0.01, 0.5, 0.01)
     elif regularizer == 'L2':
         lam_range = np.arange(1.0, 150, 1.0)
         #lam_range = [10 ** j for j in range(-5, 6)]
@@ -73,8 +104,8 @@ def lambda_cv(x_train, y_train, fold, regularizer):
             hd_idx = np.arange(k, len(x_train), fold)
             x_hd, y_hd = x_train[hd_idx], y_train[hd_idx]
             x_tt, y_tt = np.delete(x_train, hd_idx, axis=0), np.delete(y_train, hd_idx, axis=0)
-            mse = linear_regression(x_tt, y_tt, x_hd, y_hd, lam, regularizer)
-            fold_errs.append(mse)
+            err = linear_regression(x_tt, y_tt, x_hd, y_hd, lam, regularizer, err_type)
+            fold_errs.append(err)
         lam_errs.append(np.mean(fold_errs))
     pprint(lam_errs)
     idx = np.argmin(lam_errs)
@@ -84,8 +115,8 @@ def lambda_cv(x_train, y_train, fold, regularizer):
     #plot_mse(lam_range, lam_errs,fold)
     return best_lam
 
-def test_mse_cv(x, y, fold, regularizer):
-    test_mses = []
+def linear_reg_cv(x, y, fold, regularizer, err_type):
+    test_errs = []
     for k in range(fold):
         print 'outer fold: %d' % k
         hd_idx = np.arange(k, len(x), fold)
@@ -93,14 +124,16 @@ def test_mse_cv(x, y, fold, regularizer):
         x_train, y_train = np.delete(x, hd_idx, axis=0), np.delete(y, hd_idx, axis=0)
         fold2 = len(x_train)
         #fold2=fold
-        best_lam = lambda_cv(x_train, y_train, fold2, regularizer)
-        test_mse = linear_regression(x_train, y_train, x_test, y_test, best_lam, regularizer)
-        test_mses.append(test_mse)   
-    pprint(test_mses)
-    avg_test_mse = np.mean(test_mses)
-    print "average test mse: %f" % avg_test_mse
+        best_lam = lambda_cv(x_train, y_train, fold2, regularizer, err_type)
+        test_err = linear_regression(x_train, y_train, x_test, y_test, best_lam, regularizer, err_type)
+        test_errs.append(test_err)   
         
-
+    pprint(test_errs)
+    avg_test_err = np.mean(test_errs)
+    print "average test err: %f" % avg_test_err
+        
+#def mean_as_prediction(x_tt, y_tt, y_test):
+    
 def plot_mse(lam_range, hd_mse, fold):
     plt.title('holdout_mse vs lambda, fold=%d' % fold)
     plt.xlabel('log(lambda)')
@@ -128,10 +161,11 @@ if __name__ == '__main__':
     #fp = os.path.join('result', 'feature', 'all_features_extra.csv')
     #fp = os.path.join('result', 'feature', 'all_freq_pat_support40.csv')
     #fp = os.path.join('result', 'feature', 'all_freq_pat_support40_typed.csv')
-    fp = os.path.join('result', 'feature', 'all_freq_pat_support40_norm.csv')
+    #fp = os.path.join('result', 'feature', 'all_freq_pat_support40_norm.csv')
     #fp = os.path.join('result', 'feature', 'combined_all_extra.csv')
     
     data = np.genfromtxt(fp, delimiter=",", dtype=float, skip_header=1)
+    np.random.shuffle(data)
     x = data[:,1:-1]
     y = data[:,-1:]    
     #y = y/5.0
@@ -149,7 +183,7 @@ if __name__ == '__main__':
 #     print len(y_scale)
 #     test_mean(y_scale)
 
-    test_mse_cv(x, y, fold=len(x), regularizer='L1')
+    linear_reg_cv(x, y, fold=len(x), regularizer='L1', err_type='mse')
     
     
 

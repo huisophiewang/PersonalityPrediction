@@ -129,7 +129,100 @@ def lasso(x, y):
         train_mse = np.sum((predict - y)**2)/len(y)
         print train_mse
         #train_mse = 
-                
+        
+'''
+lasso_cv
+all_heuristic_features_extra.csv
+10 fold:
+best lambda 0.008000
+[ 0.23907906  0.38965841 -0.10285398 -0.         -0.02854255  0.19581764  0.11182673]
+R squared = 0.40 
+n fold:
+best lambda 0.056000
+[ 0.18699527  0.28782519 -0.         -0.         -0.          0.14425956  0.05229586]
+R squared = 0.26
+(when lam=0, R squared = 0.43)
+
+all_freq_pat_support40_norm.csv
+10 fold:
+best lambda 0.309000
+[ 0.  0. -0.  0.  0.  0. -0.  0. -0.  0.  0.  0. -0.  0.  0.  0. -0.  0.
+  0. -0. -0. -0.  0. -0. -0. -0. -0.  0.  0.  0. -0. -0. -0.  0.  0. -0.
+ -0. -0.  0. -0.  0.  0. -0.  0.  0.  0. -0.  0.  0. -0.]
+n fold:
+best lambda 0.283000
+[ 0.  0. -0.  0.  0.  0. -0.  0. -0.  0.  0.  0. -0.  0.  0.  0. -0.  0.
+  0. -0. -0. -0.  0. -0. -0. -0. -0.  0.  0.  0. -0. -0. -0.  0.  0. -0.
+ -0. -0.  0. -0.  0.  0. -0.  0.  0.  0. -0.  0.  0. -0.]
+
+combined_all_extra.csv
+10 fold:
+best lambda 0.121000
+[ 0.1068863   0.21190816  0.         -0.         -0.          0.08953633
+  0.          0.          0.         -0.09672454  0.04419513 -0.          0.
+ -0.          0.         -0.          0.          0.          0.         -0.
+  0.          0.         -0.         -0.          0.         -0.          0.
+ -0.          0.          0.          0.         -0.         -0.          0.
+  0.          0.          0.         -0.         -0.         -0.          0.
+  0.         -0.          0.         -0.          0.0045279  -0.          0.
+  0.         -0.          0.01782351  0.          0.         -0.
+  0.02198078  0.         -0.        ]
+n fold:
+best lambda 0.145000
+[ 0.07838462  0.19043306  0.         -0.         -0.          0.07538657
+  0.          0.          0.         -0.08443605  0.02600847 -0.          0.
+ -0.          0.         -0.          0.          0.          0.         -0.
+  0.          0.         -0.         -0.          0.          0.          0.
+ -0.         -0.          0.          0.         -0.         -0.         -0.
+  0.          0.          0.         -0.         -0.         -0.          0.
+  0.         -0.         -0.         -0.          0.         -0.          0.
+  0.         -0.          0.0062809   0.          0.         -0.
+  0.00691766  0.         -0.        ]
+53_commons;north-main
+53_commons;sudikoff
+sudikoff;lsb
+sudikoff
+(when lam=0, R squared = 0.99)
+'''
+        
+def lasso_cv(x, y, fold):
+    lam_errs = []
+    lam_range = np.arange(0.001, 0.5, 0.001)
+    for lam in lam_range:
+        #print "lambda is %f" % lam
+        fold_errs = []
+        for k in range(fold):
+            #print 'fold: %d' % k
+            hd_idx = np.arange(k, len(x), fold)
+            x_holdout, y_holdout = x[hd_idx], y[hd_idx]
+            x_train, y_train = np.delete(x, hd_idx, axis=0), np.delete(y, hd_idx, axis=0)
+            model = linear_model.Lasso(alpha=lam)
+            model.fit(x_train, y_train)
+            predict = np.dot(x_holdout, model.coef_) + model.intercept_
+            #print predict
+            #print y_holdout
+            hd_err = np.mean((predict - y_holdout)**2)
+            fold_errs.append(hd_err)
+        lam_errs.append(np.mean(fold_errs))
+    pprint(lam_errs)
+    idx = np.argmin(lam_errs)
+    best_lam = lam_range[idx]
+    #best_lam = 0.0
+    print "best lambda %f" % best_lam
+    final_model = linear_model.Lasso(alpha=best_lam)
+    final_model.fit(x, y)
+    print final_model.coef_
+    prediction = np.dot(x, final_model.coef_) + final_model.intercept_
+    print prediction
+    r_squared = get_r_squared(y, prediction)
+    print r_squared
+    
+    return best_lam       
+
+def get_r_squared(y, y_predict):    
+    ss_total = np.sum((y - np.mean(y))**2)
+    ss_reg = np.sum((y_predict - np.mean(y))**2)
+    return ss_reg/ss_total
     
 if __name__ == '__main__':
     iris = datasets.load_iris()
@@ -138,12 +231,14 @@ if __name__ == '__main__':
     fp = os.path.join('result', 'feature', 'all_heuristic_features_extra.csv')
     #fp = os.path.join('result', 'feature', 'all_freq_pat_support40_norm.csv')
     #fp = os.path.join('result', 'feature', 'all_freq_pat_support40_typed.csv')
-    #fp = os.path.join('result', 'feature', 'combined_all_extra.csv')
+    fp = os.path.join('result', 'feature', 'combined_all_extra.csv')
     data = np.genfromtxt(fp, delimiter=",", dtype=float, skip_header=1)
+    #np.random.shuffle(data)
     x = data[:, 1:-1]
     y = data[:,-1]
      
-    lasso(x, y)
+    #lasso(x, y)
+    lasso_cv(x, y, fold=len(x))
     #lasso_by_num(x, y, 1)
 
     #lasso(x, y, 51, num=4)
