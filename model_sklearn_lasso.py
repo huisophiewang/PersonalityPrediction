@@ -125,10 +125,7 @@ def lasso(x, y):
             if c != 0.0:
                 idx.append(i+1)  ## index starts from 1
         print idx
-        predict = np.dot(x, model.coef_) + model.intercept_
-        train_mse = np.sum((predict - y)**2)/len(y)
-        print train_mse
-        #train_mse = 
+
         
 '''
 lasso_cv

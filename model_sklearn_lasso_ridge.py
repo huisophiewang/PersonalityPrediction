@@ -13,9 +13,13 @@ MAE:
 10 fold: 0.6212
 n fold: 0.6292
 
--------------------
+baseline - linear regression
 MSE:
+10 fold: 0.7722
 
+-------------------
+LASSO
+MSE:
 all_heuristic_features_extra.csv
 nested 10 fold: 0.5831
 nested n fold: 0.4583
@@ -26,6 +30,9 @@ nested n fold: 0.4179
 all_freq_pat_support40_norm.csv
 nested 10 fold: 0.5640
 nested n fold: 0.6098
+all_freq_pat_support40_norm.csv [3,49]
+nested 10 fold: 0.5699
+nested n fold: 0.4630
 
 combined_all_extra.csv
 nested 10 fold: 0.5696
@@ -76,6 +83,7 @@ def linear_regression(x_tt, y_tt, x_hd, y_hd, lam, regularizer, err_type):
     for j in range(x_hd.shape[1]):
         x_hd_norm[:,j]=(x_hd[:,j]-means[j])/stds[j]
     y_predict = np.dot(x_hd_norm, clf.coef_.T) + np.mean(y_tt)
+    #y_predict = np.mean(y_tt)
     #print y_predict
     #y_predict = clf.predict(x_hd_norm) + np.mean(y_tt) # equal as above
     if err_type == 'mse':
@@ -84,13 +92,27 @@ def linear_regression(x_tt, y_tt, x_hd, y_hd, lam, regularizer, err_type):
         err = np.mean(np.fabs(y_predict - y_hd))
     #print("Mean squared error: %f" % mse)
     return err
-        
-               
+
+def linear_regression2(x_tt, y_tt, x_hd, y_hd, lam, regularizer, err_type):
+    if regularizer == 'L1':
+        print x_hd
+        print y_hd
+        model = linear_model.Lasso(alpha=lam)
+        model.fit(x_tt, y_tt)
+        predict = np.dot(x_hd, model.coef_) + model.intercept_
+        print model.coef_
+        #print lam
+        print predict
+    if err_type == 'mse':
+        err = np.mean((predict - y_hd)**2)
+    return err    
+    
 def lambda_cv(x_train, y_train, fold, regularizer, err_type):
     lam_range = [1.0]
     #lam_range = [0.15]
     if regularizer == 'L1':
-        lam_range = np.arange(0.01, 0.5, 0.01)
+        lam_range = [0.0]
+        #lam_range = np.arange(0.0, 0.5, 0.01)
     elif regularizer == 'L2':
         lam_range = np.arange(1.0, 150, 1.0)
         #lam_range = [10 ** j for j in range(-5, 6)]
@@ -123,9 +145,10 @@ def linear_reg_cv(x, y, fold, regularizer, err_type):
         x_test, y_test = x[hd_idx], y[hd_idx]
         x_train, y_train = np.delete(x, hd_idx, axis=0), np.delete(y, hd_idx, axis=0)
         fold2 = len(x_train)
-        #fold2=fold
-        best_lam = lambda_cv(x_train, y_train, fold2, regularizer, err_type)
-        test_err = linear_regression(x_train, y_train, x_test, y_test, best_lam, regularizer, err_type)
+        fold2=fold
+        #best_lam = lambda_cv(x_train, y_train, fold2, regularizer, err_type)
+        best_lam = 0.0
+        test_err = linear_regression2(x_train, y_train, x_test, y_test, best_lam, regularizer, err_type)
         test_errs.append(test_err)   
         
     pprint(test_errs)
@@ -165,8 +188,9 @@ if __name__ == '__main__':
     #fp = os.path.join('result', 'feature', 'combined_all_extra.csv')
     
     data = np.genfromtxt(fp, delimiter=",", dtype=float, skip_header=1)
-    np.random.shuffle(data)
+    #np.random.shuffle(data)
     x = data[:,1:-1]
+    #x = data[:,[3,49]]
     y = data[:,-1:]    
     #y = y/5.0
     #x = np.genfromtxt('pca95_all_freq_pat_support40.csv', delimiter=",", dtype=float)
@@ -183,7 +207,7 @@ if __name__ == '__main__':
 #     print len(y_scale)
 #     test_mean(y_scale)
 
-    linear_reg_cv(x, y, fold=len(x), regularizer='L1', err_type='mse')
+    linear_reg_cv(x, y, fold=10, regularizer='L1', err_type='mse')
     
     
 
