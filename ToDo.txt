@@ -1,11 +1,16 @@
-Frequent pattern mining
 
-random forest
+models to try:
+boosting decision tree
+random forest?
 kNN with Gaussian kernel
-regression, mse, larger than using the mean, why not just the mean?
-KL divergence?
 
-How to compare different algorithm?
-50 data, split into train and test
-or cross validation
-what if we want to tune parameters?
+data to analyze:
+bluetooth
+activity
+gps?
+
+model selection:
+http://blog.minitab.com/blog/adventures-in-statistics-2/how-to-choose-the-best-regression-model
+http://support.minitab.com/en-us/minitab/17/topic-library/modeling-statistics/regression-and-correlation/basics/basics-of-best-subsets-regression/
+http://blog.minitab.com/blog/adventures-in-statistics-2/regression-smackdown-stepwise-versus-best-subsets
+http://blog.minitab.com/blog/adventures-in-statistics-2/which-is-better,-stepwise-regression-or-best-subsets-regression

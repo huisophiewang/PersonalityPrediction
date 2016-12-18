@@ -71,13 +71,17 @@ def plot_y():
         for idx, item in enumerate(items[1:]):
             #print idx, item
             all_y[idx].append(float(item))
-     
+    
+
     f, axarr = plt.subplots(5, sharex=True)
+    axarr[0].set_title('Histograms of traits')
     for i in range(5):
         y = all_y[i]
         axarr[i].set_ylabel(TRAITS[i])
         axarr[i].hist(y)
+    
     plt.show()
+    
     
 def plot_other(file_path):
     fr = open(file_path, 'rU')
@@ -104,25 +108,25 @@ if __name__ == '__main__':
     #plot_other(r'dataset\survey\vr_12Pre.csv')
     
     feature = 'len_var'
-    feature = 'start_time_var'
-    feature = 'end_time_var'
-    feature = 'conver_dur'
-    feature = 'conver_freq'
-    feature = 'late_var'
-    feature = 'grade'
-    feature = 'reply_count'
-    feature = 'q1'
-    feature = 'q2'
-    feature = 'q3'
+#     feature = 'start_time_var'
+#     feature = 'end_time_var'
+    feature = 'conver_total_dur'
+    #feature = 'conver_freq'
+#     feature = 'late_var'
+#     feature = 'grade'
+#     feature = 'reply_count'
+#     feature = 'q1'
+#     feature = 'q2'
+#     feature = 'q3'
 
-    feature = 'len_var_offcampus'
-    feature = 'start_time_var_offcampus'
-    feature = 'end_time_var_offcampus'
-    feature = 'start_time_var_all'
-    feature = 'end_time_var_all'
-    feature = 'len_var_all'
+#     feature = 'len_var_offcampus'
+#     feature = 'start_time_var_offcampus'
+#     feature = 'end_time_var_offcampus'
+#     feature = 'start_time_var_all'
+#     feature = 'end_time_var_all'
+#     feature = 'len_var_all'
     
-    feature = 'late_time_var'
+    #feature = 'late_time_var'
     #single_vrb(feature)
     #plot_feature(feature)
     
@@ -150,6 +154,7 @@ if __name__ == '__main__':
 #     multi_vrb(features, trait)
 #     plot_multi_feature(features, trait)
 
+    plot_y()
     
     
 

@@ -205,14 +205,19 @@ def lasso_cv(x, y, fold):
     idx = np.argmin(lam_errs)
     best_lam = lam_range[idx]
     #best_lam = 0.0
-    print "best lambda %f" % best_lam
+    print "min test error: %f" % lam_errs[idx]
+    print "best lambda: %f" % best_lam
     final_model = linear_model.Lasso(alpha=best_lam)
     final_model.fit(x, y)
     print final_model.coef_
     prediction = np.dot(x, final_model.coef_) + final_model.intercept_
-    print prediction
+    #print prediction
+    # use adjusted r squared
     r_squared = get_r_squared(y, prediction)
     print r_squared
+#     n, p = x.shape
+#     adjusted_r_squared = get_adjusted_r_squared(n, p, r_squared)
+#     print adjusted_r_squared
     
     return best_lam       
 
@@ -220,20 +225,27 @@ def get_r_squared(y, y_predict):
     ss_total = np.sum((y - np.mean(y))**2)
     ss_reg = np.sum((y_predict - np.mean(y))**2)
     return ss_reg/ss_total
+
+def get_adjusted_r_squared(n, p, r_squared):
+    adjusted = 1.0 - (1.0-r_squared)*(n-1)/(n-p-1)
+    return adjusted
     
 if __name__ == '__main__':
-    iris = datasets.load_iris()
-    boston = datasets.load_boston()
+    #iris = datasets.load_iris()
+    #boston = datasets.load_boston()
     
-    fp = os.path.join('result', 'feature', 'all_heuristic_features_extra.csv')
+    fp = os.path.join('result', 'feature', 'all_features.csv')
+    #fp = os.path.join('result', 'feature', 'all_heuristic_features_extra.csv')
     #fp = os.path.join('result', 'feature', 'all_freq_pat_support40_norm.csv')
     #fp = os.path.join('result', 'feature', 'all_freq_pat_support40_typed.csv')
-    fp = os.path.join('result', 'feature', 'combined_all_extra.csv')
+    #fp = os.path.join('result', 'feature', 'combined_all_extra.csv')
     data = np.genfromtxt(fp, delimiter=",", dtype=float, skip_header=1)
     #np.random.shuffle(data)
-    x = data[:, 1:-1]
-    y = data[:,-1]
-     
+    x = data[:, 1:-5]
+    y = data[:,-2]
+    
+    #print x
+    #print y
     #lasso(x, y)
     lasso_cv(x, y, fold=len(x))
     #lasso_by_num(x, y, 1)

@@ -50,9 +50,10 @@ def duration(id):
     for dt in dt_dur:
         total += dt_dur[dt]
     
-    avg = float(total) / len(dt_dur)
-    print avg
-    return avg
+#     avg = float(total) / len(dt_dur)
+#     print avg
+#     return avg
+    return total
         
     
     
@@ -78,4 +79,4 @@ if __name__ == '__main__':
 #     write_feature_to_csv(id_feature, 'conver_freq')
 
     id_feature = get_feature(duration)
-    write_feature_to_csv(id_feature, 'conver_dur')  
+    write_feature_to_csv(id_feature, 'conver_total_dur')  
