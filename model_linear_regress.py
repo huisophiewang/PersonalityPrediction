@@ -107,10 +107,10 @@ if __name__ == '__main__':
     #plot_y()
     #plot_other(r'dataset\survey\vr_12Pre.csv')
     
-    feature = 'len_var'
+#     feature = 'len_var'
 #     feature = 'start_time_var'
 #     feature = 'end_time_var'
-    feature = 'conver_total_dur'
+    #feature = 'conver_total_dur'
     #feature = 'conver_freq'
 #     feature = 'late_var'
 #     feature = 'grade'
@@ -127,7 +127,11 @@ if __name__ == '__main__':
 #     feature = 'len_var_all'
     
     #feature = 'late_time_var'
-    #single_vrb(feature)
+    
+    feature = 'nearby_daily'
+    #feature = 'nearby_timestamp'
+    #feature = 'nearby_total'
+    single_vrb(feature)
     #plot_feature(feature)
     
 #     features = ['early', 'late', 'absent']
@@ -154,7 +158,6 @@ if __name__ == '__main__':
 #     multi_vrb(features, trait)
 #     plot_multi_feature(features, trait)
 
-    plot_y()
     
     
 
