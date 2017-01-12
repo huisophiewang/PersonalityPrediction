@@ -79,4 +79,5 @@ if __name__ == '__main__':
 #     write_feature_to_csv(id_feature, 'conver_freq')
 
     id_feature = get_feature(duration)
-    write_feature_to_csv(id_feature, 'conver_total_dur')  
+    #write_feature_to_csv(id_feature, 'conver_dur_avg') 
+    write_feature_to_csv(id_feature, 'conver_dur_total')  

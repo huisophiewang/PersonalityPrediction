@@ -6,7 +6,7 @@ import numpy as np
 import pprint
 pp = pprint.PrettyPrinter(width=200)
 
-def pearson():
+def pearson_all_features():
 #     fp1 = r"dataset\survey\PerceivedStressScalePre.csv"
 #     d1= np.genfromtxt(fp1, delimiter=',', dtype=None, unpack=True, names=True)
 #     print d1
@@ -27,7 +27,15 @@ def pearson():
         x = data[:,i]
         print pearsonr(x, y)
 
-    
+def pearson_single_feature(feature_name):  
+    fp = os.path.join('result', 'feature', '%s.csv' % feature_name)
+    data = np.genfromtxt(fp, delimiter=",", dtype=float, skip_header=1)
+    #print data
+    x = data[:,1]
+    print x
+    for i in range(2, 7):
+        y = data[:, i]
+        print pearsonr(x, y)
 
 
 
@@ -38,7 +46,6 @@ def regress(x, y):
     print res.summary()
     
 
-    
 def plot(x, y):
     plt.plot(x, y, 'ro')
     plt.show()
@@ -48,8 +55,14 @@ if __name__ == '__main__':
 #     regress(x, y)
 #     pearson(x, y)
 #     plot(x, y)
-    pearson()
-    #print range(1, 14)
+    #pearson_all_features()
+    
+    feature_name = 'conver_freq'
+    feature_name = 'nearby_daily'
+    
+    pearson_single_feature(feature_name)
+    
+
 
 
     

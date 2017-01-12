@@ -400,9 +400,14 @@ if __name__ == '__main__':
 
 #     for id in range(60):
 #         to_datetime('bluetooth', 'bt', id)
-    #id_features = {'00': (1,2), '01': (3,2)}
-    #fill_miss_values(id_features, 2, ['03', '04'])
-    pprint(get_trait_scores('extra'))
+        
+#     for id in range(60):
+#         to_datetime('activity', 'activity', id)
+        
+    id_features = {'00': (1,2), '01': (3,2)}
+    fill_miss_values(id_features, 2, ['03', '04'])
+    
+    #pprint(get_trait_scores('extra'))
     
     
 
