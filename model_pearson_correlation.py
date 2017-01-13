@@ -18,7 +18,6 @@ def pearson_all_features():
     data = np.genfromtxt(fp, delimiter=",", dtype=float, skip_header=1)
     #print data
     
-
     y = data[:,15]
     print y
     for i in range(1, 13):
@@ -37,6 +36,16 @@ def pearson_single_feature(feature_name):
         y = data[:, i]
         print pearsonr(x, y)
 
+def trait_corr_matrix():
+    fp = os.path.join('dataset', 'survey', 'BigFivePre.csv')
+    data = np.genfromtxt(fp, delimiter=",", dtype=float, skip_header=1)
+    data = data[:,1:]
+
+    corr = np.zeros((5,5))
+    for i in range(5):
+        for j in range(5):
+            corr[i,j] = pearsonr(data[:, i], data[:, j])[0]
+    print corr
 
 
 def regress(x, y):
@@ -46,21 +55,18 @@ def regress(x, y):
     print res.summary()
     
 
-def plot(x, y):
-    plt.plot(x, y, 'ro')
-    plt.show()
         
 if __name__ == '__main__':
-    #get_pair()
-#     regress(x, y)
-#     pearson(x, y)
-#     plot(x, y)
+
     #pearson_all_features()
     
     feature_name = 'conver_freq'
     feature_name = 'nearby_daily'
+    feature_name = 'num_days_activity'
+    feature_name = 'num_days_audio'
     
-    pearson_single_feature(feature_name)
+    #pearson_single_feature(feature_name)
+    trait_corr_matrix()
     
 
 

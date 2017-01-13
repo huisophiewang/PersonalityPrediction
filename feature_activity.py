@@ -11,10 +11,11 @@ def get_feature():
         if not file.endswith('datetime.csv'):
             continue       
         id = file[10:12]
-        #print id
+        print '------'
+        print "id: " + id
         
-        if id in ['59']:
-            continue
+#         if id in ['59']:
+#             continue
 
         fp = os.path.join(dir, file)
         fr = open(fp, 'rU') 
@@ -38,8 +39,10 @@ def get_feature():
         
         
         days = len(count_date)
+        print days
         
         total = total_stat + total_walk + total_run + total_unknown
+        print total/float(days)
 
             
 #         rate_stat, rate_walk, rate_run = total_stat/float(total), total_walk/float(total), total_run/float(total)
@@ -72,8 +75,8 @@ if __name__ == '__main__':
     
     #write_feature_to_csv(id_features, 'num_days_activity')
     
-    fill_miss_values(id_features, 3, ['59'])
-    write_multi_features_to_csv(id_features, ['stat_daily', 'walk_daily', 'run_daily'])
+    #fill_miss_values(id_features, 3, ['59'])
+    #write_multi_features_to_csv(id_features, ['stat_daily', 'walk_daily', 'run_daily'])
     
 
     

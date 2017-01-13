@@ -125,7 +125,7 @@ if __name__ == '__main__':
 #     feature = 'start_time_var_all'
 #     feature = 'end_time_var_all'
 #     feature = 'len_var_all'
-    #feature = 'late_time_var'
+    feature = 'late_time_var'
     
     #feature = 'conver_freq'
     #feature = 'conver_dur_avg'
@@ -135,42 +135,26 @@ if __name__ == '__main__':
     #feature = 'nearby_timestamp'
     #feature = 'nearby_total'
     
-#     feature = 'num_days'
-#     single_vrb(feature)
-#     plot_feature(feature)
+    #feature = 'num_days_activity'
+    #feature = 'num_days_audio'
     
-#     features = ['early', 'late', 'absent']
-#     for idx, feature in enumerate(features):
-#         features[idx] = feature + '_all'
-#     trait = 'extra'
-#     multi_feature_single_trait(features, trait)
-#     plot_multi_feature(features, trait)
+    single_vrb(feature)
+    plot_feature(feature)
     
-#     features = ['days', 'views', 'contributions', 'questions', 'notes', 'answers']
-#     for idx, feature in enumerate(features):
-#         features[idx] = feature + '_all'
-#     trait = 'openn'
-#     multi_feature_single_trait(features, trait)
-#     plot_multi_feature(features, trait)
-
+#     features = ['early', 'late', 'absent']   
+#    features = ['days', 'views', 'contributions', 'questions', 'notes', 'answers']
 #     features = ['breakfast', 'lunch', 'supper', 'snack']
-#     trait = 'extra'
-#     multi_vrb(features, trait)
-#     plot_multi_feature(features, trait)
-
 #     features = ['breakfast_var', 'lunch_var', 'supper_var', 'snack_var']
-#     trait = 'consc'
-#     multi_vrb(features, trait)
-#     plot_multi_feature(features, trait)
 
     #features = ['stat_total', 'walk_total', 'run_total']
     #features = ['stat_rate', 'walk_rate', 'run_rate']
     #features = ['stat_rate', 'act_rate']
     #features = ['stat_total', 'act_total']
-    features = ['stat_daily', 'walk_daily', 'run_daily']
-    trait = 'extra'
-    multi_feature_single_trait(features, trait)
-    plot_multi_feature(features, trait)
+    #features = ['stat_daily', 'walk_daily', 'run_daily']
+    
+#     trait = 'openn'
+#     multi_feature_single_trait(features, trait)
+#     plot_multi_feature(features, trait)
 
     
     
