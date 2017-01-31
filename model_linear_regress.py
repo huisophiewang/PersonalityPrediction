@@ -108,6 +108,8 @@ if __name__ == '__main__':
     #plot_other(r'dataset\survey\vr_12Pre.csv')
     
 #     feature = 'len_var'
+#     feature = 'len_mean'
+#     feature = 'avg_edit_dist'
 #     feature = 'start_time_var'
 #     feature = 'end_time_var'
     
@@ -125,18 +127,34 @@ if __name__ == '__main__':
 #     feature = 'start_time_var_all'
 #     feature = 'end_time_var_all'
 #     feature = 'len_var_all'
-    feature = 'late_time_var'
+    #feature = 'late_time_var'
     
     #feature = 'conver_freq'
     #feature = 'conver_dur_avg'
     #feature = 'conver_dur_total'
     
+    #feature = 'num_days_activity'
+    #feature = 'num_days_audio'
+    #feature = 'num_days_bluetooth'
+    
     #feature = 'nearby_daily'
     #feature = 'nearby_timestamp'
     #feature = 'nearby_total'
-    
-    #feature = 'num_days_activity'
-    #feature = 'num_days_audio'
+    #feature = 'nearby_entropy_day'
+    #feature = 'nearby_entropy_night'
+    #feature = 'nearby_entropy_evening'
+    feature = 'nearby_entropy'
+    #feature = 'nearby_friends_evening'
+    #feature = 'nearby_friends'
+    #feature = 'nearby_total_30days_oncampus'
+    #feature = 'nearby_entropy_30days_oncampus'
+    #feature = 'nearby_total_30days_oncampus_noclass'
+    #feature = 'nearby_entropy_30days_oncampus_noclass'
+    #feature = 'nearby_num_unique_30days_oncampus'
+    #feature = 'nearby_timestamp_30days_oncampus'
+    #feature = 'nearby_num_friends_30days_oncampus'
+
+
     
     single_vrb(feature)
     plot_feature(feature)

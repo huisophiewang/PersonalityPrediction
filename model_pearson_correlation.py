@@ -35,6 +35,21 @@ def pearson_single_feature(feature_name):
     for i in range(2, 7):
         y = data[:, i]
         print pearsonr(x, y)
+        
+def pearson_multi_features(feature_names):
+    fp = os.path.join('result', 'feature', '%s.csv' % '-'.join(feature_names))
+    data = np.genfromtxt(fp, delimiter=",", dtype=float, skip_header=1)
+    data = data[:,1:]
+    num = len(feature_names)
+    for i in range(num):
+        print '--------------------'
+        print feature_names[i]
+        x = data[:, i]
+        for j in range(num, num+5):
+            y = data[:, j]
+            print pearsonr(x, y)
+    
+    
 
 def trait_corr_matrix():
     fp = os.path.join('dataset', 'survey', 'BigFivePre.csv')
@@ -59,15 +74,22 @@ def regress(x, y):
 if __name__ == '__main__':
 
     #pearson_all_features()
+    #trait_corr_matrix()
     
-    feature_name = 'conver_freq'
-    feature_name = 'nearby_daily'
-    feature_name = 'num_days_activity'
-    feature_name = 'num_days_audio'
+    feature = 'conver_freq'
+    feature = 'nearby_daily'
+    feature = 'num_days_activity'
+    #feature = 'num_days_audio'
+    feature = 'len_var'
+    feature = 'start_time_var'
+    feature = 'end_time_var'
+    feature = 'nearby_entropy'
+    feature = 'nearby_timestamp'
+    pearson_single_feature(feature)
     
-    #pearson_single_feature(feature_name)
-    trait_corr_matrix()
-    
+#     features = ['early', 'late', 'absent'] 
+#     features = ['days', 'views', 'contributions', 'questions', 'notes', 'answers']  
+#     pearson_multi_features(features)
 
 
 

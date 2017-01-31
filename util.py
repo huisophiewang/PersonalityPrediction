@@ -9,7 +9,7 @@ from collections import OrderedDict
 CUR_DIR = os.path.dirname(os.path.realpath(__file__))
 TRAITS = ['extra', 'agrbl', 'consc', 'neuro', 'openn']
 OFF_CAMPUS = ['00', '12', '13', '31', '34', '36', '39', '42', '44', '45', '47', '51', '56']
-# need to remove outlier for feature_len_var to work
+# need to remove outlier for feature_loc_seq to work
 REMOVE_SUBJECTS = set(OFF_CAMPUS).union(set(['46']))
 
 ID_HOME = {'01': ['kemeny', 'cutter-north'], # Phi Tau frat
@@ -392,7 +392,29 @@ def fill_miss_values(id_features, num_features, miss_ids):
             id_features[id] = avg        
     pprint(id_features)
     return OrderedDict(sorted(id_features.items(), key=lambda t: t[0]))
+
+def edit_dist(s,t):
+    if not s:
+        return len(t)
     
+    if not t:
+        return len(s)
+    
+    d = {}
+    S = len(s)
+    T = len(t)
+    for i in range(S):
+        d[i, 0] = i
+    for j in range (T):
+        d[0, j] = j
+    for j in range(1,T):
+        for i in range(1,S):
+            if s[i] == t[j]:
+                d[i, j] = d[i-1, j-1]
+            else:
+                d[i, j] = min(d[i-1, j] + 1, d[i, j-1] + 1, d[i-1, j-1] + 1)
+    #pprint(d)
+    return d[S-1, T-1]
         
 if __name__ == '__main__':
 #     id_features = {'01':(1,2,3), '02':(4,5,6)}

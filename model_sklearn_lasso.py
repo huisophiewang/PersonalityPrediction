@@ -129,7 +129,7 @@ def lasso(x, y):
         
 '''
 lasso_cv
-all_heuristic_features_extra.csv
+all_heuristic_features_extra_old.csv
 10 fold:
 best lambda 0.008000
 [ 0.23907906  0.38965841 -0.10285398 -0.         -0.02854255  0.19581764  0.11182673]
@@ -139,6 +139,19 @@ best lambda 0.056000
 [ 0.18699527  0.28782519 -0.         -0.         -0.          0.14425956  0.05229586]
 R squared = 0.26
 (when lam=0, R squared = 0.43)
+
+all_heuristic_features_extra.csv
+10 fold:
+min test error: 0.379645
+best lambda: 0.032000
+[ 0.20745979  0.32937217 -0.          0.          0.16412685 -0.00237192]
+R squared = 0.311794189788
+n fold:
+min test error: 0.418383
+best lambda: 0.036000
+[ 0.20313928  0.32499326 -0.          0.          0.16210895 -0.0006756 ]
+R squared = 0.301789247186
+
 
 all_freq_pat_support40_norm.csv
 10 fold:
@@ -184,7 +197,7 @@ sudikoff
         
 def lasso_cv(x, y, fold):
     lam_errs = []
-    lam_range = np.arange(0.001, 0.5, 0.001)
+    lam_range = np.arange(0.000, 0.5, 0.001)
     for lam in lam_range:
         #print "lambda is %f" % lam
         fold_errs = []
@@ -234,23 +247,23 @@ if __name__ == '__main__':
     #iris = datasets.load_iris()
     #boston = datasets.load_boston()
     
-    fp = os.path.join('result', 'feature', 'all_features.csv')
-    #fp = os.path.join('result', 'feature', 'all_heuristic_features_extra.csv')
+    #fp = os.path.join('result', 'feature', 'all_features.csv')
+    fp = os.path.join('result', 'feature', 'all_heuristic_features_extra.csv')
     #fp = os.path.join('result', 'feature', 'all_freq_pat_support40_norm.csv')
     #fp = os.path.join('result', 'feature', 'all_freq_pat_support40_typed.csv')
     #fp = os.path.join('result', 'feature', 'combined_all_extra.csv')
     data = np.genfromtxt(fp, delimiter=",", dtype=float, skip_header=1)
     #np.random.shuffle(data)
-    x = data[:, 1:-5]
-    y = data[:,-2]
+    x = data[:, 1:-1]
+    y = data[:,-1]
     
     #print x
     #print y
     #lasso(x, y)
-    lasso_cv(x, y, fold=len(x))
+    lasso_cv(x, y, fold=10)
     #lasso_by_num(x, y, 1)
 
-    #lasso(x, y, 51, num=4)
+
     #lasso(r'result\feature\freq_pat_extra.csv', 8)
     #lasso_path_test(x, y)
     

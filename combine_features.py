@@ -116,7 +116,12 @@ if __name__ == '__main__':
     
     #combine_freq_patterns(40, normalize=True)
     
-    combine_heuristic_fp(['all_heuristic_features_extra.csv','all_freq_pat_support40_norm.csv'], 'extra')
+    #combine_heuristic_fp(['all_heuristic_features_extra.csv','all_freq_pat_support40_norm.csv'], 'extra')
+    
+    fnames = ['len_var', 'start_time_var', 'end_time_var']
+    fnames.append('early-late-absent')
+    fnames.append('num_days_activity')
+    combine_heuristic_features(fnames)
  
     
 

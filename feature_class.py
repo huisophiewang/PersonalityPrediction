@@ -74,7 +74,7 @@ def get_class_schedule(id):
             # sort by start time
             for wkd in schedule:
                 schedule[wkd].sort(key=lambda tup:tup[1])
-            #pp.pprint(schedule)
+            pp.pprint(schedule)
             return schedule  
         
 def get_feature():
@@ -122,9 +122,11 @@ def get_feature():
     return id_feature
         
 if __name__ == '__main__':
-    id_features = get_feature()
-    fill_miss_values(id_features, 3, ['00', '36', '39', '56'])
-    write_multi_features_to_csv(id_features, ['early', 'late', 'absent'])
+    #id_features = get_feature()
+    #fill_miss_values(id_features, 3, ['00', '36', '39', '56'])
+    #write_multi_features_to_csv(id_features, ['early', 'late', 'absent'])
     
     #fill_miss_values(id_features, 1, ['00', '36', '39', '56'])
     #write_feature_to_csv(id_features, 'late_time_var')
+    
+    get_class_schedule('01')

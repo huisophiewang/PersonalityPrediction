@@ -20,12 +20,16 @@ MSE:
 -------------------
 LASSO
 MSE:
-all_heuristic_features_extra.csv
+all_heuristic_features_extra_old.csv
 nested 10 fold: 0.5831
 nested n fold: 0.4583
-all_heuristic_features_extra.csv [1,2,6]
+all_heuristic_features_extra_old.csv [1,2,6]
 nested 10 fold: 0.5873
 nested n fold: 0.4179
+
+all_heuristic_features_extra.csv
+nested 10 fold: 0.5878
+nested n fold: 04187
 
 all_freq_pat_support40_norm.csv
 nested 10 fold: 0.5640
@@ -112,7 +116,7 @@ def lambda_cv(x_train, y_train, fold, regularizer, err_type):
     #lam_range = [0.15]
     if regularizer == 'L1':
         lam_range = [0.0]
-        #lam_range = np.arange(0.0, 0.5, 0.01)
+        lam_range = np.arange(0.0, 0.5, 0.01)
     elif regularizer == 'L2':
         lam_range = np.arange(1.0, 150, 1.0)
         #lam_range = [10 ** j for j in range(-5, 6)]
@@ -146,9 +150,9 @@ def linear_reg_cv(x, y, fold, regularizer, err_type):
         x_train, y_train = np.delete(x, hd_idx, axis=0), np.delete(y, hd_idx, axis=0)
         fold2 = len(x_train)
         fold2=fold
-        #best_lam = lambda_cv(x_train, y_train, fold2, regularizer, err_type)
-        best_lam = 0.0
-        test_err = linear_regression2(x_train, y_train, x_test, y_test, best_lam, regularizer, err_type)
+        best_lam = lambda_cv(x_train, y_train, fold2, regularizer, err_type)
+        #best_lam = 0.0
+        test_err = linear_regression(x_train, y_train, x_test, y_test, best_lam, regularizer, err_type)
         test_errs.append(test_err)   
         
     pprint(test_errs)
