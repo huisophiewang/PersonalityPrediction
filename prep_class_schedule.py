@@ -26,27 +26,35 @@ def get_late_time(id, schedule):
         seq = pair[1]
         date_obj = datetime.strptime(pair[0], "%Y-%m-%d")
         weekday = date_obj.strftime("%A")
-        #print '-----------'
+        print '-----------'
         #print weekday  
+        #print seq
         daily_result = []
         for idx, schedule_info in enumerate(schedule[weekday]):
-            #print schedule_info
+            print schedule_info
             schedule_loc = schedule_info[0]
             for actual_info in seq:
+                print actual_info
                 actual_loc = actual_info[0][3:-1]
                 if actual_loc == schedule_loc:
-                    schedule_time = datetime.strptime(schedule_info[1], "%H:%M")
-                    actual_time = datetime.strptime(actual_info[1][:-3], "%H:%M")
-                    if schedule_time > actual_time:
-                        diff = (schedule_time - actual_time).seconds / 60.0
+                    schedule_time_start = datetime.strptime(schedule_info[1], "%H:%M")
+                    schedule_time_end = datetime.strptime(schedule_info[2], "%H:%M")
+                    actual_time_start = datetime.strptime(actual_info[1][:-3], "%H:%M")
+                    actual_time_end = datetime.strptime(actual_info[2][:-3], "%H:%M")
+                    if actual_time_start < schedule_time_start and actual_time_end > schedule_time_start:
+                        # early
+                        diff = (schedule_time_start - actual_time_start).seconds / 60.0
+                        #print -diff
                         daily_result.append(-diff)
-                    else:
-                        diff = (actual_time - schedule_time).seconds / 60.0
+                        break
+                        #daily_result.append(0.0)
+                    elif actual_time_start > schedule_time_start and actual_time_start < schedule_time_end:
+                        diff = (actual_time_start - schedule_time_start).seconds / 60.0
                         daily_result.append(diff)
-                    break
+                        break
             if len(daily_result) != idx+1:
                 daily_result.append('NA')  
-        #print daily_result   
+        print daily_result   
         result.extend(daily_result)
         #print
         #pp.pprint(seq)

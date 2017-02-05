@@ -247,8 +247,8 @@ if __name__ == '__main__':
     #iris = datasets.load_iris()
     #boston = datasets.load_boston()
     
-    #fp = os.path.join('result', 'feature', 'all_features.csv')
-    fp = os.path.join('result', 'feature', 'all_heuristic_features_extra.csv')
+    fp = os.path.join('result', 'feature', 'all_features_extra.csv')
+    #fp = os.path.join('result', 'feature', 'all_heuristic_features_extra.csv')
     #fp = os.path.join('result', 'feature', 'all_freq_pat_support40_norm.csv')
     #fp = os.path.join('result', 'feature', 'all_freq_pat_support40_typed.csv')
     #fp = os.path.join('result', 'feature', 'combined_all_extra.csv')

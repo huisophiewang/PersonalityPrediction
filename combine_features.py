@@ -1,6 +1,6 @@
 import os
 from pprint import pprint
-from util import TRAITS, get_trait_scores, z_score_normalize
+from util import TRAITS, get_trait_scores, z_score_normalize, OFF_CAMPUS
 
 
 def read_feature(fp):
@@ -15,7 +15,7 @@ def read_feature(fp):
     return id_feature
 
 def combine_heuristic_features(feature_names, trait='extra'):
-    output_fp = os.path.join('result', 'feature', 'all_heuristic_features_%s.csv' % trait)
+    output_fp = os.path.join('result', 'feature', 'all_features_%s.csv' % trait)
     input_dir = os.path.join('result', 'feature')
     labels = ['uid']
     for feature_name in feature_names:
@@ -37,6 +37,8 @@ def combine_heuristic_features(feature_names, trait='extra'):
     labels.append(trait)
     fw.write(','.join(labels) + '\n') 
     for id in ids:
+        if id in OFF_CAMPUS:
+            continue
         line = [id]
         line.extend(all_features[id])
         line.append(id_y[id])
@@ -118,10 +120,19 @@ if __name__ == '__main__':
     
     #combine_heuristic_fp(['all_heuristic_features_extra.csv','all_freq_pat_support40_norm.csv'], 'extra')
     
-    fnames = ['len_var', 'start_time_var', 'end_time_var']
-    fnames.append('early-late-absent')
-    fnames.append('num_days_activity')
-    combine_heuristic_features(fnames)
+#     fnames = ['len_var', 'start_time_var', 'end_time_var']
+#     fnames.append('early-late-absent')
+#     fnames.append('num_days_activity')
+
+#     fnames = ['len_var_oncampus', 'end_time_var_oncampus', 'num_days_activity_oncampus']
+#     fnames.append('daily_day_oncampus-daily_evening_oncampus-daily_night_oncampus')
+#     combine_heuristic_features(fnames)
+
+    fnames = ['start_time_var_oncampus']
+    fnames.append('day_entropy_oncampus_30days-evening_entropy_oncampus_30days-night_entropy_oncampus_30days')
+    fnames.append('days_oncampus-views_oncampus-contributions_oncampus-questions_oncampus-notes_oncampus-answers_oncampus')
+    fnames.append('daily_day_oncampus-daily_evening_oncampus-daily_night_oncampus')
+    combine_heuristic_features(fnames, trait='consc')
  
     
 

@@ -87,6 +87,7 @@ def linear_regression(x_tt, y_tt, x_hd, y_hd, lam, regularizer, err_type):
     for j in range(x_hd.shape[1]):
         x_hd_norm[:,j]=(x_hd[:,j]-means[j])/stds[j]
     y_predict = np.dot(x_hd_norm, clf.coef_.T) + np.mean(y_tt)
+    # mean as prediction
     #y_predict = np.mean(y_tt)
     #print y_predict
     #y_predict = clf.predict(x_hd_norm) + np.mean(y_tt) # equal as above
@@ -184,8 +185,8 @@ def test_mean(y):
 
 if __name__ == '__main__':
 
-    fp = os.path.join('result', 'feature', 'all_heuristic_features_extra.csv')
-    #fp = os.path.join('result', 'feature', 'all_features_extra.csv')
+    #fp = os.path.join('result', 'feature', 'all_heuristic_features_extra.csv')
+    fp = os.path.join('result', 'feature', 'all_features_extra.csv')
     #fp = os.path.join('result', 'feature', 'all_freq_pat_support40.csv')
     #fp = os.path.join('result', 'feature', 'all_freq_pat_support40_typed.csv')
     #fp = os.path.join('result', 'feature', 'all_freq_pat_support40_norm.csv')

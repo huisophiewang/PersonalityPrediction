@@ -3,7 +3,7 @@ import os
 import random
 import copy
 from datetime import datetime
-from prep_wifi_loc import get_in_loc_duration
+from prep_wifi_loc import get_in_loc_duration, get_seqs
 from util import CUR_DIR, ID_HOME, REMOVE_SUBJECTS, OFF_CAMPUS
 from util import write_feature_to_csv, get_time_var
 import pprint
@@ -11,8 +11,7 @@ pp = pprint.PrettyPrinter(width=100)
 wifi_dir = os.path.join(CUR_DIR, 'dataset', 'sensing', 'wifi_location')
 
 def get_start_var_oncampus(in_loc_duration, id):
-    # randomly choose 20 days
-    
+
     start_times = []
     for pair in in_loc_duration:
         dt = pair[0]    
@@ -32,6 +31,7 @@ def get_start_var_oncampus(in_loc_duration, id):
     #print len(start_times)
     #samples = random.sample(start_times, 20)
     samples = start_times
+    print len(samples)
     return get_time_var(samples)
 
 def get_start_var_offcampus(in_loc_duration, id):
@@ -164,11 +164,13 @@ def get_feature_start_var():
         print 'id: ' + id
     
         in_loc_duration = get_in_loc_duration(id, duration_cut=60*5)
+        #seqs = get_seqs(id)
         
         if id in OFF_CAMPUS:
-            result = get_start_var_offcampus(in_loc_duration, id)
+            #result = get_start_var_offcampus(in_loc_duration, id)
+            continue
         else:
-            result = get_start_var_offcampus(in_loc_duration, id)
+            result = get_start_var_oncampus(in_loc_duration, id)
             
         id_feature[id] = result
         
@@ -189,9 +191,10 @@ def get_feature_end_var():
         in_loc_duration = get_in_loc_duration(id, duration_cut=60*5)
         
         if id in OFF_CAMPUS:
-            result = get_end_var_offcampus(in_loc_duration, id)
+            #result = get_end_var_offcampus(in_loc_duration, id)
+            continue
         else:
-            result = get_end_var_offcampus(in_loc_duration, id)
+            result = get_end_var_oncampus(in_loc_duration, id)
             
         id_feature[id] = result
         
@@ -215,11 +218,11 @@ if __name__ == '__main__':
 #     in_loc_duration = get_in_loc_duration(id)
 #     get_end_time_test(in_loc_duration, id)
 
-    id_feature = get_feature_start_var()
-    write_feature_to_csv(id_feature, 'start_time_var')
+#     id_feature = get_feature_start_var()
+#     write_feature_to_csv(id_feature, 'start_time_var_oncampus')
     
-#     id_feature = get_feature_end_var()
-#     write_feature_to_csv(id_feature, 'end_time_var')
+    id_feature = get_feature_end_var()
+    write_feature_to_csv(id_feature, 'end_time_var_oncampus')
 
     
     

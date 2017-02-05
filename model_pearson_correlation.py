@@ -80,16 +80,29 @@ if __name__ == '__main__':
     feature = 'nearby_daily'
     feature = 'num_days_activity'
     #feature = 'num_days_audio'
-    feature = 'len_var'
-    feature = 'start_time_var'
-    feature = 'end_time_var'
-    feature = 'nearby_entropy'
-    feature = 'nearby_timestamp'
-    pearson_single_feature(feature)
+    feature = 'len_var_oncampus'
+    #feature = 'start_time_var_oncampus'
+    #feature = 'end_time_var_oncampus'
+    feature = 'late_time_var_oncampus'
+#     feature = 'num_days_activity_oncampus'
+#     feature = 'num_days_bluetooth_oncampus'
+#     feature = 'nearby_entropy_30days_oncampus'
+#     feature = 'nearby_entropy'
+#     feature = 'nearby_timestamp'
+#     feature = 'nearby_daily_oncampus'
+#     feature = 'nearby_total_oncampus'
+    #pearson_single_feature(feature)
     
-#     features = ['early', 'late', 'absent'] 
-#     features = ['days', 'views', 'contributions', 'questions', 'notes', 'answers']  
-#     pearson_multi_features(features)
+    
+    
+    
+    #features = ['days', 'views', 'contributions', 'questions', 'notes', 'answers']
+    #features = ['days_oncampus', 'views_oncampus', 'contributions_oncampus', 'questions_oncampus', 'notes_oncampus', 'answers_oncampus']  
+    #features = ['daily_day_oncampus', 'daily_evening_oncampus', 'daily_night_oncampus']
+    #features = ['early', 'late', 'absent'] 
+    #features = ['early_oncampus', 'late_oncampus', 'absent_oncampus'] 
+    features = ['day_entropy_oncampus_30days', 'evening_entropy_oncampus_30days', 'night_entropy_oncampus_30days']
+    pearson_multi_features(features)
 
 
 

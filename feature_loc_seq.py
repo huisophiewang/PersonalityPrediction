@@ -26,8 +26,8 @@ def get_len_var(seqs):
         var += (len(seqs[i]) - mean)*(len(seqs[i]) - mean)
     var /= n
     
-    #return mean
-    return var
+    return mean
+    #return var
     
 
 def get_avg_edit_dist(seqs):
@@ -52,8 +52,8 @@ def get_feature():
         
         id = file.split('.')[0][-2:]
         
-#         if id in REMOVE_SUBJECTS:
-#             continue
+        if id in OFF_CAMPUS:
+            continue
     
         print '----------'
         print 'id: ' + id
@@ -61,8 +61,8 @@ def get_feature():
         seqs = get_seqs(id)
         #print seqs
         #print len(seqs)
-        #result = get_len_var(seqs)
-        result = get_avg_edit_dist(seqs)
+        result = get_len_var(seqs)
+        #result = get_avg_edit_dist(seqs)
         print result
         
         id_feature[id] = result
@@ -78,7 +78,8 @@ if __name__ == '__main__':
     #pp.pprint(get_seqs('46'))
     
     #write_feature_to_csv(id_feature, 'len_mean')
-    #write_feature_to_csv(id_feature, 'len_var')
-    write_feature_to_csv(id_feature, 'avg_edit_dist')
+    #write_feature_to_csv(id_feature, 'len_var_oncampus')
+    write_feature_to_csv(id_feature, 'len_mean_oncampus')
+    #write_feature_to_csv(id_feature, 'avg_edit_dist')
     
     

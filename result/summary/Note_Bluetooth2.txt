@@ -1,0 +1,26 @@
+v1 (divide by different num of days)
+daily_day_oncampus vs. extra + 0.031
+daily_day_oncampus vs. consc + 0.072
+daily_day_oncampus vs. neuro - 0.013
+daily_evening_oncampus vs. openn - 0.049
+daily_night_oncampus vs. neuro - 0.081
+
+v2 (divide by same num of days)
+daily_day_oncampus vs. extra + 0.035
+daily_day_oncampus vs. consc + 0.070
+daily_day_oncampus vs. neuro - 0.013
+daily_evening_oncampus vs. openn - 0.071
+daily_night_oncampus vs. extra - 0.066
+daily_night_oncampus vs. neuro - 0.031
+
+v3 (divide by same num of days, remove class time)
+daily_day_oncampus vs. extra + 0.030
+daily_day_oncampus vs. consc + 0.082
+daily_day_oncampus vs. neuro - 0.013
+daily_evening_oncampus vs. openn - 0.071
+daily_night_oncampus vs. extra - 0.066
+daily_night_oncampus vs. neuro - 0.031
+
+
+
+

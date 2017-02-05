@@ -1,8 +1,8 @@
 import os
-import pprint 
+from pprint import pprint
 from datetime import datetime
-from util import write_feature_to_csv
-pp = pprint.PrettyPrinter(width=200)
+from util import write_feature_to_csv, OFF_CAMPUS, write_multi_features_to_csv
+#pp = pprint.PrettyPrinter(width=200)
 dir = r'C:\Users\Sophie\workspace\Personality\dataset\sensing\conversation'
 
 def freq(id):
@@ -10,23 +10,64 @@ def freq(id):
     fp = os.path.join(dir, r'conversation_u%s_datetime.csv' % id)
     fr = open(fp, 'rU') 
     lines = fr.readlines()
+    by_day_day, by_day_evening, by_day_night = {}, {}, {}
     for line in lines:
         items = line.rstrip(',\n').split(",")
-        dt = items[0][:10]
+        date = items[0][:10]
 #         weekday = datetime.strptime(dt, "%Y-%m-%d").strftime("%A")
 #         if weekday in ['Saturday', 'Sunday']:
 #             continue
-        if not dt in dt_freq:
-            dt_freq[dt] = 0
-        dt_freq[dt] += 1
-    pp.pprint(dt_freq)
+        hour = int(items[0][11:13])
+        #print items[0]
+#         if not dt in dt_freq:
+#             dt_freq[dt] = 0
+#         dt_freq[dt] += 1
+#     pp.pprint(dt_freq)
+#     
+#     total = 0
+#     for dt in dt_freq:
+#         total += dt_freq[dt]
+#     avg = float(total) / len(dt_freq)
+    #print avg
+    #return avg
     
-    total = 0
-    for dt in dt_freq:
-        total += dt_freq[dt]
-    avg = float(total) / len(dt_freq)
-    print avg
-    return avg
+        if hour >= 9 and hour < 18:
+            if not date in by_day_day:
+                by_day_day[date] = 0
+            by_day_day[date] += 1
+        elif hour >= 18 and hour <= 23:
+            if not date in by_day_evening:
+                by_day_evening[date] = 0
+            by_day_evening[date] += 1
+        else:
+            if not date in by_day_night:
+                by_day_night[date] = 0
+            by_day_night[date] += 1   
+            
+    #pprint(by_day_day)
+    
+    daily_day = 0.0
+    for dt in by_day_day:
+        daily_day += by_day_day[dt]
+    if len(by_day_day):
+        daily_day /= len(by_day_day)
+      
+      
+    daily_evening = 0.0
+    for dt in by_day_evening:
+        daily_evening += by_day_evening[dt]
+    if len(by_day_evening):
+        daily_evening /= len(by_day_evening)
+  
+       
+    daily_night = 0.0
+    for dt in by_day_night:
+        daily_night += by_day_night[dt]
+    if len(by_day_night):
+        daily_night /= len(by_day_night)
+  
+    print (daily_day, daily_evening, daily_night)
+    return (daily_day, daily_evening, daily_night)
 
 
 def duration(id):
@@ -44,16 +85,16 @@ def duration(id):
         if not dt in dt_dur:
             dt_dur[dt] = 0
         dt_dur[dt] += duration
-    pp.pprint(dt_dur)
+    #pp.pprint(dt_dur)
     
     total = 0
     for dt in dt_dur:
         total += dt_dur[dt]
     
-#     avg = float(total) / len(dt_dur)
+    avg = float(total) / len(dt_dur)
 #     print avg
-#     return avg
-    return total
+    return avg
+    #return total
         
     
     
@@ -65,19 +106,28 @@ def get_feature(func):
             continue        
         id = file.split('.')[0][-2:]
 
+        if id in OFF_CAMPUS:
+            continue
+
+#         if id != '01':
+#             continue
+        
         print '----------'
         print 'id: ' + id
-            
+        
         result = func(id)   
-        #result = duration(id)
         id_feature[id] = result
         
     return id_feature     
 
 if __name__ == '__main__':  
-#     id_feature = get_feature(freq)
-#     write_feature_to_csv(id_feature, 'conver_freq')
+    id_feature = get_feature(freq)
+    #write_feature_to_csv(id_feature, 'conver_freq')
+    #write_feature_to_csv(id_feature, 'conver_freq_oncampus')
+    write_multi_features_to_csv(id_feature, ['conver_freq_daytime_oncampus', 'conver_freq_evening_oncampus', 'conver_freq_night_oncampus'])
 
-    id_feature = get_feature(duration)
+    #id_feature = get_feature(duration)
     #write_feature_to_csv(id_feature, 'conver_dur_avg') 
-    write_feature_to_csv(id_feature, 'conver_dur_total')  
+    #write_feature_to_csv(id_feature, 'conver_dur_avg_oncampus') 
+    #write_feature_to_csv(id_feature, 'conver_dur_total')  
+    #write_feature_to_csv(id_feature, 'conver_dur_total_oncampus')  
