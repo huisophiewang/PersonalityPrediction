@@ -128,11 +128,19 @@ if __name__ == '__main__':
 #     fnames.append('daily_day_oncampus-daily_evening_oncampus-daily_night_oncampus')
 #     combine_heuristic_features(fnames)
 
-    fnames = ['start_time_var_oncampus']
-    fnames.append('day_entropy_oncampus_30days-evening_entropy_oncampus_30days-night_entropy_oncampus_30days')
-    fnames.append('days_oncampus-views_oncampus-contributions_oncampus-questions_oncampus-notes_oncampus-answers_oncampus')
-    fnames.append('daily_day_oncampus-daily_evening_oncampus-daily_night_oncampus')
-    combine_heuristic_features(fnames, trait='consc')
+#     fnames = ['start_time_var_oncampus']
+#     fnames.append('day_entropy_oncampus_30days-evening_entropy_oncampus_30days-night_entropy_oncampus_30days')
+#     fnames.append('days_oncampus-views_oncampus-contributions_oncampus-questions_oncampus-notes_oncampus-answers_oncampus')
+#     fnames.append('daily_day_oncampus-daily_evening_oncampus-daily_night_oncampus')
+#     combine_heuristic_features(fnames, trait='consc')
+
+#     fnames = ['end_time_var_oncampus']
+#     fnames.append('daily_day_oncampus-daily_evening_oncampus-daily_night_oncampus')
+#     combine_heuristic_features(fnames, trait='neuro')
+
+
+    fnames= ['daily_day_oncampus-daily_evening_oncampus-daily_night_oncampus']
+    combine_heuristic_features(fnames, trait='openn')
  
     
 

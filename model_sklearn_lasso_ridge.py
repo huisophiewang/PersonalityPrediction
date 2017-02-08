@@ -4,7 +4,9 @@ from sklearn import linear_model
 import matplotlib.pyplot as plt
 from pprint import pprint
 
+
 '''
+old data:
 baseline - mean_as_prediction:
 MSE:
 10 fold: 0.5637
@@ -86,11 +88,9 @@ def linear_regression(x_tt, y_tt, x_hd, y_hd, lam, regularizer, err_type):
     x_hd_norm = np.zeros(x_hd.shape)
     for j in range(x_hd.shape[1]):
         x_hd_norm[:,j]=(x_hd[:,j]-means[j])/stds[j]
-    y_predict = np.dot(x_hd_norm, clf.coef_.T) + np.mean(y_tt)
-    # mean as prediction
-    #y_predict = np.mean(y_tt)
+    #y_predict = np.dot(x_hd_norm, clf.coef_.T) + np.mean(y_tt)
     #print y_predict
-    #y_predict = clf.predict(x_hd_norm) + np.mean(y_tt) # equal as above
+    y_predict = clf.predict(x_hd_norm) + np.mean(y_tt) # equal as above
     if err_type == 'mse':
         err = np.mean((y_predict - y_hd) ** 2)
     elif err_type == 'mae':
@@ -98,6 +98,16 @@ def linear_regression(x_tt, y_tt, x_hd, y_hd, lam, regularizer, err_type):
     #print("Mean squared error: %f" % mse)
     return err
 
+def get_ymean_prediction_err(y_tt, y_hd, err_type):
+    y_predict = np.mean(y_tt)
+    #print y_predict
+    #y_predict = clf.predict(x_hd_norm) + np.mean(y_tt) # equal as above
+    if err_type == 'mse':
+        err = np.mean((y_predict - y_hd) ** 2)
+    elif err_type == 'mae':
+        err = np.mean(np.fabs(y_predict - y_hd))
+    return err
+    
 def linear_regression2(x_tt, y_tt, x_hd, y_hd, lam, regularizer, err_type):
     if regularizer == 'L1':
         print x_hd
@@ -111,6 +121,8 @@ def linear_regression2(x_tt, y_tt, x_hd, y_hd, lam, regularizer, err_type):
     if err_type == 'mse':
         err = np.mean((predict - y_hd)**2)
     return err    
+
+
     
 def lambda_cv(x_train, y_train, fold, regularizer, err_type):
     lam_range = [1.0]
@@ -119,7 +131,7 @@ def lambda_cv(x_train, y_train, fold, regularizer, err_type):
         lam_range = [0.0]
         lam_range = np.arange(0.0, 0.5, 0.01)
     elif regularizer == 'L2':
-        lam_range = np.arange(1.0, 150, 1.0)
+        lam_range = np.arange(0.0, 150, 1.0)
         #lam_range = [10 ** j for j in range(-5, 6)]
 
     lam_errs = []
@@ -160,7 +172,20 @@ def linear_reg_cv(x, y, fold, regularizer, err_type):
     avg_test_err = np.mean(test_errs)
     print "average test err: %f" % avg_test_err
         
-#def mean_as_prediction(x_tt, y_tt, y_test):
+def mean_as_prediction_cv(x, y, fold, err_type):
+    test_errs = []
+    for k in range(fold):
+        print 'outer fold: %d' % k
+        hd_idx = np.arange(k, len(x), fold)
+        x_test, y_test = x[hd_idx], y[hd_idx]
+        x_train, y_train = np.delete(x, hd_idx, axis=0), np.delete(y, hd_idx, axis=0)
+
+        test_err = get_ymean_prediction_err(y_train, y_test, err_type)
+        test_errs.append(test_err)   
+        
+    pprint(test_errs)
+    avg_test_err = np.mean(test_errs)
+    print "average test err: %f" % avg_test_err
     
 def plot_mse(lam_range, hd_mse, fold):
     plt.title('holdout_mse vs lambda, fold=%d' % fold)
@@ -182,11 +207,14 @@ def test_mean(y):
     print mse/len(y)
     
 
-
+    
 if __name__ == '__main__':
 
     #fp = os.path.join('result', 'feature', 'all_heuristic_features_extra.csv')
-    fp = os.path.join('result', 'feature', 'all_features_extra.csv')
+    #fp = os.path.join('result', 'feature', 'all_features_extra.csv')
+    #fp = os.path.join('result', 'feature', 'all_features_consc.csv')
+    #fp = os.path.join('result', 'feature', 'all_features_neuro.csv')
+    fp = os.path.join('result', 'feature', 'all_features_openn.csv')
     #fp = os.path.join('result', 'feature', 'all_freq_pat_support40.csv')
     #fp = os.path.join('result', 'feature', 'all_freq_pat_support40_typed.csv')
     #fp = os.path.join('result', 'feature', 'all_freq_pat_support40_norm.csv')
@@ -212,7 +240,10 @@ if __name__ == '__main__':
 #     print len(y_scale)
 #     test_mean(y_scale)
 
-    linear_reg_cv(x, y, fold=10, regularizer='L1', err_type='mse')
+    #mean_as_prediction_cv(x, y, fold=10, err_type='mse')
+    
+    linear_reg_cv(x, y, fold=10, regularizer='L2', err_type='mse')
+
     
     
 

@@ -74,17 +74,18 @@ def regress(x, y):
 if __name__ == '__main__':
 
     #pearson_all_features()
-    #trait_corr_matrix()
+    trait_corr_matrix()
     
-    feature = 'conver_freq'
-    feature = 'nearby_daily'
-    feature = 'num_days_activity'
+    #feature = 'conver_freq'
+    #feature = 'nearby_daily'
+    #feature = 'num_days_activity'
     #feature = 'num_days_audio'
     feature = 'len_var_oncampus'
-    #feature = 'start_time_var_oncampus'
-    #feature = 'end_time_var_oncampus'
-    feature = 'late_time_var_oncampus'
-#     feature = 'num_days_activity_oncampus'
+    #feature = 'len_mean_oncampus'
+    feature = 'start_time_var_oncampus'
+    feature = 'end_time_var_oncampus'
+    #feature = 'late_time_var_oncampus'
+    #feature = 'num_days_activity_oncampus'
 #     feature = 'num_days_bluetooth_oncampus'
 #     feature = 'nearby_entropy_30days_oncampus'
 #     feature = 'nearby_entropy'
@@ -97,12 +98,15 @@ if __name__ == '__main__':
     
     
     #features = ['days', 'views', 'contributions', 'questions', 'notes', 'answers']
+    features = ['days_oncampus', 'views_oncampus', 'contributions_oncampus', 'questions_oncampus', 'notes_oncampus', 'answers_oncampus']
     #features = ['days_oncampus', 'views_oncampus', 'contributions_oncampus', 'questions_oncampus', 'notes_oncampus', 'answers_oncampus']  
     #features = ['daily_day_oncampus', 'daily_evening_oncampus', 'daily_night_oncampus']
     #features = ['early', 'late', 'absent'] 
     #features = ['early_oncampus', 'late_oncampus', 'absent_oncampus'] 
-    features = ['day_entropy_oncampus_30days', 'evening_entropy_oncampus_30days', 'night_entropy_oncampus_30days']
-    pearson_multi_features(features)
+    #features = ['day_entropy_oncampus_30days', 'evening_entropy_oncampus_30days', 'night_entropy_oncampus_30days']
+    #features = ['stat_rate_oncampus', 'walk_rate_oncampus', 'run_rate_oncampus']
+    #features = ['conver_freq_daytime_oncampus', 'conver_freq_evening_oncampus', 'conver_freq_night_oncampus']
+    #pearson_multi_features(features)
 
 
 

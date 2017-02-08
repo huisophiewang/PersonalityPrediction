@@ -64,12 +64,12 @@ def cv(x, y, fold):
         x_test, y_test = x[hd_idx], y[hd_idx]
         x_train, y_train = np.delete(x, hd_idx, axis=0), np.delete(y, hd_idx, axis=0)
         #lasso(x_train, y_train)
-        test_mse = sklearn_lasso_test(x_train, y_train, x_test, y_test)
-        #test_mse = mean_as_prediction(y_test, np.mean(y_train), 'mae')
-#         test_mses.append(test_mse)   
-#     pprint(test_mses)
-#     avg_test_mse = np.mean(test_mses)
-#     print "average test mse: %f" % avg_test_mse
+        #test_mse = sklearn_lasso_test(x_train, y_train, x_test, y_test)
+        test_mse = mean_as_prediction(y_test, np.mean(y_train), 'mse')
+        test_mses.append(test_mse)   
+    pprint(test_mses)
+    avg_test_mse = np.mean(test_mses)
+    print "average test mse: %f" % avg_test_mse
        
 def mean_as_prediction(y, y_mean, err_type): 
     err = 0.0
@@ -84,7 +84,7 @@ def mean_as_prediction(y, y_mean, err_type):
 
     
 if __name__ == '__main__':
-    fp = os.path.join('result', 'feature', 'all_heuristic_features_extra.csv') 
+    fp = os.path.join('result', 'feature', 'all_features_extra.csv') 
     #fp = os.path.join('result', 'feature', 'all_freq_pat_support40.csv')
     #fp = os.path.join('result', 'feature', 'all_freq_pat_support40_norm.csv')
     #fp = os.path.join('result', 'feature', 'combined_all_extra.csv')

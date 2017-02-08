@@ -181,10 +181,10 @@ if __name__ == '__main__':
     #features = ['stat_total', 'act_total']
     #features = ['stat_daily', 'walk_daily', 'run_daily']
     
-    features = ['daily_day_oncampus', 'daily_evening_oncampus', 'daily_night_oncampus']
+    #features = ['daily_day_oncampus', 'daily_evening_oncampus', 'daily_night_oncampus']
     #features = ['daily_day_oncampus_noclass', 'daily_evening_oncampus_noclass', 'daily_night_oncampus_noclass']
     #features = ['daily_day_unique_oncampus', 'daily_evening_unique_oncampus', 'daily_night_unique_oncampus']
-    #features = ['ontime_rate_oncampus', 'absent_rate_oncampus']
+    features = ['ontime_rate_oncampus', 'absent_rate_oncampus']
     #features = ['day_entropy_oncampus', 'evening_entropy_oncampus', 'night_entropy_oncampus']
     #features = ['day_entropy_oncampus_30days', 'evening_entropy_oncampus_30days', 'night_entropy_oncampus_30days']
     #features = ['conver_freq_daytime_oncampus', 'conver_freq_evening_oncampus', 'conver_freq_night_oncampus']

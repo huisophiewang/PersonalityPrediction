@@ -18,7 +18,7 @@ def example():
     print sorted(zip(map(lambda x: round(x, 4), rf.feature_importances_), names), 
                  reverse=True)
 def test():
-    fp = os.path.join('result', 'feature', 'all_heuristic_features_extra.csv')
+    fp = os.path.join('result', 'feature', 'all_features_extra.csv')
     data = np.genfromtxt(fp, delimiter=",", dtype=float, skip_header=1)
     #data = np.genfromtxt(fp, delimiter=",", dtype=float, names=True)
 
