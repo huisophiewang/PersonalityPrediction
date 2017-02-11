@@ -1,13 +1,17 @@
 
 models to try:
-boosting decision tree
-random forest?
+regression: 
+decision tree
 kNN with Gaussian kernel
 
+classification:
+logistic regression
+SVM
+
+
 data to analyze:
-bluetooth
-activity
-gps?
+gps entropy?
+
 
 model selection:
 http://blog.minitab.com/blog/adventures-in-statistics-2/how-to-choose-the-best-regression-model

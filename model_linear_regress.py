@@ -61,8 +61,9 @@ def plot_multi_feature(feature_names, trait):
         axarr[i].plot(x, y, 'ro')
     plt.show()
     
-def plot_y():
-    fr = open(r'dataset\survey\BigFivePre.csv', 'rU')
+def plot_y_histogram():
+    #fr = open(r'dataset\survey\BigFivePre.csv', 'rU')
+    fr = open(r'dataset\survey\BigFivePre_oncampus.csv', 'rU')
     fr.readline()
     
     all_y = [[],[],[],[],[]]
@@ -80,6 +81,12 @@ def plot_y():
         axarr[i].set_ylabel(TRAITS[i])
         axarr[i].hist(y)
     
+    plt.show()
+    
+def plot_y_boxplot():
+    #data = np.genfromtxt(r'dataset\survey\BigFivePre.csv', delimiter=",", dtype=float, skip_header=1)
+    data = np.genfromtxt(r'dataset\survey\BigFivePre_oncampus.csv', delimiter=",", dtype=float, skip_header=1)
+    plt.boxplot([data[:,1], data[:,2], data[:,3], data[:,4], data[:,5]])
     plt.show()
     
     
@@ -104,8 +111,8 @@ def plot_other(file_path):
     plt.show()       
            
 if __name__ == '__main__':
-    #plot_y()
-    #plot_other(r'dataset\survey\vr_12Pre.csv')
+    #plot_y_histogram()
+    plot_y_boxplot()
     
     feature = 'len_var'
     feature = 'len_var_oncampus'
@@ -189,9 +196,9 @@ if __name__ == '__main__':
     #features = ['day_entropy_oncampus_30days', 'evening_entropy_oncampus_30days', 'night_entropy_oncampus_30days']
     #features = ['conver_freq_daytime_oncampus', 'conver_freq_evening_oncampus', 'conver_freq_night_oncampus']
     
-    trait = 'extra'
-    multi_feature_single_trait(features, trait)
-    plot_multi_feature(features, trait)
+#     trait = 'extra'
+#     multi_feature_single_trait(features, trait)
+#     plot_multi_feature(features, trait)
 
     
     
