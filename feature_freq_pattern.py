@@ -106,6 +106,12 @@ def to_loc_type(seqs):
     #pp.pprint(result)
     return result       
 
+def replace_home(seqs, id):
+    for i, seq in enumerate(seqs):
+        for j, loc in enumerate(seq):
+            if loc in ID_HOME[id]:
+                seqs[i][j] = 'home'
+
 def get_freq_pattern(min_support, typed, normalize):
     ### get seqs 
     ids = []
@@ -115,8 +121,15 @@ def get_freq_pattern(min_support, typed, normalize):
         if not file.endswith('.csv') or file.endswith('datetime.csv'):
             continue
         id = file.split('.')[0][-2:]
+        
+        if id in OFF_CAMPUS:
+            continue
+        
         ids.append(id)
         seqs = get_seqs(id)
+        replace_home(seqs, id)
+        #pp.pprint(seqs)
+        
         if typed:
             type_seqs = to_loc_type(seqs)
             all_seqs.extend(type_seqs)
@@ -125,7 +138,7 @@ def get_freq_pattern(min_support, typed, normalize):
             all_seqs.extend(seqs)
             seqs_by_subject.append(seqs)
             
-    
+     
     ### get freq_patterns from all_seqs
     freq_patterns = []
     level = 1
@@ -138,7 +151,7 @@ def get_freq_pattern(min_support, typed, normalize):
         level += 1
     pp.pprint(freq_patterns)
     print len(freq_patterns)
-     
+      
     ### compute frequency of freq_patterns for each subject
     n = len(ids) # n subjects
     m = len(freq_patterns) # m frequent patterns
@@ -150,7 +163,7 @@ def get_freq_pattern(min_support, typed, normalize):
                 if pat_str in ','.join(seq):
                     count[i, j] += 1
     print np.sum(count, axis=0)
-
+ 
     ### use frequency as feature, write to csv
     for j, pat in enumerate(freq_patterns):
         id_feature = {}
@@ -162,10 +175,10 @@ def get_freq_pattern(min_support, typed, normalize):
         if typed:
             write_feature_to_csv(id_feature, feature_name, os.path.join('freq_pat', 'typed', 'support%d' % min_support), False)
         elif normalize:
-            write_feature_to_csv(id_feature, feature_name, os.path.join('freq_pat', 'normalized', 'support%d' % min_support), True)
+            write_feature_to_csv(id_feature, feature_name, os.path.join('freq_pat', 'normalized', 'oncampus_home','support%d' % min_support), True)
         else:
             write_feature_to_csv(id_feature, feature_name, os.path.join('freq_pat', 'support%d' % min_support), False)
-            
+             
     
 if __name__ == '__main__':
     
@@ -174,7 +187,7 @@ if __name__ == '__main__':
     #to_loc_type(seqs)
 
     #gsp_test()
-    get_freq_pattern(min_support=40, typed=False, normalize=True)
+    get_freq_pattern(min_support=30, typed=False, normalize=True)
 
 
 

@@ -1,0 +1,27 @@
+#####################################################################################################
+neuro
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                  neuro   R-squared:                       0.153
+Model:                            OLS   Adj. R-squared:                  0.126
+Method:                 Least Squares   F-statistic:                     5.763
+Date:                Mon, 20 Feb 2017   Prob (F-statistic):             0.0224
+Time:                        19:40:14   Log-Likelihood:                -33.164
+No. Observations:                  34   AIC:                             70.33
+Df Residuals:                      32   BIC:                             73.38
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+===============================================================================================
+                                  coef    std err          t      P>|t|      [95.0% Conf. Int.]
+-----------------------------------------------------------------------------------------------
+Intercept                       3.0596      0.113     26.963      0.000         2.828     3.291
+Q("fp_53_commons;sudikoff")    -0.2676      0.111     -2.401      0.022        -0.495    -0.041
+==============================================================================
+Omnibus:                        0.306   Durbin-Watson:                   2.290
+Prob(Omnibus):                  0.858   Jarque-Bera (JB):                0.451
+Skew:                           0.186   Prob(JB):                        0.798
+Kurtosis:                       2.575   Cond. No.                         1.03
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.

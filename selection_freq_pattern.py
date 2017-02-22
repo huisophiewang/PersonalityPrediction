@@ -10,8 +10,8 @@ from patsy.highlevel import dmatrices, dmatrix
 from util import CUR_DIR, TRAITS
 
 def freq_pat_selection():
-    input_dir = os.path.join(CUR_DIR, 'result', 'feature', 'freq_pat', 'normalized', 'support40')
-    output_dir = os.path.join(CUR_DIR, 'result', 'feature', 'freq_pat_select', 'normalized', 'support40')
+    input_dir = os.path.join(CUR_DIR, 'result', 'feature', 'freq_pat', 'normalized', 'oncampus_home', 'support30')
+    output_dir = os.path.join(CUR_DIR, 'result', 'feature', 'freq_pat_select', 'normalized', 'oncampus_home', 'support30')
     for file in os.listdir(input_dir):
         input_fp = os.path.join(input_dir, file)    
         feature = file[:-4]
@@ -24,7 +24,7 @@ def freq_pat_selection():
             y, X = dmatrices('%s ~ Q("%s")' % (response, feature), data=df)
             mod = sm.OLS(y, X)
             res = mod.fit()
-            if res.pvalues[1] <= 0.1:
+            if res.pvalues[1] <= 0.05:
                 output_folder = os.path.join(output_dir, response)
                 if not os.path.exists(output_folder):
                     os.makedirs(output_folder)

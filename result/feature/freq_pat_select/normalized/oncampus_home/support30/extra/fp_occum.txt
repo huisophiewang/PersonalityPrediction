@@ -1,0 +1,27 @@
+#####################################################################################################
+extra
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                  extra   R-squared:                       0.299
+Model:                            OLS   Adj. R-squared:                  0.277
+Method:                 Least Squares   F-statistic:                     13.64
+Date:                Mon, 20 Feb 2017   Prob (F-statistic):           0.000822
+Time:                        19:40:15   Log-Likelihood:                -31.299
+No. Observations:                  34   AIC:                             66.60
+Df Residuals:                      32   BIC:                             69.65
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+=================================================================================
+                    coef    std err          t      P>|t|      [95.0% Conf. Int.]
+---------------------------------------------------------------------------------
+Intercept         2.8352      0.107     26.400      0.000         2.616     3.054
+Q("fp_occum")     0.3887      0.105      3.693      0.001         0.174     0.603
+==============================================================================
+Omnibus:                        1.077   Durbin-Watson:                   2.077
+Prob(Omnibus):                  0.584   Jarque-Bera (JB):                0.983
+Skew:                           0.221   Prob(JB):                        0.612
+Kurtosis:                       2.294   Cond. No.                         1.02
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.

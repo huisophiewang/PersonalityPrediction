@@ -1,4 +1,5 @@
 import os
+import math
 import matplotlib.pyplot as plt
 import statsmodels.api as sm
 import numpy as np
@@ -79,15 +80,24 @@ def plot_y_histogram():
     for i in range(5):
         y = all_y[i]
         axarr[i].set_ylabel(TRAITS[i])
-        axarr[i].hist(y)
+        axarr[i].hist(np.log10(y))
     
     plt.show()
     
 def plot_y_boxplot():
     #data = np.genfromtxt(r'dataset\survey\BigFivePre.csv', delimiter=",", dtype=float, skip_header=1)
     data = np.genfromtxt(r'dataset\survey\BigFivePre_oncampus.csv', delimiter=",", dtype=float, skip_header=1)
-    plt.boxplot([data[:,1], data[:,2], data[:,3], data[:,4], data[:,5]])
+    #plt.boxplot([data[:,1], data[:,2], data[:,3], data[:,4], data[:,5]])
+    #plt.boxplot(data[:,2])
+    plt.boxplot(np.log10(data[:,2]))
+    #plt.xticks([1,2,3,4,5], ['E', 'A', 'C', 'N', 'O'])
     plt.show()
+    
+def plot_x_histogram():
+    data = np.genfromtxt(os.path.join('result', 'feature', 'num_days_activity_oncampus.csv'), delimiter=",", dtype=float, skip_header=1)
+    plt.hist(data[:,1])
+    plt.show()
+    
     
     
 def plot_other(file_path):
@@ -112,7 +122,8 @@ def plot_other(file_path):
            
 if __name__ == '__main__':
     #plot_y_histogram()
-    plot_y_boxplot()
+    #plot_y_boxplot()
+    #plot_x_histogram()
     
     feature = 'len_var'
     feature = 'len_var_oncampus'
@@ -145,7 +156,7 @@ if __name__ == '__main__':
     #feature = 'conver_dur_total_oncampus'
     
 #     feature = 'num_days_activity'
-#     feature = 'num_days_activity_oncampus'
+    feature = 'num_days_activity_oncampus'
     #feature = 'num_days_audio'
     #feature = 'num_days_bluetooth_oncampus'
     
@@ -158,8 +169,8 @@ if __name__ == '__main__':
     #feature = 'nearby_entropy'
     #feature = 'nearby_friends_evening'
     #feature = 'nearby_friends'
-    #feature = 'nearby_total_30days_oncampus'
-    #feature = 'nearby_entropy_30days_oncampus'
+    feature = 'nearby_total_30days_oncampus'
+    feature = 'nearby_entropy_30days_oncampus'
     #feature = 'nearby_total_30days_oncampus_noclass'
     #feature = 'nearby_entropy_30days_oncampus_noclass'
     #feature = 'nearby_num_unique_30days_oncampus'
@@ -169,10 +180,17 @@ if __name__ == '__main__':
     #feature = 'nearby_timestamp_oncampus'
     #feature = 'nearby_total_oncampus'
     #feature = 'late_time_var_oncampus'
+    
+    #feature = 'fp_bakerberryhopkins' # discard
+    #feature = 'fp_bakerberrykemeny' # discard
+    #feature = 'fp_bakerberrylsb'
+    #feature = 'fp_sudikoffhopkins'
+    #feature = 'fp_occum'
+    #feature = 'fp_sportvenues'
 
     
-#     single_vrb(feature)
-#     plot_feature(feature)
+    single_vrb(feature)
+    plot_feature(feature)
     
     #features = ['early', 'late', 'absent']   
     #features = ['early_oncampus', 'late_oncampus', 'absent_oncampus'] 
@@ -191,7 +209,7 @@ if __name__ == '__main__':
     #features = ['daily_day_oncampus', 'daily_evening_oncampus', 'daily_night_oncampus']
     #features = ['daily_day_oncampus_noclass', 'daily_evening_oncampus_noclass', 'daily_night_oncampus_noclass']
     #features = ['daily_day_unique_oncampus', 'daily_evening_unique_oncampus', 'daily_night_unique_oncampus']
-    features = ['ontime_rate_oncampus', 'absent_rate_oncampus']
+    #features = ['ontime_rate_oncampus', 'absent_rate_oncampus']
     #features = ['day_entropy_oncampus', 'evening_entropy_oncampus', 'night_entropy_oncampus']
     #features = ['day_entropy_oncampus_30days', 'evening_entropy_oncampus_30days', 'night_entropy_oncampus_30days']
     #features = ['conver_freq_daytime_oncampus', 'conver_freq_evening_oncampus', 'conver_freq_night_oncampus']

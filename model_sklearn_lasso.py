@@ -8,6 +8,22 @@ from sklearn.metrics import r2_score
 from itertools import cycle
 import matplotlib.pyplot as plt
 from pprint import pprint
+'''
+all features:
+L1
+extra: 0.4381
+agrbl: 0.4666
+consc: 0.5648
+neuro: 0.4565
+openn: 0.2822
+L2
+extra: 0.4463
+agrbl: 0.4974
+consc: 0.5371
+neuro: 0.5182
+openn: 0.2972
+'''
+
 
 
 '''
@@ -198,6 +214,7 @@ sudikoff
 def lasso_cv(x, y, fold):
     lam_errs = []
     lam_range = np.arange(0.000, 0.5, 0.001)
+    #lam_range = np.arange(0.000, 150, 0.5)
     for lam in lam_range:
         #print "lambda is %f" % lam
         fold_errs = []
@@ -207,6 +224,7 @@ def lasso_cv(x, y, fold):
             x_holdout, y_holdout = x[hd_idx], y[hd_idx]
             x_train, y_train = np.delete(x, hd_idx, axis=0), np.delete(y, hd_idx, axis=0)
             model = linear_model.Lasso(alpha=lam)
+            #model = linear_model.Ridge(alpha=lam)
             model.fit(x_train, y_train)
             predict = np.dot(x_holdout, model.coef_) + model.intercept_
             #print predict
@@ -217,7 +235,6 @@ def lasso_cv(x, y, fold):
     pprint(lam_errs)
     idx = np.argmin(lam_errs)
     best_lam = lam_range[idx]
-    #best_lam = 0.0
     print "min test error: %f" % lam_errs[idx]
     print "best lambda: %f" % best_lam
     final_model = linear_model.Lasso(alpha=best_lam)
@@ -227,7 +244,7 @@ def lasso_cv(x, y, fold):
     #print prediction
     # use adjusted r squared
     r_squared = get_r_squared(y, prediction)
-    print r_squared
+    print "R squared: %f" % r_squared
 #     n, p = x.shape
 #     adjusted_r_squared = get_adjusted_r_squared(n, p, r_squared)
 #     print adjusted_r_squared
@@ -247,14 +264,16 @@ if __name__ == '__main__':
     #iris = datasets.load_iris()
     #boston = datasets.load_boston()
     
-    fp = os.path.join('result', 'feature', 'all_features_extra.csv')
+    #fp = os.path.join('result', 'feature', 'all_features_openn.csv')
     #fp = os.path.join('result', 'feature', 'all_heuristic_features_extra.csv')
     #fp = os.path.join('result', 'feature', 'all_freq_pat_support40_norm.csv')
     #fp = os.path.join('result', 'feature', 'all_freq_pat_support40_typed.csv')
     #fp = os.path.join('result', 'feature', 'combined_all_extra.csv')
+    fp = os.path.join('result', 'feature', 'all_features_all_traits.csv')
     data = np.genfromtxt(fp, delimiter=",", dtype=float, skip_header=1)
     #np.random.shuffle(data)
-    x = data[:, 1:-1]
+    #x = data[:, 1:-5]
+    x = data[:, 1:-5]
     y = data[:,-1]
     
     #print x

@@ -1,0 +1,27 @@
+#####################################################################################################
+extra
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                  extra   R-squared:                       0.127
+Model:                            OLS   Adj. R-squared:                  0.099
+Method:                 Least Squares   F-statistic:                     4.641
+Date:                Sun, 19 Feb 2017   Prob (F-statistic):             0.0389
+Time:                        15:58:03   Log-Likelihood:                -35.033
+No. Observations:                  34   AIC:                             74.07
+Df Residuals:                      32   BIC:                             77.12
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+=================================================================================================
+                                    coef    std err          t      P>|t|      [95.0% Conf. Int.]
+-------------------------------------------------------------------------------------------------
+Intercept                         2.8398      0.120     23.688      0.000         2.596     3.084
+Q("fp_53_commons;north-main")    -0.2519      0.117     -2.154      0.039        -0.490    -0.014
+==============================================================================
+Omnibus:                        1.067   Durbin-Watson:                   1.909
+Prob(Omnibus):                  0.586   Jarque-Bera (JB):                0.997
+Skew:                           0.382   Prob(JB):                        0.607
+Kurtosis:                       2.655   Cond. No.                         1.03
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.

@@ -1,0 +1,27 @@
+#####################################################################################################
+openn
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                  openn   R-squared:                       0.192
+Model:                            OLS   Adj. R-squared:                  0.167
+Method:                 Least Squares   F-statistic:                     7.610
+Date:                Sun, 19 Feb 2017   Prob (F-statistic):            0.00952
+Time:                        15:58:03   Log-Likelihood:                -22.888
+No. Observations:                  34   AIC:                             49.78
+Df Residuals:                      32   BIC:                             52.83
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+=========================================================================================
+                            coef    std err          t      P>|t|      [95.0% Conf. Int.]
+-----------------------------------------------------------------------------------------
+Intercept                 3.4761      0.084     41.440      0.000         3.305     3.647
+Q("fp_east-wheelock")    -0.2260      0.082     -2.759      0.010        -0.393    -0.059
+==============================================================================
+Omnibus:                        0.546   Durbin-Watson:                   1.987
+Prob(Omnibus):                  0.761   Jarque-Bera (JB):                0.176
+Skew:                           0.174   Prob(JB):                        0.916
+Kurtosis:                       3.054   Cond. No.                         1.03
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.

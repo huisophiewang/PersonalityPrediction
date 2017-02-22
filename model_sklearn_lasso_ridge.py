@@ -211,10 +211,10 @@ def test_mean(y):
 if __name__ == '__main__':
 
     #fp = os.path.join('result', 'feature', 'all_heuristic_features_extra.csv')
-    #fp = os.path.join('result', 'feature', 'all_features_extra.csv')
+    fp = os.path.join('result', 'feature', 'all_features_extra.csv')
     #fp = os.path.join('result', 'feature', 'all_features_consc.csv')
     #fp = os.path.join('result', 'feature', 'all_features_neuro.csv')
-    fp = os.path.join('result', 'feature', 'all_features_openn.csv')
+    #fp = os.path.join('result', 'feature', 'all_features_openn.csv')
     #fp = os.path.join('result', 'feature', 'all_freq_pat_support40.csv')
     #fp = os.path.join('result', 'feature', 'all_freq_pat_support40_typed.csv')
     #fp = os.path.join('result', 'feature', 'all_freq_pat_support40_norm.csv')

@@ -1,0 +1,27 @@
+#####################################################################################################
+consc
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                  consc   R-squared:                       0.162
+Model:                            OLS   Adj. R-squared:                  0.136
+Method:                 Least Squares   F-statistic:                     6.179
+Date:                Mon, 20 Feb 2017   Prob (F-statistic):             0.0183
+Time:                        19:40:15   Log-Likelihood:                -34.077
+No. Observations:                  34   AIC:                             72.15
+Df Residuals:                      32   BIC:                             75.21
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+==================================================================================================
+                                     coef    std err          t      P>|t|      [95.0% Conf. Int.]
+--------------------------------------------------------------------------------------------------
+Intercept                          3.4655      0.117     29.737      0.000         3.228     3.703
+Q("fp_lsb;baker-berry;kemeny")     0.2825      0.114      2.486      0.018         0.051     0.514
+==============================================================================
+Omnibus:                        0.275   Durbin-Watson:                   1.934
+Prob(Omnibus):                  0.872   Jarque-Bera (JB):                0.464
+Skew:                          -0.089   Prob(JB):                        0.793
+Kurtosis:                       2.456   Cond. No.                         1.03
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.

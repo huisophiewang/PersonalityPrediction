@@ -6,27 +6,36 @@ from model_sklearn_lasso import lasso
 
 '''
 ------------------
-baseline - mean as prediction:
+baseline - mean as prediction (10 fold):
 extra:0.5483
+agrbl:0.4666
 consc:0.5648
 neuro:0.5070
 openn:0.2822
 ------------------
 linear reg
-extra:0.3495 (end_var, num_day, bluetooth_daytime)
+extra:0.3495 (end_var, num_day, bluetooth_daytime) reduced 36.3% from baseline
       0.3678 (end_var, num_day)
       0.4104 (len_var, end_var, num_day, bluetooth_daytime)
-consc:0.4539 (start_var, day_entropy, piazza_questions)
-      0.4576 (start_var, piazza_question)
-neuro:0.4192 (end_var, bluetooth_daytime)
+agrbl:0.4382 (bluetooth_total)
+consc:0.4539 (start_var, day_entropy, piazza_questions) %19.6 from baseline
+      0.4576 (start_var, piazza_question) (selected by forward selection)
+neuro:0.4192 (end_var, bluetooth_daytime), 17.3% from baseline
       0.4399 (end_var)
-openn:0.2660
+openn:0.2660 (bluetooth_evening), 5.7% from baseline
 ------------------
-ridge:
+linear reg + L2 (nested cross valid):
 extra:0.3920
 consc:0.4576
 neuro:0.4333
 openn:0.2760
+-----------------
+linear reg + L1 (cross valid):
+extra: 0.4027
+agrbl: 0.4382
+consc: 0.4539
+neuro: 0.4185
+openn: 0.2659
 
 '''
 
@@ -70,6 +79,7 @@ def sklearn_lasso_test(x_train, y_train, x_test, y_test):
     
 def mean_as_prediction(y, y_mean, err_type): 
     err = 0.0
+    
     if err_type == 'mse':
         err = np.mean((y - y_mean)**2)
     elif err_type == 'mae':
@@ -83,7 +93,7 @@ def linear_reg_cv(x, y, fold):
         hd_idx = np.arange(k, len(x), fold)
         x_test, y_test = x[hd_idx], y[hd_idx]
         x_train, y_train = np.delete(x, hd_idx, axis=0), np.delete(y, hd_idx, axis=0)
-        #test_mse = mean_as_prediction(y_test, np.mean(y_train), 'mae')
+        #test_mse = mean_as_prediction(y_test, np.mean(y_train), 'mse')
         #test_mse = my_linear_reg(x_train, y_train, x_test, y_test)
         test_mse = sklearn_linear_reg(x_train, y_train, x_test, y_test)
         
@@ -95,17 +105,19 @@ def linear_reg_cv(x, y, fold):
 if __name__ == '__main__':
     #iris = datasets.load_iris()
     #boston = datasets.load_boston()
+#     fp = os.path.join('dataset', 'survey', 'BigFivePre_oncampus.csv')
+#     data = np.genfromtxt(fp, delimiter=",", dtype=float, skip_header=1)
+#     for i in range(5):
+#         print np.var(data[:, i+1])
     
-    fp = os.path.join('result', 'feature', 'all_features_neuro.csv')
-    #fp = os.path.join('result', 'feature', 'all_heuristic_features_extra.csv')
-    #fp = os.path.join('result', 'feature', 'all_freq_pat_support40_norm.csv')
-    #fp = os.path.join('result', 'feature', 'all_freq_pat_support40_typed.csv')
-    #fp = os.path.join('result', 'feature', 'combined_all_extra.csv')
+    #fp = os.path.join('result', 'feature', 'all_features_extra.csv')
+    fp = os.path.join('result', 'feature', 'all_features_all_traits.csv')
     data = np.genfromtxt(fp, delimiter=",", dtype=float, skip_header=1)
     #np.random.shuffle(data)
-    x = data[:, [1,2]]
-    print x
-    #x = data[:, 1:-1]
+    #x = data[:, [8,16,19]]
+    #print x
+    x = data[:, 1:-5]
     #print x
     y = data[:,-1]
     linear_reg_cv(x, y, fold=10)
+    

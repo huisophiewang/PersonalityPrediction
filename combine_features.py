@@ -15,7 +15,7 @@ def read_feature(fp):
     return id_feature
 
 def combine_heuristic_features(feature_names, trait='extra'):
-    output_fp = os.path.join('result', 'feature', 'all_features_%s.csv' % trait)
+    output_fp = os.path.join('result', 'feature', 'all_features_fp_%s.csv' % trait)
     input_dir = os.path.join('result', 'feature')
     labels = ['uid']
     for feature_name in feature_names:
@@ -126,21 +126,38 @@ if __name__ == '__main__':
 
 #     fnames = ['len_var_oncampus', 'end_time_var_oncampus', 'num_days_activity_oncampus']
 #     fnames.append('daily_day_oncampus-daily_evening_oncampus-daily_night_oncampus')
-#     combine_heuristic_features(fnames)
+#     fnames.extend(['fp_53_commons;sudikoff', 'fp_occum'])
+#     combine_heuristic_features(fnames, trait='extra')
+
+#     fnames = ['nearby_total_30days_oncampus']
+#     fnames.extend(['fp_53_commons;baker-berry','fp_baker-berry;lsb','fp_kemeny;baker-berry'])
+#     combine_heuristic_features(fnames, trait='agrbl')
 
 #     fnames = ['start_time_var_oncampus']
 #     fnames.append('day_entropy_oncampus_30days-evening_entropy_oncampus_30days-night_entropy_oncampus_30days')
 #     fnames.append('days_oncampus-views_oncampus-contributions_oncampus-questions_oncampus-notes_oncampus-answers_oncampus')
 #     fnames.append('daily_day_oncampus-daily_evening_oncampus-daily_night_oncampus')
+#     fnames.extend(['fp_baker-berry;kemeny','fp_lsb;baker-berry;kemeny'])
 #     combine_heuristic_features(fnames, trait='consc')
 
 #     fnames = ['end_time_var_oncampus']
 #     fnames.append('daily_day_oncampus-daily_evening_oncampus-daily_night_oncampus')
+#     fnames.extend(['fp_53_commons;sudikoff','fp_occum'])
 #     combine_heuristic_features(fnames, trait='neuro')
 
 
     fnames= ['daily_day_oncampus-daily_evening_oncampus-daily_night_oncampus']
+    fnames.extend(['fp_sport-venues'])
     combine_heuristic_features(fnames, trait='openn')
+
+#     fnames = ['len_var_oncampus', 'start_time_var_oncampus', 'end_time_var_oncampus', 'num_days_activity_oncampus']
+#     fnames.append('stat_rate_oncampus-walk_rate_oncampus-run_rate_oncampus')
+#     fnames.append('daily_day_oncampus-daily_evening_oncampus-daily_night_oncampus')
+#     fnames.append('day_entropy_oncampus_30days-evening_entropy_oncampus_30days-night_entropy_oncampus_30days')
+#     fnames.append('conver_freq_daytime_oncampus-conver_freq_evening_oncampus-conver_freq_night_oncampus')
+#     fnames.append('early_oncampus-late_oncampus-absent_oncampus')
+#     fnames.append('days_oncampus-views_oncampus-contributions_oncampus-questions_oncampus-notes_oncampus-answers_oncampus')
+#     combine_heuristic_features(fnames)
  
     
 

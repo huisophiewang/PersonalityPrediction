@@ -52,7 +52,8 @@ def pearson_multi_features(feature_names):
     
 
 def trait_corr_matrix():
-    fp = os.path.join('dataset', 'survey', 'BigFivePre.csv')
+    #fp = os.path.join('dataset', 'survey', 'BigFivePre.csv')
+    fp = os.path.join('dataset', 'survey', 'BigFivePre_oncampus.csv')
     data = np.genfromtxt(fp, delimiter=",", dtype=float, skip_header=1)
     data = data[:,1:]
 
@@ -91,8 +92,17 @@ if __name__ == '__main__':
 #     feature = 'nearby_entropy'
 #     feature = 'nearby_timestamp'
 #     feature = 'nearby_daily_oncampus'
-#     feature = 'nearby_total_oncampus'
-    #pearson_single_feature(feature)
+    feature = 'nearby_total_30days_oncampus'
+    
+    feature = 'fp_53_commons;sudikoff'
+    feature = 'fp_occum'
+    feature = 'fp_53_commons;baker-berry'
+    feature = 'fp_baker-berry;lsb'
+    feature = 'fp_kemeny;baker-berry'
+    feature = 'fp_baker-berry;kemeny'
+    feature = 'fp_lsb;baker-berry;kemeny'
+    feature = 'fp_sport-venues'
+    pearson_single_feature(feature)
     
     
     

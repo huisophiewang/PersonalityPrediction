@@ -18,7 +18,7 @@ def get_feature():
 #         if id in ['59']:
 #             continue
         #if id in OFF_CAMPUS + ['52']:
-        if id in OFF_CAMPUS:
+        if id in OFF_CAMPUS + ['52']:
             continue
 
         fp = os.path.join(dir, file)
@@ -73,6 +73,7 @@ if __name__ == '__main__':
     id_features = get_feature()
     #pprint(id_features)
     
+    #fill_miss_values(id_features, 3, ['52'])
     #write_multi_features_to_csv(id_features, ['stat_rate', 'walk_rate', 'run_rate'])
     #write_multi_features_to_csv(id_features, ['stat_rate_oncampus', 'walk_rate_oncampus', 'run_rate_oncampus'])
     #write_multi_features_to_csv(id_features, ['stat_rate', 'act_rate'])
@@ -82,7 +83,7 @@ if __name__ == '__main__':
     #write_multi_features_to_csv(id_features, ['stat_total', 'act_total'])
     
     #write_feature_to_csv(id_features, 'num_days_activity')
-    write_feature_to_csv(id_features, 'num_days_activity_oncampus')
+    write_feature_to_csv(id_features, 'num_days_activity_oncampus', normalize=False)
     
     #fill_miss_values(id_features, 3, ['59'])
     #write_multi_features_to_csv(id_features, ['stat_daily', 'walk_daily', 'run_daily'])
