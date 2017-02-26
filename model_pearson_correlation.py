@@ -116,7 +116,7 @@ if __name__ == '__main__':
     #features = ['day_entropy_oncampus_30days', 'evening_entropy_oncampus_30days', 'night_entropy_oncampus_30days']
     #features = ['stat_rate_oncampus', 'walk_rate_oncampus', 'run_rate_oncampus']
     #features = ['conver_freq_daytime_oncampus', 'conver_freq_evening_oncampus', 'conver_freq_night_oncampus']
-    #pearson_multi_features(features)
+    pearson_multi_features(features)
 
 
 

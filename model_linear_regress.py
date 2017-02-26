@@ -189,8 +189,8 @@ if __name__ == '__main__':
     #feature = 'fp_sportvenues'
 
     
-    single_vrb(feature)
-    plot_feature(feature)
+#     single_vrb(feature)
+#     plot_feature(feature)
     
     #features = ['early', 'late', 'absent']   
     #features = ['early_oncampus', 'late_oncampus', 'absent_oncampus'] 
@@ -214,9 +214,9 @@ if __name__ == '__main__':
     #features = ['day_entropy_oncampus_30days', 'evening_entropy_oncampus_30days', 'night_entropy_oncampus_30days']
     #features = ['conver_freq_daytime_oncampus', 'conver_freq_evening_oncampus', 'conver_freq_night_oncampus']
     
-#     trait = 'extra'
-#     multi_feature_single_trait(features, trait)
-#     plot_multi_feature(features, trait)
+    trait = 'openn'
+    multi_feature_single_trait(features, trait)
+    plot_multi_feature(features, trait)
 
     
     
