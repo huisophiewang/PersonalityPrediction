@@ -19,14 +19,21 @@ def example():
                  reverse=True)
 def test():
     fp = os.path.join('result', 'feature', 'all_features_extra.csv')
-    data = np.genfromtxt(fp, delimiter=",", dtype=float, skip_header=1)
-    #data = np.genfromtxt(fp, delimiter=",", dtype=float, names=True)
+    #data = np.genfromtxt(fp, delimiter=",", dtype=float, skip_header=1)
+    data = np.genfromtxt(fp, delimiter=",", dtype=float, names=True)
 
-    x = data[:, 1:-1]
-    y = data[:,-1]
-    rf = RandomForestRegressor()
-    rf.fit(x, y)
-    print rf.feature_importances_
+    print data.dtype.names
+    slice = data[['len_var_oncampus', 'end_time_var_oncampus']]
+    print slice
+
+    
+    
+
+#     x = data[:, 1:-1]
+#     y = data[:,-1]
+#     rf = RandomForestRegressor()
+#     rf.fit(x, y)
+#     print rf.feature_importances_
     
 if __name__ == '__main__':
     #example()
