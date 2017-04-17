@@ -38,6 +38,7 @@ def sklearn_logistic_reg(x_train, y_train, x_test, y_test, lam):
     clf = linear_model.LogisticRegression(C=lam)
     #clf = svm.SVC(C=lam)
     
+    
     clf.fit(x_train, y_train)
     predict = clf.predict(x_test)
     acc = np.sum(predict == y_test).astype(int) / float(len(y_test))
@@ -71,7 +72,7 @@ def cross_validate(x, y, fold):
 
     
 if __name__ == '__main__':
-    fp = os.path.join('result', 'feature', 'all_features_fp_openn_cls.csv')
+    fp = os.path.join('result', 'feature', 'all_features_fp_extra_cls.csv')
     #fp = os.path.join('result', 'feature', 'all_features_all_traits_cls.csv')
     data = np.genfromtxt(fp, delimiter=",", dtype=float, skip_header=1)
     #np.random.shuffle(data)
@@ -80,7 +81,7 @@ if __name__ == '__main__':
     #print x
     y = data[:,-1]
     #cross_validate(x, y, fold=10)
-    #cross_validate(x, y, fold=len(x))
-    print np.sum(y) 
-    print len(y)
+    cross_validate(x, y, fold=len(x))
+#     print np.sum(y) 
+#     print len(y)
     

@@ -124,10 +124,10 @@ if __name__ == '__main__':
 #     fnames.append('early-late-absent')
 #     fnames.append('num_days_activity')
 
-#     fnames = ['len_var_oncampus', 'end_time_var_oncampus', 'num_days_activity_oncampus']
-#     fnames.append('daily_day_oncampus-daily_evening_oncampus-daily_night_oncampus')
-#     fnames.extend(['fp_53_commons;sudikoff', 'fp_occum'])
-#     combine_heuristic_features(fnames, trait='extra')
+    fnames = ['len_var_oncampus', 'end_time_var_oncampus', 'num_days_activity_oncampus']
+    fnames.append('daily_day_oncampus-daily_evening_oncampus-daily_night_oncampus')
+    fnames.extend(['fp_53_commons;sudikoff', 'fp_occum'])
+    combine_heuristic_features(fnames, trait='extra')
 
 #     fnames = ['nearby_total_30days_oncampus']
 #     fnames.extend(['fp_53_commons;baker-berry','fp_baker-berry;lsb','fp_kemeny;baker-berry'])
@@ -146,9 +146,9 @@ if __name__ == '__main__':
 #     combine_heuristic_features(fnames, trait='neuro')
 
 
-    fnames= ['daily_day_oncampus-daily_evening_oncampus-daily_night_oncampus']
-    fnames.extend(['fp_sport-venues'])
-    combine_heuristic_features(fnames, trait='openn')
+#     fnames= ['daily_day_oncampus-daily_evening_oncampus-daily_night_oncampus']
+#     fnames.extend(['fp_sport-venues'])
+#     combine_heuristic_features(fnames, trait='openn')
 
 #     fnames = ['len_var_oncampus', 'start_time_var_oncampus', 'end_time_var_oncampus', 'num_days_activity_oncampus']
 #     fnames.append('stat_rate_oncampus-walk_rate_oncampus-run_rate_oncampus')

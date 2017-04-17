@@ -18,7 +18,7 @@ def get_feature():
 #         if id in ['59']:
 #             continue
         #if id in OFF_CAMPUS + ['52']:
-        if id in OFF_CAMPUS + ['52']:
+        if id in OFF_CAMPUS:
             continue
 
         fp = os.path.join(dir, file)
@@ -83,7 +83,7 @@ if __name__ == '__main__':
     #write_multi_features_to_csv(id_features, ['stat_total', 'act_total'])
     
     #write_feature_to_csv(id_features, 'num_days_activity')
-    write_feature_to_csv(id_features, 'num_days_activity_oncampus', normalize=False)
+    write_feature_to_csv(id_features, 'num_days_activity_oncampus', normalize=True)
     
     #fill_miss_values(id_features, 3, ['59'])
     #write_multi_features_to_csv(id_features, ['stat_daily', 'walk_daily', 'run_daily'])

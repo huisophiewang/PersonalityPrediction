@@ -13,7 +13,9 @@ def divide(trait):
     # print data.shape
     # print data['extra']
     md = np.median(data[:,-1])
+    print md
     y = (data[:,-1] > md).astype(int)
+    print y
     
     new_data = np.append(data[:,:-1], np.array([y]).T, axis=1)
     #print new_data
@@ -22,4 +24,4 @@ def divide(trait):
     np.savetxt(output_fp, new_data, fmt='%1.3f', delimiter=",", header=','.join(header))
     
 if __name__ == '__main__':
-    divide(trait='openn')
+    divide(trait='extra')
