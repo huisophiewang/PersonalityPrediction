@@ -102,7 +102,7 @@ if __name__ == '__main__':
     feature = 'fp_baker-berry;kemeny'
     feature = 'fp_lsb;baker-berry;kemeny'
     feature = 'fp_sport-venues'
-    pearson_single_feature(feature)
+    #pearson_single_feature(feature)
     
     
     
@@ -116,6 +116,8 @@ if __name__ == '__main__':
     #features = ['day_entropy_oncampus_30days', 'evening_entropy_oncampus_30days', 'night_entropy_oncampus_30days']
     #features = ['stat_rate_oncampus', 'walk_rate_oncampus', 'run_rate_oncampus']
     #features = ['conver_freq_daytime_oncampus', 'conver_freq_evening_oncampus', 'conver_freq_night_oncampus']
+    features = ['len_var_mon', 'len_var_tue', 'len_var_wed', 'len_var_thr', 'len_var_fri']
+    features = ['end_time_var_mon','end_time_var_tue','end_time_var_wed','end_time_var_thr','end_time_var_fri']
     pearson_multi_features(features)
 
 

@@ -5,38 +5,22 @@ from sklearn import linear_model
 from sklearn import svm
 
 '''
-logistic 10 fold:
-extra: 83.3%
-agrbl: 59.2%
-consc: 53.3%
-neuro: 63.3%
-openn: 58.3%
-
-n fold
-extra: 79.4%
-consc: 58.8%
-neuro: 64.7%
-openn: 47.1%
-
-SVM 
-10 fold
-extra: 71.7%
-consc: 51.7%
-neuro: 67.5%
-openn: 51.7%
-
-n fold
-extra: 70.6%
-consc: 58.8%
-neuro: 73.5%
-openn: 47.1%
-
-
+wifi by weekdays:
+logistic reg
+n fold:
+79.4%
+10 fold:
+83.3%
+svm:
+n fold:
+85.3%
+10 fold:
+85.8%
 '''
 
 def sklearn_logistic_reg(x_train, y_train, x_test, y_test, lam):
-    clf = linear_model.LogisticRegression(C=lam)
-    #clf = svm.SVC(C=lam)
+    #clf = linear_model.LogisticRegression(C=lam)
+    clf = svm.SVC(C=lam)
     
     
     clf.fit(x_train, y_train)

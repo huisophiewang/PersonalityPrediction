@@ -124,10 +124,27 @@ if __name__ == '__main__':
 #     fnames.append('early-late-absent')
 #     fnames.append('num_days_activity')
 
-    fnames = ['len_var_oncampus', 'end_time_var_oncampus', 'num_days_activity_oncampus']
+    # test combining all features:
+    fnames = ['len_var_oncampus', 'start_time_var_oncampus', 'end_time_var_oncampus']
+    fnames.append('len_var_mon-len_var_tue-len_var_wed-len_var_thr-len_var_fri')
+    fnames.append('start_time_var_mon-start_time_var_tue-start_time_var_wed-start_time_var_thr-start_time_var_fri')
+    fnames.append('end_time_var_mon-end_time_var_tue-end_time_var_wed-end_time_var_thr-end_time_var_fri')
+    fnames.append('num_days_activity_oncampus')
+    fnames.append('stat_rate_oncampus-walk_rate_oncampus-run_rate_oncampus')
+    fnames.extend(['nearby_entropy_30days_oncampus','nearby_total_30days_oncampus','nearby_num_unique_30days_oncampus','nearby_num_friends_30days_oncampus'])
+    fnames.append('day_entropy_oncampus_30days-evening_entropy_oncampus_30days-night_entropy_oncampus_30days')
     fnames.append('daily_day_oncampus-daily_evening_oncampus-daily_night_oncampus')
-    fnames.extend(['fp_53_commons;sudikoff', 'fp_occum'])
+    fnames.append('early_oncampus-late_oncampus-absent_oncampus')
+    fnames.append('late_time_var_oncampus')
+    fnames.append('days_oncampus-views_oncampus-contributions_oncampus-questions_oncampus-notes_oncampus-answers_oncampus')
     combine_heuristic_features(fnames, trait='extra')
+
+#     fnames = ['len_var_oncampus', 'end_time_var_oncampus', 'num_days_activity_oncampus']
+#     fnames.append('len_var_mon-len_var_tue-len_var_wed-len_var_thr-len_var_fri')
+#     fnames.append('end_time_var_mon-end_time_var_tue-end_time_var_wed-end_time_var_thr-end_time_var_fri')
+#     fnames.append('daily_day_oncampus-daily_evening_oncampus-daily_night_oncampus')
+#     fnames.extend(['fp_53_commons;sudikoff', 'fp_occum'])
+#     combine_heuristic_features(fnames, trait='extra')
 
 #     fnames = ['nearby_total_30days_oncampus']
 #     fnames.extend(['fp_53_commons;baker-berry','fp_baker-berry;lsb','fp_kemeny;baker-berry'])

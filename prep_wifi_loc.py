@@ -151,6 +151,35 @@ def get_seqs(id, duration_cut=60*5, sample_days=20, weekday_only=True):
     
     return seqs
 
+def get_seqs_by_weekday(id, weekday):
+    in_loc_duration = get_in_loc_duration(id, 60*5)
+    #pp.pprint(in_loc_duration)
+    in_loc_duration_merge = merge(in_loc_duration)
+    #pp.pprint(in_loc_duration_merge)
+    
+    ### remove weekends
+    in_loc_duration_weekdays = []
+    for pair in in_loc_duration_merge:   
+        date_obj = datetime.strptime(pair[0], "%Y-%m-%d")
+        wkday = date_obj.strftime("%A")         
+        if wkday == weekday:
+            in_loc_duration_weekdays.append((pair[0], pair[1]))
+    
+      
+    seqs = []
+    ### randomly choose the same number of days for each subject  
+    #samples = random.sample(in_loc_duration_weekdays, sample_days)
+    ### choose the first 20 days
+    samples = in_loc_duration_weekdays
+    #print len(samples)
+    for pair in samples:
+        locs = [entry[0][3:-1] for entry in pair[1]]
+        seqs.append(locs)  
+        #print pair[0] + ' ' +  ', '.join(locs)
+    
+    return seqs
+
+
 def get_all_subjects_seqs():
     for file in os.listdir(wifi_dir):
         if not file.endswith('.csv') or file.endswith('datetime.csv'):
@@ -192,7 +221,8 @@ if __name__ == '__main__':
 
     #get_weekday_seqs('01')
     #get_seqs('01')
-    get_all_wifi_locs()
+    #get_all_wifi_locs()
+    get_seq_by_weekday('05','Monday')
 
 
 

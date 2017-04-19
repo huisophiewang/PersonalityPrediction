@@ -5,19 +5,23 @@ import copy
 from datetime import datetime
 from prep_wifi_loc import get_in_loc_duration, get_seqs
 from util import CUR_DIR, ID_HOME, REMOVE_SUBJECTS, OFF_CAMPUS
-from util import write_feature_to_csv, get_time_var
+from util import write_feature_to_csv, get_time_var, write_multi_features_to_csv
 import pprint
 pp = pprint.PrettyPrinter(width=100)
 wifi_dir = os.path.join(CUR_DIR, 'dataset', 'sensing', 'wifi_location')
 
-def get_start_var_oncampus(in_loc_duration, id):
+def get_start_var_oncampus(in_loc_duration, id, wkd=None):
 
     start_times = []
     for pair in in_loc_duration:
         dt = pair[0]    
-        weekday = datetime.strptime(dt, "%Y-%m-%d").strftime("%A")         
-        if weekday in ['Saturday', 'Sunday']:
-            continue 
+        weekday = datetime.strptime(dt, "%Y-%m-%d").strftime("%A")       
+        if not wkd:  
+            if weekday in ['Saturday', 'Sunday']:
+                continue 
+        else:
+            if wkd != weekday:
+                continue
         seq = pair[1]
         #pp.pprint(seq)
         for line in seq:
@@ -31,7 +35,7 @@ def get_start_var_oncampus(in_loc_duration, id):
     #print len(start_times)
     #samples = random.sample(start_times, 20)
     samples = start_times
-    print len(samples)
+    #print len(samples)
     return get_time_var(samples)
 
 def get_start_var_offcampus(in_loc_duration, id):
@@ -53,7 +57,7 @@ def get_start_var_offcampus(in_loc_duration, id):
     return get_time_var(samples)
 
     
-def get_end_var_oncampus(in_loc_duration, id):
+def get_end_var_oncampus(in_loc_duration, id, wkd=None):
     end_times = []
     for idx, pair in enumerate(in_loc_duration): 
         # don't consider last day
@@ -63,9 +67,14 @@ def get_end_var_oncampus(in_loc_duration, id):
         tmr, tmr_seq = in_loc_duration[idx+1]
         td_obj = datetime.strptime(td, "%Y-%m-%d")
         tmr_obj = datetime.strptime(tmr, "%Y-%m-%d")
-        weekday = td_obj.strftime("%A")         
-        if weekday in ['Saturday', 'Sunday']:
-            continue 
+        weekday = td_obj.strftime("%A")   
+        if not wkd:  
+            if weekday in ['Saturday', 'Sunday']:
+                continue 
+        else:
+            if wkd != weekday:
+                continue 
+                 
         duration = tmr_obj - td_obj
         # extend seq to before 4:00 am the next day
         seq_extend = copy.deepcopy(td_seq)
@@ -151,6 +160,7 @@ def get_feature(func):
     return id_feature
 
 
+
 def get_feature_start_var():
     id_feature = {}
 
@@ -176,6 +186,34 @@ def get_feature_start_var():
         
     return id_feature
 
+
+def get_feature_start_var_weekday():
+    id_features = {}
+
+    for file in os.listdir(wifi_dir):
+        if not file.endswith('.csv') or file.endswith('datetime.csv'):
+            continue
+        
+        id = file.split('.')[0][-2:]
+
+        print '===================='
+        print 'id: ' + id
+    
+        in_loc_duration = get_in_loc_duration(id, duration_cut=60*5)
+        #seqs = get_seqs(id)
+        
+        if id in OFF_CAMPUS:
+            #result = get_start_var_offcampus(in_loc_duration, id)
+            continue
+        
+        result = []
+        for day in ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']:
+            result.append(get_start_var_oncampus(in_loc_duration, id, day))
+        print result
+        id_features[id] = result
+        
+    return id_features
+
 def get_feature_end_var():
     id_feature = {}
 
@@ -200,6 +238,33 @@ def get_feature_end_var():
         
     return id_feature
 
+def get_feature_end_var_weekday():
+    id_features = {}
+
+    for file in os.listdir(wifi_dir):
+        if not file.endswith('.csv') or file.endswith('datetime.csv'):
+            continue
+        
+        id = file.split('.')[0][-2:]
+
+        print '===================='
+        print 'id: ' + id
+    
+        in_loc_duration = get_in_loc_duration(id, duration_cut=60*5)
+        #seqs = get_seqs(id)
+        
+        if id in OFF_CAMPUS:
+            #result = get_start_var_offcampus(in_loc_duration, id)
+            continue
+        
+        result = []
+        for day in ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']:
+            result.append(get_end_var_oncampus(in_loc_duration, id, day))
+        print result
+        id_features[id] = result
+        
+    return id_features
+
 if __name__ == '__main__':
 #     id_feature = get_feature(get_start_var)
 #     write_feature_to_csv(id_feature, 'start_time_var')
@@ -221,8 +286,12 @@ if __name__ == '__main__':
 #     id_feature = get_feature_start_var()
 #     write_feature_to_csv(id_feature, 'start_time_var_oncampus')
     
-    id_feature = get_feature_end_var()
-    write_feature_to_csv(id_feature, 'end_time_var_oncampus')
+#     id_feature = get_feature_end_var()
+#     write_feature_to_csv(id_feature, 'end_time_var_oncampus')
 
+    #id_features = get_feature_start_var_weekday()
+    #write_multi_features_to_csv(id_features, ['start_time_var_mon','start_time_var_tue','start_time_var_wed','start_time_var_thr','start_time_var_fri'])   
     
+    id_features = get_feature_end_var_weekday()
+    write_multi_features_to_csv(id_features, ['end_time_var_mon','end_time_var_tue','end_time_var_wed','end_time_var_thr','end_time_var_fri'])   
     

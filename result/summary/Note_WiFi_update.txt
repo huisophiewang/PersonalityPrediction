@@ -1,0 +1,22 @@
+extra:
++ len_var_Mon, 0.024
++ len_var_tue, 0.094
++ end_time_var_mon, 0.054
++ end_time_var_wed, 0.008
++ end_time_var_fri, 0.040
+
+agrbl:
++ end_time_var_wed, 0.050
+
+consc:
+- start_time_var_tue, 0.060
+
+neuro:
+- len_var_Mon, 0.004
+- start_time_var_mon, 0.045 
+- end_time_var_wed 0.000
+- end_time_var_fri, 0.052
+
+openn:
+- len_var_thr, 0.047
++ start_time_var_thr, 0.080
