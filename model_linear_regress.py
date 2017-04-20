@@ -181,16 +181,15 @@ if __name__ == '__main__':
     #feature = 'nearby_total_oncampus'
     feature = 'late_time_var_oncampus'
     
-    #feature = 'fp_bakerberryhopkins' # discard
-    #feature = 'fp_bakerberrykemeny' # discard
-    #feature = 'fp_bakerberrylsb'
-    #feature = 'fp_sudikoffhopkins'
-    #feature = 'fp_occum'
-    #feature = 'fp_sportvenues'
+
     feature = 'fp_53_commons;baker-berry'
     feature = 'fp_baker-berry;lsb'
     feature = 'fp_kemeny;baker-berry'
-    feature = 'fp_sport-venues'
+    #feature = 'fp_sport-venues'
+    #feature = 'fp_baker-berry;kemeny'
+    #feature = 'fp_lsb;baker-berry;kemeny'
+    #feature = 'fp_occum'
+    #feature = 'fp_53_commons;sudikoff'
 
     
     single_vrb(feature)
