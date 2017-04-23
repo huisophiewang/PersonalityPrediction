@@ -3,7 +3,7 @@ from pprint import pprint
 from util import CUR_DIR, OFF_CAMPUS, write_feature_to_csv, get_entropy, write_multi_features_to_csv, fill_miss_values
 dir = os.path.join(CUR_DIR, "dataset", "sensing", "bluetooth")
 from datetime import datetime
-from feature_class import get_class_schedule
+#from feature_class import get_class_schedule
 
 def get_nearby(fp, id):
     
@@ -91,27 +91,27 @@ def get_nearby(fp, id):
   
     #return (daily_day, daily_evening, daily_night)
 
-#     daily_day, daily_evening, daily_night = 0.0, 0.0, 0.0
-#     daily_day_unique, daily_evening_unique, daily_night_unique = 0.0, 0.0, 0.0
-#     day_unique, evening_unique, night_unique = set(), set(), set()
-#     for pair in by_date:
-#         for entry in pair[1]:
-#             hour = int(entry[0][:2])
-#             if hour >= 9 and hour < 18:
-#                 daily_day += 1
-#                 day_unique.add(entry[1])
-#             elif hour >= 18 and hour <= 23:
-#                 daily_evening += 1
-#                 evening_unique.add(entry[1])
-#             else:
-#                 daily_night += 1
-#                 night_unique.add(entry[1])
-#                 
-#     daily_day /= len(by_date)
-#     daily_evening /= len(by_date)
-#     daily_night /= len(by_date)
-#     
-#     #return (daily_day, daily_evening, daily_night)
+    daily_day, daily_evening, daily_night = 0.0, 0.0, 0.0
+    daily_day_unique, daily_evening_unique, daily_night_unique = 0.0, 0.0, 0.0
+    day_unique, evening_unique, night_unique = set(), set(), set()
+    for pair in by_date:
+        for entry in pair[1]:
+            hour = int(entry[0][:2])
+            if hour >= 9 and hour < 18:
+                daily_day += 1
+                day_unique.add(entry[1])
+            elif hour >= 18 and hour <= 23:
+                daily_evening += 1
+                evening_unique.add(entry[1])
+            else:
+                daily_night += 1
+                night_unique.add(entry[1])
+                 
+    daily_day /= len(by_date)
+    daily_evening /= len(by_date)
+    daily_night /= len(by_date)
+     
+    return (daily_day, daily_evening, daily_night)
 #     
 #     daily_day_unique = len(day_unique) / float(len(by_date))
 #     daily_evening_unique = len(evening_unique) / float(len(by_date))
@@ -166,45 +166,45 @@ def get_nearby(fp, id):
 
 
 
-    total2 = float(0)
-    for pair in by_date[:30]:
-               
-        for entry in pair[1]:
-#             total2 += 1
+#     total2 = float(0)
+#     for pair in by_date[:30]:
+#                
+#         for entry in pair[1]:
+# #             total2 += 1
+# #             mac = entry[1]
+# #             if not mac in by_mac:
+# #                 by_mac[mac] = 0
+# #             by_mac[mac] += 1
+#      
+#      
+#     #return total
+#     #entropy = get_entropy(by_mac)
+#     #return entropy
+#     #pprint(by_mac)
+#  
+#             #print entry
+#             hour = int(entry[0][:2])
 #             mac = entry[1]
-#             if not mac in by_mac:
-#                 by_mac[mac] = 0
-#             by_mac[mac] += 1
-     
-     
-    #return total
-    #entropy = get_entropy(by_mac)
-    #return entropy
-    #pprint(by_mac)
- 
-            #print entry
-            hour = int(entry[0][:2])
-            mac = entry[1]
- 
-            if hour >= 9 and hour < 18:
-                if not mac in by_mac_day:
-                    by_mac_day[mac] = 0
-                by_mac_day[mac] += 1
-            elif hour >= 18 and hour <= 23:
-                if not mac in by_mac_evening:
-                    by_mac_evening[mac] = 0
-                by_mac_evening[mac] += 1
-            else:
-                if not mac in by_mac_night:
-                    by_mac_night[mac] = 0
-                by_mac_night[mac] += 1           
-             
-     
-    nearby_day_entropy = get_entropy(by_mac_day)
-    nearby_evening_entropy = get_entropy(by_mac_evening)
-    nearby_night_entropy = get_entropy(by_mac_night)
-    print (nearby_day_entropy, nearby_evening_entropy, nearby_night_entropy)
-    return (nearby_day_entropy, nearby_evening_entropy, nearby_night_entropy)
+#  
+#             if hour >= 9 and hour < 18:
+#                 if not mac in by_mac_day:
+#                     by_mac_day[mac] = 0
+#                 by_mac_day[mac] += 1
+#             elif hour >= 18 and hour <= 23:
+#                 if not mac in by_mac_evening:
+#                     by_mac_evening[mac] = 0
+#                 by_mac_evening[mac] += 1
+#             else:
+#                 if not mac in by_mac_night:
+#                     by_mac_night[mac] = 0
+#                 by_mac_night[mac] += 1           
+#              
+#      
+#     nearby_day_entropy = get_entropy(by_mac_day)
+#     nearby_evening_entropy = get_entropy(by_mac_evening)
+#     nearby_night_entropy = get_entropy(by_mac_night)
+#     print (nearby_day_entropy, nearby_evening_entropy, nearby_night_entropy)
+#     return (nearby_day_entropy, nearby_evening_entropy, nearby_night_entropy)
 
 
     
@@ -291,11 +291,11 @@ if __name__ == '__main__':
     #write_feature_to_csv(id_feature, 'nearby_oncampus_daily_day') 
 
     fill_miss_values(id_feature, 3, ['49'])
-    #write_multi_features_to_csv(id_feature, ['daily_day_oncampus', 'daily_evening_oncampus', 'daily_night_oncampus'])
+    write_multi_features_to_csv(id_feature, ['daily_day_oncampus', 'daily_evening_oncampus', 'daily_night_oncampus'])
     #write_multi_features_to_csv(id_feature, ['daily_day_oncampus_noclass', 'daily_evening_oncampus_noclass', 'daily_night_oncampus_noclass'])
     #write_multi_features_to_csv(id_feature, ['daily_day_unique_oncampus', 'daily_evening_unique_oncampus', 'daily_night_unique_oncampus'])
     #write_multi_features_to_csv(id_feature, ['day_entropy_oncampus', 'evening_entropy_oncampus', 'night_entropy_oncampus'])
-    write_multi_features_to_csv(id_feature, ['day_entropy_oncampus_30days', 'evening_entropy_oncampus_30days', 'night_entropy_oncampus_30days'])
+    #write_multi_features_to_csv(id_feature, ['day_entropy_oncampus_30days', 'evening_entropy_oncampus_30days', 'night_entropy_oncampus_30days'])
 
 
 

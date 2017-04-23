@@ -20,7 +20,7 @@ n fold:
 
 def sklearn_logistic_reg(x_train, y_train, x_test, y_test, lam):
     #clf = linear_model.LogisticRegression(C=lam, penalty='l1')
-    clf = svm.SVC(C=lam, kernel='rbf')
+    clf = svm.SVC(C=lam, kernel='poly')
     
     
     clf.fit(x_train, y_train)

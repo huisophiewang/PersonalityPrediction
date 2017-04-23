@@ -24,4 +24,4 @@ def divide(trait):
     np.savetxt(output_fp, new_data, fmt='%1.3f', delimiter=",", header=','.join(header))
     
 if __name__ == '__main__':
-    divide(trait='openn')
+    divide(trait='neuro')

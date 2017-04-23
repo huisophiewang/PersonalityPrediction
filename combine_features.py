@@ -146,9 +146,9 @@ if __name__ == '__main__':
 #     fnames.extend(['fp_53_commons;sudikoff', 'fp_occum'])
 #     combine_heuristic_features(fnames, trait='extra')
 
-#     fnames = ['nearby_total_30days_oncampus']
+#     fnames = ['nearby_total_30days_oncampus', 'nearby_timestamp_oncampus']
 #     fnames.append('end_time_var_mon-end_time_var_tue-end_time_var_wed-end_time_var_thr-end_time_var_fri')
-#     fnames.extend(['fp_53_commons;baker-berry','fp_baker-berry;lsb','fp_kemeny;baker-berry'])
+#     #fnames.extend(['fp_53_commons;baker-berry','fp_baker-berry;lsb','fp_kemeny;baker-berry'])
 #     combine_heuristic_features(fnames, trait='agrbl')
 
 #     fnames = ['start_time_var_oncampus']
@@ -158,18 +158,18 @@ if __name__ == '__main__':
 #     fnames.extend(['fp_baker-berry;kemeny','fp_lsb;baker-berry;kemeny'])
 #     combine_heuristic_features(fnames, trait='consc')
 
-#     fnames = ['end_time_var_oncampus']
-#     fnames.append('len_var_mon-len_var_tue-len_var_wed-len_var_thr-len_var_fri')
-#     fnames.append('start_time_var_mon-start_time_var_tue-start_time_var_wed-start_time_var_thr-start_time_var_fri')
-#     fnames.append('end_time_var_mon-end_time_var_tue-end_time_var_wed-end_time_var_thr-end_time_var_fri')
-#     fnames.append('daily_day_oncampus-daily_evening_oncampus-daily_night_oncampus')
-#     fnames.extend(['fp_53_commons;sudikoff','fp_occum'])
-#     combine_heuristic_features(fnames, trait='neuro')
-
-    fnames= ['len_var_mon-len_var_tue-len_var_wed-len_var_thr-len_var_fri']
+    fnames = ['end_time_var_oncampus']
+    fnames.append('len_var_mon-len_var_tue-len_var_wed-len_var_thr-len_var_fri')
+    fnames.append('start_time_var_mon-start_time_var_tue-start_time_var_wed-start_time_var_thr-start_time_var_fri')
+    fnames.append('end_time_var_mon-end_time_var_tue-end_time_var_wed-end_time_var_thr-end_time_var_fri')
     fnames.append('daily_day_oncampus-daily_evening_oncampus-daily_night_oncampus')
-    fnames.extend(['fp_sport-venues'])
-    combine_heuristic_features(fnames, trait='openn')
+    fnames.extend(['fp_53_commons;sudikoff','fp_occum'])
+    combine_heuristic_features(fnames, trait='neuro')
+
+#     fnames= ['len_var_mon-len_var_tue-len_var_wed-len_var_thr-len_var_fri']
+#     fnames.append('daily_day_oncampus-daily_evening_oncampus-daily_night_oncampus')
+#     fnames.extend(['fp_sport-venues'])
+#     combine_heuristic_features(fnames, trait='openn')
 
 #     fnames = ['len_var_oncampus', 'start_time_var_oncampus', 'end_time_var_oncampus', 'num_days_activity_oncampus']
 #     fnames.append('stat_rate_oncampus-walk_rate_oncampus-run_rate_oncampus')

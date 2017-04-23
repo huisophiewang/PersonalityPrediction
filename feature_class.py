@@ -1,5 +1,6 @@
 import json
 from pprint import pprint
+import os
 #pp = pprint.PrettyPrinter(width=100)
 
 from prep_class_schedule import get_late_time
@@ -7,8 +8,8 @@ from util import write_feature_to_csv, write_multi_features_to_csv, fill_miss_va
     OFF_CAMPUS
 
 to_weekday = {1:'Monday', 2:'Tuesday', 3:'Wednesday', 4:'Thursday', 5:'Friday'}
-class_info_file = open(r'dataset\education\class_info.json')
-class_info = json.load(class_info_file)
+class_fp = os.path.join('dataset','education','class_info.json')
+class_info = json.load(open(class_fp))
 
 ###########################
 # missing: 00, 36, 39, 56 (probably dropped the course)
