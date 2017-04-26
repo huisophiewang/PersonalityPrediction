@@ -85,6 +85,7 @@ if __name__ == '__main__':
     #feature = 'len_mean_oncampus'
     feature = 'start_time_var_oncampus'
     feature = 'end_time_var_oncampus'
+    feature = 'end_time_avg_oncampus'
     #feature = 'late_time_var_oncampus'
     #feature = 'num_days_activity_oncampus'
 #     feature = 'num_days_bluetooth_oncampus'
@@ -92,17 +93,18 @@ if __name__ == '__main__':
 #     feature = 'nearby_entropy'
 #     feature = 'nearby_timestamp'
 #     feature = 'nearby_daily_oncampus'
-    feature = 'nearby_total_30days_oncampus'
+    #feature = 'nearby_total_30days_oncampus'
     
-    feature = 'fp_53_commons;sudikoff'
-    feature = 'fp_occum'
-    feature = 'fp_53_commons;baker-berry'
-    feature = 'fp_baker-berry;lsb'
-    feature = 'fp_kemeny;baker-berry'
-    feature = 'fp_baker-berry;kemeny'
-    feature = 'fp_lsb;baker-berry;kemeny'
-    feature = 'fp_sport-venues'
-    #pearson_single_feature(feature)
+#     feature = 'fp_53_commons;sudikoff'
+#     feature = 'fp_occum'
+#     feature = 'fp_53_commons;baker-berry'
+#     feature = 'fp_baker-berry;lsb'
+#     feature = 'fp_kemeny;baker-berry'
+#     feature = 'fp_baker-berry;kemeny'
+#     feature = 'fp_lsb;baker-berry;kemeny'
+#     feature = 'fp_sport-venues'
+
+    pearson_single_feature(feature)
     
     
     
@@ -118,7 +120,7 @@ if __name__ == '__main__':
     #features = ['conver_freq_daytime_oncampus', 'conver_freq_evening_oncampus', 'conver_freq_night_oncampus']
     #features = ['len_var_mon', 'len_var_tue', 'len_var_wed', 'len_var_thr', 'len_var_fri']
     #features = ['end_time_var_mon','end_time_var_tue','end_time_var_wed','end_time_var_thr','end_time_var_fri']
-    pearson_multi_features(features)
+    #pearson_multi_features(features)
 
 
 

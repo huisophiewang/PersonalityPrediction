@@ -176,8 +176,8 @@ if __name__ == '__main__':
     feature = 'nearby_num_unique_30days_oncampus'
     feature = 'nearby_timestamp_30days_oncampus'
     #feature = 'nearby_num_friends_30days_oncampus'
-    #feature = 'nearby_daily_oncampus'
-    feature = 'nearby_timestamp_oncampus'
+    feature = 'nearby_daily_oncampus'
+    #feature = 'nearby_timestamp_oncampus'
     #feature = 'nearby_total_oncampus'
     #feature = 'late_time_var_oncampus'
     
@@ -186,14 +186,17 @@ if __name__ == '__main__':
     #feature = 'fp_baker-berry;lsb'
     #feature = 'fp_kemeny;baker-berry'
     #feature = 'fp_sport-venues'
-    #feature = 'fp_baker-berry;kemeny'
+    feature = 'fp_baker-berry;kemeny'
     #feature = 'fp_lsb;baker-berry;kemeny'
     #feature = 'fp_occum'
     #feature = 'fp_53_commons;sudikoff'
+    
+    feature = 'start_time_avg_oncampus'
+    feature = 'end_time_avg_oncampus'
 
     
-#     single_vrb(feature)
-#     plot_feature(feature)
+    single_vrb(feature)
+    plot_feature(feature)
     
     #features = ['early', 'late', 'absent']   
     #features = ['early_oncampus', 'late_oncampus', 'absent_oncampus'] 
@@ -211,7 +214,7 @@ if __name__ == '__main__':
     
     features = ['daily_day_oncampus', 'daily_evening_oncampus', 'daily_night_oncampus']
     #features = ['daily_day_oncampus_noclass', 'daily_evening_oncampus_noclass', 'daily_night_oncampus_noclass']
-    #features = ['daily_day_unique_oncampus', 'daily_evening_unique_oncampus', 'daily_night_unique_oncampus']
+    features = ['daily_day_unique_oncampus', 'daily_evening_unique_oncampus', 'daily_night_unique_oncampus']
     #features = ['ontime_rate_oncampus', 'absent_rate_oncampus']
     #features = ['day_entropy_oncampus', 'evening_entropy_oncampus', 'night_entropy_oncampus']
     #features = ['day_entropy_oncampus_30days', 'evening_entropy_oncampus_30days', 'night_entropy_oncampus_30days']
@@ -223,9 +226,9 @@ if __name__ == '__main__':
 #     features = ['end_time_var_mon','end_time_var_tue','end_time_var_wed','end_time_var_thr','end_time_var_fri']
     
     
-    trait = 'openn'
-    multi_feature_single_trait(features, trait)
-    plot_multi_feature(features, trait)
+#     trait = 'openn'
+#     multi_feature_single_trait(features, trait)
+#     plot_multi_feature(features, trait)
 
     
     

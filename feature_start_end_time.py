@@ -5,7 +5,8 @@ import copy
 from datetime import datetime
 from prep_wifi_loc import get_in_loc_duration, get_seqs
 from util import CUR_DIR, ID_HOME, REMOVE_SUBJECTS, OFF_CAMPUS
-from util import write_feature_to_csv, get_time_var, write_multi_features_to_csv
+from util import write_feature_to_csv, write_multi_features_to_csv
+from util import get_time_var, get_time_mean
 import pprint
 pp = pprint.PrettyPrinter(width=100)
 wifi_dir = os.path.join(CUR_DIR, 'dataset', 'sensing', 'wifi_location')
@@ -36,7 +37,8 @@ def get_start_var_oncampus(in_loc_duration, id, wkd=None):
     #samples = random.sample(start_times, 20)
     samples = start_times
     #print len(samples)
-    return get_time_var(samples)
+    return get_time_mean(samples)
+    #return get_time_var(samples)
 
 def get_start_var_offcampus(in_loc_duration, id):
     start_times = []
@@ -100,7 +102,8 @@ def get_end_var_oncampus(in_loc_duration, id, wkd=None):
    
     samples = end_times
     #print len(samples)
-    return get_time_var(samples)
+    #return get_time_var(samples)
+    return get_time_mean(samples)
     
      
 def get_end_var_offcampus(in_loc_duration, id):
@@ -283,15 +286,17 @@ if __name__ == '__main__':
 #     in_loc_duration = get_in_loc_duration(id)
 #     get_end_time_test(in_loc_duration, id)
 
-#     id_feature = get_feature_start_var()
-#     write_feature_to_csv(id_feature, 'start_time_var_oncampus')
+    #id_feature = get_feature_start_var()
+    #write_feature_to_csv(id_feature, 'start_time_var_oncampus')
+    #write_feature_to_csv(id_feature, 'start_time_avg_oncampus')
     
-#     id_feature = get_feature_end_var()
-#     write_feature_to_csv(id_feature, 'end_time_var_oncampus')
+    id_feature = get_feature_end_var()
+    #write_feature_to_csv(id_feature, 'end_time_var_oncampus')
+    write_feature_to_csv(id_feature, 'end_time_avg_oncampus')
 
     #id_features = get_feature_start_var_weekday()
     #write_multi_features_to_csv(id_features, ['start_time_var_mon','start_time_var_tue','start_time_var_wed','start_time_var_thr','start_time_var_fri'])   
     
-    id_features = get_feature_end_var_weekday()
-    write_multi_features_to_csv(id_features, ['end_time_var_mon','end_time_var_tue','end_time_var_wed','end_time_var_thr','end_time_var_fri'])   
-    
+#     id_features = get_feature_end_var_weekday()
+#     write_multi_features_to_csv(id_features, ['end_time_var_mon','end_time_var_tue','end_time_var_wed','end_time_var_thr','end_time_var_fri'])   
+#     
