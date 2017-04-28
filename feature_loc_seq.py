@@ -61,8 +61,8 @@ def get_feature():
         seqs = get_seqs(id)
         #print seqs
         #print len(seqs)
-        result = get_len_var(seqs)
-        #result = get_avg_edit_dist(seqs)
+        #result = get_len_var(seqs)
+        result = get_avg_edit_dist(seqs)
         print result
         
         id_feature[id] = result
@@ -96,10 +96,13 @@ def get_feature_weekday():
         
     return id_features
 
+
+
 if __name__ == '__main__':  
-    #id_feature = get_feature()
+    id_feature = get_feature()
     #pp.pprint(id_feature)
-    #write_feature_to_csv(id_feature, 'len_var', False)
+    #write_feature_to_csv(id_feature, 'len_var')
+    write_feature_to_csv(id_feature, 'edit_dist')
 
     #pp.pprint(get_seqs('46'))
     
@@ -108,8 +111,9 @@ if __name__ == '__main__':
     #write_feature_to_csv(id_feature, 'len_mean_oncampus')
     #write_feature_to_csv(id_feature, 'avg_edit_dist')
     
-    id_features = get_feature_weekday()
+    #id_features = get_feature_weekday()
     #write_multi_features_to_csv(id_features, ['len_mean_Mon', 'len_mean_Tue', 'len_mean_Wed', 'len_mean_Thr', 'len_mean_Fri'])
-    write_multi_features_to_csv(id_features, ['len_var_mon', 'len_var_tue', 'len_var_wed', 'len_var_thr', 'len_var_fri'])
+    #write_multi_features_to_csv(id_features, ['len_var_mon', 'len_var_tue', 'len_var_wed', 'len_var_thr', 'len_var_fri'])
     
+
     
