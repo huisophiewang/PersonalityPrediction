@@ -4,6 +4,7 @@ import time
 from pprint import pprint
 from datetime import datetime
 from collections import OrderedDict
+from audioop import avg
 
 
 CUR_DIR = os.path.dirname(os.path.realpath(__file__))
@@ -371,6 +372,17 @@ def get_time_var(times):
         var += (sec - avg) * (sec - avg)
     var /= len(times)
     return var
+
+def get_time_mean(times):
+    avg = 0.0
+    secs = []
+    for t in times:  
+        items = t.split(':')
+        sec = int(items[0])*3600 + int(items[1])*60 + int(items[2])
+        secs.append(sec)
+        avg += sec
+    avg /= len(times)
+    return avg
 
 def fill_miss_values(id_features, num_features, miss_ids):
     if num_features > 1:
