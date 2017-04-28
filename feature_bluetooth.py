@@ -89,35 +89,35 @@ def get_nearby(fp, id):
         daily_night += by_day_night[dt]
     daily_night /= len(by_day_night)
   
-    #return (daily_day, daily_evening, daily_night)
-
-    daily_day, daily_evening, daily_night = 0.0, 0.0, 0.0
-    daily_day_unique, daily_evening_unique, daily_night_unique = 0.0, 0.0, 0.0
-    day_unique, evening_unique, night_unique = set(), set(), set()
-    for pair in by_date:
-        for entry in pair[1]:
-            hour = int(entry[0][:2])
-            if hour >= 9 and hour < 18:
-                daily_day += 1
-                day_unique.add(entry[1])
-            elif hour >= 18 and hour <= 23:
-                daily_evening += 1
-                evening_unique.add(entry[1])
-            else:
-                daily_night += 1
-                night_unique.add(entry[1])
-                 
-    daily_day /= len(by_date)
-    daily_evening /= len(by_date)
-    daily_night /= len(by_date)
-     
     return (daily_day, daily_evening, daily_night)
-#     
+
+#     daily_day, daily_evening, daily_night = 0.0, 0.0, 0.0
+#     daily_day_unique, daily_evening_unique, daily_night_unique = 0.0, 0.0, 0.0
+#     day_unique, evening_unique, night_unique = set(), set(), set()
+#     for pair in by_date:
+#         for entry in pair[1]:
+#             hour = int(entry[0][:2])
+#             if hour >= 9 and hour < 18:
+#                 daily_day += 1
+#                 day_unique.add(entry[1])
+#             elif hour >= 18 and hour <= 23:
+#                 daily_evening += 1
+#                 evening_unique.add(entry[1])
+#             else:
+#                 daily_night += 1
+#                 night_unique.add(entry[1])
+#                   
+#     daily_day /= len(by_date)
+#     daily_evening /= len(by_date)
+#     daily_night /= len(by_date)
+#       
+#     return (daily_day, daily_evening, daily_night)
+#      
 #     daily_day_unique = len(day_unique) / float(len(by_date))
 #     daily_evening_unique = len(evening_unique) / float(len(by_date))
 #     daily_night_unique = len(night_unique) / float(len(by_date))
-#     
-#     return (daily_day_unique, daily_evening_unique, daily_night_unique)
+     
+    #return (daily_day_unique, daily_evening_unique, daily_night_unique)
         
     
 

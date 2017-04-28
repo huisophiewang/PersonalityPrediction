@@ -20,7 +20,7 @@ n fold:
 
 def sklearn_logistic_reg(x_train, y_train, x_test, y_test, lam):
     #clf = linear_model.LogisticRegression(C=lam, penalty='l1')
-    clf = svm.SVC(C=lam, kernel='poly')
+    clf = svm.SVC(C=lam, kernel='rbf')
     
     
     clf.fit(x_train, y_train)
@@ -32,7 +32,7 @@ def sklearn_logistic_reg(x_train, y_train, x_test, y_test, lam):
 
 
 def cross_validate(x, y, fold):
-    lam_range = np.arange(0.001, 10.0, 0.001)
+    lam_range = np.arange(0.001, 10.0, 0.01)
     lam_accs = []
     for lam in lam_range:
         accs = []
@@ -56,7 +56,7 @@ def cross_validate(x, y, fold):
 
     
 if __name__ == '__main__':
-    fp = os.path.join('result', 'feature', 'all_features_fp_neuro_cls.csv')
+    fp = os.path.join('result', 'feature', 'all_features_fp_openn_cls.csv')
     #fp = os.path.join('result', 'feature', 'all_features_all_traits_cls.csv')
     data = np.genfromtxt(fp, delimiter=",", dtype=float, skip_header=1)
     #np.random.shuffle(data)
