@@ -1,13 +1,21 @@
 import os
 from datetime import datetime
+from pprint import pprint
+
+from util_gps import id_home
+from util_gps import all_locs_1, all_locs_2
+from util import get_entropy, OFF_CAMPUS
 
 MIN_SAMPLES = 65
 NUM_DAYS = 30
 MIN_FREQ = 2
 
 
-def get_change_date(fp):
-    by_dates = {}
+
+# gps frequency changes from every 20 min to every 10 min
+def get_complete_days(fp):
+    time_by_dates = {}
+    loc_by_dates = {}
     
     fr = open(fp, 'rU') 
     lines = fr.readlines()
@@ -16,22 +24,30 @@ def get_change_date(fp):
         atts = line.strip('\n').split(",")
         dt = atts[1][:9]
         
-        if dt not in by_dates:
-            by_dates[dt] = []
-            by_dates[dt].append(atts[1])
+        if dt not in time_by_dates:
+            time_by_dates[dt] = []
+            time_by_dates[dt].append(atts[1])
+            loc_by_dates[dt] = []
+            loc_by_dates[dt].append(atts[5])
         else:
-            by_dates[dt].append(atts[1])
+            time_by_dates[dt].append(atts[1])
+            loc_by_dates[dt].append(atts[5])
+            
+    time_by_dates = sorted(time_by_dates.items(), key=lambda item: datetime.strptime(item[0], "%d%b%Y"))
     
-    #pprint(by_dates)
-    by_dates = sorted(by_dates.items(), key=lambda item: datetime.strptime(item[0], "%d%b%Y"))
-    #pprint(by_dates)
-    
-    change_dt = None
-    
-    for pair in by_dates:
+    #complete = []
+    complete_dates = []
+    by_complete_dates = {}
+    for pair in time_by_dates:
+        dt = pair[0]
         seq = pair[1]
+        #print dt, len(seq)  
+    #     weekday = dt_obj.strftime("%A")
+    #     if weekday != 'Saturday' and weekday != 'Sunday':
+    #         continue
+              
         avg = 0.0
-        if len(seq) < 2:
+        if len(seq) < 10:
             continue
         for idx in range(len(seq)):
             if idx == 0:
@@ -46,69 +62,28 @@ def get_change_date(fp):
             items = str(diff).split(':')
             sec = int(items[0])*3600 + int(items[1])*60 + int(items[2])
             avg += sec
-            
         avg /= len(seq)-1
+        
+        # sample rate is 10 min:
         if avg/60 < 15.0:
-            change_dt = pair[0]
-            break
-    
-    #print change_dt
-    return change_dt
-
-def get_complete_days(fp, change_dt):
-    by_dates = {}
-    
-    fr = open(fp, 'rU') 
-    lines = fr.readlines()
-    for line in lines:
-        #print line
-        atts = line.strip('\n').split(",")
-        dt = atts[1][:9]
-        
-        if dt not in by_dates:
-            by_dates[dt] = []
-            by_dates[dt].append(atts[5])
+            if len(seq) >= MIN_SAMPLES * 2:
+                complete_dates.append(dt)
+                # down sampling
+                loc_seq = loc_by_dates[dt]
+                by_complete_dates[dt] = loc_seq[0::2]
+        # sample rate is 20 min:
         else:
-            by_dates[dt].append(atts[5])
-            
-    by_dates = sorted(by_dates.items(), key=lambda item: datetime.strptime(item[0], "%d%b%Y"))
-    #pprint(by_dates)
-    
-    #complete = []
-    complete = []
-    by_complete_dates = {}
-    for pair in by_dates:
-        dt = pair[0]
-        seq = pair[1]
-        #pprint(seq)
- 
-    #     weekday = dt_obj.strftime("%A")
-    #     if weekday != 'Saturday' and weekday != 'Sunday':
-    #         continue
-        
-        if change_dt == None:
             if len(seq) >= MIN_SAMPLES and len(seq) <= 72:
-                complete.append(dt)
-                by_complete_dates[dt] = seq
-                
-        else:
-            dt_obj = datetime.strptime(dt, "%d%b%Y")
-            if dt_obj < datetime.strptime(change_dt, "%d%b%Y"):
-                if len(seq) >= MIN_SAMPLES and len(seq) <= 72:
-                    complete.append(dt)
-                    by_complete_dates[dt] = seq
-            else:
-                if len(seq) >= MIN_SAMPLES * 2:
-                    complete.append(dt)
-                    # down sampling
-                    by_complete_dates[dt] = seq[0::2]
-                                      
+                complete_dates.append(dt)
+                by_complete_dates[dt] = loc_by_dates[dt]                                     
     #pprint(complete)
     #print len(complete)
 
     by_complete_dates = sorted(by_complete_dates.items(), key=lambda item: datetime.strptime(item[0], "%d%b%Y"))
+    #pprint(by_complete_dates)
     
-    return complete, by_complete_dates
+    print len(complete_dates)
+    return complete_dates, by_complete_dates
 
 def get_loc_freq(sample_days, by_dates):
     loc_freq = {}
@@ -135,32 +110,14 @@ def get_loc_freq(sample_days, by_dates):
 def merge_homes(loc_freq, id):
     homes = id_home[id]
     loc_freq['home'] = 0
-    home_of_31 = []
+
     for loc in loc_freq:
-        if id == '31':
-            if loc[4:] == homes[0]:
-                home_of_31.append(loc)
-                loc_freq['home'] += loc_freq[loc]
-            if loc in homes[1:]:
-                loc_freq['home'] += loc_freq[loc]
-        else:
-            if loc in homes:
-                loc_freq['home'] += loc_freq[loc]
+        if loc in homes:
+            loc_freq['home'] += loc_freq[loc]
     
-    if id == '31':
-        for loc in homes[1:]:
+    for loc in homes:
+        if loc in loc_freq:
             loc_freq.pop(loc)
-        for loc in home_of_31:
-            loc_freq.pop(loc)
-    else:
-        for loc in homes:
-            if loc in loc_freq:
-                loc_freq.pop(loc)
-    
-#     loc_freq = sorted(loc_freq.items(), key=lambda item: item[1], reverse=True)      
-#     for pair in loc_freq:
-#         print pair
-#     print len(loc_freq)
     
     return loc_freq
 
@@ -190,25 +147,42 @@ def get_feature():
         fp = os.path.join(addr_dir, file)
         id = file.split('.')[0][-2:]
         
-        change_dt = get_change_date(fp)
-        complete, by_complete_dates = get_complete_days(fp, change_dt)
-        if len(complete) < NUM_DAYS:
+        if id in OFF_CAMPUS:
             continue
-        
+
+#         if id != '59':
+#             continue
+               
         print 
         print 'subject id: ' + id
         
-        #sample_days = random.sample(complete, NUM_DAYS)
-        sample_days = complete[:NUM_DAYS]
+        #get_change_date(fp)
 
-        loc_freq = get_loc_freq(sample_days, by_complete_dates)
+        complete_dates, by_complete_dates = get_complete_days(fp)
+
+#         if len(complete_dates) < NUM_DAYS:
+#             continue
         
-        loc_freq = merge_homes(loc_freq, id)
-         
-        all_loc_freq = get_all_loc_freq(loc_freq)
-           
-        entropy = get_entropy(all_loc_freq)
+
+        
+#         #sample_days = random.sample(complete, NUM_DAYS)
+#         sample_days = complete[:NUM_DAYS]
+        sample_days = complete_dates
+
+        loc_freq = get_loc_freq(sample_days, by_complete_dates)    
+        #pprint(loc_freq) 
+        #loc_freq = merge_homes(loc_freq, id)
+        #pprint(loc_freq)
+#           
+#         all_loc_freq = get_all_loc_freq(loc_freq)
+#         entropy = get_entropy(all_loc_freq)
+
+        entropy = get_entropy(loc_freq)
         id_feature[id] = entropy
         
     
     return id_feature
+
+if __name__ == '__main__':
+    get_feature()
+    
