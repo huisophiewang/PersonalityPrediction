@@ -57,10 +57,10 @@ def pearson_multi_features(feature_names):
         print feature_names[i]
         x = data[:, i]
         #print np.mean(x)
-        #print pearsonr(x, agr)
-        for j in range(num, num+5):
-            y = data[:, j]
-            print pearsonr(x, y)
+        print pearsonr(x, agr)
+#         for j in range(num, num+5):
+#             y = data[:, j]
+#             print pearsonr(x, y)
     
     
 
@@ -110,11 +110,11 @@ if __name__ == '__main__':
     #feature = 'num_days_activity'
     #feature = 'num_days_audio'
     
-#     feature = 'fp_53_commons;sudikoff'
+    #feature = 'fp_53_commons;sudikoff'
 #     feature = 'fp_occum'
-#     feature = 'fp_53_commons;baker-berry'
-#     feature = 'fp_baker-berry;lsb'
-#     feature = 'fp_kemeny;baker-berry'
+    feature = 'fp_53_commons;baker-berry'
+    feature = 'fp_baker-berry;lsb'
+    feature = 'fp_kemeny;baker-berry'
 #     feature = 'fp_baker-berry;kemeny'
 #     feature = 'fp_lsb;baker-berry;kemeny'
 #     feature = 'fp_sport-venues'
@@ -127,16 +127,13 @@ if __name__ == '__main__':
     #features = ['end_time_var_mon','end_time_var_tue','end_time_var_wed','end_time_var_thr','end_time_var_fri']
     
     features = ['daily_day_oncampus', 'daily_evening_oncampus', 'daily_night_oncampus']
-    #features = ['day_entropy_oncampus_30days', 'evening_entropy_oncampus_30days', 'night_entropy_oncampus_30days']
+    features = ['day_entropy_oncampus_30days', 'evening_entropy_oncampus_30days', 'night_entropy_oncampus_30days']
+    features = ['daily_day_unique_oncampus', 'daily_evening_unique_oncampus', 'daily_night_unique_oncampus']
+    features = ['days_oncampus', 'views_oncampus', 'contributions_oncampus', 'questions_oncampus', 'notes_oncampus', 'answers_oncampus']
     
-    #features = ['days_oncampus', 'views_oncampus', 'contributions_oncampus', 'questions_oncampus', 'notes_oncampus', 'answers_oncampus']
-    #features = ['days_oncampus', 'views_oncampus', 'contributions_oncampus', 'questions_oncampus', 'notes_oncampus', 'answers_oncampus']  
-    
-    #features = ['early', 'late', 'absent'] 
-    #features = ['early_oncampus', 'late_oncampus', 'absent_oncampus'] 
-    #features = ['day_entropy_oncampus_30days', 'evening_entropy_oncampus_30days', 'night_entropy_oncampus_30days']
-    #features = ['stat_rate_oncampus', 'walk_rate_oncampus', 'run_rate_oncampus']
-    #features = ['conver_freq_daytime_oncampus', 'conver_freq_evening_oncampus', 'conver_freq_night_oncampus']
+    features = ['early_oncampus', 'late_oncampus', 'absent_oncampus'] 
+    features = ['stat_rate_oncampus', 'walk_rate_oncampus', 'run_rate_oncampus']
+    features = ['conver_freq_daytime_oncampus', 'conver_freq_evening_oncampus', 'conver_freq_night_oncampus']
 
     
     pearson_multi_features(features)

@@ -5,8 +5,8 @@ neuro
 Dep. Variable:                  neuro   R-squared:                       0.153
 Model:                            OLS   Adj. R-squared:                  0.126
 Method:                 Least Squares   F-statistic:                     5.763
-Date:                Fri, 28 Apr 2017   Prob (F-statistic):             0.0224
-Time:                        21:55:06   Log-Likelihood:                -33.164
+Date:                Mon, 20 Feb 2017   Prob (F-statistic):             0.0224
+Time:                        19:40:14   Log-Likelihood:                -33.164
 No. Observations:                  34   AIC:                             70.33
 Df Residuals:                      32   BIC:                             73.38
 Df Model:                           1                                         

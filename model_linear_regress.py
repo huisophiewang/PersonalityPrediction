@@ -198,8 +198,8 @@ if __name__ == '__main__':
 
 
     
-#     single_vrb(feature)
-#     plot_feature(feature)
+    single_vrb(feature)
+    plot_feature(feature)
     
     #features = ['early', 'late', 'absent']   
     #features = ['early_oncampus', 'late_oncampus', 'absent_oncampus'] 
@@ -229,9 +229,9 @@ if __name__ == '__main__':
 #     features = ['end_time_var_mon','end_time_var_tue','end_time_var_wed','end_time_var_thr','end_time_var_fri']
     
     
-    trait = 'openn'
-    multi_feature_single_trait(features, trait)
-    plot_multi_feature(features, trait)
+#     trait = 'openn'
+#     multi_feature_single_trait(features, trait)
+#     plot_multi_feature(features, trait)
 
     
     

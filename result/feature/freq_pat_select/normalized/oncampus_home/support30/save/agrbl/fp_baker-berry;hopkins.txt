@@ -1,26 +1,26 @@
 #####################################################################################################
-extra
+agrbl
                             OLS Regression Results                            
 ==============================================================================
-Dep. Variable:                  extra   R-squared:                       0.117
+Dep. Variable:                  agrbl   R-squared:                       0.116
 Model:                            OLS   Adj. R-squared:                  0.089
-Method:                 Least Squares   F-statistic:                     4.222
-Date:                Fri, 28 Apr 2017   Prob (F-statistic):             0.0482
-Time:                        21:55:06   Log-Likelihood:                -35.228
-No. Observations:                  34   AIC:                             74.46
-Df Residuals:                      32   BIC:                             77.51
+Method:                 Least Squares   F-statistic:                     4.211
+Date:                Mon, 20 Feb 2017   Prob (F-statistic):             0.0484
+Time:                        19:40:14   Log-Likelihood:                -31.196
+No. Observations:                  34   AIC:                             66.39
+Df Residuals:                      32   BIC:                             69.44
 Df Model:                           1                                         
 Covariance Type:            nonrobust                                         
 ===============================================================================================
                                   coef    std err          t      P>|t|      [95.0% Conf. Int.]
 -----------------------------------------------------------------------------------------------
-Intercept                       2.8291      0.121     23.462      0.000         2.583     3.075
-Q("fp_53_commons;sudikoff")     0.2434      0.118      2.055      0.048         0.002     0.485
+Intercept                       3.5859      0.107     33.489      0.000         3.368     3.804
+Q("fp_baker-berry;hopkins")    -0.2141      0.104     -2.052      0.048        -0.427    -0.002
 ==============================================================================
-Omnibus:                        0.473   Durbin-Watson:                   1.905
-Prob(Omnibus):                  0.789   Jarque-Bera (JB):                0.593
-Skew:                           0.078   Prob(JB):                        0.743
-Kurtosis:                       2.372   Cond. No.                         1.03
+Omnibus:                        5.376   Durbin-Watson:                   2.147
+Prob(Omnibus):                  0.068   Jarque-Bera (JB):                4.016
+Skew:                          -0.808   Prob(JB):                        0.134
+Kurtosis:                       3.473   Cond. No.                         1.03
 ==============================================================================
 
 Warnings:
