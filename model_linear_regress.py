@@ -195,6 +195,10 @@ if __name__ == '__main__':
 #     feature = 'edit_dist'
 #     feature = 'start_time_avg_oncampus'
 #     feature = 'end_time_avg_oncampus'
+    feature = 'gps_entropy'
+    feature = 'gps_avg_radius'
+    feature = 'gps_var_radius'
+    feature = 'gps_avg_area'
 
 
     

@@ -2,7 +2,6 @@ import os
 from pprint import pprint
 from datetime import datetime
 from util import write_feature_to_csv, OFF_CAMPUS, write_multi_features_to_csv
-#pp = pprint.PrettyPrinter(width=200)
 dir = r'C:\Users\Sophie\workspace\Personality\dataset\sensing\conversation'
 
 def freq(id):
@@ -85,7 +84,7 @@ def duration(id):
         if not dt in dt_dur:
             dt_dur[dt] = 0
         dt_dur[dt] += duration
-    #pp.pprint(dt_dur)
+    pprint(dt_dur)
     
     total = 0
     for dt in dt_dur:
@@ -124,9 +123,9 @@ if __name__ == '__main__':
     id_feature = get_feature(freq)
     #write_feature_to_csv(id_feature, 'conver_freq')
     #write_feature_to_csv(id_feature, 'conver_freq_oncampus')
-    write_multi_features_to_csv(id_feature, ['conver_freq_daytime_oncampus', 'conver_freq_evening_oncampus', 'conver_freq_night_oncampus'])
+    #write_multi_features_to_csv(id_feature, ['conver_freq_daytime_oncampus', 'conver_freq_evening_oncampus', 'conver_freq_night_oncampus'])
 
-    #id_feature = get_feature(duration)
+    id_feature = get_feature(duration)
     #write_feature_to_csv(id_feature, 'conver_dur_avg') 
     #write_feature_to_csv(id_feature, 'conver_dur_avg_oncampus') 
     #write_feature_to_csv(id_feature, 'conver_dur_total')  

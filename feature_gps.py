@@ -1,21 +1,25 @@
 import os
 from datetime import datetime
 from pprint import pprint
+import random
+import math
+import numpy as np
 
-from util_gps import id_home
+from util_gps import ID_HOME_GPS
 from util_gps import all_locs_1, all_locs_2
-from util import get_entropy, OFF_CAMPUS
+from util import get_entropy, OFF_CAMPUS, write_feature_to_csv, fill_miss_values
 
-MIN_SAMPLES = 65
-NUM_DAYS = 30
-MIN_FREQ = 2
+# MIN_SAMPLES = 65
+# NUM_DAYS = 10
 
-
+MIN_SAMPLES = 36
+NUM_DAYS = 20
 
 # gps frequency changes from every 20 min to every 10 min
 def get_complete_days(fp):
     time_by_dates = {}
     loc_by_dates = {}
+    coord_by_dates = {}
     
     fr = open(fp, 'rU') 
     lines = fr.readlines()
@@ -29,33 +33,35 @@ def get_complete_days(fp):
             time_by_dates[dt].append(atts[1])
             loc_by_dates[dt] = []
             loc_by_dates[dt].append(atts[5])
+            coord_by_dates[dt] = []
+            coord_by_dates[dt].append((atts[2],atts[3]))
         else:
             time_by_dates[dt].append(atts[1])
             loc_by_dates[dt].append(atts[5])
+            coord_by_dates[dt].append((atts[2],atts[3]))
             
     time_by_dates = sorted(time_by_dates.items(), key=lambda item: datetime.strptime(item[0], "%d%b%Y"))
+#     print len(loc_by_dates)
+#     return loc_by_dates
     
-    #complete = []
     complete_dates = []
-    by_complete_dates = {}
+    loc_by_complete_dates = {}
+    coord_by_complete_dates = {}
     for pair in time_by_dates:
         dt = pair[0]
         seq = pair[1]
         #print dt, len(seq)  
-    #     weekday = dt_obj.strftime("%A")
-    #     if weekday != 'Saturday' and weekday != 'Sunday':
-    #         continue
-              
+#         dt_obj = datetime.strptime(dt, "%d%b%Y")
+#         weekday = dt_obj.strftime("%A")
+#         if weekday != 'Saturday' and weekday != 'Sunday':
+#             continue
+               
         avg = 0.0
         if len(seq) < 10:
             continue
         for idx in range(len(seq)):
             if idx == 0:
                 continue
-#             tm = time.strptime(seq[idx], "%H:%M:%S")
-#             prev_tm = time.strptime(seq[idx-1], "%H:%M:%S")
-#             diff = tm - prev_tm
-#             print diff
             tm = datetime.strptime(seq[idx], "%d%b%Y:%H:%M:%S")
             prev_tm = datetime.strptime(seq[idx-1], "%d%b%Y:%H:%M:%S")
             diff = tm - prev_tm
@@ -63,35 +69,40 @@ def get_complete_days(fp):
             sec = int(items[0])*3600 + int(items[1])*60 + int(items[2])
             avg += sec
         avg /= len(seq)-1
-        
+         
         # sample rate is 10 min:
         if avg/60 < 15.0:
             if len(seq) >= MIN_SAMPLES * 2:
                 complete_dates.append(dt)
                 # down sampling
-                loc_seq = loc_by_dates[dt]
-                by_complete_dates[dt] = loc_seq[0::2]
+                loc_by_complete_dates[dt] = loc_by_dates[dt][0::2]
+                coord_by_complete_dates[dt] = coord_by_dates[dt][0::2]
         # sample rate is 20 min:
         else:
             if len(seq) >= MIN_SAMPLES and len(seq) <= 72:
                 complete_dates.append(dt)
-                by_complete_dates[dt] = loc_by_dates[dt]                                     
+                loc_by_complete_dates[dt] = loc_by_dates[dt] 
+                coord_by_complete_dates[dt] = coord_by_dates[dt]                                    
     #pprint(complete)
     #print len(complete)
-
-    by_complete_dates = sorted(by_complete_dates.items(), key=lambda item: datetime.strptime(item[0], "%d%b%Y"))
+ 
+    loc_by_complete_dates = sorted(loc_by_complete_dates.items(), key=lambda item: datetime.strptime(item[0], "%d%b%Y"))
+    coord_by_complete_dates = sorted(coord_by_complete_dates.items(), key=lambda item: datetime.strptime(item[0], "%d%b%Y"))
     #pprint(by_complete_dates)
-    
+     
     print len(complete_dates)
-    return complete_dates, by_complete_dates
+    return complete_dates, loc_by_complete_dates, coord_by_complete_dates
 
-def get_loc_freq(sample_days, by_dates):
+
+
+def get_loc_freq(sample_days, loc_by_dates):
     loc_freq = {}
     
-    for pair in by_dates:
+    for pair in loc_by_dates:
         dt = pair[0]
         if not dt in sample_days:
             continue
+        print pair
         seq = pair[1]
         for loc in seq:
             if not loc in loc_freq:
@@ -103,12 +114,12 @@ def get_loc_freq(sample_days, by_dates):
 #     loc_freq = sorted(loc_freq.items(), key=lambda item: item[1], reverse=True)
 #     for pair in loc_freq:
 #         print pair
-#     print len(loc_freq)
+    #print len(loc_freq)
     
     return loc_freq
 
 def merge_homes(loc_freq, id):
-    homes = id_home[id]
+    homes = ID_HOME_GPS[id]
     loc_freq['home'] = 0
 
     for loc in loc_freq:
@@ -121,21 +132,34 @@ def merge_homes(loc_freq, id):
     
     return loc_freq
 
-def get_all_loc_freq(loc_freq):
-    all_loc_freq = {}
-    total_freq = 0
-    for loc in all_locs_2:
-        if loc in loc_freq and loc_freq[loc] >= MIN_FREQ:
-            all_loc_freq[loc] = loc_freq[loc]
-            total_freq += loc_freq[loc]
-        else:
-            all_loc_freq[loc] = 0
+
+            
+def get_radius(sample_days, coord_by_dates):
+    #print sample_days
+    radius = []
+    area = []
     
-    for loc in all_loc_freq:
-        all_loc_freq[loc] /= float(total_freq)
+    for pair in coord_by_dates:
+        dt = pair[0]
+        if not dt in sample_days:
+            continue
+            
+        coords = pair[1]
+        lati = [float(coord[0]) for coord in coords]
+        logi = [float(coord[1]) for coord in coords]
+        a = max(lati) - min(lati)
+        b = max(logi) - min(logi)
+        r = math.sqrt(a*a+b*b)
+        s = a*b
+        radius.append(r)
+        area.append(s)
         
-    #pprint(all_loc_freq)
-    return all_loc_freq
+    avg_radius = np.mean(radius)
+    var_radius = np.var(radius)
+    avg_area = np.mean(area)
+    #print avg_radius
+    #return avg_radius
+    return avg_area
 
 def get_feature():
     all_locs = set()
@@ -149,40 +173,43 @@ def get_feature():
         
         if id in OFF_CAMPUS:
             continue
-
-#         if id != '59':
+        
+#         if id != '01':
 #             continue
                
         print 
         print 'subject id: ' + id
+
+
+        complete_dates, loc_by_complete_dates, coord_by_complete_dates = get_complete_days(fp)
+        sample_days = random.sample(complete_dates, NUM_DAYS)
         
-        #get_change_date(fp)
+        #sample_days = complete_dates[:NUM_DAYS]
+        #sample_days = complete_dates
+#         loc_freq = get_loc_freq(sample_days, loc_by_complete_dates)    
+#         #pprint(loc_freq) 
+#         loc_freq = merge_homes(loc_freq, id)
+#         #pprint(loc_freq)
+# 
+# 
+#         entropy = get_entropy(loc_freq)
+#         id_feature[id] = entropy
 
-        complete_dates, by_complete_dates = get_complete_days(fp)
-
-#         if len(complete_dates) < NUM_DAYS:
-#             continue
-        
-
-        
-#         #sample_days = random.sample(complete, NUM_DAYS)
-#         sample_days = complete[:NUM_DAYS]
-        sample_days = complete_dates
-
-        loc_freq = get_loc_freq(sample_days, by_complete_dates)    
-        #pprint(loc_freq) 
-        #loc_freq = merge_homes(loc_freq, id)
-        #pprint(loc_freq)
-#           
-#         all_loc_freq = get_all_loc_freq(loc_freq)
-#         entropy = get_entropy(all_loc_freq)
-
-        entropy = get_entropy(loc_freq)
-        id_feature[id] = entropy
+        result = get_radius(sample_days, coord_by_complete_dates)
+        id_feature[id] = result
         
     
     return id_feature
 
 if __name__ == '__main__':
-    get_feature()
+    id_feature = get_feature()
+    pprint(id_feature)
+    #write_feature_to_csv(id_feature, 'gps_entropy')
+    #write_feature_to_csv(id_feature, 'gps_avg_radius')
+    #fill_miss_values(id_feature, 1, ['59','54', '57'])
+    #write_feature_to_csv(id_feature, 'gps_var_radius')
+    fill_miss_values(id_feature, 1, ['59'])
+    write_feature_to_csv(id_feature, 'gps_avg_area')
+    
+    
     
