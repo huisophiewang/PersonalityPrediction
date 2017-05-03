@@ -222,7 +222,7 @@ WIFI_LOC_TYPE_DICT = {'53_commons':'dining',
 
 def get_trait_scores(trait='all'):
     id_y = {}
-    fp = os.path.join(CUR_DIR, 'dataset', 'survey', 'BigFivePre.csv')
+    fp = os.path.join(CUR_DIR, 'dataset', 'survey', 'BigFivePre_oncampus.csv')
     fr = open(fp, 'rU')
     fr.readline()
     lines = fr.readlines()

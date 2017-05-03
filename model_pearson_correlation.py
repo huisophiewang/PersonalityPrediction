@@ -37,11 +37,11 @@ def pearson_single_feature(feature_name):
     fp_trait = os.path.join('dataset','survey','BigFivePre_oncampus.csv')
     agr = np.genfromtxt(fp_trait, delimiter=",", dtype=float, skip_header=1)[:,2]
     #print agr
-    print pearsonr(x, agr)
+    #print pearsonr(x, agr)
  
-#     for i in range(2, 7):
-#         y = data[:, i]
-#         print pearsonr(x, y)
+    for i in range(2, 7):
+        y = data[:, i]
+        print pearsonr(x, y)
         
 def pearson_multi_features(feature_names):
     
@@ -101,8 +101,9 @@ if __name__ == '__main__':
     feature = 'num_days_bluetooth_oncampus'
     feature = 'nearby_entropy_30days_oncampus'
     feature = 'nearby_timestamp_oncampus'
-    feature = 'nearby_daily_oncampus'
-    feature = 'nearby_total_30days_oncampus'
+    #feature = 'nearby_timestamp_30days_oncampus'
+    #feature = 'nearby_daily_oncampus'
+    #feature = 'nearby_total_30days_oncampus'
     
     #feature = 'late_time_var_oncampus'
     #feature = 'num_days_activity_oncampus'
@@ -112,31 +113,31 @@ if __name__ == '__main__':
     
     #feature = 'fp_53_commons;sudikoff'
 #     feature = 'fp_occum'
-    feature = 'fp_53_commons;baker-berry'
-    feature = 'fp_baker-berry;lsb'
-    feature = 'fp_kemeny;baker-berry'
+    #feature = 'fp_53_commons;baker-berry'
+    #feature = 'fp_kemeny;baker-berry'
 #     feature = 'fp_baker-berry;kemeny'
 #     feature = 'fp_lsb;baker-berry;kemeny'
 #     feature = 'fp_sport-venues'
 
-    #pearson_single_feature(feature)
+    #feature = 'gps_avg_area'
+
+    pearson_single_feature(feature)
     
     
     #features = ['len_var_mon', 'len_var_tue', 'len_var_wed', 'len_var_thr', 'len_var_fri']
-    #features = ['start_time_var_mon','start_time_var_tue','start_time_var_wed','start_time_var_thr','start_time_var_fri']
-    #features = ['end_time_var_mon','end_time_var_tue','end_time_var_wed','end_time_var_thr','end_time_var_fri']
+    features = ['start_time_var_mon','start_time_var_tue','start_time_var_wed','start_time_var_thr','start_time_var_fri']
+    features = ['end_time_var_mon','end_time_var_tue','end_time_var_wed','end_time_var_thr','end_time_var_fri']
     
-    features = ['daily_day_oncampus', 'daily_evening_oncampus', 'daily_night_oncampus']
-    features = ['day_entropy_oncampus_30days', 'evening_entropy_oncampus_30days', 'night_entropy_oncampus_30days']
-    features = ['daily_day_unique_oncampus', 'daily_evening_unique_oncampus', 'daily_night_unique_oncampus']
-    features = ['days_oncampus', 'views_oncampus', 'contributions_oncampus', 'questions_oncampus', 'notes_oncampus', 'answers_oncampus']
-    
-    features = ['early_oncampus', 'late_oncampus', 'absent_oncampus'] 
-    features = ['stat_rate_oncampus', 'walk_rate_oncampus', 'run_rate_oncampus']
-    features = ['conver_freq_daytime_oncampus', 'conver_freq_evening_oncampus', 'conver_freq_night_oncampus']
+    #features = ['daily_day_oncampus', 'daily_evening_oncampus', 'daily_night_oncampus']
+#     features = ['day_entropy_oncampus_30days', 'evening_entropy_oncampus_30days', 'night_entropy_oncampus_30days']
+#     features = ['daily_day_unique_oncampus', 'daily_evening_unique_oncampus', 'daily_night_unique_oncampus']
+#     features = ['days_oncampus', 'views_oncampus', 'contributions_oncampus', 'questions_oncampus', 'notes_oncampus', 'answers_oncampus']
+#     features = ['early_oncampus', 'late_oncampus', 'absent_oncampus'] 
+#     features = ['stat_rate_oncampus', 'walk_rate_oncampus', 'run_rate_oncampus']
+#     features = ['conver_freq_daytime_oncampus', 'conver_freq_evening_oncampus', 'conver_freq_night_oncampus']
 
     
-    pearson_multi_features(features)
+    #pearson_multi_features(features)
 
 
 

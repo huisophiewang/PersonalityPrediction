@@ -51,7 +51,7 @@ def plot_feature(feature):
     plt.show()
 
 def plot_multi_feature(feature_names, trait):    
-    file_name = '-'.join(feature_names) + '_sbp17.csv'
+    file_name = '-'.join(feature_names) + '.csv'
     input_fp = os.path.join(CUR_DIR, 'result', 'feature', file_name)
     df = pandas.read_csv(input_fp)
 
@@ -169,12 +169,12 @@ if __name__ == '__main__':
     #feature = 'nearby_entropy'
     #feature = 'nearby_friends_evening'
     #feature = 'nearby_friends'
-    #feature = 'nearby_total_30days_oncampus'
+    feature = 'nearby_total_30days_oncampus'
     #feature = 'nearby_entropy_30days_oncampus'
     #feature = 'nearby_total_30days_oncampus_noclass'
     #feature = 'nearby_entropy_30days_oncampus_noclass'
     #feature = 'nearby_num_unique_30days_oncampus'
-    #feature = 'nearby_timestamp_30days_oncampus'
+    feature = 'nearby_timestamp_30days_oncampus'
     #feature = 'nearby_num_friends_30days_oncampus'
     #feature = 'nearby_daily_oncampus'
     #feature = 'nearby_timestamp_oncampus'
@@ -195,15 +195,15 @@ if __name__ == '__main__':
 #     feature = 'edit_dist'
 #     feature = 'start_time_avg_oncampus'
 #     feature = 'end_time_avg_oncampus'
-    feature = 'gps_entropy'
-    feature = 'gps_avg_radius'
-    feature = 'gps_var_radius'
-    feature = 'gps_avg_area'
+#     feature = 'gps_entropy'
+#     feature = 'gps_avg_radius'
+#     feature = 'gps_var_radius'
+#     feature = 'gps_avg_area'
 
 
     
-    single_vrb(feature)
-    plot_feature(feature)
+#     single_vrb(feature)
+#     plot_feature(feature)
     
     #features = ['early', 'late', 'absent']   
     #features = ['early_oncampus', 'late_oncampus', 'absent_oncampus'] 
@@ -229,13 +229,13 @@ if __name__ == '__main__':
     
     #features = ['len_mean_Mon', 'len_mean_Tue', 'len_mean_Wed', 'len_mean_Thr', 'len_mean_Fri']
     #features = ['len_var_mon', 'len_var_tue', 'len_var_wed', 'len_var_thr', 'len_var_fri']
-#     features = ['start_time_var_mon','start_time_var_tue','start_time_var_wed','start_time_var_thr','start_time_var_fri']
-#     features = ['end_time_var_mon','end_time_var_tue','end_time_var_wed','end_time_var_thr','end_time_var_fri']
+    features = ['start_time_var_mon','start_time_var_tue','start_time_var_wed','start_time_var_thr','start_time_var_fri']
+    features = ['end_time_var_mon','end_time_var_tue','end_time_var_wed','end_time_var_thr','end_time_var_fri']
     
     
-#     trait = 'openn'
-#     multi_feature_single_trait(features, trait)
-#     plot_multi_feature(features, trait)
+    trait = 'agrbl'
+    multi_feature_single_trait(features, trait)
+    plot_multi_feature(features, trait)
 
     
     
