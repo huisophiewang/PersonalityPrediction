@@ -56,14 +56,15 @@ def cross_validate(x, y, fold):
 
     
 if __name__ == '__main__':
-    fp = os.path.join('result', 'feature', 'all_features_fp_agrbl_cls_fewer_features.csv')
+    #fp = os.path.join('result', 'feature', 'all_features_fp_extra.csv')
+    fp = os.path.join('result', 'feature', 'all_features_fp_openn_cls_sbp17.csv')
     #fp = os.path.join('result', 'feature', 'all_features_fp_agrbl_cls_save.csv')
     #fp = os.path.join('result', 'feature', 'all_features_fp_agrbl_cls_sbp17.csv')
     data = np.genfromtxt(fp, delimiter=",", dtype=float, skip_header=1)
     #np.random.shuffle(data)
 
     x = data[:, 1:-1]
-    print x
+    #print x
     y = data[:,-1]
     #cross_validate(x, y, fold=10)
     cross_validate(x, y, fold=len(x))

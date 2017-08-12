@@ -46,7 +46,7 @@ def dec_tree_reg(x_train, y_train, x_test, y_test):
     return test_mse
 
 def dec_tree_cls(x_train, y_train, x_test, y_test):
-    cls = DecisionTreeClassifier(max_depth=3, random_state=0)
+    cls = DecisionTreeClassifier(max_depth=4, random_state=0)
     cls.fit(x_train, y_train)
     predict = cls.predict(x_test)
     acc = np.sum(predict == y_test).astype(int) / float(len(y_test))
@@ -72,7 +72,7 @@ def dec_tree_cv(x, y, fold):
     
 if __name__ == '__main__':
     #example()
-    fp = os.path.join('result', 'feature', 'all_features_fp_extra_cls.csv')
+    fp = os.path.join('result', 'feature', 'all_features_fp_agrbl_cls_sbp17.csv')
     #fp = os.path.join('result', 'feature', 'all_features_all_traits_cls.csv')
     data = np.genfromtxt(fp, delimiter=",", dtype=float, skip_header=1)
     #np.random.shuffle(data)

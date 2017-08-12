@@ -93,9 +93,9 @@ def linear_reg_cv(x, y, fold):
         hd_idx = np.arange(k, len(x), fold)
         x_test, y_test = x[hd_idx], y[hd_idx]
         x_train, y_train = np.delete(x, hd_idx, axis=0), np.delete(y, hd_idx, axis=0)
-        #test_mse = mean_as_prediction(y_test, np.mean(y_train), 'mse')
+        test_mse = mean_as_prediction(y_test, np.mean(y_train), 'mse')
         #test_mse = my_linear_reg(x_train, y_train, x_test, y_test)
-        test_mse = sklearn_linear_reg(x_train, y_train, x_test, y_test)
+        #test_mse = sklearn_linear_reg(x_train, y_train, x_test, y_test)
         
         test_mses.append(test_mse)   
     pprint(test_mses)
@@ -103,21 +103,20 @@ def linear_reg_cv(x, y, fold):
     print "average test mse: %f" % avg_test_mse
     
 if __name__ == '__main__':
-    #iris = datasets.load_iris()
-    #boston = datasets.load_boston()
 #     fp = os.path.join('dataset', 'survey', 'BigFivePre_oncampus.csv')
 #     data = np.genfromtxt(fp, delimiter=",", dtype=float, skip_header=1)
 #     for i in range(5):
 #         print np.var(data[:, i+1])
     
     #fp = os.path.join('result', 'feature', 'all_features_extra.csv')
-    fp = os.path.join('result', 'feature', 'all_features_all_traits.csv')
+    #fp = os.path.join('result', 'feature', 'all_features_all_traits.csv')
+    fp = os.path.join('result', 'feature', 'all_features_fp_agrbl_acii.csv')
     data = np.genfromtxt(fp, delimiter=",", dtype=float, skip_header=1)
     #np.random.shuffle(data)
     #x = data[:, [8,16,19]]
     #print x
-    x = data[:, 1:-5]
+    x = data[:, 1:-1]
     #print x
     y = data[:,-1]
-    linear_reg_cv(x, y, fold=10)
+    linear_reg_cv(x, y, fold=len(x))
     

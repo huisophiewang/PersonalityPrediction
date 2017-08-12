@@ -196,7 +196,7 @@ if __name__ == '__main__':
 #     feature = 'start_time_avg_oncampus'
 #     feature = 'end_time_avg_oncampus'
 #     feature = 'gps_entropy'
-#     feature = 'gps_avg_radius'
+#    feature = 'gps_avg_radius'
 #     feature = 'gps_var_radius'
 #     feature = 'gps_avg_area'
 
@@ -219,7 +219,7 @@ if __name__ == '__main__':
     #features = ['stat_total', 'act_total']
     #features = ['stat_daily', 'walk_daily', 'run_daily']
     
-    features = ['daily_day_oncampus', 'daily_evening_oncampus', 'daily_night_oncampus']
+    #features = ['daily_day_oncampus', 'daily_evening_oncampus', 'daily_night_oncampus']
     #features = ['daily_day_oncampus_noclass', 'daily_evening_oncampus_noclass', 'daily_night_oncampus_noclass']
     #features = ['daily_day_unique_oncampus', 'daily_evening_unique_oncampus', 'daily_night_unique_oncampus']
     #features = ['ontime_rate_oncampus', 'absent_rate_oncampus']
@@ -228,12 +228,12 @@ if __name__ == '__main__':
     #features = ['conver_freq_daytime_oncampus', 'conver_freq_evening_oncampus', 'conver_freq_night_oncampus']
     
     #features = ['len_mean_Mon', 'len_mean_Tue', 'len_mean_Wed', 'len_mean_Thr', 'len_mean_Fri']
-    #features = ['len_var_mon', 'len_var_tue', 'len_var_wed', 'len_var_thr', 'len_var_fri']
-    features = ['start_time_var_mon','start_time_var_tue','start_time_var_wed','start_time_var_thr','start_time_var_fri']
-    features = ['end_time_var_mon','end_time_var_tue','end_time_var_wed','end_time_var_thr','end_time_var_fri']
+    features = ['len_var_mon', 'len_var_tue', 'len_var_wed', 'len_var_thr', 'len_var_fri']
+    #features = ['start_time_var_mon','start_time_var_tue','start_time_var_wed','start_time_var_thr','start_time_var_fri']
+    #features = ['end_time_var_mon','end_time_var_tue','end_time_var_wed','end_time_var_thr','end_time_var_fri']
     
     
-    trait = 'agrbl'
+    trait = 'openn'
     multi_feature_single_trait(features, trait)
     plot_multi_feature(features, trait)
 

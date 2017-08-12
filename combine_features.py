@@ -149,11 +149,11 @@ if __name__ == '__main__':
 #     fnames.extend(['fp_53_commons;sudikoff', 'fp_occum'])
 #     combine_heuristic_features(fnames, trait='extra')
 
-    fnames = ['nearby_total_30days_oncampus', 'nearby_timestamp_oncampus']
-    fnames.append('start_time_var_mon-start_time_var_tue-start_time_var_wed-start_time_var_thr-start_time_var_fri')
-    fnames.append('end_time_var_mon-end_time_var_tue-end_time_var_wed-end_time_var_thr-end_time_var_fri')
-    fnames.extend(['fp_53_commons;baker-berry','fp_baker-berry;lsb','fp_kemeny;baker-berry'])
-    combine_heuristic_features(fnames, trait='agrbl')
+#     fnames = ['nearby_total_30days_oncampus', 'nearby_timestamp_oncampus']
+#     fnames.append('start_time_var_mon-start_time_var_tue-start_time_var_wed-start_time_var_thr-start_time_var_fri')
+#     fnames.append('end_time_var_mon-end_time_var_tue-end_time_var_wed-end_time_var_thr-end_time_var_fri')
+#     fnames.extend(['fp_53_commons;baker-berry','fp_baker-berry;lsb','fp_kemeny;baker-berry'])
+#     combine_heuristic_features(fnames, trait='agrbl')
 
 #     fnames = ['start_time_var_oncampus']
 #     fnames.append('day_entropy_oncampus_30days-evening_entropy_oncampus_30days-night_entropy_oncampus_30days')
@@ -177,14 +177,25 @@ if __name__ == '__main__':
 #     fnames.extend(['fp_sport-venues'])
 #     combine_heuristic_features(fnames, trait='openn')
 
-#     fnames = ['len_var_oncampus', 'start_time_var_oncampus', 'end_time_var_oncampus', 'num_days_activity_oncampus']
-#     fnames.append('stat_rate_oncampus-walk_rate_oncampus-run_rate_oncampus')
-#     fnames.append('daily_day_oncampus-daily_evening_oncampus-daily_night_oncampus')
-#     fnames.append('day_entropy_oncampus_30days-evening_entropy_oncampus_30days-night_entropy_oncampus_30days')
-#     fnames.append('conver_freq_daytime_oncampus-conver_freq_evening_oncampus-conver_freq_night_oncampus')
-#     fnames.append('early_oncampus-late_oncampus-absent_oncampus')
-#     fnames.append('days_oncampus-views_oncampus-contributions_oncampus-questions_oncampus-notes_oncampus-answers_oncampus')
-#     combine_heuristic_features(fnames)
+    # all features
+    # wifi
+    fnames = ['len_var_oncampus', 'start_time_var_oncampus', 'end_time_var_oncampus']
+    fnames.append('len_var_mon-len_var_tue-len_var_wed-len_var_thr-len_var_fri')
+    fnames.append('start_time_var_mon-start_time_var_tue-start_time_var_wed-start_time_var_thr-start_time_var_fri')
+    fnames.append('end_time_var_mon-end_time_var_tue-end_time_var_wed-end_time_var_thr-end_time_var_fri')
+    fnames.append('edit_dist')
+    # gps
+    fnames.append('gps_avg_area')
+    # bluetooth
+    
+
+    fnames.append('stat_rate_oncampus-walk_rate_oncampus-run_rate_oncampus')
+    fnames.append('daily_day_oncampus-daily_evening_oncampus-daily_night_oncampus')
+    fnames.append('day_entropy_oncampus_30days-evening_entropy_oncampus_30days-night_entropy_oncampus_30days')
+    fnames.append('conver_freq_daytime_oncampus-conver_freq_evening_oncampus-conver_freq_night_oncampus')
+    fnames.append('early_oncampus-late_oncampus-absent_oncampus')
+    fnames.append('days_oncampus-views_oncampus-contributions_oncampus-questions_oncampus-notes_oncampus-answers_oncampus')
+    combine_heuristic_features(fnames)
  
     
 
