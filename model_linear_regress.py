@@ -121,32 +121,20 @@ def plot_other(file_path):
     plt.show()       
            
 if __name__ == '__main__':
-    #plot_y_histogram()
-    #plot_y_boxplot()
-    #plot_x_histogram()
     
-    #feature = 'len_var'
-    #feature = 'len_var_oncampus'
+
     feature = 'len_mean_oncampus'
-#     feature = 'avg_edit_dist'
-    #feature = 'start_time_var_oncampus'
-    #feature = 'end_time_var_oncampus'
+    feature = 'len_var_oncampus'
+    feature = 'start_time_avg_oncampus'
+    feature = 'start_time_var_oncampus'
+    feature = 'end_time_avg_oncampus'
+    feature = 'end_time_var_oncampus'
+    feature = 'edit_dist'
     
-
-#     feature = 'late_var'
-#     feature = 'grade'
-#     feature = 'reply_count'
-#     feature = 'q1'
-#     feature = 'q2'
-#     feature = 'q3'
-
-#     feature = 'len_var_offcampus'
-#     feature = 'start_time_var_offcampus'
-#     feature = 'end_time_var_offcampus'
-#     feature = 'start_time_var_all'
-#     feature = 'end_time_var_all'
-#     feature = 'len_var_all'
-
+    feature = 'gps_entropy'
+    feature = 'gps_avg_radius'
+    feature = 'gps_avg_area'
+    
     #feature = 'late_time_var'
     #feature = 'late_time_var_oncampus'
     
@@ -163,18 +151,16 @@ if __name__ == '__main__':
     #feature = 'nearby_daily'
     #feature = 'nearby_timestamp'
 #     feature = 'nearby_total'
-    #feature = 'nearby_entropy_day'
-    #feature = 'nearby_entropy_night'
-    #feature = 'nearby_entropy_evening'
+
     #feature = 'nearby_entropy'
     #feature = 'nearby_friends_evening'
     #feature = 'nearby_friends'
-    feature = 'nearby_total_30days_oncampus'
+    #feature = 'nearby_total_30days_oncampus'
     #feature = 'nearby_entropy_30days_oncampus'
     #feature = 'nearby_total_30days_oncampus_noclass'
     #feature = 'nearby_entropy_30days_oncampus_noclass'
     #feature = 'nearby_num_unique_30days_oncampus'
-    feature = 'nearby_timestamp_30days_oncampus'
+    #feature = 'nearby_timestamp_30days_oncampus'
     #feature = 'nearby_num_friends_30days_oncampus'
     #feature = 'nearby_daily_oncampus'
     #feature = 'nearby_timestamp_oncampus'
@@ -195,15 +181,25 @@ if __name__ == '__main__':
 #     feature = 'edit_dist'
 #     feature = 'start_time_avg_oncampus'
 #     feature = 'end_time_avg_oncampus'
-#     feature = 'gps_entropy'
-#    feature = 'gps_avg_radius'
-#     feature = 'gps_var_radius'
-#     feature = 'gps_avg_area'
+
 
 
     
 #     single_vrb(feature)
 #     plot_feature(feature)
+
+###################################################################################################
+    #features = ['len_mean_mon', 'len_mean_tue', 'len_mean_wed', 'len_mean_thr', 'len_mean_fri']
+    features = ['len_var_mon', 'len_var_tue', 'len_var_wed', 'len_var_thr', 'len_var_fri']
+    features = ['start_time_var_mon','start_time_var_tue','start_time_var_wed','start_time_var_thr','start_time_var_fri']
+    features = ['end_time_var_mon','end_time_var_tue','end_time_var_wed','end_time_var_thr','end_time_var_fri']
+  
+    features = ['daily_day_oncampus', 'daily_evening_oncampus', 'daily_night_oncampus']
+    features = ['daily_day_oncampus_noclass', 'daily_evening_oncampus_noclass', 'daily_night_oncampus_noclass']
+    features = ['daily_day_unique_oncampus', 'daily_evening_unique_oncampus', 'daily_night_unique_oncampus']
+    features = ['day_entropy_oncampus', 'evening_entropy_oncampus', 'night_entropy_oncampus']
+    #features = ['day_entropy_oncampus_30days', 'evening_entropy_oncampus_30days', 'night_entropy_oncampus_30days']
+    
     
     #features = ['early', 'late', 'absent']   
     #features = ['early_oncampus', 'late_oncampus', 'absent_oncampus'] 
@@ -219,21 +215,12 @@ if __name__ == '__main__':
     #features = ['stat_total', 'act_total']
     #features = ['stat_daily', 'walk_daily', 'run_daily']
     
-    #features = ['daily_day_oncampus', 'daily_evening_oncampus', 'daily_night_oncampus']
-    #features = ['daily_day_oncampus_noclass', 'daily_evening_oncampus_noclass', 'daily_night_oncampus_noclass']
-    #features = ['daily_day_unique_oncampus', 'daily_evening_unique_oncampus', 'daily_night_unique_oncampus']
     #features = ['ontime_rate_oncampus', 'absent_rate_oncampus']
-    #features = ['day_entropy_oncampus', 'evening_entropy_oncampus', 'night_entropy_oncampus']
-    #features = ['day_entropy_oncampus_30days', 'evening_entropy_oncampus_30days', 'night_entropy_oncampus_30days']
     #features = ['conver_freq_daytime_oncampus', 'conver_freq_evening_oncampus', 'conver_freq_night_oncampus']
     
-    #features = ['len_mean_Mon', 'len_mean_Tue', 'len_mean_Wed', 'len_mean_Thr', 'len_mean_Fri']
-    features = ['len_var_mon', 'len_var_tue', 'len_var_wed', 'len_var_thr', 'len_var_fri']
-    #features = ['start_time_var_mon','start_time_var_tue','start_time_var_wed','start_time_var_thr','start_time_var_fri']
-    #features = ['end_time_var_mon','end_time_var_tue','end_time_var_wed','end_time_var_thr','end_time_var_fri']
+  
     
-    
-    trait = 'openn'
+    trait = 'consc'
     multi_feature_single_trait(features, trait)
     plot_multi_feature(features, trait)
 
