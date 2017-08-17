@@ -10,6 +10,8 @@ from sklearn.model_selection import cross_val_score
 from sklearn import metrics
 from sklearn.model_selection import GridSearchCV
 from sklearn import svm
+
+from util import TRAITS
     
 
 def tune(x, y):
@@ -32,7 +34,8 @@ def tune(x, y):
     
 def sklearn_gradient_boost(x_train, y_train, x_test, y_test, p1, p2):
 
-    clf = AdaBoostClassifier(random_state=0, n_estimators= p1, learning_rate=p2)
+    clf = AdaBoostClassifier(n_estimators= p1, learning_rate=p2)
+    #clf = GradientBoostingClassifier(n_estimators= p1, learning_rate=p2, max_depth=p0)
     clf.fit(x_train, y_train)
     predict = clf.predict(x_test)
     acc = np.sum(predict == y_test).astype(int) / float(len(y_test))
@@ -41,11 +44,13 @@ def sklearn_gradient_boost(x_train, y_train, x_test, y_test, p1, p2):
 
 
 def cross_validate(x, y, fold):
-    #p1_range = range(1,15,3)
-    p1_range = range(1,10,1)
-    #p2_range = [0.1, 0.25, 0.5, 0.75, 1.0 ]
-    p2_range = np.arange(0.01, 0.2, 0.01)
+#     p1_range = range(1,15,2)
+#     p2_range = [0.1, 0.25, 0.5, 0.75, 1.0, 1.25]
+    
+    p1_range = range(1,20,1)
+    p2_range = np.arange(0.001, 1.5, 0.01)
     para_accs = np.zeros((len(p1_range), len(p2_range)))
+
     for i, p1 in enumerate(p1_range):
         for j, p2 in enumerate(p2_range):
             accs = []
@@ -59,28 +64,20 @@ def cross_validate(x, y, fold):
             #print avg_acc
             para_accs[i][j] = avg_acc
     print para_accs
+    print np.amax(para_accs)
     
 if __name__ == '__main__':
-    fp = os.path.join('result', 'feature', 'all_features_fp_openn_cls_sbp17.csv')
-    data = np.genfromtxt(fp, delimiter=",", dtype=float, skip_header=1)
+    for trait in ['consc']:
+        print '------------------------'
+        print trait
+        fp = os.path.join('result', 'feature', 'all_features_fp_%s_cls_acii_test1.csv' % trait)
+        data = np.genfromtxt(fp, delimiter=",", dtype=float, skip_header=1)
+        #np.random.shuffle(data)
+    
+        x = data[:, 1:-1]
+        y = data[:,-1]
 
-    x = data[:, 1:-1]
-    y = data[:,-1]
+        
+        cross_validate(x, y, len(x))
     
-    #tune(x, y)
-    
-    cross_validate(x, y, len(x))
-    
-#     cls = GradientBoostingClassifier()
-#     cls = AdaBoostClassifier()
-#     print cls
-#     cls.fit(x, y)
-#     prediction = cls.predict(x)
-#     train_acc = metrics.accuracy_score(y, prediction)
-#     print train_acc
-    
-    
-    
-#     cv_score = cross_val_score(cls, x, y, cv=len(x), scoring='accuracy')
-#     print cv_score
-    
+

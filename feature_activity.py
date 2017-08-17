@@ -15,8 +15,8 @@ def get_feature():
         print '------'
         print "id: " + id
         
-#         if id in ['59']:
-#             continue
+        if id in ['59']:
+            continue
         #if id in OFF_CAMPUS + ['52']:
         if id in OFF_CAMPUS:
             continue
@@ -43,7 +43,7 @@ def get_feature():
         
         
 
-        #print days
+        days = len(count_date)
         
         total = total_stat + total_walk + total_run + total_unknown
         #print total/float(days)
@@ -55,14 +55,14 @@ def get_feature():
 #         rate_stat, rate_act = total_stat/float(total), (total_walk+total_run)/float(total)
 #         id_feature[id] = (rate_stat, rate_act)
         
-        #id_feature[id] = (total_stat, total_walk+total_run)
+        #id_feature[id] = (total_stat, total_walk, total_run)
        
         
-#         daily_stat, daily_walk, daily_run = total_stat/float(days), total_walk/float(days), total_run/float(days)
-#         id_feature[id] = (daily_stat, daily_walk, daily_run)
+        daily_stat, daily_walk, daily_run = total_stat/float(days), total_walk/float(days), total_run/float(days)
+        id_feature[id] = (daily_stat, daily_walk, daily_run)
 
-        days = len(count_date)
-        id_feature[id] = days
+#         days = len(count_date)
+#         id_feature[id] = days
         
         
         
@@ -80,13 +80,13 @@ if __name__ == '__main__':
     
     #fill_miss_values(id_features, 2, ['59'])
     #write_multi_features_to_csv(id_features, ['stat_total', 'walk_total', 'run_total'])
-    #write_multi_features_to_csv(id_features, ['stat_total', 'act_total'])
+    fill_miss_values(id_features, 3, ['59'])
+    #write_multi_features_to_csv(id_features, ['stat_total_oncampus', 'walk_total_oncampus', 'run_total_oncampus'])
+    write_multi_features_to_csv(id_features, ['stat_daily_oncampus', 'walk_daily_oncampus', 'run_daily_oncampus'])
     
     #write_feature_to_csv(id_features, 'num_days_activity')
-    write_feature_to_csv(id_features, 'num_days_activity_oncampus', normalize=True)
-    
-    #fill_miss_values(id_features, 3, ['59'])
-    #write_multi_features_to_csv(id_features, ['stat_daily', 'walk_daily', 'run_daily'])
+    #write_feature_to_csv(id_features, 'num_days_activity_oncampus', normalize=True)
+
     
 
     
