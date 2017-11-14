@@ -31,7 +31,7 @@ def pearson_single_feature(feature_name):
     data = np.genfromtxt(fp, delimiter=",", dtype=float, skip_header=1)
     #print data
     x = data[:,1]
-    print np.mean(x)
+    #print np.mean(x)
     #print x
     
     fp_trait = os.path.join('dataset','survey','BigFivePre_oncampus.csv')
@@ -96,11 +96,11 @@ if __name__ == '__main__':
     feature = 'start_time_avg_oncampus'
     feature = 'end_time_var_oncampus'
     feature = 'end_time_avg_oncampus'
-    feature = 'edit_dist'
+    #feature = 'edit_dist'
     
-    feature = 'num_days_bluetooth_oncampus'
-    feature = 'nearby_entropy_30days_oncampus'
-    feature = 'nearby_timestamp_oncampus'
+#     feature = 'num_days_bluetooth_oncampus'
+#     feature = 'nearby_entropy_30days_oncampus'
+#     feature = 'nearby_timestamp_oncampus'
     #feature = 'nearby_timestamp_30days_oncampus'
     #feature = 'nearby_daily_oncampus'
     #feature = 'nearby_total_30days_oncampus'
@@ -125,8 +125,8 @@ if __name__ == '__main__':
     
     
     #features = ['len_var_mon', 'len_var_tue', 'len_var_wed', 'len_var_thr', 'len_var_fri']
-    features = ['start_time_var_mon','start_time_var_tue','start_time_var_wed','start_time_var_thr','start_time_var_fri']
-    features = ['end_time_var_mon','end_time_var_tue','end_time_var_wed','end_time_var_thr','end_time_var_fri']
+    #features = ['start_time_var_mon','start_time_var_tue','start_time_var_wed','start_time_var_thr','start_time_var_fri']
+    #features = ['end_time_var_mon','end_time_var_tue','end_time_var_wed','end_time_var_thr','end_time_var_fri']
     
     #features = ['daily_day_oncampus', 'daily_evening_oncampus', 'daily_night_oncampus']
 #     features = ['day_entropy_oncampus_30days', 'evening_entropy_oncampus_30days', 'night_entropy_oncampus_30days']

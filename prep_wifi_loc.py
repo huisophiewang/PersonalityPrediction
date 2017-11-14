@@ -221,8 +221,8 @@ if __name__ == '__main__':
 
     #get_weekday_seqs('01')
     #get_seqs('01')
-    #get_all_wifi_locs()
-    get_seq_by_weekday('05','Monday')
+    get_all_wifi_locs()
+    #get_seq_by_weekday('05','Monday')
 
 
 

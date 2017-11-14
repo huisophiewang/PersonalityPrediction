@@ -128,32 +128,32 @@ if __name__ == '__main__':
     feature = 'start_time_avg_oncampus'
     feature = 'start_time_var_oncampus'
     feature = 'end_time_avg_oncampus'
-    feature = 'end_time_var_oncampus'
-    feature = 'edit_dist'
-    
-    feature = 'gps_entropy'
-    feature = 'gps_avg_radius'
-    feature = 'gps_avg_area'
-    
-    feature = 'nearby_daily_oncampus'
-    feature = 'nearby_timestamp_oncampus'
-    feature = 'nearby_timestamp_30days_oncampus'
-    feature = 'nearby_total_30days_oncampus'
-    feature = 'nearby_total_30days_oncampus_noclass'
-     
-    feature = 'num_days_activity_oncampus'
-    
-    feature = 'conver_freq_oncampus'
-    feature = 'conver_dur_avg_oncampus'
-    feature = 'conver_dur_total_oncampus'
-    
-    feature = 'late_time_var_oncampus'
-    feature = 'late_time_avg_oncampus'
-
-
-    feature = 'fp_53_commons;baker-berry'
-    feature = 'fp_baker-berry;lsb'
-    feature = 'fp_kemeny;baker-berry'
+#     feature = 'end_time_var_oncampus'
+#     feature = 'edit_dist'
+#     
+#     feature = 'gps_entropy'
+#     feature = 'gps_avg_radius'
+#     feature = 'gps_avg_area'
+#     
+#     feature = 'nearby_daily_oncampus'
+#     feature = 'nearby_timestamp_oncampus'
+#     feature = 'nearby_timestamp_30days_oncampus'
+#     feature = 'nearby_total_30days_oncampus'
+#     feature = 'nearby_total_30days_oncampus_noclass'
+#      
+#     feature = 'num_days_activity_oncampus'
+#     
+#     feature = 'conver_freq_oncampus'
+#     feature = 'conver_dur_avg_oncampus'
+#     feature = 'conver_dur_total_oncampus'
+#     
+#     feature = 'late_time_var_oncampus'
+#     feature = 'late_time_avg_oncampus'
+# 
+# 
+#     feature = 'fp_53_commons;baker-berry'
+#     feature = 'fp_baker-berry;lsb'
+#     feature = 'fp_kemeny;baker-berry'
     #feature = 'fp_sport-venues'
     #feature = 'fp_baker-berry;kemeny'
     #feature = 'fp_lsb;baker-berry;kemeny'
@@ -162,23 +162,23 @@ if __name__ == '__main__':
     
 
     
-#     single_vrb(feature)
+    single_vrb(feature)
 #     plot_feature(feature)
 
 ###################################################################################################
 
-    features = ['len_var_mon', 'len_var_tue', 'len_var_wed', 'len_var_thr', 'len_var_fri']
-    features = ['start_time_var_mon','start_time_var_tue','start_time_var_wed','start_time_var_thr','start_time_var_fri']
-    features = ['end_time_var_mon','end_time_var_tue','end_time_var_wed','end_time_var_thr','end_time_var_fri']
+#     features = ['len_var_mon', 'len_var_tue', 'len_var_wed', 'len_var_thr', 'len_var_fri']
+#     features = ['start_time_var_mon','start_time_var_tue','start_time_var_wed','start_time_var_thr','start_time_var_fri']
+#     features = ['end_time_var_mon','end_time_var_tue','end_time_var_wed','end_time_var_thr','end_time_var_fri']
 # # # #   
-    features = ['daily_day_oncampus', 'daily_evening_oncampus', 'daily_night_oncampus']
+    #features = ['daily_day_oncampus', 'daily_evening_oncampus', 'daily_night_oncampus']
 #     features = ['daily_day_oncampus_noclass', 'daily_evening_oncampus_noclass', 'daily_night_oncampus_noclass']
 #     features = ['daily_day_unique_oncampus', 'daily_evening_unique_oncampus', 'daily_night_unique_oncampus']
 #     features = ['day_entropy_oncampus', 'evening_entropy_oncampus', 'night_entropy_oncampus']
 #     features = ['day_entropy_oncampus_30days', 'evening_entropy_oncampus_30days', 'night_entropy_oncampus_30days']
 # # # # #     
 #     features = ['stat_rate_oncampus', 'walk_rate_oncampus', 'run_rate_oncampus']
-    features = ['stat_total_oncampus', 'walk_total_oncampus', 'run_total_oncampus']
+    #features = ['stat_total_oncampus', 'walk_total_oncampus', 'run_total_oncampus']
 #     features = ['stat_daily_oncampus', 'walk_daily_oncampus', 'run_daily_oncampus']
 # # # # # 
 #     features = ['conver_freq_daytime_oncampus', 'conver_freq_evening_oncampus', 'conver_freq_night_oncampus']
@@ -189,9 +189,9 @@ if __name__ == '__main__':
 #     features = ['days_oncampus', 'views_oncampus', 'contributions_oncampus', 'questions_oncampus', 'notes_oncampus', 'answers_oncampus']
 
  
-    trait = 'consc'
-    multi_feature_single_trait(features, trait)
-    plot_multi_feature(features, trait)
+#     trait = 'consc'
+#     multi_feature_single_trait(features, trait)
+#     plot_multi_feature(features, trait)
 
     
     

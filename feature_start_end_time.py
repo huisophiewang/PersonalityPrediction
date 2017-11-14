@@ -92,10 +92,10 @@ def get_end_var_oncampus(in_loc_duration, id, wkd=None):
             if i > 0 and not loc in ID_HOME[id]:
                 end_time = seq_extend_reverse[i-1][1]
                 
-#                 items = end_time.split(':')
-#                 hour = int(items[0])
-#                 if hour < 4:
-#                     end_time = "%02d:%s:%s" % (hour+24, items[1], items[2])
+                items = end_time.split(':')
+                hour = int(items[0])
+                if hour < 4:
+                    end_time = "%02d:%s:%s" % (hour+24, items[1], items[2])
            
                 end_times.append(end_time)
                 break
